@@ -3,134 +3,763 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Nyandor Protocol™ — Analog Attention Technology</title>
+<title>The Nyandor Protocol™ — The Gate of Nyandor, a Transdimensional Feline Saga</title>
+<meta name="description" content="A two-volume, screen-free narrative immersion system. The Gate of Nyandor: 768 pages of epic fantasy with an all-cat cast, forbidden magic and branching timelines. Available on Amazon." />
+<meta name="theme-color" content="#0a0a09" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="The Nyandor Protocol™: Your brain wasn't designed for this." />
+<meta property="og:description" content="Big Dopamine sells the next thing. Nyandor is 768 pages of epic fantasy with an all-cat cast, built to make you forget where you left your phone." />
+<meta property="og:url" content="https://pbchrist.github.io/gate-of-nyandor-site/" />
+<meta property="og:image" content="https://pbchrist.github.io/gate-of-nyandor-site/assets/og-protocol.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="The Nyandor Protocol™" />
+<meta name="twitter:description" content="A two-volume, screen-free narrative immersion system. Contains: cats." />
+<meta name="twitter:image" content="https://pbchrist.github.io/gate-of-nyandor-site/assets/og-protocol.jpg" />
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin />
 <style>
-:root{--ink:#080807;--cream:#f4efe3;--gold:#c9a85b;--muted:#aaa28f;--red:#a33a2b;--panel:#11110f;--line:#302c23}
-*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--ink);color:var(--cream);font-family:Arial,Helvetica,sans-serif;line-height:1.5}
-a{color:inherit}.wrap{max-width:1120px;margin:auto;padding:0 24px}.serif{font-family:Georgia,'Times New Roman',serif}.eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:800}.nav{position:sticky;top:0;z-index:20;background:rgba(8,8,7,.92);backdrop-filter:blur(10px);border-bottom:1px solid #211f19}.navin{height:66px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:900;letter-spacing:.08em}.mini{font-size:12px;color:var(--muted)}
-.hero{min-height:92vh;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at 50% 35%,#272113 0,#0d0c09 32%,#080807 65%);position:relative;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0 89px,rgba(201,168,91,.035) 90px);pointer-events:none}.hero .wrap{position:relative;padding-top:90px;padding-bottom:90px}.hero hq{font-size:clamp(52px,9vw,112px);line-height:.88;letter-spacing:-.055em;margin:20px auto 26px;max-width:1000px}.hero h1 span{color:var(--gold)}.dek{font-size:clamp(19px,2.4vw,28px);max-width:760px;margin:0 auto 32px;color:#d9d2c2}.cta{display:inline-block;background:var(--gold);color:#090806;text-decoration:none;font-weight:900;padding:18px 28px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 12px 50px rgba(201,168,91,.18)}.subcta{margin-top:14px;font-size:12px;color:var(--muted)}
-.ticker{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;text-align:center;color:#bfb6a4;font-size:12px;letter-spacing:.16em;text-transform:uppercase}.section{padding:100px 0;border-bottom:1px solid #1d1b16}.section h2{font-size:clamp(38px,6vw,72px);line-height:.98;letter-spacing:-.04em;margin:12px 0 26px}.lead{font-size:22px;color:#d4ccbc;max-width:780px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.phone{border:1px solid var(--line);background:linear-gradient(180deg,#171612,#0b0b09);padding:26px;border-radius:18px;box-shadow:0 30px 100px #000}.feed{display:grid;gap:10px}.feed div{height:58px;border-radius:8px;background:#22201a;border:1px solid #312d23;display:flex;align-items:center;padding:0 16px;color:#8e8778}.feed div:nth-child(2n){width:86%}.feed div:nth-child(3n){width:72%}
-.vsl{max-width:920px;margin:35px auto 0;aspect-ratio:16/9;background:radial-gradient(circle,#211c11,#090908 65%);border:1px solid #403720;display:grid;place-items:center;text-align:center;box-shadow:0 40px 120px #000}.play{width:84px;height:84px;border:2px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin:auto;color:var(--gold);font-size:30px;padding-left:5px}.vsl p{color:#aaa28f}.caption{text-align:center;color:#817a6d;font-size:12px;margin-top:12px}
-.protocol{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}.card{background:var(--panel);border:1px solid var(--line);padding:28px;min-height:250px}.num{font-size:13px;color:var(--gold);font-weight:900;letter-spacing:.15em}.card h3{font-family:Georgia,serif;font-size:28px;margin:14px 0}.card p{color:#b8b09f}.science{background:var(--cream);color:#12110e}.science .eyebrow{color:#79612e}.science .lead{color:#373226}.chart{height:300px;border-left:2px solid #2d2a23;border-bottom:2px solid #2d2a22;position:relative;margin:40px 20px 20px}.chart:before{content:"ATTENTION";position:absolute;left:-52px;top:115px;transform:rotate(-90deg);font-size:11px;font-weight:bold}.chart:after{content:"TIME SPENT READING →";position:absolute;right:0;bottom:-30px;font-size:11px;font-weight:bold}.curve{position:absolute;left:8%;bottom:15%;width:82%;height:64%;border-top:5px solid var(--red);border-radius:50% 50% 0 0;transform:rotate(-10deg)}.disclaimer{font-size:11px;color:#6c665a;margin-top:40px}
-.product{background:linear-gradient(135deg,#0b0a08,#18150d)}.books{display:flex;gap:20px;align-items:flex-end;justify-content:center;min-height:420px}.book{width:210px;height:330px;background:linear-gradient(145deg,#2a2417,#0c0b08);border:1px solid #5d4b26;box-shadow:18px 25px 60px #000;padding:24px;display:flex;flex-direction:column;justify-content:space-between;transform:rotate(-4deg)}.book:nth-child(2){transform:rotate(5deg) translateY(18px)}.book .title{font-family:Georgia,serif;font-size:28px;line-height:1}.book small{color:var(--gold)}.pricebox{border:1px solid var(--gold);padding:28px;margin-top:32px}.pricebox strong{font-size:30px}.checks{list-style:none;padding:0}.checks li{padding:8px 0;border-bottom:1px solid #27231b}.checks li:before{content:"✓";color:var(--gold);margin-right:10px}.quote{font-family:Georgia,serif;font-size:clamp(28px,4vw,48px);line-height:1.1;max-width:900px;margin:auto;text-align:center}.quote small{display:block;font-family:Arial;font-size:12px;letter-spacing:.12em;color:var(--gold);margin-top:20px}.faq{max-width:820px;margin:auto}.faq details{border-top:1px solid var(--line);padding:22px 0}.faq summary{cursor:pointer;font-weight:800;font-size:19px}.faq p{color:#bcb3a2}.final{text-align:center;padding:120px 0;background:radial-gradient(circle,#211b10,#080807 62%)}.final h2{font-size:clamp(50px,8vw,100px);line-height:.9;margin:18px auto 28px;max-width:950px}.footer{padding:28px 0;color:#777064;font-size:11px;text-align:center}
-@media(max-width:760px){.grid2{grid-template-columns:1fr}.protocol{grid-template-columns:1fr}.books{transform:scale(.78);margin:-30px -70px}.section{padding:72px 0}.nav .mini{display:none}}
+@font-face{font-family:"Anton";src:url(assets/fonts/anton.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(assets/fonts/ebgaramond.woff2) format("woff2");font-weight:400 800;font-style:normal;font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(assets/fonts/ebgaramond-italic.woff2) format("woff2");font-weight:400 800;font-style:italic;font-display:swap}
 
-:root{--acid:#ffef00;--hot:#ff3b00;--ink:#090909}
-body{background:var(--ink)}
-.hero{background:radial-gradient(circle at 70% 15%,#532000 0,transparent 35%),linear-gradient(135deg,#050505 0,#151000 55%,#050505 100%)}
-.hero h1{font-size:clamp(4rem,10vw,9rem);line-height:.78;letter-spacing:-.065em;text-transform:uppercase;text-shadow:none}
-.eyebrow,.tag,.badge{background:var(--acid)!important;color:#000!important;border:3px solid #000!important;box-shadow:5px 5px 0 var(--hot);font-weight:900!important}
-.cta{background:var(--acid)!important;color:#000!important;border:4px solid #000!important;box-shadow:8px 8px 0 var(--hot)!important;text-transform:uppercase;font-weight:1000!important;transform:rotate(-1deg)}
-.cta:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:12px 12px 0 var(--hot)!important}
-.ticker{background:var(--hot)!important;color:white!important;font-weight:1000!important}
-section:nth-of-type(even){border-top:10px solid var(--acid);border-bottom:10px solid var(--hot)}
-h2{letter-spacing:-.05em;text-transform:uppercase}
-.faq-item,.phase,.science-card,.offer-card{border-width:3px!important;box-shadow:8px 8px 0 rgba(255,59,0,.65)}
-#emergency{background:var(--acid);color:#000;padding:14px;text-align:center;font:900 18px Arial;text-transform:uppercase;letter-spacing:.06em;border-bottom:5px solid #000}
-.amazon-strip{background:#ff3b00;color:#fff;padding:26px;text-align:center;border-top:6px solid #000;border-bottom:6px solid #000}
-.amazon-strip strong{font:1000 clamp(1.5rem,4vw,3.4rem) Arial;display:block;text-transform:uppercase}
-.amazon-strip a{display:inline-block;margin-top:14px;background:#ffef00;color:#000;padding:16px 28px;border:4px solid #000;box-shadow:7px 7px 0 #000;font:900 18px Arial;text-decoration:none}
-
-.neurochart{height:auto!important;min-height:470px!important;padding:14px!important;background:#f4f0df!important;color:#111!important;border:2px solid #111!important;box-shadow:8px 8px 0 #111!important;font-family:Arial,sans-serif!important}
-.figmeta{display:flex;justify-content:space-between;gap:8px;border-bottom:2px solid #111;padding:0 2px 9px;font-size:10px;letter-spacing:.08em}
-.plot{height:340px;position:relative;margin:12px 8px 34px 42px;border-left:2px solid #111;border-bottom:2px solid #111;background:repeating-linear-gradient(0deg,transparent 0,transparent 66px,rgba(0,0,0,.12) 67px),repeating-linear-gradient(90deg,transparent 0,transparent 103px,rgba(0,0,0,.10) 104px)}
-.plot svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.trace{fill:none;stroke-width:4;vector-effect:non-scaling-stroke}.trace.protocol{stroke:#d52b1e}.trace.control{stroke:#111;stroke-width:2;stroke-dasharray:9 7}.band{fill:rgba(213,43,30,.13);stroke:none}.threshold{stroke:#555;stroke-width:1.5;stroke-dasharray:3 5}.plot circle{fill:#d52b1e;stroke:#111;stroke-width:2}
-.ylabel{position:absolute;left:-66px;top:145px;transform:rotate(-90deg);font-size:9px;font-weight:800;letter-spacing:.05em;white-space:nowrap}.xlabel{position:absolute;bottom:-27px;left:27%;font-size:9px;font-weight:800;letter-spacing:.05em}
-.annotation{position:absolute;font-size:8px;font-weight:900;line-height:1.15;background:#f4f0df;padding:3px;border:1px solid #111}.a1{left:46%;top:42%}.a2{right:3%;top:8%}
-.legend{position:absolute;left:10px;right:5px;bottom:7px;display:flex;gap:15px;flex-wrap:wrap;font-size:8px;font-weight:800}.legend span{display:flex;align-items:center;gap:5px}.l{width:20px;height:0;border-top:3px solid #d52b1e}.controlkey{border-top:2px dashed #111}.boxkey{width:16px;height:8px;background:rgba(213,43,30,.13);border:1px solid #d52b1e}
-.microstats{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid #777;border-bottom:1px solid #777;font:700 9px/1.4 monospace}.microstats span{padding:5px;border-right:1px solid #aaa}.citation{font:8px/1.35 monospace;padding-top:8px;color:#333}
-@media(max-width:700px){.neurochart{min-height:430px!important}.plot{height:285px;margin-left:34px}.figmeta{font-size:7px}.legend{gap:7px;font-size:6px}.annotation{font-size:6px}.ylabel{left:-59px;top:120px;font-size:7px}.xlabel{font-size:7px}.microstats{font-size:7px}}
-
-.hero{position:relative;overflow:hidden}
-.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,239,0,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,239,0,.12) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 82%)}
-.hero:after{content:none!important}
-.hero .wrap{position:relative;z-index:2}
-.hero h1{position:relative;text-shadow:none!important}
-.hero h1:after{content:none}.this-word{position:relative;display:inline-block;color:var(--acid);z-index:1}.this-word:before{content:"";position:absolute;left:-.07em;right:-.07em;top:.08em;bottom:.02em;background:var(--hot);z-index:-1;transform:skew(-4deg) rotate(-1deg);border:3px solid var(--acid)}.this-word:after{content:"";position:absolute;left:0;right:0;bottom:-.08em;height:.06em;background:var(--acid)}
-
-/* SIZZLE — entire distraction feed vibrates together, in place */
-.phone .feed div:not(.tag), .phone .card, .phone > div:not(.tag){
-  transform-origin:center;
-  will-change:transform,filter;
-  animation:sizzle .085s linear infinite;
+:root{
+  --ink:#0a0a09;--ink2:#131210;--line:#2c2922;
+  --acid:#ffef00;--hot:#ff3b00;--cream:#f4efe3;--paper:#f3eedf;--muted:#b3aa96;
+  --gold:#e5bd5c;--gold-dim:#9c7f3f;--voyd:#10204a;--nyink:#0b0a0d;
+  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --book:"EB Garamond",Garamond,Georgia,serif;
+  --sans:"Helvetica Neue",Arial,Helvetica,sans-serif;
 }
-@keyframes sizzle{
-  0%{transform:translate(0,0)}
-  25%{transform:translate(1.6px,-1.1px)}
-  50%{transform:translate(-1.4px,1.3px)}
-  75%{transform:translate(1.1px,1.4px)}
-  100%{transform:translate(0,0)}
-}
-@media(prefers-reduced-motion:reduce){.phone *{animation:none!important}}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ink);color:var(--cream);font:17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.narrow{max-width:760px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
 
-.big-dopamine{background:#f2e500;color:#050505;border-top:12px solid #050505;border-bottom:12px solid #050505;text-align:center;position:relative;overflow:hidden}
-.bd-warning{background:#050505;color:#f2e500;padding:10px;font:900 12px Arial;letter-spacing:.18em}
-.bd-wrap{padding-top:72px!important;padding-bottom:72px!important}
-.bd-kicker{font:1000 clamp(1rem,2vw,1.35rem) Arial;letter-spacing:.12em;margin-bottom:10px}
-.big-dopamine h2{font:1000 clamp(3.5rem,9vw,8rem)/.78 Arial,sans-serif;letter-spacing:-.075em;margin:0 auto 40px;max-width:1050px}
-.big-dopamine h2 span{display:inline-block;background:#050505;color:#f2e500;padding:.08em .14em;transform:rotate(-1deg)}
-.bd-copy{max-width:760px;margin:auto;text-align:left;font:700 clamp(1.1rem,2vw,1.45rem)/1.45 Arial}
-.bd-copy p{margin:0 0 18px}.bd-copy b{font-weight:1000}.bd-last{font-size:1.2em!important;border-left:8px solid #ff3b00;padding-left:20px;margin-top:32px!important}
-.bd-arrow{display:inline-block;margin-top:34px;background:#ff3b00;color:white;border:4px solid #050505;padding:15px 22px;box-shadow:7px 7px 0 #050505;font:1000 13px Arial;letter-spacing:.06em;transform:rotate(.7deg)}
-.bd-interrupt{background:#f2e500;color:#050505;border:4px solid #050505;box-shadow:8px 8px 0 #ff3b00;padding:22px;margin:0 0 35px;font:800 18px/1.35 Arial;transform:rotate(-.5deg)}
-.bd-interrupt b{font-size:1.35em}
-.this-vibrate{display:inline-block!important;position:relative;z-index:2;animation:thisVibrate .06s steps(2,end) infinite!important;will-change:transform!important;transform-origin:center!important}
-@keyframes thisVibrate{
-0%{transform:translate(-3px,-1px) rotate(-.5deg)}
-25%{transform:translate(3px,2px) rotate(.45deg)}
-50%{transform:translate(-2px,3px) rotate(-.35deg)}
-75%{transform:translate(3px,-3px) rotate(.4deg)}
-100%{transform:translate(-3px,-1px) rotate(-.5deg)}
+/* ---------- BIG DOPAMINE REGISTER (acid / hot / hard shadows) ---------- */
+.tag{display:inline-block;background:var(--acid);color:#000;border:3px solid #000;box-shadow:5px 5px 0 var(--hot);font:800 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:7px 10px}
+.cta{display:inline-block;background:var(--acid);color:#000;border:4px solid #000;box-shadow:8px 8px 0 var(--hot);font:900 17px/1.2 var(--sans);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;padding:18px 26px;transform:rotate(-1deg);transition:transform .12s,box-shadow .12s}
+.cta:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:12px 12px 0 var(--hot)}
+.cta small{display:block;font-size:11px;letter-spacing:.12em;font-weight:700;margin-top:4px}
+.hl{background:linear-gradient(transparent 52%,var(--acid) 52%,var(--acid) 92%,transparent 92%);padding:0 .1em}
+.redline{text-decoration:underline;text-decoration-color:var(--hot);text-decoration-thickness:3px;text-underline-offset:4px}
+
+#emergency{background:var(--acid);color:#000;padding:10px 16px;text-align:center;font:900 15px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.06em;border-bottom:4px solid #000}
+.nav{background:rgba(10,10,9,.94);border-bottom:1px solid #211f19;z-index:30}
+.navin{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font:400 20px/1 var(--display);letter-spacing:.04em}
+.navproof{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.navproof b{color:var(--acid)}
+.navbuy{background:var(--acid);color:#000;text-decoration:none;font:900 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;border:3px solid #000;box-shadow:4px 4px 0 var(--hot)}
+@media(min-width:861px){.nav{position:sticky;top:0;backdrop-filter:blur(10px)}}
+
+.hero{position:relative;overflow:hidden;text-align:center;background:radial-gradient(circle at 72% 12%,#532000 0,transparent 36%),linear-gradient(135deg,#050505 0,#151000 55%,#050505 100%)}
+.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,239,0,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,239,0,.12) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);mask-image:linear-gradient(to bottom,#000,transparent 85%)}
+.hero .wrap{position:relative;padding-top:44px;padding-bottom:56px}
+.hero h1{font:400 clamp(3.1rem,8.4vw,7.4rem)/.9 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:26px auto 22px;max-width:1000px}
+.this-word{position:relative;display:inline-block;z-index:1;padding:0 .1em;margin-left:.04em}
+.this-word:before{content:"";position:absolute;left:0;right:-.06em;top:.01em;bottom:-.04em;background:var(--hot);z-index:-1;transform:skew(-4deg) rotate(-1deg);border:3px solid var(--acid)}
+.this-vibrate{display:inline-block;color:#000;will-change:transform;animation:buzz 3.2s linear infinite}
+/* phone-buzz pattern: two short bursts, then stillness */
+@keyframes buzz{
+  0%,15%,100%{transform:none}
+  1%{transform:translate(-3px,-1px) rotate(-.6deg)} 2%{transform:translate(3px,2px) rotate(.5deg)}
+  3%{transform:translate(-2px,3px) rotate(-.4deg)} 4%{transform:translate(3px,-2px) rotate(.5deg)}
+  5%{transform:translate(-3px,1px) rotate(-.5deg)} 6%{transform:none}
+  9%{transform:none} 10%{transform:translate(3px,-1px) rotate(.6deg)} 11%{transform:translate(-3px,2px) rotate(-.5deg)}
+  12%{transform:translate(2px,3px) rotate(.4deg)} 13%{transform:translate(-3px,-2px) rotate(-.5deg)} 14%{transform:translate(2px,1px) rotate(.3deg)}
 }
+.dek{font-size:clamp(18px,2.1vw,23px);line-height:1.45;max-width:720px;margin:0 auto 30px;color:#e2dbcb}
+.dek strong{color:#fff}
+.proofchip{display:inline-flex;align-items:center;gap:14px;margin-top:30px;padding:10px 16px 10px 10px;border:1px solid #3a3426;background:rgba(0,0,0,.45);text-align:left;text-decoration:none}
+.proofchip .minis{display:flex;flex:none;padding-right:6px}
+.proofchip img{width:40px;height:64px;object-fit:cover;box-shadow:0 4px 14px #000}
+.proofchip img+img{margin-left:-12px;transform:rotate(5deg)}
+.proofchip span{font-size:13px;line-height:1.35;color:#d8d0bf}
+.proofchip b{color:var(--acid);letter-spacing:.06em}
+
+.ticker{background:var(--hot);color:#fff;font:900 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:15px 12px;border-top:3px solid #000;border-bottom:3px solid #000}
+
+.section{padding:96px 0}
+.h2{font:400 clamp(2.6rem,6vw,4.8rem)/.95 var(--display);text-transform:uppercase;letter-spacing:-.005em;margin:18px 0 24px}
+.lead{font-size:clamp(19px,2vw,22px);color:#d9d1c0;max-width:760px}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+
+.phone{border:1px solid var(--line);background:linear-gradient(180deg,#171612,#0b0b09);padding:22px;border-radius:26px;box-shadow:0 30px 100px #000;max-width:420px;justify-self:center;width:100%}
+.phone .tag{margin-bottom:16px}
+.feed{display:grid;gap:10px;list-style:none;margin:0;padding:0}
+.feed li{min-height:56px;border-radius:10px;background:#22201a;border:1px solid #312d23;display:flex;align-items:center;gap:10px;padding:8px 14px;color:#a39c8b;font-size:15px}
+.feed li:nth-child(2n){width:88%}.feed li:nth-child(3n){width:76%}
+.feed li i{font-style:normal;background:var(--hot);color:#fff;font:900 11px/1 var(--sans);border-radius:99px;padding:4px 7px}
+.feed li.last{background:transparent;border:1px dashed #5a513d;color:var(--acid);font-weight:700}
+.feed.is-live li{animation:sizzle .085s linear infinite}
+@keyframes sizzle{0%{transform:translate(0,0)}25%{transform:translate(1.6px,-1.1px)}50%{transform:translate(-1.4px,1.3px)}75%{transform:translate(1.1px,1.4px)}100%{transform:translate(0,0)}}
+
+.big-dopamine{background:var(--acid);color:#050505;border-top:12px solid #050505;border-bottom:12px solid #050505;text-align:center}
+.bd-warning{background:#050505;color:var(--acid);padding:10px;font:900 12px/1.2 var(--sans);letter-spacing:.18em}
+.bd-wrap{padding-top:72px;padding-bottom:80px}
+.bd-kicker{font:900 clamp(1rem,2vw,1.3rem)/1.2 var(--sans);letter-spacing:.12em;margin-bottom:12px}
+.big-dopamine h2{font:400 clamp(3.2rem,9vw,7.6rem)/.88 var(--display);text-transform:uppercase;margin:0 auto 44px;max-width:1050px}
+.big-dopamine h2 span{display:inline-block;background:#050505;color:var(--acid);padding:.04em .14em;transform:rotate(-1deg)}
+.bd-copy{max-width:720px;margin:auto;text-align:left;font:700 clamp(1.1rem,2vw,1.4rem)/1.45 var(--sans)}
+.bd-copy p{margin:0 0 18px}
+.bd-copy em{font-style:normal;background:#050505;color:var(--acid);padding:0 .2em}
+.epigraph{margin:40px auto 0;max-width:720px;text-align:left;border:4px solid #050505;background:#fff8b0;box-shadow:8px 8px 0 var(--hot);padding:22px 26px;transform:rotate(-.5deg)}
+.epigraph .label{font:900 11px/1.2 var(--sans);letter-spacing:.18em;margin-bottom:10px}
+.epigraph blockquote{margin:0;font:italic 500 clamp(1.3rem,2.4vw,1.7rem)/1.3 var(--book)}
+.epigraph cite{display:block;margin-top:10px;font:700 13px/1.3 var(--sans);font-style:normal}
+.epigraph p{margin:14px 0 0;font:700 16px/1.45 var(--sans)}
+.bd-arrow{display:inline-block;margin-top:44px;background:var(--hot);color:#fff;border:4px solid #050505;padding:15px 22px;box-shadow:7px 7px 0 #050505;font:900 13px/1 var(--sans);letter-spacing:.06em;text-decoration:none;transform:rotate(.7deg)}
+
+/* The Briefing: a classic sales letter on paper */
+.letter{background:var(--paper);color:#17140f}
+.letter .sheet{max-width:760px;margin:0 auto;font:400 clamp(19px,2vw,21px)/1.6 var(--book)}
+.letter .tag{box-shadow:5px 5px 0 var(--hot)}
+.letter h2{font:400 clamp(2.4rem,5.4vw,4.2rem)/.95 var(--display);text-transform:uppercase;margin:18px 0 6px;color:#0c0b09}
+.letter .meta{font:700 13px/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#6a6152;margin-bottom:36px}
+.letter p{margin:0 0 20px}
+.letter .big{font-size:1.25em;font-weight:600;line-height:1.35}
+.letter .pull{margin:30px 0;padding:22px 26px;border-left:6px solid var(--hot);background:#fffdf6;font-style:italic;font-size:1.12em}
+.letter .pull cite{display:block;margin-top:10px;font:700 12px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;font-style:normal;color:#6a6152}
+.sig{margin-top:34px;font-style:italic}
+.sig b{display:block;font:400 26px/1.1 var(--book);font-style:italic}
+.sig span{font:700 12px/1.4 var(--sans);letter-spacing:.1em;text-transform:uppercase;font-style:normal;color:#6a6152}
+
+.protocol .intro{max-width:780px}
+.pgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;margin-top:48px;align-items:start}
+.phases{list-style:none;margin:0;padding:0;border-left:4px solid var(--acid)}
+.phases li{position:relative;padding:0 0 34px 30px}
+.phases li:before{content:"";position:absolute;left:-13px;top:4px;width:22px;height:22px;background:var(--ink);border:4px solid var(--acid)}
+.phases li.maint:before{background:var(--hot);border-color:var(--hot)}
+.phases .num{font:900 12px/1 var(--sans);letter-spacing:.18em;color:var(--acid)}
+.phases h3{font:400 clamp(1.8rem,3.4vw,2.5rem)/1 var(--display);text-transform:uppercase;margin:8px 0 10px}
+.phases p{margin:0;color:#cfc7b5;max-width:560px}
+.phases .pages{font:700 12px/1 var(--sans);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-top:10px}
+
+.facts{background:#fff;color:#000;border:3px solid #000;padding:10px 12px;font:400 14px/1.3 var(--sans);box-shadow:10px 10px 0 var(--hot);position:sticky;top:90px}
+.facts h3{font:900 34px/1 var(--sans);letter-spacing:-.02em;margin:0 0 4px}
+.facts .row{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #000;padding:4px 0}
+.facts .thick{border-top:10px solid #000}.facts .med{border-top:5px solid #000}
+.facts b{font-weight:900}
+.facts .ingredients{border-top:5px solid #000;padding-top:6px;margin-top:2px;font-size:12.5px}
+.facts .fine{border-top:1px solid #000;margin-top:8px;padding-top:6px;font-size:10.5px;line-height:1.35}
+
+.science{background:var(--paper);color:#12110e}
+.science .lead{color:#373226}
+.science .tag{box-shadow:5px 5px 0 var(--hot)}
+.science .h2{color:#0c0b09}
+.fig{background:#f9f6ea;border:2px solid #111;box-shadow:8px 8px 0 #111;padding:14px;font-family:var(--sans)}
+.figmeta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-bottom:2px solid #111;padding:0 2px 8px;font:800 10px/1.3 var(--sans);letter-spacing:.08em}
+.fig svg{display:block;width:100%;height:auto;margin-top:8px}
+.fig svg text{font-family:var(--sans);fill:#111}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font:800 10px/1.3 var(--sans);letter-spacing:.04em;padding:8px 2px;border-top:1px solid #999}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.k{display:inline-block;width:22px;height:0;border-top:4px solid #d52b1e}.k.ctl{border-top:2px dashed #111}.k.band{height:9px;border:1px solid #d52b1e;background:rgba(213,43,30,.15)}
+.microstats{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid #777;border-bottom:1px solid #777;font:700 10px/1.4 ui-monospace,Menlo,monospace}
+.microstats span{padding:5px;border-right:1px solid #aaa}
+.citation{font:10px/1.4 ui-monospace,Menlo,monospace;padding-top:8px;color:#333}
+
+/* ---------- NYANDOR REGISTER (ink / gold / book serif / no motion) ---------- */
+.nyandor{background:radial-gradient(ellipse at 50% 0,#1a1830 0,var(--nyink) 60%);color:#ece4d2;font-family:var(--book)}
+.threshold{text-align:center;padding:120px 0 40px}
+.threshold .rune{font:600 13px/1 var(--sans);letter-spacing:.4em;color:var(--gold-dim);text-transform:uppercase}
+.threshold h2{font:500 clamp(2.6rem,6.4vw,5.2rem)/1.02 var(--book);margin:22px auto 20px;max-width:900px;color:#f4ead3}
+.threshold h2 em{color:var(--gold)}
+.threshold p{font-size:clamp(20px,2.2vw,24px);line-height:1.5;max-width:700px;margin:0 auto;color:#cfc4ac}
+.ny-eyebrow{font:600 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+.ny-h{font:500 clamp(2.1rem,4.6vw,3.6rem)/1.05 var(--book);margin:14px 0 18px;color:#f4ead3}
+.nyandor p{font-size:20px;line-height:1.6}
+
+.doses{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding:60px 0 90px}
+.dose{display:grid;grid-template-columns:170px 1fr;gap:26px;align-items:start}
+.dose img{box-shadow:0 24px 60px #000,0 0 0 1px #3a3322}
+.dose .which{font:700 11px/1 var(--sans);letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.dose h3{font:500 32px/1.05 var(--book);margin:10px 0 6px;color:#f7eed8}
+.dose .reality{font:italic 500 19px/1.3 var(--book);color:var(--gold);margin:0 0 12px}
+.dose p{font-size:18px;color:#cfc4ac;margin:0 0 12px}
+
+.cast{border-top:1px solid #2d2819;padding:70px 0 20px}
+.castgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:30px}
+.castgrid h4{font:600 22px/1.15 var(--book);margin:0 0 6px;color:var(--gold)}
+.castgrid p{font-size:16.5px;line-height:1.5;margin:0;color:#c9bea6}
+
+.map{padding:70px 0 100px}
+.mapframe{position:relative;border:1px solid #4a3f26;box-shadow:0 40px 120px #000;margin-top:26px}
+.mapkey{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mapkey li{font-size:17px;line-height:1.45;color:#c9bea6;border-top:1px solid #4a3f26;padding-top:10px}
+.mapkey b{color:var(--gold);font-weight:600}
+.mapcap{font:italic 17px/1.45 var(--book);color:#a99d82;margin-top:14px;text-align:center}
+
+.sample{padding:100px 0;border-top:1px solid #2d2819}
+.page{background:#f6efdc;color:#221c12;max-width:680px;margin:36px auto 0;padding:clamp(28px,6vw,64px);box-shadow:0 40px 120px #000;font:400 20px/1.62 var(--book)}
+.page .ch{text-align:center;font:600 13px/1.4 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#7d6a45}
+.page .chtitle{text-align:center;font:500 30px/1.2 var(--book);margin:8px 0 22px}
+.page .epi{font-style:italic;font-size:17px;color:#5d513b;text-align:center;margin:0 auto 30px;max-width:460px}
+.page .epi span{display:block;font-style:normal;font-size:14px;margin-top:6px}
+.page p{margin:0 0 14px;text-indent:1.4em;font-size:20px}
+.page p.first{text-indent:0}
+.page p.first:first-letter{float:left;font:600 4.1em/.8 var(--book);padding:.05em .08em 0 0;color:#7a2a18}
+.page .thought{font-style:italic}
+.page .fade{position:relative}
+.page .fade:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3.2em;background:linear-gradient(transparent,#f6efdc)}
+.sample .after{text-align:center;margin-top:36px}
+.goldbtn{display:inline-block;background:var(--gold);color:#140f05;text-decoration:none;font:800 15px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:17px 26px;border:1px solid #f3d792;box-shadow:0 12px 40px rgba(229,189,92,.22)}
+.goldbtn:hover{background:#f0cc74}
+.goldbtn.ghost{background:transparent;color:var(--gold);border-color:var(--gold-dim);box-shadow:none}
+.goldbtn.ghost:hover{background:rgba(229,189,92,.08)}
+
+.reports{padding:100px 0;border-top:1px solid #2d2819}
+.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}
+.report{background:#12111a;border:1px solid #2f2a1d;padding:26px 26px 22px;font-family:var(--sans)}
+.report.wide{grid-column:1/-1}
+.report .case{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:700 11px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim);border-bottom:1px solid #2f2a1d;padding-bottom:10px;margin-bottom:14px}
+.report .case .v{color:var(--gold)}
+.report dl{margin:0 0 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px;color:#a99d82}
+.report dt{font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.report dd{margin:0;color:#d8ceb6}
+.report blockquote{margin:0;font:400 21px/1.45 var(--book);color:#f1e8d3}
+.report .stars{color:var(--gold);letter-spacing:.14em;font-size:14px;margin-bottom:8px}
+.reports .src{font:13px/1.5 var(--sans);color:#8f846c;margin-top:18px}
+.reports .src a{color:var(--gold)}
+
+.offer{padding:100px 0 110px;border-top:1px solid #2d2819}
+.pair{display:flex;justify-content:center;margin:40px auto 10px;max-width:640px}
+.pair img{width:100%;box-shadow:0 30px 80px #000}
+.voydnote{text-align:center;font:italic 18px/1.4 var(--book);color:#a99d82;margin:14px 0 46px}
+.buygrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:960px;margin:0 auto}
+.buybox{border:1px solid var(--gold-dim);padding:28px;background:rgba(18,17,26,.7);font-family:var(--sans)}
+.buybox .which{font:700 11px/1 var(--sans);letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
+.buybox h3{font:500 30px/1.1 var(--book);margin:10px 0 4px;color:#f7eed8}
+.buybox .spec{font-size:14px;color:#a99d82;margin:0 0 20px}
+.fmt{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #2f2a1d;padding:14px 0}
+.fmt div{font-size:15px;color:#e4dac3}
+.fmt small{display:block;color:#8f846c;font-size:13px;margin-top:2px}
+.fmt .goldbtn{padding:12px 16px;font-size:13px;white-space:nowrap}
+.includes{max-width:960px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2f2a1d;border:1px solid #2f2a1d;font-family:var(--sans)}
+.includes div{background:var(--nyink);padding:16px;text-align:center;font-size:13px;color:#a99d82;letter-spacing:.04em}
+.includes b{display:block;font:500 28px/1.1 var(--book);color:var(--gold);margin-bottom:4px}
+.nyandor .pricenote{text-align:center;font:13px/1.5 var(--sans);color:#7d735e;margin-top:16px}
+
+.faq{padding:90px 0;border-top:1px solid #2d2819}
+.faq details{border-top:1px solid #2d2819;padding:20px 0}
+.faq details:last-child{border-bottom:1px solid #2d2819}
+.faq summary{cursor:pointer;font:600 22px/1.3 var(--book);color:#f4ead3;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--gold);font-family:var(--sans)}
+.faq details[open] summary:after{content:"–"}
+.faq details p{color:#cfc4ac;margin:12px 0 0;font-size:19px}
+
+/* ---------- Back to the fight: the close ---------- */
+.amazon-strip{background:var(--hot);color:#fff;padding:30px 20px;text-align:center;border-top:6px solid #000;border-bottom:6px solid #000;font-family:var(--sans)}
+.amazon-strip strong{font:400 clamp(1.7rem,4.4vw,3.4rem)/1 var(--display);display:block;text-transform:uppercase;letter-spacing:.01em}
+.amazon-strip p{margin:10px 0 0;font-size:17px}
+.amazon-strip .cta{margin-top:20px;box-shadow:7px 7px 0 #000}
+.final{text-align:center;padding:110px 0 90px;background:radial-gradient(circle,#211b10,#080807 62%)}
+.final h2{font:400 clamp(3rem,8vw,6.4rem)/.9 var(--display);text-transform:uppercase;margin:22px auto 22px;max-width:950px}
+.final .dek{margin-bottom:34px}
+.final .alt{display:block;margin-top:26px;font-size:14px;color:var(--muted)}
+.final .alt a{color:var(--acid)}
+.share{margin-top:56px;padding-top:30px;border-top:1px solid #2a261d;max-width:640px;margin-left:auto;margin-right:auto}
+.share p{color:#cfc7b5;margin:0 0 14px}
+.sharebtn{background:transparent;color:var(--acid);border:2px solid var(--acid);font:900 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:13px 18px;cursor:pointer}
+.sharebtn:hover{background:rgba(255,239,0,.08)}
+.sharestatus{display:block;min-height:1.4em;margin-top:10px;font-size:13px;color:var(--muted)}
+.ps{max-width:680px;margin:64px auto 0;text-align:left;font:400 20px/1.55 var(--book);color:#e2dbcb;border-top:1px dashed #4a4332;padding-top:28px}
+.ps b{font-family:var(--sans);font-weight:900;color:var(--acid);letter-spacing:.06em}
+.footer{padding:30px 0 110px;color:#7a7365;font-size:12px;text-align:center;line-height:1.6}
+.footer a{color:#a89f8a}
+
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;justify-content:space-between;gap:12px;background:#0a0a09;border-top:3px solid var(--acid);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .2s}
+.buybar.show{transform:none}
+.buybar span{font:700 13px/1.25 var(--sans);color:var(--cream)}
+.buybar span b{color:var(--acid)}
+.buybar a{background:var(--acid);color:#000;text-decoration:none;font:900 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:12px 14px;border:3px solid #000;box-shadow:4px 4px 0 var(--hot);white-space:nowrap}
+
+@media(max-width:960px){
+  .castgrid{grid-template-columns:repeat(2,1fr)}
+  .doses{grid-template-columns:1fr;gap:48px}
+  .pgrid{grid-template-columns:1fr}
+  .facts{position:static;max-width:420px}
+}
+@media(max-width:860px){
+  .grid2{grid-template-columns:1fr;gap:44px}
+  .navproof{display:none}
+  .buybar{display:flex}
+  .buygrid{grid-template-columns:1fr}
+  .includes{grid-template-columns:repeat(2,1fr)}
+  .rgrid{grid-template-columns:1fr}
+  .section{padding:72px 0}
+}
+@media(max-width:560px){
+  body{font-size:16px}
+  .wrap{padding:0 18px}
+  #emergency{font-size:12px;padding:8px 10px}
+  .brand{font-size:17px}
+  .navbuy{padding:9px 10px;font-size:11px}
+  .hero .wrap{padding-top:30px;padding-bottom:44px}
+  .hero h1{margin:20px auto 18px}
+  .dek{margin-bottom:24px}
+  .cta{font-size:15px;padding:16px 18px}
+  .ticker{font-size:10px;letter-spacing:.1em}
+  .dose{grid-template-columns:110px 1fr;gap:18px}
+  .dose h3{font-size:26px}
+  .castgrid{grid-template-columns:1fr}
+  .mapkey{grid-template-columns:1fr;gap:10px}
+  .fmt{flex-direction:column;align-items:flex-start}
+  .page p{font-size:18.5px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
 </style>
 </head>
-<body><div id="emergency">⚠ ATTENTION EMERGENCY: YOUR NEXT 400 SWIPES HAVE BEEN CANCELLED ⚠</div>
-<nav class="nav"><div class="wrap navin"><div class="brand">THE NYANDOR PROTOCOL™ — ATTENTION EMERGENCY EDITION</div><div class="mini">PATENT PENDING SINCE APPROXIMATELY THE 15TH CENTURY</div></div></nav>
-<header class="hero"><div class="wrap">
-<div class="eyebrow">A revolutionary analog attention intervention</div>
-<h1>YOUR BRAIN WASN'T DESIGNED FOR <span class="this-word"><span class="this-vibrate">THIS.</span></span></h1>
-<p class="dek">YOUR PHONE HAS BEEN FEEDING YOUR BRAIN APPETIZERS FOR YEARS. No meal. No feast. Just swipe, ping, refresh, repeat. Here is the absurdly old technology nobody in Silicon Valley wants you to rediscover: disappearing into a story for hours.</p>
-<a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener">START THE 2-BOOK PROTOCOL</a>
-<div class="subcta">No app. No subscription. No proprietary mushroom blend.</div>
-</div></header>
-<div class="ticker">LONG-FORM COGNITION &nbsp;•&nbsp; IMAGINATION &nbsp;•&nbsp; NARRATIVE IMMERSION &nbsp;•&nbsp; EXTENDED ATTENTION &nbsp;•&nbsp; CATS</div>
-<section class="section"><div class="wrap grid2"><div>
-<div class="eyebrow">The problem</div><h2 class="serif">You have been professionally distracted.</h2>
-<p class="lead">A trillion-dollar attention economy has spent decades learning exactly how to keep you tapping, refreshing, swiping and coming back for one more microscopic hit.</p>
-<p>Somewhere along the way, sitting still with a story for an hour started to feel like an extreme sport.</p>
-</div><div class="phone"><div class="eyebrow">Your average Tuesday</div><div class="feed"><div>BREAKING: something happened</div><div>17-second video</div><div>Sponsored distraction</div><div>Person you don't know is angry</div><div>Another 11-second video</div><div>You opened this app by accident</div><div>It's been 47 minutes</div></div></div></div></section>
-<section class="big-dopamine"><div class="bd-warning">SPECIAL INVESTIGATION // ATTENTION ECONOMY</div><div class="wrap bd-wrap"><div class="bd-kicker">THE SHOCKING ATTENTION SECRET</div><h2><span>BIG DOPAMINE</span><br>DOESN'T WANT YOU TO KNOW</h2><div class="bd-copy"><p>For years, a handful of the most powerful technology companies on Earth have spent billions perfecting one thing: making sure you never have to concentrate on anything ever again.</p><p>They call it <b>engagement.</b></p><p>We call it <b>BIG DOPAMINE.</b></p><p class="bd-last">And there's one ancient technology their entire business model was never designed to survive.</p></div><div class="bd-arrow">↓ WATCH THE ATTENTION EMERGENCY BRIEFING ↓</div></div></section><section class="section"><div class="wrap" style="text-align:center"><div class="eyebrow">Watch the presentation</div><h2 class="serif">There is another way.</h2><div class="vsl"><div><div class="play">▶</div><h3 class="serif" style="font-size:34px;margin-bottom:6px">THE 9-MINUTE ATTENTION EMERGENCY BRIEFING</h3><p>VSL placeholder — Patrick explains how civilization accidentally reinvented the slot machine.</p></div></div><div class="caption">WARNING: presentation contains sustained ideas lasting longer than 30 seconds.</div></div></section>
-<section id="protocol" class="section"><div class="wrap"><div class="eyebrow">The mechanism</div><h2 class="serif">Introducing The Nyandor Protocol™</h2><p class="lead">A two-volume, screen-free narrative immersion system utilizing an ancient technology known to researchers as <em>reading a fucking book.</em></p>
-<div class="protocol"><div class="card"><div class="num">PHASE 01</div><h3>Break Contact</h3><p>Place the algorithmic rectangle somewhere it cannot vibrate directly into your soul.</p></div><div class="card"><div class="num">PHASE 02</div><h3>Enter Nyandor</h3><p>Maintain attention on a single imaginative environment populated by kingdoms, portals, catastrophes and an irresponsible number of cats.</p></div><div class="card"><div class="num">PHASE 03</div><h3>Stay There</h3><p>Experience the increasingly unfamiliar sensation of wondering what happens next without immediately opening another tab.</p></div></div>
-</div></section>
-<section class="section science"><div class="wrap grid2"><div><div class="eyebrow">ATTENTION RESPONSE MODEL</div><h2 class="serif">What happens when you stop scrolling?</h2><p class="lead">Sustained narrative immersion rises as exposure to uninterrupted long-form reading increases.</p><p>The effect compounds with uninterrupted exposure: fewer context switches, deeper narrative continuity, and longer periods of sustained attention.</p><p class="disclaimer">*The Nyandor Protocol is a two-volume long-form reading experience designed for uninterrupted narrative immersion.</p></div><div class="chart neurochart">
-<div class="figmeta"><b>FIG. 04B</b><span>NYD-ATTN / PROTOCOL MODEL</span><span>ATTENTION RESPONSE</span></div>
-<div class="plot">
-<div class="gridlines"></div>
-<div class="ylabel">SUSTAINED NARRATIVE IMMERSION (A.U.)</div>
-<div class="xlabel">EXPOSURE TO CONSECUTIVE PAGES (min) →</div>
-<svg viewBox="0 0 700 340" preserveAspectRatio="none" aria-label="Satirical scientific graph">
-<path class="band" d="M30,278 C125,270 160,245 215,224 C285,198 320,150 390,128 C465,104 520,76 665,48 L665,88 C525,112 475,132 402,158 C330,182 295,220 225,247 C165,270 115,294 30,302 Z"/>
-<path class="trace control" d="M30 270 C130 264 180 268 250 258 S390 264 465 252 S580 257 665 248"/>
-<path class="trace protocol" d="M30 288 C120 280 170 258 225 235 S315 178 382 150 S500 98 665 64"/>
-<path class="threshold" d="M30 178 L665 178"/>
-<circle cx="382" cy="150" r="6"/><circle cx="665" cy="64" r="6"/>
-</svg>
-<div class="annotation a1">THRESHOLD OF<br>“OH SHIT, I'M IN IT”</div>
-<div class="annotation a2">PHONE LOCATION<br>NO LONGER SALIENT</div>
-<div class="legend"><span><i class="l protocolkey"></i>NYANDOR EXPOSURE</span><span><i class="l controlkey"></i>CONTROL: FUCKING AROUND ONLINE</span><span><i class="boxkey"></i>RESPONSE RANGE</span></div>
+<body>
+
+<div id="emergency" role="note">⚠ Attention emergency: your next 400 swipes have been cancelled ⚠</div>
+
+<nav class="nav" aria-label="Site">
+  <div class="wrap navin">
+    <div class="brand">THE NYANDOR PROTOCOL™</div>
+    <div class="navproof"><b>★★★★★</b> 5.0 on Amazon · 768 pages · 0 notifications</div>
+    <a class="navbuy" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="nav-dose1-paperback">Get Dose One</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="tag">Analog attention technology · 768 pages · 0 notifications</span>
+    <h1>Your brain wasn't designed for <span class="this-word"><span class="this-vibrate">THIS.</span></span></h1>
+    <p class="dek">Your phone feeds your brain appetizers all day. Never a meal. <strong>The Nyandor Protocol is the meal:</strong> a two-volume epic fantasy with an all-cat cast, built to make you forget where you left your phone.</p>
+    <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-dose1-paperback">Start the Protocol: Dose One →<small>The Furbidden Voyd · on Amazon</small></a>
+    <br />
+    <a class="proofchip" href="#doses">
+      <span class="minis"><img src="assets/furbidden-voyd-360.webp" width="40" height="64" alt="" /><img src="assets/divergent-path-360.webp" width="40" height="64" alt="" /></span>
+      <span><b>THE GATE OF NYANDOR</b><br />A Transdimensional Feline Saga · ★★★★★ 5.0 on Amazon</span>
+    </a>
+  </div>
+</header>
+
+<div class="ticker" aria-hidden="true">Long-form cognition • Imagination • Narrative immersion • Extended attention • Cats</div>
+
+<section class="section" aria-labelledby="problem-h">
+  <div class="wrap grid2">
+    <div>
+      <span class="tag">The problem</span>
+      <h2 class="h2" id="problem-h">You have been professionally distracted.</h2>
+      <p class="lead">You didn't get lazy. You got <span class="redline">outbid</span>. Thousands of very well-paid engineers get up every morning to make sure the next thing is always more interesting than the thing you're doing now.</p>
+      <p>Somewhere along the way, sitting still with a story for an hour started to feel like an extreme sport.</p>
+    </div>
+    <div class="phone" aria-label="Illustration: a typical phone feed">
+      <span class="tag">Your average Tuesday</span>
+      <ul class="feed" id="feed">
+        <li><i>3</i> BREAKING: something happened</li>
+        <li>Wait for the end 😳</li>
+        <li>Sponsored: this cold plunge changed my life</li>
+        <li>Person you don't know is angry</li>
+        <li><i>14</i> new notifications</li>
+        <li>You opened this app by accident</li>
+        <li class="last">It's been 47 minutes.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="big-dopamine" aria-labelledby="bd-h">
+  <div class="bd-warning">SPECIAL INVESTIGATION // ATTENTION ECONOMY</div>
+  <div class="wrap bd-wrap">
+    <div class="bd-kicker">THE SHOCKING ATTENTION SECRET</div>
+    <h2 id="bd-h"><span>Big Dopamine</span><br />doesn't want you to know</h2>
+    <div class="bd-copy">
+      <p>Big Dopamine sells exactly one product: <em>the next thing.</em> The next video. The next ping. The next refresh.</p>
+      <p>It doesn't need you happy. It needs you <em>unfinished.</em> Every ending is lost revenue, which is why nothing on your phone ever ends.</p>
+      <p>They call it engagement. We call it <b>BIG DOPAMINE.</b></p>
+      <p>And there is one thing Big Dopamine cannot manufacture, no matter how many engineers it hires: <b>a world big enough to get lost in.</b></p>
+    </div>
+    <div class="epigraph">
+      <div class="label">RECOVERED DOCUMENT · FROM THE FURBIDDEN VOYD, CHAPTER II</div>
+      <blockquote>“A kit is born with two hungers. Milk and praise. The first is easily sated. The second can devour an entire life.”</blockquote>
+      <cite>— Salix the Unseen, <i>The Gilded Scratching Post</i></cite>
+      <p>The cats of Nyandor saw Big Dopamine coming. They just called it something else.</p>
+    </div>
+    <a class="bd-arrow" href="#briefing">↓ READ THE ATTENTION EMERGENCY BRIEFING ↓</a>
+  </div>
+</section>
+
+<section class="section letter" id="briefing" aria-labelledby="briefing-h">
+  <div class="wrap">
+    <div class="sheet">
+      <span class="tag">Classified briefing · text edition</span>
+      <h2 id="briefing-h">The Attention Emergency Briefing</h2>
+      <div class="meta">Estimated reading time: 3 minutes. We believe in you.</div>
+
+      <p>Dear Friend,</p>
+      <p>Let's be honest about what happened to you.</p>
+      <p>A feed is designed to never end. That's the entire business model. The moment you feel <i>finished</i>, you put the phone down, and a finished user is worth nothing to anyone.</p>
+      <p>So here is the question nobody at Big Dopamine wants asked:</p>
+      <p class="big">What is the one thing a feed can never give you?</p>
+      <p><span class="hl">An ending you earned. And a world big enough that you forget to leave.</span></p>
+      <p>Short content trains you to leave. Epic fantasy trains you to <i>stay</i>. It is the only genre whose whole job is to build a place bigger than your feed: maps, dynasties, magic systems, three thousand years of buried history. Too big to skim. Too strange to predict.</p>
+      <p>That's why the Protocol isn't "read more." It's <b>two specific books</b>: 768 pages set in Nyandor, a world of cats with a royal city, a secret police, a Magical Guild that hoards power, and a forbidden gate into every choice ever made.</p>
+      <p>And there's one more thing you should know about Nyandor.</p>
+      <p>In the story, that world has already been destroyed. Early in Book One, the narrator (a pipe-smoking cat called the Creator of All Tales) turns to you and explains where the last of it survives:</p>
+      <div class="pull">“The sole place it remains is within this tale. And while you experience this tale, it lives within you. You are its last refuge, its final Construct.”<cite>— The Creator of All Tales, <i>The Furbidden Voyd</i></cite></div>
+      <p><span class="hl">Big Dopamine wants your attention so it can sell it. Nyandor needs your attention to exist.</span></p>
+      <p>That's the Protocol. Two long, strange, serious books, and a world that only works if you stay.</p>
+      <div class="sig"><b>Patrick Christell</b><span>Author, The Gate of Nyandor</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section protocol" id="protocol" aria-labelledby="protocol-h">
+  <div class="wrap">
+    <div class="intro">
+      <span class="tag">The mechanism</span>
+      <h2 class="h2" id="protocol-h">Introducing The Nyandor Protocol™</h2>
+      <p class="lead">A two-volume, screen-free narrative immersion system utilizing an ancient technology known to researchers as <i>reading</i>, and to your grandparents as <i>Tuesday night.</i></p>
+    </div>
+    <div class="pgrid">
+      <ol class="phases">
+        <li>
+          <div class="num">PHASE I · SOFTPAW</div>
+          <h3>Break contact</h3>
+          <p>Put the algorithmic rectangle in another room. Meet Sory'n of Tol, heir to Nyandor's most legendary magical bloodline, on the morning of the Assessment that will decide her entire life.</p>
+          <div class="pages">Book One, Part I · pages 1–116</div>
+        </li>
+        <li>
+          <div class="num">PHASE II · STRAY</div>
+          <h3>Withdrawal</h3>
+          <p>The urge to check your phone fades, mostly because Sory'n has bigger problems: public disgrace, exile, and a clowder of outcasts in the Forest Primeval guarding secrets the Guild has killed to suppress.</p>
+          <div class="pages">Book One, Part II · pages 117–254</div>
+        </li>
+        <li>
+          <div class="num">PHASE III · THE PATHLESS PATH</div>
+          <h3>Full immersion</h3>
+          <p>One reader's clinical assessment of this phase: “a page burner, moved super fast, pulling all the levers that had been set earlier.” Phone location: unknown.</p>
+          <div class="pages">Book One, Part III · pages 255–375</div>
+        </li>
+        <li class="maint">
+          <div class="num">MAINTENANCE DOSE</div>
+          <h3>The Divergent Path</h3>
+          <p>Same Voyd. Other side. Book Two follows the reality where Sory'n <i>passes</i> her Assessment and gets exactly what she wanted. That was the problem.</p>
+          <div class="pages">Book Two · 393 pages</div>
+        </li>
+      </ol>
+
+      <aside class="facts" aria-label="Protocol Facts label">
+        <h3>Protocol Facts</h3>
+        <div>2 volumes per container</div>
+        <div class="row"><b>Serving size</b><b>1 chapter (≈21 pages)</b></div>
+        <div class="row thick"><b>Servings per container</b><b>36</b></div>
+        <div class="row"><b>Total pages</b><b>768</b></div>
+        <div class="row med"><b>Notifications</b><b>0</b></div>
+        <div class="row"><b>Autoplay</b><b>0</b></div>
+        <div class="row"><b>Infinite scroll</b><b>0</b></div>
+        <div class="row"><b>Endings</b><b>Yes</b></div>
+        <div class="row"><b>Alternate timelines</b><b>At least 2</b></div>
+        <div class="row"><b>Cats</b><b>Irresponsible</b></div>
+        <div class="ingredients"><b>Active ingredients:</b> Sory'n of Tol, the Magical Guild of Voreath, the Esteemed Archmage Orachys, Mother Ertree, the Forest Primeval, the Forbidden Voyd.<br /><b>Contains:</b> cats. <b>May contain:</b> heresy.</div>
+        <div class="fine">*These statements have not been evaluated by anyone. This product is not intended to diagnose, treat, cure, or prevent any condition. It is two novels.</div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section science" aria-labelledby="science-h">
+  <div class="wrap grid2">
+    <div>
+      <span class="tag">Attention response model</span>
+      <h2 class="h2" id="science-h">What happens when you stop scrolling?</h2>
+      <p class="lead">For the first few pages, your thumb still twitches. Then the story starts carrying the weight your feed used to.</p>
+      <p>Fewer context switches. Deeper continuity. The unfamiliar sensation of wanting to know what happens next and finding out <i>on the next page</i>, not in a new tab.</p>
+    </div>
+    <figure class="fig" style="margin:0">
+      <div class="figmeta"><span>FIG. 04B</span><span>NYD-ATTN / PROTOCOL MODEL</span><span>BOOK ONE</span></div>
+      <svg viewBox="0 0 640 420" role="img" aria-labelledby="fig-t fig-d">
+        <title id="fig-t">Attention response model</title>
+        <desc id="fig-d">An illustrative chart. Immersion rises steadily across the three parts of Book One, Softpaw, Stray, and The Pathless Path, while a scrolling control group stays flat.</desc>
+        <g stroke="#111" stroke-opacity=".12">
+          <line x1="80" y1="80" x2="620" y2="80"/><line x1="80" y1="150" x2="620" y2="150"/><line x1="80" y1="220" x2="620" y2="220"/><line x1="80" y1="290" x2="620" y2="290"/>
+        </g>
+        <g fill="#111" fill-opacity=".045"><rect x="248" y="30" width="170" height="330"/></g>
+        <g stroke="#111" stroke-dasharray="2 4"><line x1="248" y1="30" x2="248" y2="360"/><line x1="418" y1="30" x2="418" y2="360"/></g>
+        <g font-size="13" font-weight="800" letter-spacing=".8"><text x="164" y="50" text-anchor="middle">SOFTPAW</text><text x="333" y="50" text-anchor="middle">STRAY</text><text x="519" y="50" text-anchor="middle">THE PATHLESS PATH</text></g>
+        <path fill="rgba(213,43,30,.14)" d="M80,334 C170,322 210,298 260,270 C330,232 370,176 430,148 C500,116 560,96 615,82 L615,120 C560,134 505,152 440,182 C378,210 336,262 270,298 C218,324 170,344 80,350 Z"/>
+        <path fill="none" stroke="#111" stroke-width="2" stroke-dasharray="9 7" d="M80 330 C150 322 190 334 250 318 S370 330 440 316 S560 326 615 312"/>
+        <path fill="none" stroke="#d52b1e" stroke-width="5" d="M80 342 C170 332 212 306 262 284 S370 196 432 166 S560 110 615 100"/>
+        <line x1="80" y1="220" x2="615" y2="220" stroke="#555" stroke-width="1.5" stroke-dasharray="3 5"/>
+        <circle cx="342" cy="220" r="7" fill="#d52b1e" stroke="#111" stroke-width="2"/><circle cx="615" cy="100" r="7" fill="#d52b1e" stroke="#111" stroke-width="2"/>
+        <g font-size="12" font-weight="900">
+          <rect x="360" y="232" width="178" height="38" fill="#f9f6ea" stroke="#111"/><text x="370" y="248">THRESHOLD OF</text><text x="370" y="263">“OKAY, ONE MORE CHAPTER”</text>
+          <rect x="438" y="36" width="176" height="38" fill="#f9f6ea" stroke="#111" transform="translate(-10 22)"/><text x="438" y="74">PHONE LOCATION</text><text x="438" y="89">NO LONGER SALIENT</text>
+        </g>
+        <line x1="80" y1="30" x2="80" y2="360" stroke="#111" stroke-width="2"/><line x1="80" y1="360" x2="620" y2="360" stroke="#111" stroke-width="2"/>
+        <text x="-195" y="58" transform="rotate(-90)" text-anchor="middle" font-size="12" font-weight="800">SUSTAINED IMMERSION (A.U.)</text>
+        <text x="350" y="396" text-anchor="middle" font-size="12" font-weight="800">PAGES READ WITHOUT CHECKING PHONE →</text>
+        <g font-size="11" fill-opacity=".7"><text x="80" y="378" text-anchor="middle">1</text><text x="248" y="378" text-anchor="middle">117</text><text x="418" y="378" text-anchor="middle">255</text><text x="615" y="378" text-anchor="middle">375</text></g>
+      </svg>
+      <div class="legend"><span><i class="k"></i>NYANDOR EXPOSURE</span><span><i class="k ctl"></i>CONTROL: SCROLLING</span><span><i class="k band"></i>RESPONSE RANGE</span></div>
+      <div class="microstats"><span>Δ immersion: ↑ suspiciously</span><span>signal: sustained</span><span>response: increasing</span><span>mode: long-form</span></div>
+      <figcaption class="citation">Conceptual model. Illustrative, not clinical data. Part boundaries are real page numbers.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ THE THRESHOLD: the page itself goes quiet ============ -->
+<div class="nyandor">
+
+  <section class="threshold" aria-labelledby="enter-h">
+    <div class="wrap">
+      <div class="rune">— You are now leaving the feed —</div>
+      <h2 id="enter-h">Someone finally gave cats <em>the full Tolkien treatment.</em></h2>
+      <p>No winking. No cute cat adventure. A royal city, a secret police, a Magical Guild that rations power, and a gate into every choice ever made.</p>
+    </div>
+  </section>
+
+  <section class="wrap" id="doses" aria-label="The two books">
+    <div class="doses">
+      <article class="dose">
+        <img src="assets/furbidden-voyd-360.webp" srcset="assets/furbidden-voyd-360.webp 360w, assets/furbidden-voyd-720.webp 720w" sizes="170px" width="360" height="576" alt="Cover of The Furbidden Voyd: a black cat with golden eyes beside a black void" loading="lazy" />
+        <div>
+          <div class="which">Dose One · 375 pages</div>
+          <h3>The Furbidden Voyd</h3>
+          <p class="reality">The reality where she fails.</p>
+          <p>In Nyandor, magic is the privilege of the feline elite. Sory'n, the Archmage's golden daughter, fails her Assessment in front of everyone who mattered. Overnight she's a stray with a name that's now a punchline.</p>
+          <p>Driven into the Forest Primeval, she finds outcasts guarding three thousand years of knowledge the Guild has killed to bury, and a power no cat was ever meant to wield.</p>
+        </div>
+      </article>
+      <article class="dose">
+        <img src="assets/divergent-path-360.webp" srcset="assets/divergent-path-360.webp 360w, assets/divergent-path-720.webp 720w" sizes="170px" width="360" height="576" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the void" loading="lazy" />
+        <div>
+          <div class="which">Dose Two · 393 pages</div>
+          <h3>The Divergent Path</h3>
+          <p class="reality">The reality where she succeeds.</p>
+          <p>Sory'n got exactly what she wanted. That was the problem.</p>
+          <p>Status, purpose, a place inside the Magical Guild. But the Voyd has already fractured reality, and another timestream is bleeding into hers. Impossible memories. Choices from another life. Success didn't save her. It only put her on a different side of the fracture.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="cast" aria-labelledby="cast-h">
+      <div class="ny-eyebrow">Dramatis Fursonae · excerpted</div>
+      <h3 class="ny-h" id="cast-h">Who you'll be spending 768 pages with</h3>
+      <div class="castgrid">
+        <div><h4>Sory'n of Tol</h4><p>“A young feline of keen mind and restless spirit. Her need to prove herself is the spark that most often sets her troubles alight.”</p></div>
+        <div><h4>Archmage Orachys</h4><p>Her father and head of the Magical Guild, chasing the mastery of spacetime “with an obsession that outshadows his obsidian coat.”</p></div>
+        <div><h4>Mother Ertree</h4><p>“Charismatic spiritual leader of the so-called Strays. Selfless and wise, her trusting nature sometimes endangers her clowder.”</p></div>
+        <div><h4>Alaric R'ast</h4><p>“The cunning and ambitious head of the Royal Kiton (secret police). An adept hunter and deductive mastermind.”</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="map wrap" aria-labelledby="map-h">
+    <div class="ny-eyebrow">Exhibit C · from the endpapers of Book One</div>
+    <h3 class="ny-h" id="map-h">The Royal City of Faelspire</h3>
+    <div class="mapframe">
+      <img src="assets/faelspire-map-900.webp" srcset="assets/faelspire-map-900.webp 900w, assets/faelspire-map-1600.webp 1600w" sizes="(max-width:1120px) 100vw, 1072px" width="1600" height="1200" alt="Illustrated map of the Royal City of Faelspire: Aard Templu Voreath and Mount Sylvest to the north, the Royal Palace and districts like Eastclaw and Felixiata at the centre, and the Forest Primeval wrapping the southern walls" loading="lazy" />
+    </div>
+    <ul class="mapkey">
+      <li><b>Aard Templu Voreath</b>, top: seat of the Magical Guild, where magic is rationed.</li>
+      <li><b>The Royal Palace</b>, centre: King Catophilus, Queen M'areta, and a great deal of Antidivinian wine.</li>
+      <li><b>The Forest Primeval</b>, bottom right: where the Strays hide, and where Sory'n ends up.</li>
+    </ul>
+    <p class="mapcap">Map by Chartru'el Duskyfur, cartographer, silver-gray tom, and “inclined to pretension.”</p>
+  </section>
+
+  <section class="sample" aria-labelledby="sample-h">
+    <div class="wrap">
+      <div style="text-align:center">
+        <div class="ny-eyebrow">Clinical sample A · administered free</div>
+        <h3 class="ny-h" id="sample-h">The first page. See if you can stop.</h3>
+      </div>
+      <article class="page">
+        <div class="ch">Part I: Softpaw · Chapter I</div>
+        <div class="chtitle">The Tail's End?</div>
+        <p class="epi">Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.<span>— H.R. Nimblequick, <i>Paws and Effect</i></span></p>
+        <p class="first">Purrhaps… this is death? The notion struck Sory'n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
+        <p class="thought">Oh, mercy of Great Leoran! What if this isn't Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
+        <p>Neither heaven nor hell made sense. Wherever she was, she was. At least the thinking part.</p>
+        <p class="thought">One. Two. Three.</p>
+        <p class="thought">I am Sory'n of Tol, and I am a cat.</p>
+        <p class="thought">An insecure, selfish, stupid cat.</p>
+        <p class="thought">But am I dead?</p>
+        <p>She vocalized. “Mrow.”</p>
+        <p>The sound left her mouth, but no echo, no resonance followed. The void swallowed it up.</p>
+        <p>Again, with more force. “Meowwwrrr!”</p>
+        <p class="fade">Terror followed, and in its wake, desperation. A yearning for deliverance, even if it meant actual death.</p>
+      </article>
+      <div class="after">
+        <p style="font-size:19px;color:#cfc4ac;margin:0 0 20px">She is about to find out how she destroyed the world. It takes 375 pages.</p>
+        <a class="goldbtn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="sample-dose1-paperback">Continue Dose One on Amazon →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="reports" aria-labelledby="reports-h">
+    <div class="wrap">
+      <div class="ny-eyebrow">Field reports · unedited Amazon reviews</div>
+      <h3 class="ny-h" id="reports-h">What happened to the people who tried it</h3>
+      <div class="rgrid">
+        <article class="report wide">
+          <div class="case"><span>Case 001 · J. Loewen</span><span class="v">Verified purchase · paperback</span></div>
+          <dl><dt>Presenting complaint</dt><dd>“Cat fantasy? Really?”</dd></dl>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“This is not cute cat adventure time. This is legitimate epic fantasy a la Golden Compass that stars anthropomorphic felines, and Christell commits to it completely. No winking at the camera, no apologizing for the premise.”</blockquote>
+        </article>
+        <article class="report">
+          <div class="case"><span>Case 002 · Matt</span><span class="v">Verified purchase</span></div>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“I honestly didn't expect The Furbidden Voyd to pull me in the way it did, but once I started, I couldn't stop. The world feels huge and mysterious, like there's history behind every shadow.”</blockquote>
+        </article>
+        <article class="report">
+          <div class="case"><span>Case 003 · Kevin</span><span>Amazon review</span></div>
+          <dl><dt>Conditions</dt><dd>Transatlantic flight, LHR → SEA</dd></dl>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“Pages flew by while flying LHR to SEA… Writing is solid, story holds together, and it's a page turner.”</blockquote>
+        </article>
+        <article class="report">
+          <div class="case"><span>Case 004 · M.</span><span class="v">Verified purchase · Kindle</span></div>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“This world of cats does not fall back on animal gimmicks or feline tropes. Liking cats will draw some readers in, but is not necessary to appreciate this book.”</blockquote>
+        </article>
+        <article class="report">
+          <div class="case"><span>Case 005 · Gregory Stevens</span><span>Amazon review</span></div>
+          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <blockquote>“This book was an epic adventure! It didn't take me long to finish either! It really begins to heat up towards the final chapters.”</blockquote>
+        </article>
+      </div>
+      <p class="src">Excerpts from reviews of <i>The Furbidden Voyd</i> on Amazon.com, quoted as written. <a href="https://www.amazon.com/dp/B0G5Z7HNQK#customerReviews" target="_blank" rel="noopener">Read every review on Amazon →</a></p>
+    </div>
+  </section>
+
+  <section class="offer" id="buy" aria-labelledby="offer-h">
+    <div class="wrap">
+      <div style="text-align:center">
+        <div class="ny-eyebrow">The complete Protocol</div>
+        <h3 class="ny-h" id="offer-h">Two books. Two realities. Zero notifications.</h3>
+      </div>
+      <figure class="pair">
+        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:700px) 100vw, 640px" width="1395" height="1114" alt="The covers of The Furbidden Voyd and The Divergent Path placed side by side: two mirrored black cats whose half-voids join into one" loading="lazy" />
+      </figure>
+      <p class="voydnote">Put them side by side. It's the same Voyd, seen from both sides.</p>
+
+      <div class="buygrid">
+        <div class="buybox">
+          <div class="which">Dose One · start here</div>
+          <h3>The Furbidden Voyd</h3>
+          <p class="spec">Book One · 375 pages · the reality where she fails</p>
+          <div class="fmt"><div>Paperback<small>Recommended. Fully screen-free.</small></div><a class="goldbtn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="offer-dose1-paperback">Paperback · $15.99</a></div>
+          <div class="fmt"><div>Kindle<small>Acceptable. We won't tell Big Dopamine.</small></div><a class="goldbtn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="offer-dose1-kindle">Kindle · $9.99</a></div>
+        </div>
+        <div class="buybox">
+          <div class="which">Dose Two · new</div>
+          <h3>The Divergent Path</h3>
+          <p class="spec">Book Two · 393 pages · the reality where she succeeds</p>
+          <div class="fmt"><div>Paperback<small>Can be entered on its own. Hits harder after Dose One.</small></div><a class="goldbtn" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="offer-dose2-paperback">Paperback · $15.99</a></div>
+        </div>
+      </div>
+      <div class="includes">
+        <div><b>768</b>pages of sustained attention</div>
+        <div><b>36</b>chapters, each with an ending</div>
+        <div><b>0</b>streaks, badges or push alerts</div>
+        <div><b>$0</b>recurring. Not now. Not ever.</div>
+      </div>
+      <p class="pricenote">Prices shown are Amazon list prices at the time of writing. Amazon's price at checkout is the one that counts.</p>
+    </div>
+  </section>
+
+  <section class="faq" aria-labelledby="faq-h">
+    <div class="wrap narrow">
+      <div class="ny-eyebrow">Frequently questioned answers</div>
+      <h3 class="ny-h" id="faq-h">Before you begin.</h3>
+      <details open><summary>Is this actually a dopamine reset?</summary><p>No. That's not really how dopamine works. It's two very long, very good books. We're just describing them in the voice your feed taught you to trust.</p></details>
+      <details><summary>Does it contain adaptogens, nootropics or ashwagandha?</summary><p>No. No. And absolutely not.</p></details>
+      <details><summary>Do I have to like cats?</summary><p>No. One verified reader: “Liking cats will draw some readers in, but is not necessary to appreciate this book.” Another almost didn't pick it up (“Cat fantasy? Really?”) and compared it to <i>The Golden Compass</i>.</p></details>
+      <details><summary>Is this a kids' book?</summary><p>No. It's epic fantasy with an all-cat cast: political marriages, a secret police, Guild-led purges, forbidden magic. It's written for adults. Older teens who like their fantasy serious will be right at home.</p></details>
+      <details><summary>Which dose first?</summary><p>Standard protocol: Dose One, then Dose Two. But each book follows a different reality (in one she fails, in the other she succeeds), and each can be entered on its own. Together they show both sides of the same Voyd.</p></details>
+      <details><summary>Paperback or Kindle?</summary><p>Paperback is the purist's choice: nothing on it can buzz. Kindle is fine too, as long as you don't go looking for the notification shade.</p></details>
+      <details><summary>How many cats?</summary><p>An irresponsible quantity.</p></details>
+    </div>
+  </section>
+
 </div>
-<div class="microstats"><span>Δ immersion: ↑ suspiciously</span><span>signal: sustained</span><span>response: increasing</span><span>mode: long-form</span></div>
-<div class="citation">Conceptual attention-response model. Visualization is explanatory, not clinical data.</div>
-</div></div></section>
-<section class="section product"><div class="wrap grid2"><div class="books"><div class="book"><small>DOSE ONE</small><div class="title">THE<br>FURBIDDEN<br>VOYD</div><small>THE GATE OF NYANDOR</small></div><div class="book"><small>DOSE TWO</small><div class="title">THE<br>DIVERGENT<br>PATH</div><small>THE GATE OF NYANDOR</small></div></div><div><div class="eyebrow">The actual product</div><h2 class="serif">Two books.<br>One world.<br>Zero notifications.</h2><p class="lead">Full epic-fantasy treatment. Kingdoms. Magic. Catastrophe. Choice. Consequence. Cats who are not remotely interested in being adorable.</p><div class="pricebox"><strong>THE COMPLETE PROTOCOL</strong><ul class="checks"><li>Volume I: The Furbidden Voyd</li><li>Volume II: The Divergent Path</li><li>Hundreds of pages of sustained attention</li><li>Zero streaks, badges or push notifications</li><li>No recurring billing until you die</li></ul><a class="cta" href="#buy">GET BOOK ONE ON AMAZON</a></div></div></div></section>
-<section class="section"><div class="wrap"><p class="quote">“I picked up my phone halfway through Chapter Three, stared at it, and couldn't remember why.”<small>— READER RESPONSE</small></p></div></section>
-<section class="section"><div class="wrap faq"><div class="eyebrow">Frequently questioned answers</div><h2 class="serif">Before you begin.</h2>
-<details open><summary>Is this actually a dopamine reset?</summary><p>No. That's not really how dopamine works. We call it that because “please put your fucking phone down and read a novel” tested poorly with focus groups.</p></details>
-<details><summary>Does it contain adaptogens?</summary><p>No.</p></details><details><summary>Nootropics?</summary><p>Also no.</p></details><details><summary>Ashwagandha?</summary><p>Absolutely fucking not.</p></details><details><summary>Then what am I buying?</summary><p>An epic fantasy duology about cats, reality, catastrophe and the paths not taken.</p></details><details><summary>How many cats?</summary><p>An irresponsible quantity.</p></details>
-</div></section>
-<div class="amazon-strip"><strong>NO COURSE. NO APP. NO $89/MONTH MEMBERSHIP.</strong><div>You buy the book. Amazon sends it to you. You read the damn thing.</div><a href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener">GET THE FURBIDDEN VOYD ON AMAZON →</a></div><section id="buy" class="final"><div class="wrap"><div class="eyebrow">Your move</div><h2 class="serif">THE ALGORITHM HAS HAD YOU LONG ENOUGH.</h2><p class="dek">Take back several consecutive hours of your own imagination.</p><a class="cta" href="#">Begin The Nyandor Protocol™</a><div class="subcta">AKA: buy the books.</div></div></section>
-<footer class="footer"><div class="wrap">© 2026 THE GATE OF NYANDOR • THE NYANDOR PROTOCOL™ — ATTENTION EMERGENCY EDITION • NO ACTUAL NEUROTRANSMITTERS WERE RESET IN THE MAKING OF THIS WEBSITE</div></footer>
-</body></html>
+<!-- ============ /NYANDOR ============ -->
+
+<div class="amazon-strip">
+  <strong>No course. No app. No $89/month membership.</strong>
+  <p>You buy the book. Amazon sends it to you. You read the whole thing.</p>
+  <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="strip-dose1-paperback">Get The Furbidden Voyd on Amazon →</a>
+</div>
+
+<section class="final" aria-labelledby="final-h">
+  <div class="wrap">
+    <span class="tag">Your move</span>
+    <h2 id="final-h">The algorithm has had you long enough.</h2>
+    <p class="dek">Take back several consecutive hours of your own imagination.</p>
+    <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="final-dose1-paperback">Begin The Nyandor Protocol™<small>Dose One · The Furbidden Voyd · on Amazon</small></a>
+    <span class="alt">Already finished Dose One? <a href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="final-dose2-paperback">Take Dose Two: The Divergent Path →</a></span>
+
+    <div class="share">
+      <p>Know someone who hasn't finished anything since 2019?</p>
+      <button class="sharebtn" type="button" id="share">Prescribe the Protocol →</button>
+      <span class="sharestatus" id="sharestatus" role="status" aria-live="polite"></span>
+    </div>
+
+    <div class="ps">
+      <p><b>P.S.</b> You've just read roughly two thousand words without switching tabs. The Protocol is already working. Dose One is 375 pages. You're ready.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="wrap">© 2026 Patrick Christell · The Gate of Nyandor™ · The Nyandor Protocol™<br />No neurotransmitters were reset in the making of this website. The Nyandor Protocol is a marketing name for two novels, not a medical or psychological treatment.</div>
+</footer>
+
+<div class="buybar" id="buybar" aria-hidden="true">
+  <span><b>Dose One</b> · The Furbidden Voyd<br />Paperback & Kindle on Amazon</span>
+  <a href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="buybar-dose1-paperback" tabindex="-1">Get it →</a>
+</div>
+
+<script>
+(function(){
+  var io = 'IntersectionObserver' in window;
+  // Feed sizzles only while it's on screen.
+  var feed = document.getElementById('feed');
+  if (io && feed) new IntersectionObserver(function(e){ feed.classList.toggle('is-live', e[0].isIntersecting); }).observe(feed);
+
+  // Mobile buy bar: shown after the hero, hidden while the offer or the final CTA is in view.
+  var bar = document.getElementById('buybar'), hero = document.getElementById('top');
+  var watched = [document.getElementById('buy'), document.querySelector('.final'), document.querySelector('.amazon-strip')];
+  var heroGone = false, ctaVisible = new Set();
+  function sync(){
+    var show = heroGone && ctaVisible.size === 0;
+    bar.classList.toggle('show', show);
+    bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+    bar.querySelector('a').tabIndex = show ? 0 : -1;
+  }
+  if (io && bar && hero){
+    new IntersectionObserver(function(e){ heroGone = !e[0].isIntersecting; sync(); }).observe(hero);
+    var o = new IntersectionObserver(function(es){ es.forEach(function(x){ x.isIntersecting ? ctaVisible.add(x.target) : ctaVisible.delete(x.target); }); sync(); });
+    watched.forEach(function(el){ if (el) o.observe(el); });
+  }
+
+  // Share
+  var btn = document.getElementById('share'), status = document.getElementById('sharestatus');
+  var url = 'https://pbchrist.github.io/gate-of-nyandor-site/';
+  var text = 'Big Dopamine doesn’t want you to know about this. The Nyandor Protocol™: 768 pages of epic fantasy. Contains: cats.';
+  if (btn) btn.addEventListener('click', function(){
+    if (navigator.share) {
+      navigator.share({ title: 'The Nyandor Protocol™', text: text, url: url }).catch(function(){});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(text + ' ' + url).then(function(){ status.textContent = 'Link copied. Administer responsibly.'; }, function(){ status.textContent = url; });
+    } else { status.textContent = url; }
+  });
+})();
+</script>
+</body>
+</html>
