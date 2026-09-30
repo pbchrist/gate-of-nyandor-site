@@ -18,7 +18,7 @@ a{color:inherit}.wrap{max-width:1120px;margin:auto;padding:0 24px}.serif{font-fa
 :root{--acid:#ffef00;--hot:#ff3b00;--ink:#090909}
 body{background:var(--ink)}
 .hero{background:radial-gradient(circle at 70% 15%,#532000 0,transparent 35%),linear-gradient(135deg,#050505 0,#151000 55%,#050505 100%)}
-.hero h1{font-size:clamp(4rem,10vw,9rem);line-height:.78;letter-spacing:-.065em;text-transform:uppercase;text-shadow:6px 6px 0 #ff3b00}
+.hero h1{font-size:clamp(4rem,10vw,9rem);line-height:.78;letter-spacing:-.065em;text-transform:uppercase;text-shadow:none}
 .eyebrow,.tag,.badge{background:var(--acid)!important;color:#000!important;border:3px solid #000!important;box-shadow:5px 5px 0 var(--hot);font-weight:900!important}
 .cta{background:var(--acid)!important;color:#000!important;border:4px solid #000!important;box-shadow:8px 8px 0 var(--hot)!important;text-transform:uppercase;font-weight:1000!important;transform:rotate(-1deg)}
 .cta:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:12px 12px 0 var(--hot)!important}
@@ -41,6 +41,13 @@ h2{letter-spacing:-.05em;text-transform:uppercase}
 .legend{position:absolute;left:10px;right:5px;bottom:7px;display:flex;gap:15px;flex-wrap:wrap;font-size:8px;font-weight:800}.legend span{display:flex;align-items:center;gap:5px}.l{width:20px;height:0;border-top:3px solid #d52b1e}.controlkey{border-top:2px dashed #111}.boxkey{width:16px;height:8px;background:rgba(213,43,30,.13);border:1px solid #d52b1e}
 .microstats{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid #777;border-bottom:1px solid #777;font:700 9px/1.4 monospace}.microstats span{padding:5px;border-right:1px solid #aaa}.citationfake{font:8px/1.35 monospace;padding-top:8px;color:#333}
 @media(max-width:700px){.neurochart{min-height:430px!important}.plot{height:285px;margin-left:34px}.figmeta{font-size:7px}.legend{gap:7px;font-size:6px}.annotation{font-size:6px}.ylabel{left:-59px;top:120px;font-size:7px}.xlabel{font-size:7px}.microstats{font-size:7px}}
+
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,239,0,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,239,0,.12) 1px,transparent 1px);background-size:42px 42px;mask-image:linear-gradient(to bottom,black,transparent 82%)}
+.hero:after{content:"ATTENTION CAPTURE // SYSTEM OVERRIDE // LONG-FORM MODE";position:absolute;right:-78px;top:48%;transform:rotate(90deg);font:900 9px/1 Arial;letter-spacing:.18em;color:var(--acid);opacity:.8}
+.hero .wrap{position:relative;z-index:2}
+.hero h1{position:relative;text-shadow:none!important}
+.hero h1:after{content:"";display:block;width:96px;height:9px;background:var(--hot);margin-top:20px}
 </style>
 </head>
 <body><div id="emergency">⚠ ATTENTION EMERGENCY: YOUR NEXT 400 SWIPES HAVE BEEN CANCELLED ⚠</div>
