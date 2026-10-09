@@ -1,0 +1,579 @@
+<!doctype html>
+<!--
+  Morndai 5.22.3666:
+  Today marks the first day of the rest of my life. I have finally succeeded—finally—in opening a small rift.
+  It wasn't much. No larger than a crack in a stone, but it was enough. Enough to see that it's possible.
+  This damnable task, which I've slaved over for years, has become tangible at last. I feel like a cat who's
+  clawed through a wall of stone only to glimpse the vast, unseen world beyond.
+  The portal trembled for a moment before it vanished into the ether, as though it feared what it had allowed
+  to slip through its threshold.
+  I must be careful. The magic is unpredictable, powerful. It came through on a whim. And yet, I could sense
+  the weight of it.
+  It promises more.
+  But what to do with it? The war rages on, and I can feel the pulse of destruction growing closer.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Gate of Nyandor — A Message from the Creator of All Tales</title>
+<meta name="description" content="A message from the Creator of All Tales. Two timestreams. One Voyd." />
+<meta name="robots" content="noindex" />
+<meta name="theme-color" content="#050918" />
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="preload" href="../assets/voyd-pair-1395.webp" as="image" />
+<style>
+@font-face{font-family:"Anton";src:url(../assets/fonts/anton.woff2) format("woff2");font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(../assets/fonts/ebgaramond.woff2) format("woff2");font-weight:400 800;font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(../assets/fonts/ebgaramond-italic.woff2) format("woff2");font-weight:400 800;font-style:italic;font-display:swap}
+:root{
+  --night:#050918;--night2:#0b1536;--deep:#142a63;
+  --text:#ece6d6;--muted:#a3abc6;--gold:#e5bd5c;--gold-soft:#f3dca0;--copper:#d98a5f;
+  --line:rgba(229,189,92,.22);
+  --book:"EB Garamond",Garamond,Georgia,serif;
+  --sans:"Helvetica Neue",Arial,Helvetica,sans-serif;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;color:var(--text);font:400 20px/1.6 var(--book);-webkit-font-smoothing:antialiased;
+  background:radial-gradient(ellipse 120% 80% at 50% 32%,var(--deep) 0,var(--night2) 36%,var(--night) 74%) fixed,var(--night);
+  overflow-x:hidden}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+#sky{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#smoke{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.cave{min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:6vh 0 4vh;position:relative}
+.cave .line{max-width:32ch;margin:0 auto 18px;font-size:clamp(21px,3vw,27px);line-height:1.45;color:#efe8d6;font-style:italic;opacity:0;transition:opacity 1.2s ease}
+.cave .line.on{opacity:1}
+.cave .line.big{font-size:clamp(2.4rem,7.5vw,4.2rem);line-height:1.05;color:var(--gold-soft);margin-bottom:22px}
+.cave .line.cat{max-width:none;font-style:normal;font:600 13px/1.7 var(--sans);letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
+.skip{position:absolute;top:14px;right:16px;background:none;border:0;color:#8f97b3;font:600 13px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer;padding:10px;z-index:3}
+.skip:hover{color:var(--gold-soft)}
+.table{display:flex;gap:clamp(14px,4vw,30px);justify-content:center;margin:18px auto 6px;opacity:0;transition:opacity 1s ease;perspective:900px}
+.table.on{opacity:1}
+.die{width:clamp(64px,17vw,92px);text-align:center;position:relative}
+.cube{--s:clamp(64px,17vw,92px);position:relative;width:var(--s);height:var(--s);-webkit-transform-style:preserve-3d;transform-style:preserve-3d;margin:0 auto;visibility:hidden}
+.die.thrown .cube,.die.landed .cube{visibility:visible}
+.face{position:absolute;inset:0;border-radius:16%;display:flex;align-items:center;justify-content:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;
+  background:radial-gradient(circle at 30% 26%,#6c7591 0,#3d4560 46%,#222839 100%);
+  box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55)}
+.face.f1{transform:translateZ(calc(var(--s)/2))}
+.face.f2{transform:rotateY(180deg) translateZ(calc(var(--s)/2));--dim:0.3}
+.face.f3{transform:rotateY(90deg) translateZ(calc(var(--s)/2));--dim:0.18}
+.face.f4{transform:rotateY(-90deg) translateZ(calc(var(--s)/2));--dim:0.18}
+.face.f5{transform:rotateX(90deg) translateZ(calc(var(--s)/2));--dim:0}
+.face.f6{transform:rotateX(-90deg) translateZ(calc(var(--s)/2));--dim:0.4}
+.face::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(0,0,0,var(--dim,0));pointer-events:none}
+.face svg{width:66%;height:66%;filter:drop-shadow(0 0 5px rgba(240,190,80,.5))}
+.face .scr{width:46%;height:46%;opacity:.35;filter:none}
+.shadow{position:absolute;left:12%;right:12%;top:calc(var(--s) - 6px);height:12px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(5px);opacity:0}
+.die.landed .shadow{opacity:1;transition:opacity .4s}
+.die small{display:block;margin-top:14px;font:italic clamp(17px,2.2vw,20px)/1.25 var(--book);color:#c9cde0;opacity:0;transition:opacity .6s ease .2s}
+.die.landed small{opacity:1}
+.landed .face.f1{box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55),0 0 26px rgba(240,190,80,.28)}
+.cast{margin:20px auto 0;opacity:0;pointer-events:none;transition:opacity .8s}
+.cast.on{opacity:1;pointer-events:auto}
+.descend{margin-top:26px;background:none;border:0;color:var(--muted);font:italic 21px var(--book);cursor:pointer;opacity:0;transition:opacity 1s}
+.descend.on{opacity:1}
+.descend b{display:block;font-size:22px;color:var(--gold-soft);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+.gate{opacity:1;transition:opacity 1.2s ease}
+body.telling .gate{opacity:0;pointer-events:none;height:0;overflow:hidden}
+main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:clamp(34px,7vw,70px) 16px 56px;text-align:center}
+
+/* C.A.T.'s greeting */
+.folio{font:600 13px/1.5 var(--sans);letter-spacing:.38em;text-transform:uppercase;color:var(--gold);opacity:.85;margin:0 0 6px}
+.telling{font:italic 18px/1.4 var(--book);color:var(--muted);margin:0 0 clamp(22px,4vw,34px);letter-spacing:.04em}
+.greet{font:400 clamp(2.6rem,8vw,4.4rem)/1 var(--book);font-style:italic;color:var(--gold-soft);margin:0 0 14px}
+.charge{max-width:30ch;margin:0 auto clamp(30px,5vw,46px);font-size:clamp(20px,2.8vw,25px);line-height:1.45;color:#efe8d6}
+h1{font:400 clamp(1.9rem,5.6vw,3.1rem)/1.1 var(--book);margin:0 auto 6px;color:#f7f1e2;text-wrap:balance}
+h1 em{color:var(--gold-soft)}
+.ask{font-style:italic;color:var(--muted);font-size:clamp(19px,2.6vw,23px);margin:0 0 clamp(22px,4vw,36px)}
+[data-scratch] .s{color:var(--gold);opacity:.75}
+
+/* The two covers meeting at the Voyd. Each half is one timestream. */
+.portal{position:relative;width:min(100%,760px);margin:0 auto;aspect-ratio:1395/1114;
+  filter:drop-shadow(0 30px 90px rgba(0,0,0,.65))}
+.half{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;border:0;padding:0;margin:0;background:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;transition:opacity 1.2s ease,filter 1.2s ease,transform 1.2s ease}
+.half img{display:block;width:200%;max-width:none;height:100%;user-select:none;-webkit-user-drag:none;pointer-events:none}
+.half.one{left:0;border-radius:6px 0 0 6px}
+.half.two{right:0;border-radius:0 6px 6px 0}
+.half.two img{margin-left:-100%}
+.half:hover,.half:focus-visible{filter:brightness(1.12)}
+.portal.chosen .half{cursor:default}
+.portal.chosen .half:not(.picked){opacity:.12;filter:grayscale(.7) blur(1px)}
+.portal.chosen .half.picked{filter:brightness(1.08)}
+.portal.chosen .half.one.picked{transform:translateX(-1.5%)}
+.portal.chosen .half.two.picked{transform:translateX(1.5%)}
+.portal.newcomer .half{filter:brightness(.8)}
+.voyd{position:absolute;left:50%;top:39.2%;width:24%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  pointer-events:none;box-shadow:0 0 40px 8px rgba(160,180,255,.14);animation:breathe 7s ease-in-out infinite;transition:opacity 1.2s ease}
+@keyframes breathe{0%,100%{box-shadow:0 0 34px 4px rgba(160,180,255,.10)}50%{box-shadow:0 0 80px 22px rgba(175,195,255,.30)}}
+.portal.chosen .voyd{opacity:.35}
+#drain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.labels{display:grid;grid-template-columns:1fr 1fr;gap:16px;width:min(100%,760px);margin:18px auto 0;transition:opacity 1s ease}
+.labels button{border:0;background:none;color:var(--text);font:inherit;cursor:pointer;padding:8px 4px;line-height:1.35}
+.labels b{display:block;font:600 13px/1.4 var(--sans);letter-spacing:.3em;text-transform:uppercase;margin-bottom:6px}
+.labels .l1 b{color:var(--gold)} .labels .l2 b{color:var(--copper)}
+.labels span{font-style:italic;font-size:clamp(18px,2.4vw,21px);color:#d9d4c6}
+.portal.chosen ~ .labels{opacity:0;pointer-events:none;height:0;margin:0;overflow:hidden}
+.third{margin:clamp(22px,4vw,34px) auto 0;max-width:34ch}
+.third button{background:none;border:0;cursor:pointer;color:var(--muted);font:italic clamp(20px,2.6vw,23px)/1.4 var(--book);padding:6px 10px}
+.third button b{display:block;font:600 13px/1.4 var(--sans);font-style:normal;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-soft);margin-top:4px}
+.third button:hover b{color:var(--gold)}
+.portal.chosen ~ .third{display:none}
+
+/* Claw marks: the oldest writing in Nyandor */
+.claw{display:block;width:34px;height:40px;margin:0 auto 18px;opacity:.7}
+
+/* A timestream, revealed after the choice. */
+.stream{display:none;max-width:640px;margin:clamp(30px,6vw,56px) auto 0;text-align:left;opacity:0;transition:opacity 1.4s ease .3s}
+.stream.open{display:block}
+.stream.shown{opacity:1}
+.stream h2{font:400 clamp(1.7rem,4.6vw,2.4rem)/1.15 var(--book);text-align:center;margin:0 0 6px;color:#f7f1e2}
+.stream .sub{text-align:center;font:600 13px/1.5 var(--sans);letter-spacing:.3em;text-transform:uppercase;margin:0 0 30px}
+#one .sub{color:var(--gold)} #two .sub{color:var(--copper)} #zero .sub{color:var(--muted)}
+blockquote{margin:0 0 40px;padding:0 0 0 22px;border-left:2px solid var(--line);font-style:italic;font-size:clamp(19px,2.5vw,22px);color:#e9e1cc}
+blockquote cite{display:block;margin-top:10px;font:600 13px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;font-style:normal;color:var(--muted)}
+.unmade p{margin:0 0 6px;font-size:clamp(20px,2.7vw,24px);text-align:center;color:#efe8d6}
+.unmade{margin:0 0 30px}
+.unmade .you{margin-top:18px;font-style:italic;color:var(--gold-soft)}
+.step{padding:26px 0;border-top:1px solid var(--line)}
+.step h3{font:600 14px/1.45 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+.step p{margin:0 0 16px;color:#ddd7c8}
+.btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-block;text-decoration:none;font:600 15px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  padding:15px 20px;border:1px solid var(--gold);color:var(--night);background:var(--gold);border-radius:2px;cursor:pointer;
+  transition:background .3s,box-shadow .3s}
+.btn:hover{background:var(--gold-soft);box-shadow:0 0 24px rgba(229,189,92,.35)}
+.btn.ghost{background:transparent;color:var(--gold-soft)}
+.btn.ghost:hover{background:rgba(229,189,92,.1)}
+.note{font:italic 19px/1.4 var(--book);color:var(--muted)}
+.shared{display:none}
+.signal{margin:20px 0 0}
+.signal .masthead{font:400 clamp(1.25rem,3.4vw,1.6rem)/1.1 var(--book);font-style:italic;color:#f3ead2;margin:0 0 4px}
+.signal .masthead small{display:block;font:600 13px/1.6 var(--sans);font-style:normal;letter-spacing:.32em;text-transform:uppercase;color:var(--muted)}
+.signal label{display:block;font-style:italic;color:#ddd7c8;margin:10px 0 10px}
+.signal .row{display:flex;gap:10px;flex-wrap:wrap}
+.signal input[type=email]{flex:1 1 220px;min-width:0;font:400 18px/1.2 var(--book);color:var(--text);background:rgba(5,9,24,.65);
+  border:1px solid var(--line);border-radius:2px;padding:14px}
+.signal input[type=email]:focus{border-color:var(--gold);outline:none}
+.signal .done{display:none;font-style:italic;color:var(--gold-soft);margin:10px 0 0}
+.signal.sent .row,.signal.sent label{display:none}
+.signal.sent .done{display:block}
+.clowder{margin:14px 0 0;font-style:italic;color:var(--muted);font-size:20px}
+.clowder a{color:var(--gold-soft)}
+.other{margin:34px 0 0;text-align:center;font-style:italic;color:var(--muted)}
+.other a{color:var(--gold-soft);text-underline-offset:3px}
+.other button{background:none;border:0;color:var(--gold-soft);font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:0}
+.signoff{text-align:center;margin:48px 0 0;font-style:italic;color:#e9e1cc}
+.signoff b{display:block;font:600 14px/1.4 var(--sans);letter-spacing:.3em;font-style:normal;color:var(--gold);margin-top:8px}
+footer{position:relative;z-index:1;text-align:center;padding:10px 16px 40px;font:15px/1.5 var(--sans);color:#6f7792}
+footer a{color:#8f97b3}
+.press{font:italic 17px/1.5 var(--book);color:#6f7792;margin:0 0 10px}
+
+/* The glyph that leads down: no label, no explanation */
+.sigil{display:block;margin:0 auto 14px;background:none;border:0;padding:8px;cursor:pointer;opacity:.28;transition:opacity .6s}
+.sigil:hover,.sigil:focus-visible{opacity:.9}
+.sigil svg{width:22px;height:26px;display:block}
+.sigil.stir{animation:stir 2.6s ease-in-out}
+@keyframes stir{0%,100%{opacity:.28}40%{opacity:.85}}
+.vale{position:fixed;inset:0;z-index:10;display:none;align-items:center;justify-content:center;padding:20px;
+  background:rgba(3,5,14,.92);backdrop-filter:blur(4px)}
+.vale.open{display:flex}
+.vale .leaf{max-width:560px;max-height:88vh;overflow:auto;text-align:left;border:1px solid var(--line);padding:clamp(22px,5vw,40px);
+  background:radial-gradient(ellipse at 50% 0,#13204a 0,#070c20 70%)}
+.vale h2{font:400 clamp(1.5rem,4vw,2rem)/1.2 var(--book);font-style:italic;color:var(--gold-soft);margin:0 0 18px;text-align:center}
+.vale .cipher{font-size:19px;line-height:1.7;color:#efe8d6;margin:0 0 22px}
+.vale ol{margin:0;padding-left:1.2em;color:#d8d1c0;font-size:18px}
+.vale li{margin:0 0 10px}
+.vale li b{color:var(--gold)}
+.vale .close{display:block;margin:22px auto 0;background:none;border:1px solid var(--line);color:var(--muted);font:600 13px var(--sans);letter-spacing:.3em;text-transform:uppercase;padding:10px 16px;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.voyd,.sigil.stir,.descend b{animation:none}.half,.stream,.labels{transition:none}}
+</style>
+</head>
+<body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="smoke" aria-hidden="true"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dca0"/><stop offset="1" stop-color="#b8892f"/></linearGradient>
+    <symbol id="clawmark" viewBox="0 0 34 40">
+      <path d="M8 2 C6 14 4 24 1.5 38 L3 38 C6.5 25 9 14 9.6 2 Z" fill="url(#gold)"/>
+      <path d="M18 1 C16.5 14 15 25 13 39 L14.8 39 C17.6 25 19.4 14 19.8 1 Z" fill="url(#gold)"/>
+      <path d="M28 3 C27 14 25.6 23 23.6 37 L25.2 37 C28.2 23 29.8 14 29.8 3 Z" fill="url(#gold)"/>
+    </symbol>
+  </defs>
+</svg>
+<main>
+  <section class="cave" id="cave" aria-label="A message from the Creator of All Tales">
+    <button class="skip" id="skip" type="button">Skip the telling</button>
+    <p class="line cat" data-line>A message from the Creator of All Tales · Telling 694,474</p>
+    <p class="line big" data-line>My dear two-legger,</p>
+    <p class="line" data-line>reality is a far more capricious beast than your kind prefers to believe.</p>
+    <p class="line" data-line>A story can have many turnings, many… could-have-beens.</p>
+    <p class="line" data-line>A single pawstep, a word unsaid or said too sharply, and the entire tapestry unmakes and reweaves.</p>
+    <div class="table" id="table" aria-label="Four carved dice">
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V3.5l3.6 3.2h4.8L18 3.5V11c0 3 .4 6 .9 9.5l-2.2-1.6-1.9 2.1-2.8-2-2.8 2-1.9-2.1-2.2 1.6C5.6 17 6 14 6 11z"/><path d="M9 11.2c.6-.5 1.4-.5 2 0M13 11.2c.6-.5 1.4-.5 2 0"/><path d="M11.4 13.6l.6.5.6-.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a feline ghost</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8.5"/><path d="M12 13.5C12 9 8 7.5 6 3.5M12 13.5c0-4.5 4-6 6-10"/><path d="M3.8 5l2.2-1.5 1.3 2.4M16.7 5.9L18 3.5l2.2 1.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a forked path</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.8 5.4A7.5 7.5 0 1 0 19.5 12"/><path d="M15.2 3.6c1.8-.6 3.6.3 4.3 2 .5 1.3.2 2.6-.6 3.6l-2.5-1.3"/><circle cx="17.4" cy="5.4" r=".55" fill="#efc767"/><path d="M19.5 12l-1.6-1.3M19.5 12l1.2-1.6"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>an ouroboros</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 13.5V6a1.3 1.3 0 0 1 2.6 0v5.5"/><path d="M10.1 11.5V4.2a1.3 1.3 0 0 1 2.6 0v7.3"/><path d="M12.7 11.5V5a1.3 1.3 0 0 1 2.6 0v7"/><path d="M15.3 12V7.4a1.3 1.3 0 0 1 2.6 0V14c0 4.3-2.7 7.5-6.6 7.5-2.7 0-4.3-1.4-5.6-3.5l-2.4-4a1.4 1.4 0 0 1 2.3-1.6l1.7 2"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a human hand</small></div>
+    </div>
+    <button class="btn cast" id="cast" type="button">Cast the dice</button>
+    <p class="line" data-line data-after-dice>Purrhaps it's a choice you make.</p>
+    <button class="descend" id="descend" type="button">Step toward the Gate<b>↓</b></button>
+  </section>
+
+  <div class="gate" id="gate">
+  <p class="greet" data-scratch>Two-legger,</p>
+  <p class="charge" data-scratch>you must prove that you are not merely a passive observer, but the active participant I foretold.</p>
+  <h1>Two timestreams. <em>One Voyd.</em></h1>
+  <p class="ask">Which did you walk?</p>
+
+  <div class="portal" id="portal">
+    <button class="half one" data-stream="one" aria-label="The Furbidden Voyd: the timestream where she fails">
+      <img src="../assets/voyd-pair-1395.webp" srcset="../assets/voyd-pair-700.webp 700w, ../assets/voyd-pair-1395.webp 1395w" sizes="(max-width:790px) 200vw, 1520px" alt="" />
+    </button>
+    <button class="half two" data-stream="two" aria-label="The Divergent Path: the timestream where she succeeds">
+      <img src="../assets/voyd-pair-1395.webp" srcset="../assets/voyd-pair-700.webp 700w, ../assets/voyd-pair-1395.webp 1395w" sizes="(max-width:790px) 200vw, 1520px" alt="" />
+    </button>
+    <div class="voyd" aria-hidden="true"></div>
+    <canvas id="drain" aria-hidden="true"></canvas>
+  </div>
+  <div class="labels">
+    <button class="l1" data-stream="one"><b>The Furbidden Voyd</b><span>A new timeline, Ertree's coin in her pocket</span></button>
+    <button class="l2" data-stream="two"><b>The Divergent Path</b><span>Adrift in the Voyd, the world scattered in the dark</span></button>
+  </div>
+  <div class="third"><button type="button" data-stream="zero">Not yet stepped through?<b>Begin at the beginning</b></button></div>
+
+  <!-- Book One readers -->
+  <section class="stream" id="one" aria-live="polite">
+    <svg class="claw"><use href="#clawmark"/></svg>
+    <h2 data-scratch>The fresh timeline</h2>
+    <p class="sub">Book One · The Furbidden Voyd</p>
+    <blockquote>“A fresh timeline is like a newborn kitten—blind, hungry, and fragile. It requires care and attention to keep it from collapsing back into the Voyd.”<cite>The Creator of All Tales</cite></blockquote>
+    <div class="step">
+      <h3>I. Leave your testimony</h3>
+      <p>Leave a record of your journey as a beacon to others.</p>
+      <div class="btns">
+        <a class="btn" href="https://www.amazon.com/review/create-review?&asin=B0G5Z7HNQK" target="_blank" rel="noopener">Testify on Amazon</a>
+        <a class="btn ghost" href="https://www.goodreads.com/book/show/245315891-the-furbidden-voyd" target="_blank" rel="noopener">Goodreads</a>
+      </div>
+    </div>
+    <div class="step">
+      <h3>II. Signal your presence for the next chapter</h3>
+      <p>This timestream continues in <em>Wellspring Incatporated</em>, not yet written into this world. Those who signal will know first.</p>
+      <form class="signal" data-timestream="furbidden-voyd" method="post" target="_blank" hidden></form>
+    </div>
+    <div class="step">
+      <h3>III. Light a beacon</h3>
+      <p>“This tale holds no power if it does not spread.”</p>
+      <div class="btns"><button class="btn ghost share" type="button">Send it to someone</button><span class="note shared">The link is copied. Send it.</span></div>
+    </div>
+    <p class="other">There is another timestream, the one where she passes her Assessment: <a href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener">The Divergent Path</a>. Walked it already? <button type="button" data-switch="two">Go there</button></p>
+  </section>
+
+  <!-- Book Two readers -->
+  <section class="stream" id="two" aria-live="polite">
+    <svg class="claw"><use href="#clawmark"/></svg>
+    <h2 data-scratch>The reconstruction</h2>
+    <p class="sub">Book Two · The Divergent Path</p>
+    <blockquote>“The Voyd is not a grave, it is a womb. Sory'n is adrift in that dark, and without an anchor, she will be forgotten.”<cite>The Creator of All Tales</cite></blockquote>
+    <div class="step">
+      <h3>I. Leave your testimony</h3>
+      <p>This story now hangs by a single thread: your memory. Leave a record of your journey.</p>
+      <div class="btns"><a class="btn" href="https://www.amazon.com/review/create-review?&asin=B0GDM8QB5H" target="_blank" rel="noopener">Testify on Amazon</a></div>
+    </div>
+    <div class="step">
+      <h3>II. Signal your presence for the reconstruction</h3>
+      <p>Its continuation, <em>The Jeweled Oculory</em>, is not yet written into this world. Those who signal will know first.</p>
+      <form class="signal" data-timestream="divergent-path" method="post" target="_blank" hidden></form>
+    </div>
+    <div class="step">
+      <h3>III. Serve as a beacon to others in the dark</h3>
+      <p>Each two-legger who steps through pulls the world a little closer together.</p>
+      <div class="btns"><button class="btn ghost share" type="button">Send it to someone</button><span class="note shared">The link is copied. Send it.</span></div>
+    </div>
+    <p class="other">Never walked the timestream where she fails? <button type="button" data-switch="one">Begin with Book One</button></p>
+  </section>
+
+  <!-- Strangers: nothing read yet -->
+  <section class="stream" id="zero" aria-live="polite">
+    <svg class="claw"><use href="#clawmark"/></svg>
+    <div class="unmade">
+      <p data-scratch>In Second Era 2321, the Mewniverse was unmade.</p>
+      <p data-scratch>Swallowed by darkness absolute.</p>
+      <p data-scratch>All that remains is its tale.</p>
+      <p data-scratch>For the Mewniverse to live again, its tale must find a worthy listener.</p>
+      <p class="you" data-scratch>Is that you?</p>
+    </div>
+    <p class="sub">The Gate of Nyandor · a transdimensional feline saga</p>
+    <div class="step">
+      <h3>I. Receive the tale</h3>
+      <p>Epic fantasy with an all-cat cast: a royal city, a secret police, a Guild that hoards magic, and a forbidden gate into every choice ever made. It begins with <em>The Furbidden Voyd</em>.</p>
+      <div class="btns">
+        <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener">Paperback · $15.99</a>
+        <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener">Kindle · $9.99</a>
+      </div>
+    </div>
+    <div class="step">
+      <h3>II. Signal your presence</h3>
+      <form class="signal" data-timestream="newcomer" method="post" target="_blank" hidden></form>
+    </div>
+    <div class="step">
+      <h3>III. Light a beacon</h3>
+      <p>“This tale holds no power if it does not spread.”</p>
+      <div class="btns"><button class="btn ghost share" type="button">Send it to someone</button><span class="note shared">The link is copied. Send it.</span></div>
+    </div>
+    <p class="other">Already walked a timestream? <button type="button" data-switch="back">Choose your cover</button></p>
+  </section>
+
+  </div>
+  <p class="signoff" id="signoff" hidden>We will speak soon. Mrow.<b>—C.A.T.</b></p>
+</main>
+<footer>
+  <button class="sigil" id="sigil" type="button" aria-label="A mark in the dark"><svg viewBox="0 0 34 40"><use href="#clawmark"/></svg></button>
+  <p class="press">Hornblower Press · 41 Ink Street, Lower Commerce, Faelspire</p>
+  <a href="../">thegateofnyandor.com</a>
+</footer>
+
+<div class="vale" id="vale" role="dialog" aria-modal="true" aria-labelledby="vale-title">
+  <div class="leaf">
+    <h2 id="vale-title">The Vale of Hidden Whispers</h2>
+    <p class="cipher">Nyai F.E. 2321, Voiy’da Mewniversh loryn, ash thaan, nya’lorr shai nya’hirr. Nai’ha Mewniversh la’resta ish, shynk te’ha nya’lorr shai nya’veil.</p>
+    <ol>
+      <li><b>Seek the Rhythm</b> – Every third word hums with purpose. Gather them, and the path will take shape.</li>
+      <li><b>Heed the Numbered Sigil</b> – The sequence 2321 is no mere mark—it guides the seeker’s hand to unveil the truth.</li>
+      <li><b>Let the Words Breathe</b> – Speak them into the air, and some will shift, revealing their essence.</li>
+      <li><b>Weave the Threads</b> – Scattered though they may be, the pieces long to be whole once more.</li>
+    </ol>
+    <button class="close" type="button" id="vale-close">Return</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var voyd=document.querySelector('.voyd');
+  function voydCenter(){var r=voyd.getBoundingClientRect();
+    if(!r.width)return {x:innerWidth/2,y:innerHeight*.42,r:Math.min(innerWidth,innerHeight)*.08};   // during the telling: the dark at the center
+    return {x:r.left+r.width/2,y:r.top+r.height/2,r:r.width/2};}
+
+  // THE SKY. Stars spiral inward and drain into the Voyd behind the covers. Nearer the
+  // hole they turn faster and fade, as if swallowed. Gold cat eyes open in the dark,
+  // blink slowly, and close: the displaced souls of Nyandor, watching.
+  var c=document.getElementById('sky'),x=c.getContext('2d'),stars=[],eyes=[],w,h,dpr,last=0,nextEye=1800;
+  function star(R,fresh){var z=Math.random();
+    return {a:Math.random()*6.283,d:fresh?R*(.75+Math.random()*.35):Math.sqrt(Math.random())*R,z:z,
+      r:(.35+z*1.45),o:.35+z*.6,p:Math.random()*6.283,tw:.0006+Math.random()*.0014};}
+  function size(){dpr=Math.min(window.devicePixelRatio||1,2);w=c.width=innerWidth*dpr;h=c.height=innerHeight*dpr;
+    var R=Math.hypot(innerWidth,innerHeight),n=Math.round(innerWidth*innerHeight/480);stars=[];
+    for(var i=0;i<n;i++)stars.push(star(R,false));}
+  function drawEye(e){var k=e.t/e.life,open;
+    if(k<.12)open=k/.12;else if(k>.88)open=(1-k)/.12;else open=1;
+    var b=e.blink-e.t; if(b<0&&b>-260)open*=Math.abs(b+130)/130;   // one slow blink
+    open=Math.max(0,Math.min(1,open));if(open<.03)return;
+    var s=e.s*dpr,gap=s*2.7;
+    for(var j=-1;j<=1;j+=2){var cx=e.x*dpr+j*gap/2,cy=e.y*dpr;
+      x.save();x.translate(cx,cy);x.scale(1,open);
+      x.globalAlpha=e.o;x.shadowColor='rgba(240,190,80,.9)';x.shadowBlur=s*1.6;
+      var g=x.createRadialGradient(0,0,s*.1,0,0,s);g.addColorStop(0,'#ffe08a');g.addColorStop(1,'#c98b22');
+      x.fillStyle=g;x.beginPath();x.moveTo(-s,0);x.quadraticCurveTo(0,-s*.95,s,0);x.quadraticCurveTo(0,s*.95,-s,0);x.fill();
+      x.shadowBlur=0;x.fillStyle='#0b0704';x.beginPath();x.ellipse(0,0,s*.13,s*.62,0,0,6.283);x.fill();
+      x.restore();}}
+  function spawnEye(){var vc=voydCenter(),tries=0,ex,ey;
+    do{ex=30+Math.random()*(innerWidth-60);ey=30+Math.random()*(innerHeight-60);tries++;}
+    while(Math.hypot(ex-vc.x,ey-vc.y)<vc.r*3.2&&tries<12);
+    var life=3200+Math.random()*2600;
+    eyes.push({x:ex,y:ey,s:5+Math.random()*5,o:.55+Math.random()*.35,t:0,life:life,blink:life*(.35+Math.random()*.3)});}
+  function sky(t){var dt=last?Math.min(t-last,60):16;last=t;x.clearRect(0,0,w,h);
+    var vc=voydCenter(),cx=vc.x,cy=vc.y,hole=Math.max(vc.r,8),R=Math.hypot(innerWidth,innerHeight);
+    for(var i=0;i<stars.length;i++){var s=stars[i];
+      if(!still){var pull=.012+18/Math.max(s.d,20);            // drift inward, faster near the hole
+        s.d-=s.d*pull*dt/1000*(.6+s.z);
+        s.a+=(.05+40/Math.max(s.d,30))*(.4+s.z*.6)*dt/1000;     // turn faster as they near it
+        if(s.d<hole*.9){stars[i]=star(R,true);continue;}}
+      var px=cx+Math.cos(s.a)*s.d,py=cy+Math.sin(s.a)*s.d*.86;
+      if(px<-4||py<-4||px>innerWidth+4||py>innerHeight+4)continue;
+      var fade=Math.min(1,(s.d-hole*.9)/(hole*2.2));
+      x.globalAlpha=(still?s.o:s.o*(.6+.4*Math.sin(t*s.tw+s.p)))*fade;
+      x.fillStyle=s.z>.8?'#f6e7c2':'#dde5ff';var rr=s.r*dpr;
+      x.fillRect(px*dpr-rr,py*dpr-rr,rr*2,rr*2);}
+    if(!still){nextEye-=dt;if(nextEye<=0&&eyes.length<3){spawnEye();nextEye=2600+Math.random()*4200;}}
+    for(var j=eyes.length-1;j>=0;j--){var e=eyes[j];if(!still)e.t+=dt;if(e.t>=e.life){eyes.splice(j,1);continue;}drawEye(e);}
+    x.globalAlpha=1;if(!still)requestAnimationFrame(sky);}
+  size();addEventListener('resize',function(){size();if(still)sky(0);});
+  if(still){eyes.push({x:innerWidth*.15,y:innerHeight*.2,s:7,o:.7,t:900,life:1e9,blink:-1e9});
+    addEventListener('scroll',function(){sky(0);},{passive:true});}
+  requestAnimationFrame(sky);
+
+  // THE DRAIN. Over the art, faint streams of light spiral into the black circle.
+  var dc=document.getElementById('drain'),dx=dc.getContext('2d'),motes=[],dw,dh;
+  function dsize(){var r=dc.getBoundingClientRect();dw=dc.width=r.width*dpr;dh=dc.height=r.height*dpr;}
+  function mote(){return {a:Math.random()*6.283,k:1.9+Math.random()*1.4,v:.25+Math.random()*.35,z:Math.random()};}
+  for(var m=0;m<70;m++){var mm=mote();mm.k=1+Math.random()*2.3;motes.push(mm);}
+  function drain(){dx.clearRect(0,0,dw,dh);var cx=dw*.5,cy=dh*.392,hr=dw*.12;
+    for(var i=0;i<motes.length;i++){var p=motes[i];
+      if(!still){p.k-=p.v*.0045*(1+1/p.k);p.a+=(.004+.02/p.k)*(1+p.z);if(p.k<1){motes[i]=mote();continue;}}
+      var rr=hr*p.k,px=cx+Math.cos(p.a)*rr,py=cy+Math.sin(p.a)*rr;
+      var al=Math.min(1,(p.k-1)*2.2)*Math.min(1,(3.3-p.k)*1.5)*(.35+p.z*.5);
+      if(al<=0)continue;dx.globalAlpha=al;dx.fillStyle='#e8eeff';
+      var s=(.5+p.z*1.1)*dpr;dx.fillRect(px-s,py-s,s*2,s*2);
+      if(!still){dx.globalAlpha=al*.35;
+        dx.fillRect(cx+Math.cos(p.a-.06)*rr*1.01-s*.6,cy+Math.sin(p.a-.06)*rr*1.01-s*.6,s*1.2,s*1.2);}}
+    dx.globalAlpha=1;if(!still)requestAnimationFrame(drain);}
+  dsize();addEventListener('resize',dsize);requestAnimationFrame(drain);
+
+  // CLAW-SCRATCH WRITING. Words arrive as scratch marks, then settle into letters,
+  // the way cats first learned to write: by scratching messages into trees and stones.
+  var marks='/\\|‖ı⁄/\\|';
+  function esc(z){return z==='&'?'&amp;':z==='<'?'&lt;':z;}
+  function scratch(el){if(el.dataset.done)return;el.dataset.done=1;var text=el.textContent;el.setAttribute('aria-label',text);
+    if(still)return;
+    var chars=text.split(''),start=performance.now(),per=Math.max(14,Math.min(34,1400/chars.length));
+    var at=chars.map(function(ch,i){return i*per+Math.random()*260;});
+    var inner=document.createElement('span');inner.setAttribute('aria-hidden','true');el.textContent='';el.appendChild(inner);
+    (function tick(now){var t=now-start,out='',left=0;
+      for(var i=0;i<chars.length;i++){var ch=chars[i];
+        if(ch===' '||t>=at[i])out+=esc(ch);
+        else{left++;out+='<span class="s">'+esc(marks[(Math.random()*marks.length)|0])+'</span>';}}
+      inner.innerHTML=out;if(left)requestAnimationFrame(tick);else{el.textContent=text;}})(start);}
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){scratch(e.target);io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'}):null;
+  document.querySelectorAll('[data-scratch]').forEach(function(el){if(!el.closest('.stream')&&!el.closest('.gate')){io?io.observe(el):scratch(el);}});
+  function scratchIn(section){section.querySelectorAll('[data-scratch]').forEach(function(el,i){
+    setTimeout(function(){io?io.observe(el):scratch(el);},i*350);});}
+
+  // PIPE SMOKE. C.A.T.'s cave is made of smoke; it drifts up through the sky and
+  // curls after the reader's hand.
+  var sc=document.getElementById('smoke'),sx=sc.getContext('2d'),puffs=[],sw,sh;
+  function ssize(){sw=sc.width=innerWidth*dpr;sh=sc.height=innerHeight*dpr;}
+  function puff(x0,y0,small){return {x:x0!=null?x0:Math.random()*innerWidth,y:y0!=null?y0:innerHeight+60*Math.random(),
+    r:small?18+Math.random()*24:70+Math.random()*120,a:0,max:small?.10:.045+Math.random()*.04,
+    vx:(Math.random()-.5)*.25,vy:-(.12+Math.random()*.28),life:0,span:small?2600:16000+Math.random()*12000,g:Math.random()};}
+  for(var q=0;q<18;q++){var pf=puff(null,Math.random()*innerHeight);pf.life=Math.random()*pf.span;puffs.push(pf);}
+  function smoke(t){sx.clearRect(0,0,sw,sh);
+    for(var i=puffs.length-1;i>=0;i--){var f=puffs[i];
+      if(!still){f.life+=16;f.x+=f.vx+Math.sin((f.life+f.g*9000)/2600)*.18;f.y+=f.vy;f.r+=.03;}
+      var k=f.life/f.span;if(k>=1){puffs.splice(i,1);if(puffs.length<18)puffs.push(puff());continue;}
+      var al=f.max*Math.sin(Math.PI*k);
+      var g=sx.createRadialGradient(f.x*dpr,f.y*dpr,0,f.x*dpr,f.y*dpr,f.r*dpr);
+      g.addColorStop(0,'rgba(178,190,222,'+al+')');g.addColorStop(1,'rgba(178,190,222,0)');
+      sx.fillStyle=g;sx.fillRect((f.x-f.r)*dpr,(f.y-f.r)*dpr,f.r*2*dpr,f.r*2*dpr);}
+    if(!still)requestAnimationFrame(smoke);}
+  ssize();addEventListener('resize',ssize);requestAnimationFrame(smoke);
+  var lastPuff=0;function trail(e){var n=performance.now();if(still||n-lastPuff<70||puffs.length>60)return;lastPuff=n;
+    var p=e.touches?e.touches[0]:e;var f=puff(p.clientX,p.clientY,true);f.vy=-.35;puffs.push(f);}
+  addEventListener('pointermove',trail,{passive:true});addEventListener('touchmove',trail,{passive:true});
+
+  // THE TELLING. C.A.T. speaks (only his printed words), the reader casts his four
+  // dice, and the Gate opens. Returning two-leggers are not made to sit through it twice.
+  var cave=document.getElementById('cave'),lines=[].slice.call(cave.querySelectorAll('[data-line]')),
+      table=document.getElementById('table'),cast=document.getElementById('cast'),descend=document.getElementById('descend'),
+      gate=document.getElementById('gate'),told=false,timer=null,idx=0;
+  try{told=localStorage.getItem('nyandor.told')==='1'&&!/[?&]retell\b/.test(location.search);}catch(e){}   // ?retell plays it again
+  function remember(){try{localStorage.setItem('nyandor.told','1');}catch(e){}}
+  function openGate(scroll){document.body.classList.remove('telling');remember();
+    gate.querySelectorAll('[data-scratch]').forEach(function(el){io?io.observe(el):scratch(el);});
+    if(scroll)setTimeout(function(){gate.scrollIntoView({behavior:still?'auto':'smooth',block:'start'});},60);}
+  function showLine(el){el.classList.add('on');scratch(el);}
+  function next(){clearTimeout(timer);
+    var el=lines[idx];if(!el)return;
+    if(el.hasAttribute('data-after-dice')&&!table.dataset.cast){table.classList.add('on');cast.classList.add('on');return;}
+    showLine(el);idx++;
+    if(idx<lines.length)timer=setTimeout(next,still?300:Math.max(1900,el.textContent.length*48));
+    else{descend.classList.add('on');}}
+  function throwDie(d,i){var cube=d.querySelector('.cube');d.classList.add('thrown');
+    if(still||!cube.animate){d.classList.add('landed');return;}
+    var rx=(2+Math.floor(Math.random()*2))*360,ry=(1+Math.floor(Math.random()*2))*360*(Math.random()<.5?-1:1),rz=(Math.random()-.5)*60;
+    var fx=(Math.random()-.5)*160;
+    cube.animate([
+      {transform:'translate3d('+fx+'px,-260px,140px) rotateX('+rx+'deg) rotateY('+ry+'deg) rotateZ('+rz+'deg)',offset:0},
+      {transform:'translate3d('+fx*.3+'px,0,40px) rotateX('+rx*.35+'deg) rotateY('+ry*.35+'deg) rotateZ('+rz*.4+'deg)',offset:.55},
+      {transform:'translate3d('+fx*.1+'px,-34px,20px) rotateX('+rx*.12+'deg) rotateY('+ry*.1+'deg) rotateZ('+rz*.1+'deg)',offset:.72},
+      {transform:'translate3d(0,0,0) rotateX(-8deg) rotateY(6deg)',offset:.88},
+      {transform:'translate3d(0,-6px,0) rotateX(3deg) rotateY(-2deg)',offset:.94},
+      {transform:'none',offset:1}],
+      {duration:1500+i*120,easing:'cubic-bezier(.25,.7,.35,1)',fill:'both'}).onfinish=function(){d.classList.add('landed');};}
+  cast.addEventListener('click',function(){cast.classList.remove('on');table.dataset.cast=1;
+    [].forEach.call(table.querySelectorAll('.die'),function(d,i){setTimeout(function(){throwDie(d,i);},still?0:i*180);});
+    timer=setTimeout(next,still?200:3000);});
+  descend.addEventListener('click',function(){openGate(true);});
+  document.getElementById('skip').addEventListener('click',function(){
+    lines.forEach(function(l){l.classList.add('on');});table.classList.add('on');table.dataset.cast=1;
+    [].forEach.call(table.querySelectorAll('.die'),function(d){d.classList.add('thrown','landed');});
+    cast.classList.remove('on');descend.classList.add('on');openGate(true);});
+  var deepLink=location.hash&&location.hash!=='#twolegger';
+  if(told||deepLink){
+    lines.forEach(function(l){l.classList.add('on');});table.classList.add('on');table.dataset.cast=1;
+    [].forEach.call(table.querySelectorAll('.die'),function(d){d.classList.add('thrown','landed');});
+    descend.classList.add('on');document.body.classList.remove('telling');
+    gate.querySelectorAll('[data-scratch]').forEach(function(el){io?io.observe(el):scratch(el);});
+    if(!deepLink)setTimeout(function(){gate.scrollIntoView({block:'start'});},50);}
+  else{document.body.classList.add('telling');setTimeout(next,600);}
+
+  // For those who open the console.
+  try{console.log('%cHornblower Press · 41 Ink Street, Lower Commerce, Faelspire','font:italic 15px Georgia;color:#e5bd5c');
+    console.log('%cSeek the Rhythm. Heed the Numbered Sigil. The mark in the dark is not decoration.','font:13px Georgia;color:#a3abc6');}catch(e){}
+
+  // THE CHOICE.
+  var portal=document.getElementById('portal'),signoff=document.getElementById('signoff');
+  var names={one:'furbidden-voyd',two:'divergent-path',zero:'begin'};
+  function choose(id,scroll){
+    portal.classList.toggle('chosen',id!=='zero');portal.classList.toggle('newcomer',id==='zero');
+    portal.querySelectorAll('.half').forEach(function(b){b.classList.toggle('picked',b.dataset.stream===id);});
+    document.querySelectorAll('.stream').forEach(function(s){var on=s.id===id;s.classList.toggle('open',on);if(!on)s.classList.remove('shown');});
+    var el=document.getElementById(id);
+    requestAnimationFrame(function(){requestAnimationFrame(function(){el.classList.add('shown');scratchIn(el);});});
+    signoff.hidden=false;history.replaceState(null,'','#'+names[id]);
+    if(scroll)setTimeout(function(){el.scrollIntoView({behavior:still?'auto':'smooth',block:'start'});},still?0:500);}
+  function reset(){portal.classList.remove('chosen','newcomer');portal.querySelectorAll('.half').forEach(function(b){b.classList.remove('picked');});
+    document.querySelectorAll('.stream').forEach(function(s){s.classList.remove('open','shown');});signoff.hidden=true;
+    history.replaceState(null,'',location.pathname);window.scrollTo({top:0,behavior:still?'auto':'smooth'});}
+  document.querySelectorAll('[data-stream]').forEach(function(b){b.addEventListener('click',function(){choose(b.dataset.stream,true);});});
+  document.querySelectorAll('[data-switch]').forEach(function(b){b.addEventListener('click',function(){
+    if(b.dataset.switch==='back')return reset();choose(b.dataset.switch,false);window.scrollTo({top:0,behavior:still?'auto':'smooth'});});});
+  var first={'#furbidden-voyd':'one','#divergent-path':'two','#begin':'zero'}[location.hash];if(first)choose(first,false);
+
+  // SIGNAL YOUR PRESENCE: The Faelspiran Hornblower (the Kit list). The form number comes
+  // from Kit > Grow > Landing Pages & Forms. Empty = sign-up hidden, Clowder link only.
+  var KIT_FORM_ID='10021835';
+  document.querySelectorAll('form.signal').forEach(function(f,i){
+    var id='e'+i;
+    f.innerHTML='<p class="masthead">The Faelspiran Hornblower<small>News and new releases from Nyandor</small></p>'+
+      '<label for="'+id+'">C.A.T. writes to those who signal. Leave your address.</label>'+
+      '<div class="row"><input id="'+id+'" type="email" name="email_address" placeholder="your@email" required autocomplete="email" />'+
+      '<input type="hidden" name="fields[timestream]" value="'+f.dataset.timestream+'" />'+
+      '<button class="btn" type="submit">Signal</button></div>'+
+      '<p class="done">Your signal is received. Look for a message from the Gate, and confirm it.</p>';
+    var cl=document.createElement('p');cl.className='clowder';
+    cl.innerHTML='Or <a href="https://www.patreon.com/cw/TheGateofNyandor" target="_blank" rel="noopener">join the Clowder</a>, free.';
+    f.after(cl);
+    if(!KIT_FORM_ID)return;
+    f.action='https://app.kit.com/forms/'+KIT_FORM_ID+'/subscriptions';f.hidden=false;
+    f.addEventListener('submit',function(ev){
+      if(!window.fetch)return;ev.preventDefault();var btn=f.querySelector('button');btn.disabled=true;
+      fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
+        .then(function(r){return r.json();}).then(function(j){
+          if(j&&j.status==='success')f.classList.add('sent');else{btn.disabled=false;f.submit();}})
+        .catch(function(){btn.disabled=false;f.submit();});});});
+
+  // LIGHT A BEACON: the share sheet on phones, otherwise copy the link.
+  var url='https://www.thegateofnyandor.com/';
+  document.querySelectorAll('.share').forEach(function(b){b.addEventListener('click',function(){
+    var done=b.nextElementSibling;
+    if(navigator.share){navigator.share({title:'The Gate of Nyandor',text:'Two timestreams. One Voyd.',url:url}).catch(function(){});return;}
+    if(navigator.clipboard)navigator.clipboard.writeText(url).then(function(){done.style.display='inline';});});});
+
+  // THE MARK IN THE DARK. Unlabeled. It stirs now and then. Those who touch it find the Vale.
+  var sigil=document.getElementById('sigil'),vale=document.getElementById('vale');
+  if(!still)setInterval(function(){sigil.classList.remove('stir');void sigil.offsetWidth;sigil.classList.add('stir');},14000);
+  sigil.addEventListener('click',function(){vale.classList.add('open');document.getElementById('vale-close').focus();});
+  function closeVale(){vale.classList.remove('open');sigil.focus();}
+  document.getElementById('vale-close').addEventListener('click',closeVale);
+  vale.addEventListener('click',function(e){if(e.target===vale)closeVale();});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&vale.classList.contains('open'))closeVale();});
+})();
+</script>
+</body>
+</html>
