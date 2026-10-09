@@ -47,10 +47,10 @@ a{color:inherit}
 .cave .line.on{opacity:1}
 .cave .line.big{font-size:clamp(2.4rem,7.5vw,4.2rem);line-height:1.05;color:var(--gold-soft);margin-bottom:22px}
 .cave .line.cat{max-width:none;font-style:normal;font:600 13px/1.7 var(--sans);letter-spacing:.38em;text-transform:uppercase;color:var(--gold)}
-.skip{position:absolute;top:14px;right:16px;background:none;border:0;color:#8f97b3;font:600 13px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer;padding:10px;z-index:3}
+.skip{display:block;margin:0 auto 22px;background:none;border:0;color:#8f97b3;font:600 13px/1 var(--sans);letter-spacing:.3em;text-transform:uppercase;cursor:pointer;padding:10px;z-index:3}
 .skip:hover{color:var(--gold-soft)}
-.table{display:flex;gap:clamp(14px,4vw,30px);justify-content:center;margin:18px auto 6px;opacity:0;transition:opacity 1s ease;perspective:900px}
-.table.on{opacity:1}
+.table{display:none;gap:clamp(14px,4vw,30px);justify-content:center;margin:18px auto 6px;opacity:0;transition:opacity 1s ease;perspective:900px}
+.table.on{display:flex;opacity:1}
 .die{width:clamp(64px,17vw,92px);text-align:center;position:relative}
 .cube{--s:clamp(64px,17vw,92px);position:relative;width:var(--s);height:var(--s);-webkit-transform-style:preserve-3d;transform-style:preserve-3d;margin:0 auto;visibility:hidden}
 .die.thrown .cube,.die.landed .cube{visibility:visible}
@@ -68,15 +68,17 @@ a{color:inherit}
 .face .scr{width:46%;height:46%;opacity:.35;filter:none}
 .shadow{position:absolute;left:12%;right:12%;top:calc(var(--s) - 6px);height:12px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(5px);opacity:0}
 .die.landed .shadow{opacity:1;transition:opacity .4s}
+@media (max-width:540px){.table{display:none;margin-bottom:26px;flex-wrap:wrap;max-width:300px;gap:22px 34px}.table.on{display:flex}
+  .die{width:42%;max-width:120px}.cube{--s:min(30vw,104px)}}
 .die small{display:block;margin-top:14px;font:italic clamp(17px,2.2vw,20px)/1.25 var(--book);color:#c9cde0;opacity:0;transition:opacity .6s ease .2s}
 .die.landed small{opacity:1}
 .landed .face.f1{box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55),0 0 26px rgba(240,190,80,.28)}
-.cast{margin:20px auto 0;opacity:0;pointer-events:none;transition:opacity .8s}
-.cast.on{opacity:1;pointer-events:auto}
-.descend{margin-top:26px;background:none;border:0;color:var(--muted);font:italic 21px var(--book);cursor:pointer;opacity:0;transition:opacity 1s}
-.descend.on{opacity:1}
-.descend b{display:block;font-size:22px;color:var(--gold-soft);animation:bob 2.4s ease-in-out infinite}
-@keyframes bob{50%{transform:translateY(6px)}}
+.cave .cast{display:none;margin:10px auto 0}
+.cave .cast.on{display:inline-block}
+.cave .descend{display:none;margin:30px auto 0;align-items:center;gap:10px}
+.cave .descend.on{display:inline-flex}
+.descend b{font-size:20px;line-height:1;animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(4px)}}
 .gate{opacity:1;transition:opacity 1.2s ease}
 body.telling .gate{opacity:0;pointer-events:none;height:0;overflow:hidden}
 main{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:clamp(34px,7vw,70px) 16px 56px;text-align:center}
@@ -214,15 +216,15 @@ footer a{color:#8f97b3}
     <p class="line" data-line>reality is a far more capricious beast than your kind prefers to believe.</p>
     <p class="line" data-line>A story can have many turnings, many… could-have-beens.</p>
     <p class="line" data-line>A single pawstep, a word unsaid or said too sharply, and the entire tapestry unmakes and reweaves.</p>
+    <button class="btn cast" id="cast" type="button">Cast the dice</button>
     <div class="table" id="table" aria-label="Four carved dice">
       <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V3.5l3.6 3.2h4.8L18 3.5V11c0 3 .4 6 .9 9.5l-2.2-1.6-1.9 2.1-2.8-2-2.8 2-1.9-2.1-2.2 1.6C5.6 17 6 14 6 11z"/><path d="M9 11.2c.6-.5 1.4-.5 2 0M13 11.2c.6-.5 1.4-.5 2 0"/><path d="M11.4 13.6l.6.5.6-.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a feline ghost</small></div>
       <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8.5"/><path d="M12 13.5C12 9 8 7.5 6 3.5M12 13.5c0-4.5 4-6 6-10"/><path d="M3.8 5l2.2-1.5 1.3 2.4M16.7 5.9L18 3.5l2.2 1.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a forked path</small></div>
       <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.8 5.4A7.5 7.5 0 1 0 19.5 12"/><path d="M15.2 3.6c1.8-.6 3.6.3 4.3 2 .5 1.3.2 2.6-.6 3.6l-2.5-1.3"/><circle cx="17.4" cy="5.4" r=".55" fill="#efc767"/><path d="M19.5 12l-1.6-1.3M19.5 12l1.2-1.6"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>an ouroboros</small></div>
       <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 13.5V6a1.3 1.3 0 0 1 2.6 0v5.5"/><path d="M10.1 11.5V4.2a1.3 1.3 0 0 1 2.6 0v7.3"/><path d="M12.7 11.5V5a1.3 1.3 0 0 1 2.6 0v7"/><path d="M15.3 12V7.4a1.3 1.3 0 0 1 2.6 0V14c0 4.3-2.7 7.5-6.6 7.5-2.7 0-4.3-1.4-5.6-3.5l-2.4-4a1.4 1.4 0 0 1 2.3-1.6l1.7 2"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a human hand</small></div>
     </div>
-    <button class="btn cast" id="cast" type="button">Cast the dice</button>
     <p class="line" data-line data-after-dice>Purrhaps it's a choice you make.</p>
-    <button class="descend" id="descend" type="button">Step toward the Gate<b>↓</b></button>
+    <button class="btn ghost descend" id="descend" type="button">Step toward the Gate <b aria-hidden="true">↓</b></button>
   </section>
 
   <div class="gate" id="gate">
@@ -479,7 +481,7 @@ footer a{color:#8f97b3}
   function showLine(el){el.classList.add('on');scratch(el);}
   function next(){clearTimeout(timer);
     var el=lines[idx];if(!el)return;
-    if(el.hasAttribute('data-after-dice')&&!table.dataset.cast){table.classList.add('on');cast.classList.add('on');return;}
+    if(el.hasAttribute('data-after-dice')&&!table.dataset.cast){cast.classList.add('on');return;}
     showLine(el);idx++;
     if(idx<lines.length)timer=setTimeout(next,still?300:Math.max(1900,el.textContent.length*48));
     else{descend.classList.add('on');}}
@@ -495,7 +497,7 @@ footer a{color:#8f97b3}
       {transform:'translate3d(0,-6px,0) rotateX(3deg) rotateY(-2deg)',offset:.94},
       {transform:'none',offset:1}],
       {duration:1500+i*120,easing:'cubic-bezier(.25,.7,.35,1)',fill:'both'}).onfinish=function(){d.classList.add('landed');};}
-  cast.addEventListener('click',function(){cast.classList.remove('on');table.dataset.cast=1;
+  cast.addEventListener('click',function(){cast.classList.remove('on');table.classList.add('on');table.dataset.cast=1;
     [].forEach.call(table.querySelectorAll('.die'),function(d,i){setTimeout(function(){throwDie(d,i);},still?0:i*180);});
     timer=setTimeout(next,still?200:3000);});
   descend.addEventListener('click',function(){openGate(true);});
