@@ -2,567 +2,454 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<script>/* The QR code printed in both books opens /#twolegger. Send it to the reader page before the sales page shows. Must keep working forever. */if(location.hash.toLowerCase()==="#twolegger")location.replace("twolegger/");</script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>The Nyandor Protocol™ — The Gate of Nyandor, a Transdimensional Feline Saga</title>
-<meta name="description" content="A two-volume, screen-free narrative immersion system. The Gate of Nyandor: 768 pages of epic fantasy with an all-cat cast, forbidden magic and branching timelines. Available on Amazon." />
-<meta name="theme-color" content="#0a0a09" />
+<script>/* The QR code printed in both books opens /#twolegger. Send it to the reader page before anything else shows. Must keep working forever. */if(location.hash.toLowerCase()==="#twolegger")location.replace("twolegger/");</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>The Gate of Nyandor · Epic fantasy with an all-cat cast</title>
+<meta name="claude:viewport-fit-sides" content="cover" />
+<meta name="description" content="The Gate of Nyandor by Patrick Christell: epic fantasy with an all-cat cast. A royal city, a secret police, a Guild that hoards magic, and a forbidden gate into every choice ever made. Two novels, two realities, one Voyd. On Amazon in paperback and Kindle." />
+<meta name="theme-color" content="#050918" />
+<link rel="canonical" href="https://www.thegateofnyandor.com/" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="The Nyandor Protocol™: Your brain wasn't designed for this." />
-<meta property="og:description" content="Big Dopamine sells the next thing. Nyandor is 768 pages of epic fantasy with an all-cat cast, built to make you forget where you left your phone." />
+<meta property="og:title" content="The Gate of Nyandor: someone finally gave cats the full Tolkien treatment" />
+<meta property="og:description" content="Epic fantasy with an all-cat cast. Two novels, two realities, one Voyd. By Patrick Christell." />
 <meta property="og:url" content="https://www.thegateofnyandor.com/" />
-<meta property="og:image" content="https://www.thegateofnyandor.com/assets/og-protocol.jpg" />
+<meta property="og:image" content="https://www.thegateofnyandor.com/assets/og-gate.jpg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="The Nyandor Protocol™" />
-<meta name="twitter:description" content="A two-volume, screen-free narrative immersion system. Contains: cats." />
-<meta name="twitter:image" content="https://www.thegateofnyandor.com/assets/og-protocol.jpg" />
+<meta name="twitter:title" content="The Gate of Nyandor" />
+<meta name="twitter:description" content="Epic fantasy with an all-cat cast. Two novels, two realities, one Voyd." />
+<meta name="twitter:image" content="https://www.thegateofnyandor.com/assets/og-gate.jpg" />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preload" href="assets/fonts/anton.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="preload" href="assets/voyd-pair-1395.webp" as="image" />
+<link rel="preload" href="assets/fonts/ebgaramond.woff2" as="font" type="font/woff2" crossorigin />
 <style>
-@font-face{font-family:"Anton";src:url(assets/fonts/anton.woff2) format("woff2");font-weight:400;font-display:swap}
-@font-face{font-family:"EB Garamond";src:url(assets/fonts/ebgaramond.woff2) format("woff2");font-weight:400 800;font-style:normal;font-display:swap}
+@font-face{font-family:"EB Garamond";src:url(assets/fonts/ebgaramond.woff2) format("woff2");font-weight:400 800;font-display:swap}
 @font-face{font-family:"EB Garamond";src:url(assets/fonts/ebgaramond-italic.woff2) format("woff2");font-weight:400 800;font-style:italic;font-display:swap}
-
+/* Layout: one deep-blue night sky that never ends. Every section sits in it; the stars always drain toward the nearest Voyd on screen. */
 :root{
-  --ink:#0a0a09;--ink2:#131210;--line:#2c2922;
-  --acid:#ffef00;--hot:#ff3b00;--cream:#f4efe3;--paper:#f3eedf;--muted:#b3aa96;
-  --gold:#e5bd5c;--gold-dim:#9c7f3f;--voyd:#10204a;--nyink:#0b0a0d;
-  --display:"Anton",Impact,"Arial Narrow",sans-serif;
+  --night:#050918;--night2:#0b1536;--deep:#142a63;
+  --text:#ece6d6;--muted:#a3abc6;--gold:#e5bd5c;--gold-soft:#f3dca0;--copper:#d98a5f;
+  --paper:#efe7d2;--paper-ink:#2a2318;
+  --line:rgba(229,189,92,.22);
   --book:"EB Garamond",Garamond,Georgia,serif;
   --sans:"Helvetica Neue",Arial,Helvetica,sans-serif;
+  color-scheme:dark;
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--ink);color:var(--cream);font:17px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;min-height:100vh;color:var(--text);font:400 20px/1.6 var(--book);-webkit-font-smoothing:antialiased;
+  background:radial-gradient(ellipse 120% 80% at 50% 32%,var(--deep) 0,var(--night2) 36%,var(--night) 74%) fixed,var(--night);
+  overflow-x:hidden}
 img{max-width:100%;height:auto;display:block}
 a{color:inherit}
-.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
-.narrow{max-width:760px}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-:focus-visible{outline:3px solid var(--acid);outline-offset:3px}
+:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+#sky,#smoke{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.band{position:relative;z-index:1;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.inner{max-width:1040px;margin:0 auto}
+.narrow{max-width:680px;margin:0 auto}
+.label{font:600 13px/1.6 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin:0}
+h1,h2,h3{font-weight:400;text-wrap:balance;margin:0}
+h2{font:400 clamp(2rem,5vw,3rem)/1.08 var(--book);color:#f7f1e2}
+h2 em,h1 em{color:var(--gold-soft)}
+.lede{font-size:clamp(20px,2.4vw,23px);line-height:1.5;color:#ddd7c8;margin:0}
+[data-scratch] .s{color:var(--gold);opacity:.75}
 
-/* ---------- BIG DOPAMINE REGISTER (acid / hot / hard shadows) ---------- */
-.tag{display:inline-block;background:var(--acid);color:#000;border:3px solid #000;box-shadow:5px 5px 0 var(--hot);font:800 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;padding:7px 10px}
-.cta{display:inline-block;background:var(--acid);color:#000;border:4px solid #000;box-shadow:8px 8px 0 var(--hot);font:900 17px/1.2 var(--sans);letter-spacing:.05em;text-transform:uppercase;text-decoration:none;padding:18px 26px;transform:rotate(-1deg);transition:transform .12s,box-shadow .12s}
-.cta:hover{transform:translate(-2px,-2px) rotate(-1deg);box-shadow:12px 12px 0 var(--hot)}
-.cta small{display:block;font-size:11px;letter-spacing:.12em;font-weight:700;margin-top:4px}
-.hl{background:linear-gradient(transparent 52%,var(--acid) 52%,var(--acid) 92%,transparent 92%);padding:0 .1em}
-.redline{text-decoration:underline;text-decoration-color:var(--hot);text-decoration-thickness:3px;text-underline-offset:4px}
+/* Buttons, same as the reader page */
+.btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn{display:inline-block;text-decoration:none;font:600 15px/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-align:center;
+  padding:15px 20px;border:1px solid var(--gold);color:var(--night);background:var(--gold);border-radius:2px;cursor:pointer;
+  transition:background .3s,box-shadow .3s}
+.btn:hover{background:var(--gold-soft);box-shadow:0 0 24px rgba(229,189,92,.35)}
+.btn.ghost{background:transparent;color:var(--gold-soft)}
+.btn.ghost:hover{background:rgba(229,189,92,.1)}
+.btn small{display:block;font:italic 400 15px/1.2 var(--book);letter-spacing:0;text-transform:none;margin-top:3px;opacity:.8}
 
-#emergency{background:var(--acid);color:#000;padding:10px 16px;text-align:center;font:900 15px/1.3 var(--sans);text-transform:uppercase;letter-spacing:.06em;border-bottom:4px solid #000}
-.nav{background:rgba(10,10,9,.94);border-bottom:1px solid #211f19;z-index:30}
-.navin{min-height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font:400 20px/1 var(--display);letter-spacing:.04em}
-.navproof{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.navproof b{color:var(--acid)}
-.navbuy{background:var(--acid);color:#000;text-decoration:none;font:900 12px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:10px 14px;border:3px solid #000;box-shadow:4px 4px 0 var(--hot)}
-@media(min-width:861px){.nav{position:sticky;top:0;backdrop-filter:blur(10px)}}
+/* ---------- HERO: the two covers meeting at the Voyd, stars draining in ---------- */
+.hero{padding-block:clamp(26px,5vh,54px) 30px;text-align:center}
+.hero .label{opacity:.85}
+.hero h1{font:400 clamp(2.05rem,5.4vw,3.35rem)/1.05 var(--book);color:#f7f1e2;max-width:23ch;margin:12px auto clamp(16px,2.5vh,26px)}
+.portal{position:relative;width:min(100%,600px,calc(56svh * 1.252));margin:0 auto;aspect-ratio:1395/1114;
+  filter:drop-shadow(0 30px 90px rgba(0,0,0,.65))}
+.portal a{position:absolute;top:0;bottom:0;width:50%;overflow:hidden;-webkit-tap-highlight-color:transparent;transition:filter .6s ease}
+.portal a img{width:200%;max-width:none;height:100%;user-select:none;-webkit-user-drag:none}
+.portal .one{left:0;border-radius:6px 0 0 6px}
+.portal .two{right:0;border-radius:0 6px 6px 0}
+.portal .two img{margin-left:-100%}
+.portal a:hover,.portal a:focus-visible{filter:brightness(1.12)}
+.voyd{position:absolute;left:50%;top:39.2%;width:24%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  pointer-events:none;box-shadow:0 0 40px 8px rgba(160,180,255,.14);animation:breathe 7s ease-in-out infinite}
+@keyframes breathe{0%,100%{box-shadow:0 0 34px 4px rgba(160,180,255,.10)}50%{box-shadow:0 0 80px 22px rgba(175,195,255,.30)}}
+.drain{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.hero .btns{justify-content:center;margin:clamp(20px,3vh,28px) auto 0}
+.hero .more{display:block;margin:16px auto 0;font-style:italic;color:var(--muted);text-decoration:none;font-size:19px}
+.hero .more:hover{color:var(--gold-soft)}
+.hero .dek{max-width:36ch;margin:clamp(26px,4vh,40px) auto 0}
+.proof{max-width:34ch;margin:22px auto 0;font-style:italic;color:var(--gold-soft);font-size:clamp(19px,2.3vw,22px);line-height:1.4}
+.proof cite{display:block;font:600 12px/1.6 var(--sans);font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 
-.hero{position:relative;overflow:hidden;text-align:center;background:radial-gradient(circle at 72% 12%,#532000 0,transparent 36%),linear-gradient(135deg,#050505 0,#151000 55%,#050505 100%)}
-.hero:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(rgba(255,239,0,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(255,239,0,.12) 1px,transparent 1px);background-size:42px 42px;-webkit-mask-image:linear-gradient(to bottom,#000,transparent 85%);mask-image:linear-gradient(to bottom,#000,transparent 85%)}
-.hero .wrap{position:relative;padding-top:44px;padding-bottom:56px}
-.hero h1{font:400 clamp(3.1rem,8.4vw,7.4rem)/.9 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:26px auto 22px;max-width:1000px}
-.this-word{position:relative;display:inline-block;z-index:1;padding:0 .1em;margin-left:.04em}
-.this-word:before{content:"";position:absolute;left:0;right:-.06em;top:.01em;bottom:-.04em;background:var(--hot);z-index:-1;transform:skew(-4deg) rotate(-1deg);border:3px solid var(--acid)}
-.this-vibrate{display:inline-block;color:#000;will-change:transform;animation:buzz 3.2s linear infinite}
-/* phone-buzz pattern: two short bursts, then stillness */
-@keyframes buzz{
-  0%,15%,100%{transform:none}
-  1%{transform:translate(-3px,-1px) rotate(-.6deg)} 2%{transform:translate(3px,2px) rotate(.5deg)}
-  3%{transform:translate(-2px,3px) rotate(-.4deg)} 4%{transform:translate(3px,-2px) rotate(.5deg)}
-  5%{transform:translate(-3px,1px) rotate(-.5deg)} 6%{transform:none}
-  9%{transform:none} 10%{transform:translate(3px,-1px) rotate(.6deg)} 11%{transform:translate(-3px,2px) rotate(-.5deg)}
-  12%{transform:translate(2px,3px) rotate(.4deg)} 13%{transform:translate(-3px,-2px) rotate(-.5deg)} 14%{transform:translate(2px,1px) rotate(.3deg)}
-}
-.dek{font-size:clamp(18px,2.1vw,23px);line-height:1.45;max-width:720px;margin:0 auto 30px;color:#e2dbcb}
-.dek strong{color:#fff}
-.proofchip{display:inline-flex;align-items:center;gap:14px;margin-top:30px;padding:10px 16px 10px 10px;border:1px solid #3a3426;background:rgba(0,0,0,.45);text-align:left;text-decoration:none}
-.proofchip .minis{display:flex;flex:none;padding-right:6px}
-.proofchip img{width:40px;height:64px;object-fit:cover;box-shadow:0 4px 14px #000}
-.proofchip img+img{margin-left:-12px;transform:rotate(5deg)}
-.proofchip span{font-size:13px;line-height:1.35;color:#d8d0bf}
-.proofchip b{color:var(--acid);letter-spacing:.06em}
+/* ---------- THE SPLIT: one failed Assessment, two realities ---------- */
+.split{padding-block:clamp(56px,8vw,96px) 40px}
+.split header{text-align:center;max-width:720px;margin:0 auto clamp(40px,6vw,64px)}
+.split header .epi{font-style:italic;color:#e9e1cc;font-size:clamp(20px,2.6vw,24px);line-height:1.45;margin:0 0 6px}
+.split header cite{display:block;font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-style:normal;margin:0 0 28px}
+.split header .lede{margin-top:18px}
+.covers{position:relative;display:flex;justify-content:center;align-items:flex-start;gap:var(--gap,0px)}
+.covers a{position:relative;display:block;width:var(--cw);aspect-ratio:697/1114;overflow:hidden;flex:none;
+  filter:drop-shadow(0 26px 60px rgba(0,0,0,.6));transition:filter .4s}
+.covers a img{width:200%;max-width:none;height:100%}
+.covers a.c1{border-radius:6px 0 0 6px}
+.covers a.c2{border-radius:0 6px 6px 0}
+.covers a.c2 img{margin-left:-100%}
+.covers a:hover{filter:drop-shadow(0 26px 60px rgba(0,0,0,.6)) brightness(1.1)}
+.covers{--cw:min(300px,42vw)}
+.rift{position:absolute;left:50%;top:calc(var(--cw) * 1.598 * .392);width:var(--rd,0px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,#000 0 56%,#05070f 64%,rgba(20,30,70,.0) 71%);
+  box-shadow:0 0 40px 10px rgba(175,195,255,.22),inset 0 0 30px rgba(120,140,220,.25);pointer-events:none;animation:breathe 7s ease-in-out infinite}
+.books{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);margin-top:clamp(34px,5vw,54px)}
+.book{min-width:0}
+.book .label{margin-bottom:8px}
+.book.b2 .label{color:var(--copper)}
+.book h3{font:400 clamp(1.9rem,3.6vw,2.5rem)/1.05 var(--book);color:#f7f1e2;margin-bottom:6px}
+.book .reality{font-style:italic;color:var(--gold-soft);font-size:22px;margin:0 0 14px}
+.book.b2 .reality{color:#f0b896}
+.book p{margin:0 0 14px;color:#ddd7c8}
+.book .btns{margin-top:20px}
+.book .fine{font:italic 18px/1.4 var(--book);color:var(--muted);margin:12px 0 0}
 
-.ticker{background:var(--hot);color:#fff;font:900 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-align:center;padding:15px 12px;border-top:3px solid #000;border-bottom:3px solid #000}
+/* ---------- THE DICE: a real passage, at random ---------- */
+.dice{padding-block:clamp(56px,8vw,96px) 40px;text-align:center}
+.dice h2{margin-bottom:14px}
+.dice .lede{max-width:40ch;margin:0 auto}
+.table{display:flex;gap:clamp(14px,4vw,30px);justify-content:center;margin:34px auto 10px;perspective:900px}
+.die{width:clamp(64px,17vw,92px);text-align:center;position:relative}
+.cube{--s:clamp(64px,17vw,92px);position:relative;width:var(--s);height:var(--s);-webkit-transform-style:preserve-3d;transform-style:preserve-3d;margin:0 auto}
+.face{position:absolute;inset:0;border-radius:16%;display:flex;align-items:center;justify-content:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;
+  background:radial-gradient(circle at 30% 26%,#6c7591 0,#3d4560 46%,#222839 100%);
+  box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55)}
+.face.f1{transform:translateZ(calc(var(--s)/2))}
+.face.f2{transform:rotateY(180deg) translateZ(calc(var(--s)/2));--dim:0.3}
+.face.f3{transform:rotateY(90deg) translateZ(calc(var(--s)/2));--dim:0.18}
+.face.f4{transform:rotateY(-90deg) translateZ(calc(var(--s)/2));--dim:0.18}
+.face.f5{transform:rotateX(90deg) translateZ(calc(var(--s)/2));--dim:0}
+.face.f6{transform:rotateX(-90deg) translateZ(calc(var(--s)/2));--dim:0.4}
+.face::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(0,0,0,var(--dim,0));pointer-events:none}
+.face svg{width:66%;height:66%;filter:drop-shadow(0 0 5px rgba(240,190,80,.5))}
+.face .scr{width:46%;height:46%;opacity:.35;filter:none}
+.shadow{position:absolute;left:12%;right:12%;top:calc(var(--s) - 6px);height:12px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(5px)}
+.die small{display:block;margin-top:14px;font:italic clamp(16px,2.2vw,19px)/1.25 var(--book);color:#c9cde0}
+.die.lit .face.f1{box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55),0 0 30px rgba(240,190,80,.55)}
+.die.lit small{color:var(--gold-soft)}
+@media (max-width:540px){.table{flex-wrap:wrap;max-width:300px;gap:22px 34px}.die{width:42%;max-width:120px}.cube{--s:min(30vw,104px)}}
+.passage{max-width:640px;margin:34px auto 0;text-align:left;transition:opacity .5s ease}
+.passage.fading{opacity:.15}
+.passage blockquote{margin:0;padding:0 0 0 22px;border-left:2px solid var(--line)}
+.passage blockquote p{margin:0 0 14px;font-size:clamp(20px,2.5vw,23px);line-height:1.55;color:#efe8d6}
+.passage .src{font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:16px 0 0 24px}
+.passage .btns{margin:26px 0 0 24px}
 
-.section{padding:96px 0}
-.h2{font:400 clamp(2.6rem,6vw,4.8rem)/.95 var(--display);text-transform:uppercase;letter-spacing:-.005em;margin:18px 0 24px}
-.lead{font-size:clamp(19px,2vw,22px);color:#d9d1c0;max-width:760px}
-.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
-
-.phone{border:1px solid var(--line);background:linear-gradient(180deg,#171612,#0b0b09);padding:22px;border-radius:26px;box-shadow:0 30px 100px #000;max-width:420px;justify-self:center;width:100%}
-.phone .tag{margin-bottom:16px}
-.feed{display:grid;gap:10px;list-style:none;margin:0;padding:0}
-.feed li{min-height:56px;border-radius:10px;background:#22201a;border:1px solid #312d23;display:flex;align-items:center;gap:10px;padding:8px 14px;color:#a39c8b;font-size:15px}
-.feed li:nth-child(2n){width:88%}.feed li:nth-child(3n){width:76%}
-.feed li i{font-style:normal;background:var(--hot);color:#fff;font:900 11px/1 var(--sans);border-radius:99px;padding:4px 7px}
-.feed li.last{background:transparent;border:1px dashed #5a513d;color:var(--acid);font-weight:700}
-.feed.is-live li{animation:sizzle .085s linear infinite}
-@keyframes sizzle{0%{transform:translate(0,0)}25%{transform:translate(1.6px,-1.1px)}50%{transform:translate(-1.4px,1.3px)}75%{transform:translate(1.1px,1.4px)}100%{transform:translate(0,0)}}
-
-.big-dopamine{background:var(--acid);color:#050505;border-top:12px solid #050505;border-bottom:12px solid #050505;text-align:center}
-.bd-warning{background:#050505;color:var(--acid);padding:10px;font:900 12px/1.2 var(--sans);letter-spacing:.18em}
-.bd-wrap{padding-top:72px;padding-bottom:80px}
-.bd-kicker{font:900 clamp(1rem,2vw,1.3rem)/1.2 var(--sans);letter-spacing:.12em;margin-bottom:12px}
-.big-dopamine h2{font:400 clamp(3.2rem,9vw,7.6rem)/.88 var(--display);text-transform:uppercase;margin:0 auto 44px;max-width:1050px}
-.big-dopamine h2 span{display:inline-block;background:#050505;color:var(--acid);padding:.04em .14em;transform:rotate(-1deg)}
-.bd-copy{max-width:720px;margin:auto;text-align:left;font:700 clamp(1.1rem,2vw,1.4rem)/1.45 var(--sans)}
-.bd-copy p{margin:0 0 18px}
-.bd-copy em{font-style:normal;background:#050505;color:var(--acid);padding:0 .2em}
-.epigraph{margin:40px auto 0;max-width:720px;text-align:left;border:4px solid #050505;background:#fff8b0;box-shadow:8px 8px 0 var(--hot);padding:22px 26px;transform:rotate(-.5deg)}
-.epigraph .label{font:900 11px/1.2 var(--sans);letter-spacing:.18em;margin-bottom:10px}
-.epigraph blockquote{margin:0;font:italic 500 clamp(1.3rem,2.4vw,1.7rem)/1.3 var(--book)}
-.epigraph cite{display:block;margin-top:10px;font:700 13px/1.3 var(--sans);font-style:normal}
-.epigraph p{margin:14px 0 0;font:700 16px/1.45 var(--sans)}
-.bd-arrow{display:inline-block;margin-top:44px;background:var(--hot);color:#fff;border:4px solid #050505;padding:15px 22px;box-shadow:7px 7px 0 #050505;font:900 13px/1 var(--sans);letter-spacing:.06em;text-decoration:none;transform:rotate(.7deg)}
-
-/* The Briefing: a classic sales letter on paper */
-.letter{background:var(--paper);color:#17140f}
-.letter .sheet{max-width:760px;margin:0 auto;font:400 clamp(19px,2vw,21px)/1.6 var(--book)}
-.letter .tag{box-shadow:5px 5px 0 var(--hot)}
-.letter h2{font:400 clamp(2.4rem,5.4vw,4.2rem)/.95 var(--display);text-transform:uppercase;margin:18px 0 6px;color:#0c0b09}
-.letter .meta{font:700 13px/1.4 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:#6a6152;margin-bottom:36px}
-.letter p{margin:0 0 20px}
-.letter .big{font-size:1.25em;font-weight:600;line-height:1.35}
-.letter .pull{margin:30px 0;padding:22px 26px;border-left:6px solid var(--hot);background:#fffdf6;font-style:italic;font-size:1.12em}
-.letter .pull cite{display:block;margin-top:10px;font:700 12px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;font-style:normal;color:#6a6152}
-.sig{margin-top:34px;font-style:italic}
-.sig b{display:block;font:400 26px/1.1 var(--book);font-style:italic}
-.sig span{font:700 12px/1.4 var(--sans);letter-spacing:.1em;text-transform:uppercase;font-style:normal;color:#6a6152}
-
-.protocol .intro{max-width:780px}
-.pgrid{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;margin-top:48px;align-items:start}
-.phases{list-style:none;margin:0;padding:0;border-left:4px solid var(--acid)}
-.phases li{position:relative;padding:0 0 34px 30px}
-.phases li:before{content:"";position:absolute;left:-13px;top:4px;width:22px;height:22px;background:var(--ink);border:4px solid var(--acid)}
-.phases li.maint:before{background:var(--hot);border-color:var(--hot)}
-.phases .num{font:900 12px/1 var(--sans);letter-spacing:.18em;color:var(--acid)}
-.phases h3{font:400 clamp(1.8rem,3.4vw,2.5rem)/1 var(--display);text-transform:uppercase;margin:8px 0 10px}
-.phases p{margin:0;color:#cfc7b5;max-width:560px}
-.phases .pages{font:700 12px/1 var(--sans);letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-top:10px}
-
-.facts{background:#fff;color:#000;border:3px solid #000;padding:10px 12px;font:400 14px/1.3 var(--sans);box-shadow:10px 10px 0 var(--hot);position:sticky;top:90px}
-.facts h3{font:900 34px/1 var(--sans);letter-spacing:-.02em;margin:0 0 4px}
-.facts .row{display:flex;justify-content:space-between;gap:10px;border-top:1px solid #000;padding:4px 0}
-.facts .thick{border-top:10px solid #000}.facts .med{border-top:5px solid #000}
-.facts b{font-weight:900}
-.facts .ingredients{border-top:5px solid #000;padding-top:6px;margin-top:2px;font-size:12.5px}
-.facts .fine{border-top:1px solid #000;margin-top:8px;padding-top:6px;font-size:10.5px;line-height:1.35}
-
-.science{background:var(--paper);color:#12110e}
-.science .lead{color:#373226}
-.science .tag{box-shadow:5px 5px 0 var(--hot)}
-.science .h2{color:#0c0b09}
-.fig{background:#f9f6ea;border:2px solid #111;box-shadow:8px 8px 0 #111;padding:14px;font-family:var(--sans)}
-.figmeta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-bottom:2px solid #111;padding:0 2px 8px;font:800 10px/1.3 var(--sans);letter-spacing:.08em}
-.fig svg{display:block;width:100%;height:auto;margin-top:8px}
-.fig svg text{font-family:var(--sans);fill:#111}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font:800 10px/1.3 var(--sans);letter-spacing:.04em;padding:8px 2px;border-top:1px solid #999}
-.legend span{display:inline-flex;align-items:center;gap:6px}
-.k{display:inline-block;width:22px;height:0;border-top:4px solid #d52b1e}.k.ctl{border-top:2px dashed #111}.k.band{height:9px;border:1px solid #d52b1e;background:rgba(213,43,30,.15)}
-.microstats{display:grid;grid-template-columns:repeat(2,1fr);border-top:1px solid #777;border-bottom:1px solid #777;font:700 10px/1.4 ui-monospace,Menlo,monospace}
-.microstats span{padding:5px;border-right:1px solid #aaa}
-.citation{font:10px/1.4 ui-monospace,Menlo,monospace;padding-top:8px;color:#333}
-
-/* ---------- NYANDOR REGISTER (ink / gold / book serif / no motion) ---------- */
-.nyandor{background:radial-gradient(ellipse at 50% 0,#1a1830 0,var(--nyink) 60%);color:#ece4d2;font-family:var(--book)}
-.threshold{text-align:center;padding:120px 0 40px}
-.threshold .rune{font:600 13px/1 var(--sans);letter-spacing:.4em;color:var(--gold-dim);text-transform:uppercase}
-.threshold h2{font:500 clamp(2.6rem,6.4vw,5.2rem)/1.02 var(--book);margin:22px auto 20px;max-width:900px;color:#f4ead3}
-.threshold h2 em{color:var(--gold)}
-.threshold p{font-size:clamp(20px,2.2vw,24px);line-height:1.5;max-width:700px;margin:0 auto;color:#cfc4ac}
-.ny-eyebrow{font:600 12px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
-.ny-h{font:500 clamp(2.1rem,4.6vw,3.6rem)/1.05 var(--book);margin:14px 0 18px;color:#f4ead3}
-.nyandor p{font-size:20px;line-height:1.6}
-
-.doses{display:grid;grid-template-columns:1fr 1fr;gap:56px;padding:60px 0 90px}
-.dose{display:grid;grid-template-columns:170px 1fr;gap:26px;align-items:start}
-.dose img{box-shadow:0 24px 60px #000,0 0 0 1px #3a3322}
-.dose .which{font:700 11px/1 var(--sans);letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
-.dose h3{font:500 32px/1.05 var(--book);margin:10px 0 6px;color:#f7eed8}
-.dose .reality{font:italic 500 19px/1.3 var(--book);color:var(--gold);margin:0 0 12px}
-.dose p{font-size:18px;color:#cfc4ac;margin:0 0 12px}
-
-.cast{border-top:1px solid #2d2819;padding:70px 0 20px}
-.castgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:30px}
-.castgrid h4{font:600 22px/1.15 var(--book);margin:0 0 6px;color:var(--gold)}
-.castgrid p{font-size:16.5px;line-height:1.5;margin:0;color:#c9bea6}
-
-.map{padding:70px 0 100px}
-.mapframe{position:relative;border:1px solid #4a3f26;box-shadow:0 40px 120px #000;margin-top:26px}
-.mapkey{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.mapkey li{font-size:17px;line-height:1.45;color:#c9bea6;border-top:1px solid #4a3f26;padding-top:10px}
-.mapkey b{color:var(--gold);font-weight:600}
-.mapcap{font:italic 17px/1.45 var(--book);color:#a99d82;margin-top:14px;text-align:center}
-
-.sample{padding:100px 0;border-top:1px solid #2d2819}
-.page{background:#f6efdc;color:#221c12;max-width:680px;margin:36px auto 0;padding:clamp(28px,6vw,64px);box-shadow:0 40px 120px #000;font:400 20px/1.62 var(--book)}
-.page .ch{text-align:center;font:600 13px/1.4 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#7d6a45}
-.page .chtitle{text-align:center;font:500 30px/1.2 var(--book);margin:8px 0 22px}
-.page .epi{font-style:italic;font-size:17px;color:#5d513b;text-align:center;margin:0 auto 30px;max-width:460px}
-.page .epi span{display:block;font-style:normal;font-size:14px;margin-top:6px}
-.page p{margin:0 0 14px;text-indent:1.4em;font-size:20px}
-.page p.first{text-indent:0}
-.page p.first:first-letter{float:left;font:600 4.1em/.8 var(--book);padding:.05em .08em 0 0;color:#7a2a18}
+/* ---------- FIRST PAGE: a printed page lit in the dark ---------- */
+.first{padding-block:clamp(56px,8vw,96px) 40px}
+.first header{text-align:center;margin-bottom:34px}
+.first header h2{margin-top:8px}
+.page{max-width:620px;margin:0 auto;background:var(--paper);color:var(--paper-ink);padding:clamp(28px,6vw,58px) clamp(22px,6vw,62px);
+  border-radius:2px;box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);font-size:clamp(18px,2.2vw,20px);line-height:1.62;
+  position:relative;overflow:hidden}
+.page .ch{font:600 12px/1.5 var(--sans);letter-spacing:.3em;text-transform:uppercase;text-align:center;color:#7a6a4b}
+.page .chtitle{font:italic 400 clamp(1.7rem,4vw,2.2rem)/1.2 var(--book);text-align:center;margin:6px 0 22px}
+.page .epi{font-style:italic;font-size:.94em;margin:0 0 24px;text-align:center;color:#4a3f2c}
+.page .epi span{display:block;font-style:normal;font-size:.86em;margin-top:6px;color:#7a6a4b}
+.page p{margin:0 0 12px}
 .page .thought{font-style:italic}
-.page .fade{position:relative}
-.page .fade:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3.2em;background:linear-gradient(transparent,#f6efdc)}
-.sample .after{text-align:center;margin-top:36px}
-.goldbtn{display:inline-block;background:var(--gold);color:#140f05;text-decoration:none;font:800 15px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:17px 26px;border:1px solid #f3d792;box-shadow:0 12px 40px rgba(229,189,92,.22)}
-.goldbtn:hover{background:#f0cc74}
-.goldbtn.ghost{background:transparent;color:var(--gold);border-color:var(--gold-dim);box-shadow:none}
-.goldbtn.ghost:hover{background:rgba(229,189,92,.08)}
+.page::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(rgba(239,231,210,0),var(--paper))}
+.first .after{text-align:center;margin-top:30px}
+.first .after p{font-style:italic;color:var(--gold-soft);margin:0 0 18px;font-size:22px}
+.first .after .btns{justify-content:center}
 
-.reports{padding:100px 0;border-top:1px solid #2d2819}
-.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}
-.report{background:#12111a;border:1px solid #2f2a1d;padding:26px 26px 22px;font-family:var(--sans)}
-.report.wide{grid-column:1/-1}
-.report .case{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font:700 11px/1.3 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim);border-bottom:1px solid #2f2a1d;padding-bottom:10px;margin-bottom:14px}
-.report .case .v{color:var(--gold)}
-.report dl{margin:0 0 14px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13px;color:#a99d82}
-.report dt{font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-.report dd{margin:0;color:#d8ceb6}
-.report blockquote{margin:0;font:400 21px/1.45 var(--book);color:#f1e8d3}
-.report .stars{color:var(--gold);letter-spacing:.14em;font-size:14px;margin-bottom:8px}
-.reports .src{font:13px/1.5 var(--sans);color:#8f846c;margin-top:18px}
-.reports .src a{color:var(--gold)}
+/* ---------- READERS ---------- */
+.readers{padding-block:clamp(56px,8vw,96px) 40px}
+.readers header{text-align:center;margin-bottom:clamp(30px,5vw,46px)}
+.readers header h2{margin-top:8px}
+.lead-review{max-width:780px;margin:0 auto clamp(30px,5vw,46px);text-align:center}
+.lead-review blockquote{margin:0;font:italic 400 clamp(1.5rem,3.4vw,2.15rem)/1.3 var(--book);color:#f7f1e2}
+.who{display:block;font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:14px;font-style:normal}
+.stars{color:var(--gold);letter-spacing:.2em;font-size:16px;margin-bottom:10px}
+.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px)}
+.rgrid article{min-width:0;padding:24px 0 0;border-top:1px solid var(--line)}
+.rgrid blockquote{margin:0;font-style:italic;font-size:clamp(19px,2.2vw,21px);line-height:1.5;color:#e9e1cc}
+.src-note{text-align:center;font:italic 18px/1.5 var(--book);color:var(--muted);margin:30px 0 0}
+.src-note a{color:var(--gold-soft);text-underline-offset:3px}
 
-.offer{padding:100px 0 110px;border-top:1px solid #2d2819}
-.pair{display:flex;justify-content:center;margin:40px auto 10px;max-width:640px}
-.pair img{width:100%;box-shadow:0 30px 80px #000}
-.voydnote{text-align:center;font:italic 18px/1.4 var(--book);color:#a99d82;margin:14px 0 46px}
-.buygrid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:960px;margin:0 auto}
-.buybox{border:1px solid var(--gold-dim);padding:28px;background:rgba(18,17,26,.7);font-family:var(--sans)}
-.buybox .which{font:700 11px/1 var(--sans);letter-spacing:.24em;color:var(--gold);text-transform:uppercase}
-.buybox h3{font:500 30px/1.1 var(--book);margin:10px 0 4px;color:#f7eed8}
-.buybox .spec{font-size:14px;color:#a99d82;margin:0 0 20px}
-.fmt{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid #2f2a1d;padding:14px 0}
-.fmt div{font-size:15px;color:#e4dac3}
-.fmt small{display:block;color:#8f846c;font-size:13px;margin-top:2px}
-.fmt .goldbtn{padding:12px 16px;font-size:13px;white-space:nowrap}
-.includes{max-width:960px;margin:28px auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#2f2a1d;border:1px solid #2f2a1d;font-family:var(--sans)}
-.includes div{background:var(--nyink);padding:16px;text-align:center;font-size:13px;color:#a99d82;letter-spacing:.04em}
-.includes b{display:block;font:500 28px/1.1 var(--book);color:var(--gold);margin-bottom:4px}
-.nyandor .pricenote{text-align:center;font:13px/1.5 var(--sans);color:#7d735e;margin-top:16px}
+/* ---------- THE WORLD ---------- */
+.world{padding-block:clamp(56px,8vw,96px) 40px}
+.world header{text-align:center;margin-bottom:30px}
+.world header h2{margin-top:8px}
+.mapframe{border:1px solid var(--line);padding:clamp(6px,1.2vw,12px);background:rgba(5,9,24,.55)}
+.mapkey{list-style:none;padding:0;margin:22px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mapkey li{min-width:0;color:#ddd7c8;font-size:18px;line-height:1.45}
+.mapkey b{color:var(--gold-soft);font-weight:500}
+.mapcap{font:italic 17px/1.5 var(--book);color:var(--muted);text-align:center;margin:18px 0 0}
+.cast{margin-top:clamp(56px,8vw,90px)}
+.cast h3{font:400 clamp(1.6rem,3.6vw,2.2rem)/1.1 var(--book);text-align:center;color:#f7f1e2;margin:8px 0 28px}
+.castgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(18px,3vw,30px)}
+.castgrid div{min-width:0;border-top:1px solid var(--line);padding-top:16px}
+.castgrid h4{font:600 13px/1.5 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 8px}
+.castgrid p{margin:0;font-size:18px;line-height:1.5;color:#ddd7c8}
 
-.faq{padding:90px 0;border-top:1px solid #2d2819}
-.faq details{border-top:1px solid #2d2819;padding:20px 0}
-.faq details:last-child{border-bottom:1px solid #2d2819}
-.faq summary{cursor:pointer;font:600 22px/1.3 var(--book);color:#f4ead3;list-style:none;display:flex;justify-content:space-between;gap:16px}
+/* ---------- BUY ---------- */
+.buy{padding-block:clamp(56px,8vw,96px) 40px;text-align:center}
+.buy h2{margin:8px 0 14px}
+.buy .portal{width:min(100%,520px);margin:34px auto 0}
+.buygrid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,28px);margin:40px auto 0;max-width:860px;text-align:left}
+.buybox{min-width:0;border:1px solid var(--line);padding:clamp(22px,3vw,32px);background:rgba(5,9,24,.55)}
+.buybox .label{margin-bottom:8px}
+.buybox.b2 .label{color:var(--copper)}
+.buybox h3{font:400 clamp(1.7rem,3vw,2.1rem)/1.1 var(--book);color:#f7f1e2;margin-bottom:4px}
+.buybox .spec{font-style:italic;color:var(--muted);margin:0 0 20px;font-size:19px}
+.buybox .btns{flex-direction:column;align-items:stretch}
+.pricenote{font:italic 17px/1.5 var(--book);color:var(--muted);margin:22px 0 0}
+
+/* ---------- HORNBLOWER (Kit list) ---------- */
+.signal-band{padding-block:clamp(70px,10vw,110px) 30px}
+.signal{max-width:620px;margin:0 auto;text-align:center}
+.signal .masthead{font:italic 400 clamp(1.6rem,4vw,2.2rem)/1.1 var(--book);color:#f3ead2;margin:0}
+.signal .masthead small{display:block;font:600 13px/1.6 var(--sans);font-style:normal;letter-spacing:.32em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.signal label{display:block;font-style:italic;color:#ddd7c8;margin:16px 0 14px}
+.signal .row{display:flex;gap:10px;flex-wrap:wrap}
+.signal input[type=email]{flex:1 1 220px;min-width:0;font:400 18px/1.2 var(--book);color:var(--text);background:rgba(5,9,24,.65);
+  border:1px solid var(--line);border-radius:2px;padding:14px}
+.signal input[type=email]:focus{border-color:var(--gold);outline:none}
+.signal .done{display:none;font-style:italic;color:var(--gold-soft);margin:14px 0 0}
+.signal.sent .row,.signal.sent label{display:none}
+.signal.sent .done{display:block}
+
+/* ---------- QUESTIONS ---------- */
+.faq{padding-block:clamp(70px,10vw,110px) 30px}
+.faq h2{text-align:center;margin-bottom:24px}
+.faq details{border-top:1px solid var(--line);padding:16px 0}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-size:22px;color:#f3ead2;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary:after{content:"+";color:var(--gold);font-family:var(--sans)}
-.faq details[open] summary:after{content:"–"}
-.faq details p{color:#cfc4ac;margin:12px 0 0;font-size:19px}
+.faq summary::after{content:"+";color:var(--gold);font-family:var(--sans)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin:10px 0 0;color:#ddd7c8}
 
-/* ---------- Back to the fight: the close ---------- */
-.amazon-strip{background:var(--hot);color:#fff;padding:30px 20px;text-align:center;border-top:6px solid #000;border-bottom:6px solid #000;font-family:var(--sans)}
-.amazon-strip strong{font:400 clamp(1.7rem,4.4vw,3.4rem)/1 var(--display);display:block;text-transform:uppercase;letter-spacing:.01em}
-.amazon-strip p{margin:10px 0 0;font-size:17px}
-.amazon-strip .cta{margin-top:20px;box-shadow:7px 7px 0 #000}
-.final{text-align:center;padding:110px 0 90px;background:radial-gradient(circle,#211b10,#080807 62%)}
-.final h2{font:400 clamp(3rem,8vw,6.4rem)/.9 var(--display);text-transform:uppercase;margin:22px auto 22px;max-width:950px}
-.final .dek{margin-bottom:34px}
-.final .alt{display:block;margin-top:26px;font-size:14px;color:var(--muted)}
-.final .alt a{color:var(--acid)}
-.share{margin-top:56px;padding-top:30px;border-top:1px solid #2a261d;max-width:640px;margin-left:auto;margin-right:auto}
-.share p{color:#cfc7b5;margin:0 0 14px}
-.sharebtn{background:transparent;color:var(--acid);border:2px solid var(--acid);font:900 13px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;padding:13px 18px;cursor:pointer}
-.sharebtn:hover{background:rgba(255,239,0,.08)}
-.sharestatus{display:block;min-height:1.4em;margin-top:10px;font-size:13px;color:var(--muted)}
-.ps{max-width:680px;margin:64px auto 0;text-align:left;font:400 20px/1.55 var(--book);color:#e2dbcb;border-top:1px dashed #4a4332;padding-top:28px}
-.ps b{font-family:var(--sans);font-weight:900;color:var(--acid);letter-spacing:.06em}
-.footer{padding:30px 0 110px;color:#7a7365;font-size:12px;text-align:center;line-height:1.6}
-.footer a{color:#a89f8a}
+/* ---------- OTHER DOORS + FOOTER ---------- */
+.doors{padding-block:clamp(60px,9vw,90px) 20px;text-align:center}
+.doors p{margin:0 auto 10px;max-width:40ch;font-style:italic;color:var(--muted);font-size:21px}
+.doors a{color:var(--gold-soft);text-underline-offset:3px}
+footer{position:relative;z-index:1;text-align:center;padding:30px max(16px,env(safe-area-inset-right,0px)) calc(110px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));font:15px/1.6 var(--sans);color:#6f7792}
+footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
+.claw{display:block;width:30px;height:36px;margin:0 auto 18px;opacity:.6}
 
-.buybar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;justify-content:space-between;gap:12px;background:#0a0a09;border-top:3px solid var(--acid);padding:10px 14px calc(10px + env(safe-area-inset-bottom,0px));transform:translateY(110%);transition:transform .2s}
+/* Phone buy bar */
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  background:rgba(5,9,24,.94);border-top:1px solid var(--line);backdrop-filter:blur(6px);transform:translateY(110%);transition:transform .4s ease}
 .buybar.show{transform:none}
-.buybar span{font:700 13px/1.25 var(--sans);color:var(--cream)}
-.buybar span b{color:var(--acid)}
-.buybar a{background:var(--acid);color:#000;text-decoration:none;font:900 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:12px 14px;border:3px solid #000;box-shadow:4px 4px 0 var(--hot);white-space:nowrap}
+.buybar span{font:italic 17px/1.3 var(--book);color:#ddd7c8;min-width:0}
+.buybar b{display:block;font:600 12px/1.4 var(--sans);font-style:normal;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.buybar .btn{padding:12px 16px;font-size:13px;flex:none}
 
-@media(max-width:960px){
-  .castgrid{grid-template-columns:repeat(2,1fr)}
-  .doses{grid-template-columns:1fr;gap:48px}
-  .pgrid{grid-template-columns:1fr}
-  .facts{position:static;max-width:420px}
-}
-@media(max-width:860px){
-  .grid2{grid-template-columns:1fr;gap:44px}
-  .navproof{display:none}
-  .buybar{display:flex}
-  .buygrid{grid-template-columns:1fr}
-  .includes{grid-template-columns:repeat(2,1fr)}
+@media (max-width:760px){
+  .books,.buygrid{grid-template-columns:1fr}
   .rgrid{grid-template-columns:1fr}
-  .section{padding:72px 0}
+  .mapkey{grid-template-columns:1fr}
+  .castgrid{grid-template-columns:1fr 1fr}
+  .hero .btns .btn{flex:1 1 150px}
 }
-@media(max-width:560px){
-  body{font-size:16px}
-  .wrap{padding:0 18px}
-  #emergency{font-size:12px;padding:8px 10px}
-  .brand{font-size:17px}
-  .navbuy{padding:9px 10px;font-size:11px}
-  .hero .wrap{padding-top:30px;padding-bottom:44px}
-  .hero h1{margin:20px auto 18px}
-  .dek{margin-bottom:24px}
-  .cta{font-size:15px;padding:16px 18px}
-  .ticker{font-size:10px;letter-spacing:.1em}
-  .dose{grid-template-columns:110px 1fr;gap:18px}
-  .dose h3{font-size:26px}
-  .castgrid{grid-template-columns:1fr}
-  .mapkey{grid-template-columns:1fr;gap:10px}
-  .fmt{flex-direction:column;align-items:flex-start}
-  .page p{font-size:18.5px}
-}
-@media(prefers-reduced-motion:reduce){
-  *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-}
+@media (min-width:761px){.buybar{display:none}}
+@media (prefers-reduced-motion:reduce){.voyd,.rift{animation:none}html{scroll-behavior:auto}.passage,.buybar{transition:none}}
 </style>
 </head>
 <body>
+<canvas id="sky" aria-hidden="true"></canvas>
+<canvas id="smoke" aria-hidden="true"></canvas>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dca0"/><stop offset="1" stop-color="#b8892f"/></linearGradient>
+    <symbol id="clawmark" viewBox="0 0 34 40">
+      <path d="M8 2 C6 14 4 24 1.5 38 L3 38 C6.5 25 9 14 9.6 2 Z" fill="url(#gold)"/>
+      <path d="M18 1 C16.5 14 15 25 13 39 L14.8 39 C17.6 25 19.4 14 19.8 1 Z" fill="url(#gold)"/>
+      <path d="M28 3 C27 14 25.6 23 23.6 37 L25.2 37 C28.2 23 29.8 14 29.8 3 Z" fill="url(#gold)"/>
+    </symbol>
+  </defs>
+</svg>
 
-<div id="emergency" role="note">⚠ Attention emergency: your next 400 swipes have been cancelled ⚠</div>
-
-<nav class="nav" aria-label="Site">
-  <div class="wrap navin">
-    <div class="brand">THE NYANDOR PROTOCOL™</div>
-    <div class="navproof"><b>★★★★★</b> 5.0 on Amazon · 768 pages · 0 notifications</div>
-    <a class="navbuy" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="nav-dose1-paperback">Get Dose One</a>
-  </div>
-</nav>
-
-<header class="hero" id="top">
-  <div class="wrap">
-    <span class="tag">Analog attention technology · 768 pages · 0 notifications</span>
-    <h1>Your brain wasn't designed for <span class="this-word"><span class="this-vibrate">THIS.</span></span></h1>
-    <p class="dek">Your phone feeds your brain appetizers all day. Never a meal. <strong>The Nyandor Protocol is the meal:</strong> a two-volume epic fantasy with an all-cat cast, built to make you forget where you left your phone.</p>
-    <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-dose1-paperback">Start the Protocol: Dose One →<small>The Furbidden Voyd · on Amazon</small></a>
-    <br />
-    <a class="proofchip" href="#doses">
-      <span class="minis"><img src="assets/furbidden-voyd-360.webp" width="40" height="64" alt="" /><img src="assets/divergent-path-360.webp" width="40" height="64" alt="" /></span>
-      <span><b>THE GATE OF NYANDOR</b><br />A Transdimensional Feline Saga · ★★★★★ 5.0 on Amazon</span>
+<!-- HERO -->
+<header class="band hero" id="top">
+  <p class="label">The Gate of Nyandor · a transdimensional feline saga</p>
+  <h1 data-scratch>Someone finally gave cats <em>the full Tolkien treatment.</em></h1>
+  <div class="portal" data-voyd>
+    <a class="one" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-cover-book1" aria-label="The Furbidden Voyd on Amazon">
+      <img src="assets/voyd-pair-1395.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 200vw, 1200px" width="1395" height="1114" alt="" />
     </a>
+    <a class="two" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="hero-cover-book2" aria-label="The Divergent Path on Amazon">
+      <img src="assets/voyd-pair-1395.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 200vw, 1200px" width="1395" height="1114" alt="" />
+    </a>
+    <div class="voyd" aria-hidden="true"></div>
+    <canvas class="drain" aria-hidden="true"></canvas>
   </div>
+  <div class="btns">
+    <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-book1-paperback">Start with Book One<small>Paperback · $15.99</small></a>
+    <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="hero-book1-kindle">Kindle<small>$9.99</small></a>
+  </div>
+  <a class="more" href="#split">Two books, two realities. See both ↓</a>
+  <p class="lede dek">A royal city, a secret police, a Magical Guild that hoards power, and a forbidden gate into every choice ever made. Epic fantasy for adults, with an all-cat cast.</p>
+  <blockquote class="proof">“No winking at the camera, no apologizing for the premise.”<cite>J. Loewen · verified Amazon review</cite></blockquote>
 </header>
 
-<div class="ticker" aria-hidden="true">Long-form cognition • Imagination • Narrative immersion • Extended attention • Cats</div>
+<!-- THE SPLIT -->
+<section class="band split" id="split" aria-labelledby="split-h">
+  <div class="inner">
+    <header>
+      <p class="epi">“Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.”</p>
+      <cite>H.R. Nimblequick, <i>Paws and Effect</i> · the epigraph of Book One</cite>
+      <h2 id="split-h" data-scratch>One failed Assessment. <em>Two realities.</em></h2>
+      <p class="lede">Both books open on the same morning. Sory'n of Tol, heir to Nyandor's most legendary magical bloodline, fails the test that decides her whole life in front of everyone who matters. Then the Voyd splits the world in two.</p>
+    </header>
 
-<section class="section" aria-labelledby="problem-h">
-  <div class="wrap grid2">
-    <div>
-      <span class="tag">The problem</span>
-      <h2 class="h2" id="problem-h">You have been professionally distracted.</h2>
-      <p class="lead">You didn't get lazy. You got <span class="redline">outbid</span>. Thousands of very well-paid engineers get up every morning to make sure the next thing is always more interesting than the thing you're doing now.</p>
-      <p>Somewhere along the way, sitting still with a story for an hour started to feel like an extreme sport.</p>
+    <div class="covers" id="covers">
+      <a class="c1" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="split-cover-book1" aria-label="The Furbidden Voyd on Amazon">
+        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 84vw, 600px" width="1395" height="1114" alt="Cover of The Furbidden Voyd: a black cat with golden eyes beside half of a black portal" loading="lazy" />
+      </a>
+      <a class="c2" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-cover-book2" aria-label="The Divergent Path on Amazon">
+        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 84vw, 600px" width="1395" height="1114" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the other half of the portal" loading="lazy" />
+      </a>
+      <div class="rift" id="rift" data-voyd aria-hidden="true"></div>
     </div>
-    <div class="phone" aria-label="Illustration: a typical phone feed">
-      <span class="tag">Your average Tuesday</span>
-      <ul class="feed" id="feed">
-        <li><i>3</i> BREAKING: something happened</li>
-        <li>Wait for the end 😳</li>
-        <li>Sponsored: this cold plunge changed my life</li>
-        <li>Person you don't know is angry</li>
-        <li><i>14</i> new notifications</li>
-        <li>You opened this app by accident</li>
-        <li class="last">It's been 47 minutes.</li>
-      </ul>
-    </div>
-  </div>
-</section>
 
-<section class="big-dopamine" aria-labelledby="bd-h">
-  <div class="bd-warning">SPECIAL INVESTIGATION // ATTENTION ECONOMY</div>
-  <div class="wrap bd-wrap">
-    <div class="bd-kicker">THE SHOCKING ATTENTION SECRET</div>
-    <h2 id="bd-h"><span>Big Dopamine</span><br />doesn't want you to know</h2>
-    <div class="bd-copy">
-      <p>Big Dopamine sells exactly one product: <em>the next thing.</em> The next video. The next ping. The next refresh.</p>
-      <p>It doesn't need you happy. It needs you <em>unfinished.</em> Every ending is lost revenue, which is why nothing on your phone ever ends.</p>
-      <p>They call it engagement. We call it <b>BIG DOPAMINE.</b></p>
-      <p>And there is one thing Big Dopamine cannot manufacture, no matter how many engineers it hires: <b>a world big enough to get lost in.</b></p>
-    </div>
-    <div class="epigraph">
-      <div class="label">RECOVERED DOCUMENT · FROM THE FURBIDDEN VOYD, CHAPTER II</div>
-      <blockquote>“A kit is born with two hungers. Milk and praise. The first is easily sated. The second can devour an entire life.”</blockquote>
-      <cite>— Salix the Unseen, <i>The Gilded Scratching Post</i></cite>
-      <p>The cats of Nyandor saw Big Dopamine coming. They just called it something else.</p>
-    </div>
-    <a class="bd-arrow" href="#briefing">↓ READ THE ATTENTION EMERGENCY BRIEFING ↓</a>
-  </div>
-</section>
-
-<section class="section letter" id="briefing" aria-labelledby="briefing-h">
-  <div class="wrap">
-    <div class="sheet">
-      <span class="tag">Classified briefing · text edition</span>
-      <h2 id="briefing-h">The Attention Emergency Briefing</h2>
-      <div class="meta">Estimated reading time: 3 minutes. We believe in you.</div>
-
-      <p>Dear Friend,</p>
-      <p>Let's be honest about what happened to you.</p>
-      <p>A feed is designed to never end. That's the entire business model. The moment you feel <i>finished</i>, you put the phone down, and a finished user is worth nothing to anyone.</p>
-      <p>So here is the question nobody at Big Dopamine wants asked:</p>
-      <p class="big">What is the one thing a feed can never give you?</p>
-      <p><span class="hl">An ending you earned. And a world big enough that you forget to leave.</span></p>
-      <p>Short content trains you to leave. Epic fantasy trains you to <i>stay</i>. It is the only genre whose whole job is to build a place bigger than your feed: maps, dynasties, magic systems, three thousand years of buried history. Too big to skim. Too strange to predict.</p>
-      <p>That's why the Protocol isn't "read more." It's <b>two specific books</b>: 768 pages set in Nyandor, a world of cats with a royal city, a secret police, a Magical Guild that hoards power, and a forbidden gate into every choice ever made.</p>
-      <p>And there's one more thing you should know about Nyandor.</p>
-      <p>In the story, that world has already been destroyed. Early in Book One, the narrator (a pipe-smoking cat called the Creator of All Tales) turns to you and explains where the last of it survives:</p>
-      <div class="pull">“The sole place it remains is within this tale. And while you experience this tale, it lives within you. You are its last refuge, its final Construct.”<cite>— The Creator of All Tales, <i>The Furbidden Voyd</i></cite></div>
-      <p><span class="hl">Big Dopamine wants your attention so it can sell it. Nyandor needs your attention to exist.</span></p>
-      <p>That's the Protocol. Two long, strange, serious books, and a world that only works if you stay.</p>
-      <div class="sig"><b>Patrick Christell</b><span>Author, The Gate of Nyandor</span></div>
-    </div>
-  </div>
-</section>
-
-<section class="section protocol" id="protocol" aria-labelledby="protocol-h">
-  <div class="wrap">
-    <div class="intro">
-      <span class="tag">The mechanism</span>
-      <h2 class="h2" id="protocol-h">Introducing The Nyandor Protocol™</h2>
-      <p class="lead">A two-volume, screen-free narrative immersion system utilizing an ancient technology known to researchers as <i>reading</i>, and to your grandparents as <i>Tuesday night.</i></p>
-    </div>
-    <div class="pgrid">
-      <ol class="phases">
-        <li>
-          <div class="num">PHASE I · SOFTPAW</div>
-          <h3>Break contact</h3>
-          <p>Put the algorithmic rectangle in another room. Meet Sory'n of Tol, heir to Nyandor's most legendary magical bloodline, on the morning of the Assessment that will decide her entire life.</p>
-          <div class="pages">Book One, Part I · pages 1–116</div>
-        </li>
-        <li>
-          <div class="num">PHASE II · STRAY</div>
-          <h3>Withdrawal</h3>
-          <p>The urge to check your phone fades, mostly because Sory'n has bigger problems: public disgrace, exile, and a clowder of outcasts in the Forest Primeval guarding secrets the Guild has killed to suppress.</p>
-          <div class="pages">Book One, Part II · pages 117–254</div>
-        </li>
-        <li>
-          <div class="num">PHASE III · THE PATHLESS PATH</div>
-          <h3>Full immersion</h3>
-          <p>One reader's clinical assessment of this phase: “a page burner, moved super fast, pulling all the levers that had been set earlier.” Phone location: unknown.</p>
-          <div class="pages">Book One, Part III · pages 255–375</div>
-        </li>
-        <li class="maint">
-          <div class="num">MAINTENANCE DOSE</div>
-          <h3>The Divergent Path</h3>
-          <p>Same Voyd. Other side. Book Two follows the reality where Sory'n <i>passes</i> her Assessment and gets exactly what she wanted. That was the problem.</p>
-          <div class="pages">Book Two · 393 pages</div>
-        </li>
-      </ol>
-
-      <aside class="facts" aria-label="Protocol Facts label">
-        <h3>Protocol Facts</h3>
-        <div>2 volumes per container</div>
-        <div class="row"><b>Serving size</b><b>1 chapter (≈21 pages)</b></div>
-        <div class="row thick"><b>Servings per container</b><b>36</b></div>
-        <div class="row"><b>Total pages</b><b>768</b></div>
-        <div class="row med"><b>Notifications</b><b>0</b></div>
-        <div class="row"><b>Autoplay</b><b>0</b></div>
-        <div class="row"><b>Infinite scroll</b><b>0</b></div>
-        <div class="row"><b>Endings</b><b>Yes</b></div>
-        <div class="row"><b>Alternate timelines</b><b>At least 2</b></div>
-        <div class="row"><b>Cats</b><b>Irresponsible</b></div>
-        <div class="ingredients"><b>Active ingredients:</b> Sory'n of Tol, the Magical Guild of Voreath, the Esteemed Archmage Orachys, Mother Ertree, the Forest Primeval, the Forbidden Voyd.<br /><b>Contains:</b> cats. <b>May contain:</b> heresy.</div>
-        <div class="fine">*These statements have not been evaluated by anyone. This product is not intended to diagnose, treat, cure, or prevent any condition. It is two novels.</div>
-      </aside>
-    </div>
-  </div>
-</section>
-
-<section class="section science" aria-labelledby="science-h">
-  <div class="wrap grid2">
-    <div>
-      <span class="tag">Attention response model</span>
-      <h2 class="h2" id="science-h">What happens when you stop scrolling?</h2>
-      <p class="lead">For the first few pages, your thumb still twitches. Then the story starts carrying the weight your feed used to.</p>
-      <p>Fewer context switches. Deeper continuity. The unfamiliar sensation of wanting to know what happens next and finding out <i>on the next page</i>, not in a new tab.</p>
-    </div>
-    <figure class="fig" style="margin:0">
-      <div class="figmeta"><span>FIG. 04B</span><span>NYD-ATTN / PROTOCOL MODEL</span><span>BOOK ONE</span></div>
-      <svg viewBox="0 0 640 420" role="img" aria-labelledby="fig-t fig-d">
-        <title id="fig-t">Attention response model</title>
-        <desc id="fig-d">An illustrative chart. Immersion rises steadily across the three parts of Book One, Softpaw, Stray, and The Pathless Path, while a scrolling control group stays flat.</desc>
-        <g stroke="#111" stroke-opacity=".12">
-          <line x1="80" y1="80" x2="620" y2="80"/><line x1="80" y1="150" x2="620" y2="150"/><line x1="80" y1="220" x2="620" y2="220"/><line x1="80" y1="290" x2="620" y2="290"/>
-        </g>
-        <g fill="#111" fill-opacity=".045"><rect x="248" y="30" width="170" height="330"/></g>
-        <g stroke="#111" stroke-dasharray="2 4"><line x1="248" y1="30" x2="248" y2="360"/><line x1="418" y1="30" x2="418" y2="360"/></g>
-        <g font-size="13" font-weight="800" letter-spacing=".8"><text x="164" y="50" text-anchor="middle">SOFTPAW</text><text x="333" y="50" text-anchor="middle">STRAY</text><text x="519" y="50" text-anchor="middle">THE PATHLESS PATH</text></g>
-        <path fill="rgba(213,43,30,.14)" d="M80,334 C170,322 210,298 260,270 C330,232 370,176 430,148 C500,116 560,96 615,82 L615,120 C560,134 505,152 440,182 C378,210 336,262 270,298 C218,324 170,344 80,350 Z"/>
-        <path fill="none" stroke="#111" stroke-width="2" stroke-dasharray="9 7" d="M80 330 C150 322 190 334 250 318 S370 330 440 316 S560 326 615 312"/>
-        <path fill="none" stroke="#d52b1e" stroke-width="5" d="M80 342 C170 332 212 306 262 284 S370 196 432 166 S560 110 615 100"/>
-        <line x1="80" y1="220" x2="615" y2="220" stroke="#555" stroke-width="1.5" stroke-dasharray="3 5"/>
-        <circle cx="342" cy="220" r="7" fill="#d52b1e" stroke="#111" stroke-width="2"/><circle cx="615" cy="100" r="7" fill="#d52b1e" stroke="#111" stroke-width="2"/>
-        <g font-size="12" font-weight="900">
-          <rect x="360" y="232" width="178" height="38" fill="#f9f6ea" stroke="#111"/><text x="370" y="248">THRESHOLD OF</text><text x="370" y="263">“OKAY, ONE MORE CHAPTER”</text>
-          <rect x="438" y="36" width="176" height="38" fill="#f9f6ea" stroke="#111" transform="translate(-10 22)"/><text x="438" y="74">PHONE LOCATION</text><text x="438" y="89">NO LONGER SALIENT</text>
-        </g>
-        <line x1="80" y1="30" x2="80" y2="360" stroke="#111" stroke-width="2"/><line x1="80" y1="360" x2="620" y2="360" stroke="#111" stroke-width="2"/>
-        <text x="-195" y="58" transform="rotate(-90)" text-anchor="middle" font-size="12" font-weight="800">SUSTAINED IMMERSION (A.U.)</text>
-        <text x="350" y="396" text-anchor="middle" font-size="12" font-weight="800">PAGES READ WITHOUT CHECKING PHONE →</text>
-        <g font-size="11" fill-opacity=".7"><text x="80" y="378" text-anchor="middle">1</text><text x="248" y="378" text-anchor="middle">117</text><text x="418" y="378" text-anchor="middle">255</text><text x="615" y="378" text-anchor="middle">375</text></g>
-      </svg>
-      <div class="legend"><span><i class="k"></i>NYANDOR EXPOSURE</span><span><i class="k ctl"></i>CONTROL: SCROLLING</span><span><i class="k band"></i>RESPONSE RANGE</span></div>
-      <div class="microstats"><span>Δ immersion: ↑ suspiciously</span><span>signal: sustained</span><span>response: increasing</span><span>mode: long-form</span></div>
-      <figcaption class="citation">Conceptual model. Illustrative, not clinical data. Part boundaries are real page numbers.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<!-- ============ THE THRESHOLD: the page itself goes quiet ============ -->
-<div class="nyandor">
-
-  <section class="threshold" aria-labelledby="enter-h">
-    <div class="wrap">
-      <div class="rune">— You are now leaving the feed —</div>
-      <h2 id="enter-h">Someone finally gave cats <em>the full Tolkien treatment.</em></h2>
-      <p>No winking. No cute cat adventure. A royal city, a secret police, a Magical Guild that rations power, and a gate into every choice ever made.</p>
-    </div>
-  </section>
-
-  <section class="wrap" id="doses" aria-label="The two books">
-    <div class="doses">
-      <article class="dose">
-        <img src="assets/furbidden-voyd-360.webp" srcset="assets/furbidden-voyd-360.webp 360w, assets/furbidden-voyd-720.webp 720w" sizes="170px" width="360" height="576" alt="Cover of The Furbidden Voyd: a black cat with golden eyes beside a black void" loading="lazy" />
-        <div>
-          <div class="which">Dose One · 375 pages</div>
-          <h3>The Furbidden Voyd</h3>
-          <p class="reality">The reality where she fails.</p>
-          <p>In Nyandor, magic is the privilege of the feline elite. Sory'n, the Archmage's golden daughter, fails her Assessment in front of everyone who mattered. Overnight she's a stray with a name that's now a punchline.</p>
-          <p>Driven into the Forest Primeval, she finds outcasts guarding three thousand years of knowledge the Guild has killed to bury, and a power no cat was ever meant to wield.</p>
+    <div class="books">
+      <article class="book b1">
+        <p class="label">Book One · 375 pages</p>
+        <h3>The Furbidden Voyd</h3>
+        <p class="reality">The reality where she fails.</p>
+        <p>In Nyandor, magic is the privilege of the feline elite. Sory'n, the Archmage's golden daughter, fails her Assessment in front of everyone who mattered. Overnight she's a stray with a name that's now a punchline.</p>
+        <p>Driven into the Forest Primeval, she finds outcasts guarding three thousand years of knowledge the Guild has killed to bury, and a power no cat was ever meant to wield.</p>
+        <div class="btns">
+          <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="split-book1-paperback">Paperback · $15.99</a>
+          <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="split-book1-kindle">Kindle · $9.99</a>
         </div>
+        <p class="fine">Start here.</p>
       </article>
-      <article class="dose">
-        <img src="assets/divergent-path-360.webp" srcset="assets/divergent-path-360.webp 360w, assets/divergent-path-720.webp 720w" sizes="170px" width="360" height="576" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the void" loading="lazy" />
-        <div>
-          <div class="which">Dose Two · 393 pages</div>
-          <h3>The Divergent Path</h3>
-          <p class="reality">The reality where she succeeds.</p>
-          <p>Sory'n got exactly what she wanted. That was the problem.</p>
-          <p>Status, purpose, a place inside the Magical Guild. But the Voyd has already fractured reality, and another timestream is bleeding into hers. Impossible memories. Choices from another life. Success didn't save her. It only put her on a different side of the fracture.</p>
+      <article class="book b2">
+        <p class="label">Book Two · 393 pages</p>
+        <h3>The Divergent Path</h3>
+        <p class="reality">The reality where she succeeds.</p>
+        <p>Sory'n got exactly what she wanted. That was the problem.</p>
+        <p>Status, purpose, a place inside the Magical Guild. But the Voyd has already fractured reality, and another timestream is bleeding into hers. Impossible memories. Choices from another life. Success didn't save her. It only put her on a different side of the fracture.</p>
+        <div class="btns">
+          <a class="btn" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-book2-paperback">Paperback · $15.99</a>
         </div>
+        <p class="fine">Reads on its own. Hits harder after Book One.</p>
       </article>
     </div>
+  </div>
+</section>
 
-    <div class="cast" aria-labelledby="cast-h">
-      <div class="ny-eyebrow">Dramatis Fursonae · excerpted</div>
-      <h3 class="ny-h" id="cast-h">Who you'll be spending 768 pages with</h3>
-      <div class="castgrid">
-        <div><h4>Sory'n of Tol</h4><p>“A young feline of keen mind and restless spirit. Her need to prove herself is the spark that most often sets her troubles alight.”</p></div>
-        <div><h4>Archmage Orachys</h4><p>Her father and head of the Magical Guild, chasing the mastery of spacetime “with an obsession that outshadows his obsidian coat.”</p></div>
-        <div><h4>Mother Ertree</h4><p>“Charismatic spiritual leader of the so-called Strays. Selfless and wise, her trusting nature sometimes endangers her clowder.”</p></div>
-        <div><h4>Alaric R'ast</h4><p>“The cunning and ambitious head of the Royal Kiton (secret police). An adept hunter and deductive mastermind.”</p></div>
+<!-- THE DICE -->
+<section class="band dice" id="dice" aria-labelledby="dice-h">
+  <div class="inner">
+    <p class="label">The Creator of All Tales</p>
+    <h2 id="dice-h" data-scratch style="margin-top:8px">Cast his four dice.</h2>
+    <p class="lede">Every telling of this tale begins with four carved dice on a stone table. Cast them and the books fall open somewhere. Every passage is the real text, exactly as printed.</p>
+    <div class="table" id="table" aria-hidden="true">
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V3.5l3.6 3.2h4.8L18 3.5V11c0 3 .4 6 .9 9.5l-2.2-1.6-1.9 2.1-2.8-2-2.8 2-1.9-2.1-2.2 1.6C5.6 17 6 14 6 11z"/><path d="M9 11.2c.6-.5 1.4-.5 2 0M13 11.2c.6-.5 1.4-.5 2 0"/><path d="M11.4 13.6l.6.5.6-.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a feline ghost</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8.5"/><path d="M12 13.5C12 9 8 7.5 6 3.5M12 13.5c0-4.5 4-6 6-10"/><path d="M3.8 5l2.2-1.5 1.3 2.4M16.7 5.9L18 3.5l2.2 1.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a forked path</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.8 5.4A7.5 7.5 0 1 0 19.5 12"/><path d="M15.2 3.6c1.8-.6 3.6.3 4.3 2 .5 1.3.2 2.6-.6 3.6l-2.5-1.3"/><circle cx="17.4" cy="5.4" r=".55" fill="#efc767"/><path d="M19.5 12l-1.6-1.3M19.5 12l1.2-1.6"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>an ouroboros</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 13.5V6a1.3 1.3 0 0 1 2.6 0v5.5"/><path d="M10.1 11.5V4.2a1.3 1.3 0 0 1 2.6 0v7.3"/><path d="M12.7 11.5V5a1.3 1.3 0 0 1 2.6 0v7"/><path d="M15.3 12V7.4a1.3 1.3 0 0 1 2.6 0V14c0 4.3-2.7 7.5-6.6 7.5-2.7 0-4.3-1.4-5.6-3.5l-2.4-4a1.4 1.4 0 0 1 2.3-1.6l1.7 2"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a human hand</small></div>
+    </div>
+    <div class="btns" style="justify-content:center;margin-top:22px"><button class="btn" id="cast" type="button">Cast the dice</button></div>
+    <div class="passage" id="passage" aria-live="polite">
+      <blockquote id="ptext">
+        <p>Sory’n’s nose twitched. The hallowed ground smelled of ozone and fear, every Initiate’s nervous sweat mixing with the sharp, mineral tang that clung to the purple giants. This was the scent of three-and-a-half thousand years of Assessments, of every Initiate who’d ever stood here, hoping.</p>
+      </blockquote>
+      <p class="src" id="psrc">The Furbidden Voyd · Chapter iii, The Proving Ground</p>
+      <div class="btns"><a class="btn ghost" id="pbuy" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="dice-book1">Keep reading · Book One</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FIRST PAGE -->
+<section class="band first" aria-labelledby="first-h">
+  <div class="inner">
+    <header>
+      <p class="label">Book One · page one</p>
+      <h2 id="first-h" data-scratch>The first page. <em>See if you can stop.</em></h2>
+    </header>
+    <article class="page">
+      <div class="ch">Part I: Softpaw · Chapter I</div>
+      <div class="chtitle">The Tail's End?</div>
+      <p class="epi">Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.<span>— H.R. Nimblequick, <i>Paws and Effect</i></span></p>
+      <p>Purrhaps… this is death? The notion struck Sory'n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
+      <p class="thought">Oh, mercy of Great Leoran! What if this isn't Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
+      <p>Neither heaven nor hell made sense. Wherever she was, she was. At least the thinking part.</p>
+      <p class="thought">One. Two. Three.</p>
+      <p class="thought">I am Sory'n of Tol, and I am a cat.</p>
+      <p class="thought">An insecure, selfish, stupid cat.</p>
+      <p class="thought">But am I dead?</p>
+      <p>She vocalized. “Mrow.”</p>
+      <p>The sound left her mouth, but no echo, no resonance followed. The void swallowed it up.</p>
+      <p>Again, with more force. “Meowwwrrr!”</p>
+      <p>Terror followed, and in its wake, desperation. A yearning for deliverance, even if it meant actual death.</p>
+    </article>
+    <div class="after">
+      <p>She is about to find out how she destroyed the world. It takes 375 pages.</p>
+      <div class="btns">
+        <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="sample-book1-paperback">Keep reading · Paperback</a>
+        <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="sample-book1-kindle">Kindle</a>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="map wrap" aria-labelledby="map-h">
-    <div class="ny-eyebrow">Exhibit C · from the endpapers of Book One</div>
-    <h3 class="ny-h" id="map-h">The Royal City of Faelspire</h3>
+<!-- READERS -->
+<section class="band readers" aria-labelledby="readers-h">
+  <div class="inner">
+    <header>
+      <p class="label">Readers on Amazon</p>
+      <h2 id="readers-h" data-scratch>“Cat fantasy? <em>Really?”</em></h2>
+    </header>
+    <div class="lead-review">
+      <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+      <blockquote>“This is not cute cat adventure time. This is legitimate epic fantasy a la Golden Compass that stars anthropomorphic felines, and Christell commits to it completely.”</blockquote>
+      <span class="who">J. Loewen · verified purchase · paperback</span>
+    </div>
+    <div class="rgrid">
+      <article>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>“I honestly didn't expect The Furbidden Voyd to pull me in the way it did, but once I started, I couldn't stop. The world feels huge and mysterious, like there's history behind every shadow.”</blockquote>
+        <span class="who">Matt · verified purchase</span>
+      </article>
+      <article>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>“This world of cats does not fall back on animal gimmicks or feline tropes. Liking cats will draw some readers in, but is not necessary to appreciate this book.”</blockquote>
+        <span class="who">M. · verified purchase · Kindle</span>
+      </article>
+      <article>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>“Pages flew by while flying LHR to SEA… Writing is solid, story holds together, and it's a page turner.”</blockquote>
+        <span class="who">Kevin · Amazon review</span>
+      </article>
+      <article>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>“This book was an epic adventure! It didn't take me long to finish either! It really begins to heat up towards the final chapters.”</blockquote>
+        <span class="who">Gregory Stevens · Amazon review</span>
+      </article>
+    </div>
+    <p class="src-note">From reviews of <i>The Furbidden Voyd</i> on Amazon.com, quoted as written. <a href="https://www.amazon.com/dp/B0G5Z7HNQK#customerReviews" target="_blank" rel="noopener">Read every review</a></p>
+  </div>
+</section>
+
+<!-- THE WORLD -->
+<section class="band world" aria-labelledby="map-h">
+  <div class="inner">
+    <header>
+      <p class="label">From the endpapers of Book One</p>
+      <h2 id="map-h" data-scratch>The Royal City of Faelspire</h2>
+    </header>
     <div class="mapframe">
-      <img src="assets/faelspire-map-900.webp" srcset="assets/faelspire-map-900.webp 900w, assets/faelspire-map-1600.webp 1600w" sizes="(max-width:1120px) 100vw, 1072px" width="1600" height="1200" alt="Illustrated map of the Royal City of Faelspire: Aard Templu Voreath and Mount Sylvest to the north, the Royal Palace and districts like Eastclaw and Felixiata at the centre, and the Forest Primeval wrapping the southern walls" loading="lazy" />
+      <img src="assets/faelspire-map-900.webp" srcset="assets/faelspire-map-900.webp 900w, assets/faelspire-map-1600.webp 1600w" sizes="(max-width:1072px) 100vw, 1040px" width="1600" height="1200" alt="Illustrated map of the Royal City of Faelspire: Aard Templu Voreath and Mount Sylvest to the north, the Royal Palace and districts like Eastclaw and Felixiata at the centre, and the Forest Primeval wrapping the southern walls" loading="lazy" />
     </div>
     <ul class="mapkey">
       <li><b>Aard Templu Voreath</b>, top: seat of the Magical Guild, where magic is rationed.</li>
@@ -570,196 +457,294 @@ a{color:inherit}
       <li><b>The Forest Primeval</b>, bottom right: where the Strays hide, and where Sory'n ends up.</li>
     </ul>
     <p class="mapcap">Map by Chartru'el Duskyfur, cartographer, silver-gray tom, and “inclined to pretension.”</p>
-  </section>
 
-  <section class="sample" aria-labelledby="sample-h">
-    <div class="wrap">
-      <div style="text-align:center">
-        <div class="ny-eyebrow">Clinical sample A · administered free</div>
-        <h3 class="ny-h" id="sample-h">The first page. See if you can stop.</h3>
+    <div class="cast">
+      <p class="label" style="text-align:center">Dramatis Fursonae</p>
+      <h3>Who you'll spend 768 pages with</h3>
+      <div class="castgrid">
+        <div><h4>Sory'n of Tol</h4><p>“A young feline of keen mind and restless spirit. Her need to prove herself is the spark that most often sets her troubles alight.”</p></div>
+        <div><h4>Archmage Orachys</h4><p>Her father and head of the Magical Guild, chasing the mastery of spacetime “with an obsession that outshadows his obsidian coat.”</p></div>
+        <div><h4>Mother Ertree</h4><p>“Charismatic spiritual leader of the so-called Strays. Selfless and wise, her trusting nature sometimes endangers her clowder.”</p></div>
+        <div><h4>Alaric R'ast</h4><p>“The cunning and ambitious head of the Royal Kiton (secret police). An adept hunter and deductive mastermind.”</p></div>
       </div>
-      <article class="page">
-        <div class="ch">Part I: Softpaw · Chapter I</div>
-        <div class="chtitle">The Tail's End?</div>
-        <p class="epi">Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.<span>— H.R. Nimblequick, <i>Paws and Effect</i></span></p>
-        <p class="first">Purrhaps… this is death? The notion struck Sory'n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
-        <p class="thought">Oh, mercy of Great Leoran! What if this isn't Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
-        <p>Neither heaven nor hell made sense. Wherever she was, she was. At least the thinking part.</p>
-        <p class="thought">One. Two. Three.</p>
-        <p class="thought">I am Sory'n of Tol, and I am a cat.</p>
-        <p class="thought">An insecure, selfish, stupid cat.</p>
-        <p class="thought">But am I dead?</p>
-        <p>She vocalized. “Mrow.”</p>
-        <p>The sound left her mouth, but no echo, no resonance followed. The void swallowed it up.</p>
-        <p>Again, with more force. “Meowwwrrr!”</p>
-        <p class="fade">Terror followed, and in its wake, desperation. A yearning for deliverance, even if it meant actual death.</p>
-      </article>
-      <div class="after">
-        <p style="font-size:19px;color:#cfc4ac;margin:0 0 20px">She is about to find out how she destroyed the world. It takes 375 pages.</p>
-        <a class="goldbtn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="sample-dose1-paperback">Continue Dose One on Amazon →</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="reports" aria-labelledby="reports-h">
-    <div class="wrap">
-      <div class="ny-eyebrow">Field reports · unedited Amazon reviews</div>
-      <h3 class="ny-h" id="reports-h">What happened to the people who tried it</h3>
-      <div class="rgrid">
-        <article class="report wide">
-          <div class="case"><span>Case 001 · J. Loewen</span><span class="v">Verified purchase · paperback</span></div>
-          <dl><dt>Presenting complaint</dt><dd>“Cat fantasy? Really?”</dd></dl>
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“This is not cute cat adventure time. This is legitimate epic fantasy a la Golden Compass that stars anthropomorphic felines, and Christell commits to it completely. No winking at the camera, no apologizing for the premise.”</blockquote>
-        </article>
-        <article class="report">
-          <div class="case"><span>Case 002 · Matt</span><span class="v">Verified purchase</span></div>
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“I honestly didn't expect The Furbidden Voyd to pull me in the way it did, but once I started, I couldn't stop. The world feels huge and mysterious, like there's history behind every shadow.”</blockquote>
-        </article>
-        <article class="report">
-          <div class="case"><span>Case 003 · Kevin</span><span>Amazon review</span></div>
-          <dl><dt>Conditions</dt><dd>Transatlantic flight, LHR → SEA</dd></dl>
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“Pages flew by while flying LHR to SEA… Writing is solid, story holds together, and it's a page turner.”</blockquote>
-        </article>
-        <article class="report">
-          <div class="case"><span>Case 004 · M.</span><span class="v">Verified purchase · Kindle</span></div>
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“This world of cats does not fall back on animal gimmicks or feline tropes. Liking cats will draw some readers in, but is not necessary to appreciate this book.”</blockquote>
-        </article>
-        <article class="report">
-          <div class="case"><span>Case 005 · Gregory Stevens</span><span>Amazon review</span></div>
-          <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-          <blockquote>“This book was an epic adventure! It didn't take me long to finish either! It really begins to heat up towards the final chapters.”</blockquote>
-        </article>
-      </div>
-      <p class="src">Excerpts from reviews of <i>The Furbidden Voyd</i> on Amazon.com, quoted as written. <a href="https://www.amazon.com/dp/B0G5Z7HNQK#customerReviews" target="_blank" rel="noopener">Read every review on Amazon →</a></p>
-    </div>
-  </section>
-
-  <section class="offer" id="buy" aria-labelledby="offer-h">
-    <div class="wrap">
-      <div style="text-align:center">
-        <div class="ny-eyebrow">The complete Protocol</div>
-        <h3 class="ny-h" id="offer-h">Two books. Two realities. Zero notifications.</h3>
-      </div>
-      <figure class="pair">
-        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:700px) 100vw, 640px" width="1395" height="1114" alt="The covers of The Furbidden Voyd and The Divergent Path placed side by side: two mirrored black cats whose half-voids join into one" loading="lazy" />
-      </figure>
-      <p class="voydnote">Put them side by side. It's the same Voyd, seen from both sides.</p>
-
-      <div class="buygrid">
-        <div class="buybox">
-          <div class="which">Dose One · start here</div>
-          <h3>The Furbidden Voyd</h3>
-          <p class="spec">Book One · 375 pages · the reality where she fails</p>
-          <div class="fmt"><div>Paperback<small>Recommended. Fully screen-free.</small></div><a class="goldbtn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="offer-dose1-paperback">Paperback · $15.99</a></div>
-          <div class="fmt"><div>Kindle<small>Acceptable. We won't tell Big Dopamine.</small></div><a class="goldbtn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="offer-dose1-kindle">Kindle · $9.99</a></div>
-        </div>
-        <div class="buybox">
-          <div class="which">Dose Two · new</div>
-          <h3>The Divergent Path</h3>
-          <p class="spec">Book Two · 393 pages · the reality where she succeeds</p>
-          <div class="fmt"><div>Paperback<small>Can be entered on its own. Hits harder after Dose One.</small></div><a class="goldbtn" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="offer-dose2-paperback">Paperback · $15.99</a></div>
-        </div>
-      </div>
-      <div class="includes">
-        <div><b>768</b>pages of sustained attention</div>
-        <div><b>36</b>chapters, each with an ending</div>
-        <div><b>0</b>streaks, badges or push alerts</div>
-        <div><b>$0</b>recurring. Not now. Not ever.</div>
-      </div>
-      <p class="pricenote">Prices shown are Amazon list prices at the time of writing. Amazon's price at checkout is the one that counts.</p>
-    </div>
-  </section>
-
-  <section class="faq" aria-labelledby="faq-h">
-    <div class="wrap narrow">
-      <div class="ny-eyebrow">Frequently questioned answers</div>
-      <h3 class="ny-h" id="faq-h">Before you begin.</h3>
-      <details open><summary>Is this actually a dopamine reset?</summary><p>No. That's not really how dopamine works. It's two very long, very good books. We're just describing them in the voice your feed taught you to trust.</p></details>
-      <details><summary>Does it contain adaptogens, nootropics or ashwagandha?</summary><p>No. No. And absolutely not.</p></details>
-      <details><summary>Do I have to like cats?</summary><p>No. One verified reader: “Liking cats will draw some readers in, but is not necessary to appreciate this book.” Another almost didn't pick it up (“Cat fantasy? Really?”) and compared it to <i>The Golden Compass</i>.</p></details>
-      <details><summary>Is this a kids' book?</summary><p>No. It's epic fantasy with an all-cat cast: political marriages, a secret police, Guild-led purges, forbidden magic. It's written for adults. Older teens who like their fantasy serious will be right at home.</p></details>
-      <details><summary>Which dose first?</summary><p>Standard protocol: Dose One, then Dose Two. But each book follows a different reality (in one she fails, in the other she succeeds), and each can be entered on its own. Together they show both sides of the same Voyd.</p></details>
-      <details><summary>Paperback or Kindle?</summary><p>Paperback is the purist's choice: nothing on it can buzz. Kindle is fine too, as long as you don't go looking for the notification shade.</p></details>
-      <details><summary>How many cats?</summary><p>An irresponsible quantity.</p></details>
-    </div>
-  </section>
-
-</div>
-<!-- ============ /NYANDOR ============ -->
-
-<div class="amazon-strip">
-  <strong>No course. No app. No $89/month membership.</strong>
-  <p>You buy the book. Amazon sends it to you. You read the whole thing.</p>
-  <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="strip-dose1-paperback">Get The Furbidden Voyd on Amazon →</a>
-</div>
-
-<section class="final" aria-labelledby="final-h">
-  <div class="wrap">
-    <span class="tag">Your move</span>
-    <h2 id="final-h">The algorithm has had you long enough.</h2>
-    <p class="dek">Take back several consecutive hours of your own imagination.</p>
-    <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="final-dose1-paperback">Begin The Nyandor Protocol™<small>Dose One · The Furbidden Voyd · on Amazon</small></a>
-    <span class="alt">Already finished Dose One? <a href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="final-dose2-paperback">Take Dose Two: The Divergent Path →</a></span>
-
-    <div class="share">
-      <p>Know someone who hasn't finished anything since 2019?</p>
-      <button class="sharebtn" type="button" id="share">Prescribe the Protocol →</button>
-      <span class="sharestatus" id="sharestatus" role="status" aria-live="polite"></span>
-    </div>
-
-    <div class="ps">
-      <p><b>P.S.</b> You've just read roughly two thousand words without switching tabs. The Protocol is already working. Dose One is 375 pages. You're ready.</p>
     </div>
   </div>
 </section>
 
-<footer class="footer">
-  <div class="wrap">© 2026 Patrick Christell · The Gate of Nyandor™ · The Nyandor Protocol™<br />No neurotransmitters were reset in the making of this website. The Nyandor Protocol is a marketing name for two novels, not a medical or psychological treatment.</div>
+<!-- BUY -->
+<section class="band buy" id="buy" aria-labelledby="buy-h">
+  <div class="inner">
+    <p class="label">The Gate of Nyandor · Books One and Two</p>
+    <h2 id="buy-h" data-scratch>Put them side by side.</h2>
+    <p class="lede" style="max-width:36ch;margin:0 auto">The two covers complete one Voyd. The same portal, seen from both sides.</p>
+    <div class="portal" data-voyd>
+      <a class="one" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="buy-cover-book1" aria-label="The Furbidden Voyd on Amazon">
+        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:560px) 200vw, 1040px" width="1395" height="1114" alt="" loading="lazy" />
+      </a>
+      <a class="two" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="buy-cover-book2" aria-label="The Divergent Path on Amazon">
+        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:560px) 200vw, 1040px" width="1395" height="1114" alt="" loading="lazy" />
+      </a>
+      <div class="voyd" aria-hidden="true"></div>
+      <canvas class="drain" aria-hidden="true"></canvas>
+    </div>
+    <div class="buygrid">
+      <div class="buybox">
+        <p class="label">Book One · start here</p>
+        <h3>The Furbidden Voyd</h3>
+        <p class="spec">375 pages · the reality where she fails</p>
+        <div class="btns">
+          <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="buy-book1-paperback">Paperback · $15.99</a>
+          <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="buy-book1-kindle">Kindle · $9.99</a>
+        </div>
+      </div>
+      <div class="buybox b2">
+        <p class="label">Book Two · new</p>
+        <h3>The Divergent Path</h3>
+        <p class="spec">393 pages · the reality where she succeeds</p>
+        <div class="btns">
+          <a class="btn" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="buy-book2-paperback">Paperback · $15.99</a>
+        </div>
+      </div>
+    </div>
+    <p class="pricenote">Amazon list prices at the time of writing. The price at Amazon checkout is the one that counts.</p>
+  </div>
+</section>
+
+<!-- THE FAELSPIRAN HORNBLOWER -->
+<section class="band signal-band" aria-label="Email sign-up">
+  <svg class="claw" aria-hidden="true"><use href="#clawmark"/></svg>
+  <form class="signal" id="signal" data-timestream="homepage" method="post" target="_blank">
+    <p class="masthead">The Faelspiran Hornblower<small>News and new releases from Nyandor</small></p>
+    <label for="email">Two more timestreams are being written. C.A.T. writes to those who signal. Leave your address.</label>
+    <div class="row">
+      <input id="email" type="email" name="email_address" placeholder="your@email" required autocomplete="email" />
+      <input type="hidden" name="fields[timestream]" value="homepage" />
+      <button class="btn" type="submit">Signal</button>
+    </div>
+    <p class="done">Your signal is received. Look for a message from the Gate, and confirm it.</p>
+  </form>
+</section>
+
+<!-- QUESTIONS -->
+<section class="band faq" aria-labelledby="faq-h">
+  <div class="narrow">
+    <h2 id="faq-h">Before you begin</h2>
+    <details open><summary>Do I need to like cats?</summary><p>No. One verified reader: “Liking cats will draw some readers in, but is not necessary to appreciate this book.” Another almost didn't pick it up and ended up comparing it to <i>The Golden Compass</i>.</p></details>
+    <details><summary>Is it a kids' book?</summary><p>No. It's epic fantasy with an all-cat cast: political marriages, a secret police, Guild-led purges, forbidden magic. It's written for adults. Older teens who like their fantasy serious will be right at home.</p></details>
+    <details><summary>Which book first?</summary><p>Start with <i>The Furbidden Voyd</i>. Both books open on the same failed Assessment and then follow different realities, so each one reads on its own. Together they show both sides of the same Voyd.</p></details>
+    <details><summary>Paperback or Kindle?</summary><p>Book One is in paperback and on Kindle. Book Two is in paperback.</p></details>
+  </div>
+</section>
+
+<!-- OTHER DOORS -->
+<section class="band doors" aria-label="Other ways in">
+  <p>Already finished a book? <a href="twolegger/">Step through the Gate.</a></p>
+  <p>Rather have your fantasy prescribed? <a href="protocol/">The Nyandor Protocol™</a></p>
+</section>
+
+<footer>
+  <p class="press">Hornblower Press · 41 Ink Street, Lower Commerce, Faelspire</p>
+  <p style="margin:0">© 2026 Patrick Christell · The Gate of Nyandor™</p>
 </footer>
 
 <div class="buybar" id="buybar" aria-hidden="true">
-  <span><b>Dose One</b> · The Furbidden Voyd<br />Paperback & Kindle on Amazon</span>
-  <a href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="buybar-dose1-paperback" tabindex="-1">Get it →</a>
+  <span><b>Book One</b>The Furbidden Voyd</span>
+  <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="buybar-book1-paperback" tabindex="-1">Get it on Amazon</a>
 </div>
 
 <script>
 (function(){
-  var io = 'IntersectionObserver' in window;
-  // Feed sizzles only while it's on screen.
-  var feed = document.getElementById('feed');
-  if (io && feed) new IntersectionObserver(function(e){ feed.classList.toggle('is-live', e[0].isIntersecting); }).observe(feed);
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dpr=Math.min(window.devicePixelRatio||1,2);
 
-  // Mobile buy bar: shown after the hero, hidden while the offer or the final CTA is in view.
-  var bar = document.getElementById('buybar'), hero = document.getElementById('top');
-  var watched = [document.getElementById('buy'), document.querySelector('.final'), document.querySelector('.amazon-strip')];
-  var heroGone = false, ctaVisible = new Set();
-  function sync(){
-    var show = heroGone && ctaVisible.size === 0;
-    bar.classList.toggle('show', show);
-    bar.setAttribute('aria-hidden', show ? 'false' : 'true');
-    bar.querySelector('a').tabIndex = show ? 0 : -1;
-  }
-  if (io && bar && hero){
-    new IntersectionObserver(function(e){ heroGone = !e[0].isIntersecting; sync(); }).observe(hero);
-    var o = new IntersectionObserver(function(es){ es.forEach(function(x){ x.isIntersecting ? ctaVisible.add(x.target) : ctaVisible.delete(x.target); }); sync(); });
-    watched.forEach(function(el){ if (el) o.observe(el); });
-  }
+  // WHERE THE VOYD IS. The stars drain toward whichever Voyd is nearest the middle of the
+  // screen (the hero covers, the rift between the split covers, the covers at the end),
+  // gliding from one to the next as the reader scrolls.
+  var voyds=[].slice.call(document.querySelectorAll('[data-voyd]')).map(function(el){return el.classList.contains('rift')?el:el.querySelector('.voyd');});
+  var vcx=null,vcy=null,vcr=null;
+  function targetVoyd(){var best=null,bd=1e9,mid=innerHeight*.45;
+    voyds.forEach(function(v){var r=v.getBoundingClientRect();if(!r.width)return;var cy=r.top+r.height/2,d=Math.abs(cy-mid);if(d<bd){bd=d;best=r;}});
+    if(!best)return {x:innerWidth/2,y:innerHeight*.42,r:Math.min(innerWidth,innerHeight)*.08};
+    var y=best.top+best.height/2,lim=innerHeight*.35,off=y<-lim?-lim-y:y>innerHeight+lim?y-innerHeight-lim:0;
+    y=Math.max(-lim,Math.min(innerHeight+lim,y));
+    return {x:best.left+best.width/2,y:y,r:off?Math.max(8,best.width/2*Math.max(.15,1-off/innerHeight)):best.width/2};}
+  function voydCenter(){var t=targetVoyd();
+    if(vcx===null||still){vcx=t.x;vcy=t.y;vcr=t.r;}
+    else{var k=.12;vcx+=(t.x-vcx)*k;vcy+=(t.y-vcy)*k;vcr+=(t.r-vcr)*k;}
+    return {x:vcx,y:vcy,r:vcr};}
 
-  // Share
-  var btn = document.getElementById('share'), status = document.getElementById('sharestatus');
-  var url = 'https://www.thegateofnyandor.com/';
-  var text = 'Big Dopamine doesn’t want you to know about this. The Nyandor Protocol™: 768 pages of epic fantasy. Contains: cats.';
-  if (btn) btn.addEventListener('click', function(){
-    if (navigator.share) {
-      navigator.share({ title: 'The Nyandor Protocol™', text: text, url: url }).catch(function(){});
-    } else if (navigator.clipboard) {
-      navigator.clipboard.writeText(text + ' ' + url).then(function(){ status.textContent = 'Link copied. Administer responsibly.'; }, function(){ status.textContent = url; });
-    } else { status.textContent = url; }
-  });
+  // THE SKY. Stars spiral inward and drain into the Voyd behind the covers. Nearer the
+  // hole they turn faster and fade, as if swallowed. Gold cat eyes open in the dark,
+  // blink slowly, and close: the displaced souls of Nyandor, watching.
+  var c=document.getElementById('sky'),x=c.getContext('2d'),stars=[],eyes=[],w,h,last=0,nextEye=1800;
+  function star(R,fresh){var z=Math.random();
+    return {a:Math.random()*6.283,d:fresh?R*(.75+Math.random()*.35):Math.sqrt(Math.random())*R,z:z,
+      r:(.35+z*1.45),o:.35+z*.6,p:Math.random()*6.283,tw:.0006+Math.random()*.0014};}
+  function size(){dpr=Math.min(window.devicePixelRatio||1,2);w=c.width=innerWidth*dpr;h=c.height=innerHeight*dpr;
+    var R=Math.hypot(innerWidth,innerHeight),n=Math.round(innerWidth*innerHeight/480);stars=[];
+    for(var i=0;i<n;i++)stars.push(star(R,false));}
+  function drawEye(e){var k=e.t/e.life,open;
+    if(k<.12)open=k/.12;else if(k>.88)open=(1-k)/.12;else open=1;
+    var b=e.blink-e.t; if(b<0&&b>-260)open*=Math.abs(b+130)/130;
+    open=Math.max(0,Math.min(1,open));if(open<.03)return;
+    var s=e.s*dpr,gap=s*2.7;
+    for(var j=-1;j<=1;j+=2){var cx=e.x*dpr+j*gap/2,cy=e.y*dpr;
+      x.save();x.translate(cx,cy);x.scale(1,open);
+      x.globalAlpha=e.o;x.shadowColor='rgba(240,190,80,.9)';x.shadowBlur=s*1.6;
+      var g=x.createRadialGradient(0,0,s*.1,0,0,s);g.addColorStop(0,'#ffe08a');g.addColorStop(1,'#c98b22');
+      x.fillStyle=g;x.beginPath();x.moveTo(-s,0);x.quadraticCurveTo(0,-s*.95,s,0);x.quadraticCurveTo(0,s*.95,-s,0);x.fill();
+      x.shadowBlur=0;x.fillStyle='#0b0704';x.beginPath();x.ellipse(0,0,s*.13,s*.62,0,0,6.283);x.fill();
+      x.restore();}}
+  function spawnEye(){var vc=voydCenter(),tries=0,ex,ey;
+    do{ex=30+Math.random()*(innerWidth-60);ey=30+Math.random()*(innerHeight-60);tries++;}
+    while(Math.hypot(ex-vc.x,ey-vc.y)<vc.r*3.2&&tries<12);
+    var life=3200+Math.random()*2600;
+    eyes.push({x:ex,y:ey,s:5+Math.random()*5,o:.55+Math.random()*.35,t:0,life:life,blink:life*(.35+Math.random()*.3)});}
+  function sky(t){var dt=last?Math.min(t-last,60):16;last=t;x.clearRect(0,0,w,h);
+    var vc=voydCenter(),cx=vc.x,cy=vc.y,hole=Math.max(vc.r,8),R=Math.hypot(innerWidth,innerHeight);
+    for(var i=0;i<stars.length;i++){var s=stars[i];
+      if(!still){var pull=.012+18/Math.max(s.d,20);
+        s.d-=s.d*pull*dt/1000*(.6+s.z);
+        s.a+=(.05+40/Math.max(s.d,30))*(.4+s.z*.6)*dt/1000;
+        if(s.d<hole*.9){stars[i]=star(R,true);continue;}}
+      var px=cx+Math.cos(s.a)*s.d,py=cy+Math.sin(s.a)*s.d*.86;
+      if(px<-4||py<-4||px>innerWidth+4||py>innerHeight+4)continue;
+      var fade=Math.min(1,(s.d-hole*.9)/(hole*2.2));
+      x.globalAlpha=(still?s.o:s.o*(.6+.4*Math.sin(t*s.tw+s.p)))*fade;
+      x.fillStyle=s.z>.8?'#f6e7c2':'#dde5ff';var rr=s.r*dpr;
+      x.fillRect(px*dpr-rr,py*dpr-rr,rr*2,rr*2);}
+    if(!still){nextEye-=dt;if(nextEye<=0&&eyes.length<3){spawnEye();nextEye=2600+Math.random()*4200;}}
+    for(var j=eyes.length-1;j>=0;j--){var e=eyes[j];if(!still)e.t+=dt;if(e.t>=e.life){eyes.splice(j,1);continue;}drawEye(e);}
+    x.globalAlpha=1;if(!still)requestAnimationFrame(sky);}
+  size();addEventListener('resize',function(){size();if(still)sky(0);});
+  if(still){eyes.push({x:innerWidth*.15,y:innerHeight*.2,s:7,o:.7,t:900,life:1e9,blink:-1e9});
+    addEventListener('scroll',function(){sky(0);},{passive:true});}
+  requestAnimationFrame(sky);
+
+  // THE DRAIN. Over the art, faint streams of light spiral into the black circle.
+  [].forEach.call(document.querySelectorAll('canvas.drain'),function(dc){
+    var dx=dc.getContext('2d'),motes=[],dw,dh,visible=true;
+    function dsize(){var r=dc.getBoundingClientRect();dw=dc.width=r.width*dpr;dh=dc.height=r.height*dpr;}
+    function mote(){return {a:Math.random()*6.283,k:1.9+Math.random()*1.4,v:.25+Math.random()*.35,z:Math.random()};}
+    for(var m=0;m<70;m++){var mm=mote();mm.k=1+Math.random()*2.3;motes.push(mm);}
+    function drain(){if(!visible&&!still){requestAnimationFrame(drain);return;}
+      dx.clearRect(0,0,dw,dh);var cx=dw*.5,cy=dh*.392,hr=dw*.12;
+      for(var i=0;i<motes.length;i++){var p=motes[i];
+        if(!still){p.k-=p.v*.0045*(1+1/p.k);p.a+=(.004+.02/p.k)*(1+p.z);if(p.k<1){motes[i]=mote();continue;}}
+        var rr=hr*p.k,px=cx+Math.cos(p.a)*rr,py=cy+Math.sin(p.a)*rr;
+        var al=Math.min(1,(p.k-1)*2.2)*Math.min(1,(3.3-p.k)*1.5)*(.35+p.z*.5);
+        if(al<=0)continue;dx.globalAlpha=al;dx.fillStyle='#e8eeff';
+        var s=(.5+p.z*1.1)*dpr;dx.fillRect(px-s,py-s,s*2,s*2);
+        if(!still){dx.globalAlpha=al*.35;
+          dx.fillRect(cx+Math.cos(p.a-.06)*rr*1.01-s*.6,cy+Math.sin(p.a-.06)*rr*1.01-s*.6,s*1.2,s*1.2);}}
+      dx.globalAlpha=1;if(!still)requestAnimationFrame(drain);}
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;}).observe(dc);
+    dsize();addEventListener('resize',dsize);requestAnimationFrame(drain);});
+
+  // PIPE SMOKE. It drifts up through the sky and curls after the reader's hand.
+  var sc=document.getElementById('smoke'),sx=sc.getContext('2d'),puffs=[],sw,sh;
+  function ssize(){sw=sc.width=innerWidth*dpr;sh=sc.height=innerHeight*dpr;}
+  function puff(x0,y0,small){return {x:x0!=null?x0:Math.random()*innerWidth,y:y0!=null?y0:innerHeight+60*Math.random(),
+    r:small?18+Math.random()*24:70+Math.random()*120,a:0,max:small?.10:.045+Math.random()*.04,
+    vx:(Math.random()-.5)*.25,vy:-(.12+Math.random()*.28),life:0,span:small?2600:16000+Math.random()*12000,g:Math.random()};}
+  for(var q=0;q<18;q++){var pf=puff(null,Math.random()*innerHeight);pf.life=Math.random()*pf.span;puffs.push(pf);}
+  function smoke(){sx.clearRect(0,0,sw,sh);
+    for(var i=puffs.length-1;i>=0;i--){var f=puffs[i];
+      if(!still){f.life+=16;f.x+=f.vx+Math.sin((f.life+f.g*9000)/2600)*.18;f.y+=f.vy;f.r+=.03;}
+      var k=f.life/f.span;if(k>=1){puffs.splice(i,1);if(puffs.length<18)puffs.push(puff());continue;}
+      var al=f.max*Math.sin(Math.PI*k);
+      var g=sx.createRadialGradient(f.x*dpr,f.y*dpr,0,f.x*dpr,f.y*dpr,f.r*dpr);
+      g.addColorStop(0,'rgba(178,190,222,'+al+')');g.addColorStop(1,'rgba(178,190,222,0)');
+      sx.fillStyle=g;sx.fillRect((f.x-f.r)*dpr,(f.y-f.r)*dpr,f.r*2*dpr,f.r*2*dpr);}
+    if(!still)requestAnimationFrame(smoke);}
+  ssize();addEventListener('resize',ssize);requestAnimationFrame(smoke);
+  var lastPuff=0;function trail(e){var n=performance.now();if(still||n-lastPuff<70||puffs.length>60)return;lastPuff=n;
+    var p=e.touches?e.touches[0]:e;var f=puff(p.clientX,p.clientY,true);f.vy=-.35;puffs.push(f);}
+  addEventListener('pointermove',trail,{passive:true});addEventListener('touchmove',trail,{passive:true});
+
+  // CLAW-SCRATCH WRITING. Headings arrive as scratch marks, then settle into letters.
+  var marks='/\\|‖ı⁄/\\|';
+  function esc(z){return z==='&'?'&amp;':z==='<'?'&lt;':z;}
+  function scratch(el){if(el.dataset.done||still)return;el.dataset.done=1;
+    var html=el.innerHTML,text=el.textContent;el.setAttribute('aria-label',text);
+    var chars=text.split(''),start=performance.now(),per=Math.max(14,Math.min(34,1400/chars.length));
+    var at=chars.map(function(ch,i){return i*per+Math.random()*260;});
+    var inner=document.createElement('span');inner.setAttribute('aria-hidden','true');el.innerHTML='';el.appendChild(inner);
+    (function tick(now){var t=now-start,out='',left=0;
+      for(var i=0;i<chars.length;i++){var ch=chars[i];
+        if(ch===' '||t>=at[i])out+=esc(ch);
+        else{left++;out+='<span class="s">'+esc(marks[(Math.random()*marks.length)|0])+'</span>';}}
+      inner.innerHTML=out;if(left)requestAnimationFrame(tick);else{el.innerHTML=html;el.removeAttribute('aria-label');}})(start);}
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){scratch(e.target);io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'}):null;
+  if(io)document.querySelectorAll('[data-scratch]').forEach(function(el){io.observe(el);});
+
+  // THE SPLIT. The covers start fused, exactly as on the reader page. As the reader
+  // scrolls, they pull apart and the Voyd between them tears open.
+  var covers=document.getElementById('covers'),rift=document.getElementById('rift');
+  function split(){var r=covers.getBoundingClientRect(),cw=covers.querySelector('a').getBoundingClientRect().width;
+    var p=still?1:Math.max(0,Math.min(1,(innerHeight*.92-r.top)/(innerHeight*.55)));
+    p=p*p*(3-2*p);
+    var room=covers.clientWidth-cw*2,gap=Math.max(0,Math.min(room,cw*.9))*p;
+    covers.style.setProperty('--gap',gap+'px');
+    rift.style.setProperty('--rd',Math.max(gap*.92,cw*.48*(1-p))+'px');}
+  split();addEventListener('scroll',split,{passive:true});addEventListener('resize',split);
+
+  // THE DICE. Four carved dice; one lights, and the books fall open on a real passage.
+  var P=[
+    {b:1,src:'The Furbidden Voyd · Chapter iii, The Proving Ground',t:['Sory’n’s nose twitched. The hallowed ground smelled of ozone and fear, every Initiate’s nervous sweat mixing with the sharp, mineral tang that clung to the purple giants. This was the scent of three-and-a-half thousand years of Assessments, of every Initiate who’d ever stood here, hoping.']},
+    {b:1,src:'The Furbidden Voyd · Chapter iii, The Proving Ground',t:['With a sweep of her paw, the Nyand rose. Roots, dirt, and rock broke free from the ground, rising in a swirling vortex, shaped between her paws. An orb of jagged rock and swirling dust began to form, alive and shifting with her intent.','I’m doing it! The thought ricocheted through the silence. A jolt of excitement threatened to break her focus. She fought it back, her breath the only anchor.']},
+    {b:1,src:'The Furbidden Voyd · Chapter iii, The Proving Ground',t:['Within the Construct, Sory’n tumbled, flung one way and then the other as the volatile wind energy spun her out of control. She yowled. A sharp pop echoed through the Construct, the cushion of air beneath her gave way, and she plunged down, down, down… breaking the cloud cover with a muffled foomp.']},
+    {b:1,src:'The Furbidden Voyd · The Unified Vulgate, Instructions for Assessment',t:['The Assessment does not test how an Initiate will perform. It tests where an Initiate will break. The pressure is the point.']},
+    {b:1,src:'The Furbidden Voyd · the Creator of All Tales',t:['“An epic tale is a portal powerful enough to carve the path of hisstory itself. Tales like these can raise empires or bring them to ruin.”']},
+    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['This is the blackness before the first star, the vast, unbreathing quiet that existed before light was even a word to be forgotten. It held the potential to birth a Mewniverse but had no impulse to create. Once, perhaps, it dreamed of light—a fleeting, internal glimmer that was a template for something greater.']},
+    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['He pulls his paw back. The dice rattle against the stone, unbidden. “But the dice are trembling. Do you see?”','His voice drops, losing its storyteller’s lilt, becoming something old and afraid.']},
+    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['Below her, Faelspire sprawled, a sleeping beast. Its districts fell away in tiers through the haze, spreading toward the endless swell of the Forest Primeval.','The city was dirty. Chaotic. So vast that somewhere among its roofs and alleys, a cat could disappear. Her uncle had.']},
+    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['P’taxx was a fluffy grey longhair with a kind face and thoughtful eyes, the only Tol who ever smiled without a reason. She used to nuzzle up between his massive forepaws while he spun wild, impossible tales. He claimed the stars were really holes in the sky where Leoran’s light leaked through.']}
+  ];
+  var BUY={1:{href:'https://www.amazon.com/dp/B0G5Z7HNQK',label:'Keep reading · Book One',cta:'dice-book1'},2:{href:'https://www.amazon.com/dp/B0GDM8QB5H',label:'Keep reading · Book Two',cta:'dice-book2'}};
+  var bag=[],cur=0,dice=[].slice.call(document.querySelectorAll('.die')),cast=document.getElementById('cast'),
+      passage=document.getElementById('passage'),ptext=document.getElementById('ptext'),psrc=document.getElementById('psrc'),pbuy=document.getElementById('pbuy');
+  function draw(){if(!bag.length){bag=P.map(function(_,i){return i;}).filter(function(i){return i!==cur;});
+      for(var i=bag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=bag[i];bag[i]=bag[j];bag[j]=t;}}
+    return bag.pop();}
+  function show(i){var p=P[i];cur=i;
+    ptext.innerHTML=p.t.map(function(s){return '<p>'+s+'</p>';}).join('');
+    psrc.textContent=p.src;pbuy.href=BUY[p.b].href;pbuy.textContent=BUY[p.b].label;pbuy.setAttribute('data-cta',BUY[p.b].cta);
+    passage.classList.remove('fading');}
+  function throwDie(d,i,done){var cube=d.querySelector('.cube');
+    if(still||!cube.animate){done&&done();return;}
+    var rx=(2+Math.floor(Math.random()*2))*360,ry=(1+Math.floor(Math.random()*2))*360*(Math.random()<.5?-1:1),rz=(Math.random()-.5)*60;
+    var fx=(Math.random()-.5)*160;
+    cube.animate([
+      {transform:'translate3d('+fx+'px,-260px,140px) rotateX('+rx+'deg) rotateY('+ry+'deg) rotateZ('+rz+'deg)',offset:0},
+      {transform:'translate3d('+fx*.3+'px,0,40px) rotateX('+rx*.35+'deg) rotateY('+ry*.35+'deg) rotateZ('+rz*.4+'deg)',offset:.55},
+      {transform:'translate3d('+fx*.1+'px,-34px,20px) rotateX('+rx*.12+'deg) rotateY('+ry*.1+'deg) rotateZ('+rz*.1+'deg)',offset:.72},
+      {transform:'translate3d(0,0,0) rotateX(-8deg) rotateY(6deg)',offset:.88},
+      {transform:'translate3d(0,-6px,0) rotateX(3deg) rotateY(-2deg)',offset:.94},
+      {transform:'none',offset:1}],
+      {duration:1500+i*120,easing:'cubic-bezier(.25,.7,.35,1)',fill:'both'}).onfinish=function(){done&&done();};}
+  cast.addEventListener('click',function(){cast.disabled=true;passage.classList.add('fading');
+    dice.forEach(function(d){d.classList.remove('lit');});
+    var next=draw(),landed=0;
+    dice.forEach(function(d,i){setTimeout(function(){throwDie(d,i,function(){if(++landed===dice.length){
+      dice[Math.floor(Math.random()*dice.length)].classList.add('lit');show(next);cast.disabled=false;cast.textContent='Cast again';}});},still?0:i*180);});});
+
+  // THE FAELSPIRAN HORNBLOWER (the Kit list, form 10021835). Each sign-up carries where it came from.
+  var KIT_FORM_ID='10021835',f=document.getElementById('signal');
+  f.action='https://app.kit.com/forms/'+KIT_FORM_ID+'/subscriptions';
+  f.addEventListener('submit',function(ev){if(!window.fetch)return;ev.preventDefault();var btn=f.querySelector('button');btn.disabled=true;
+    fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
+      .then(function(r){return r.json();}).then(function(j){if(j&&j.status==='success')f.classList.add('sent');else{btn.disabled=false;f.submit();}})
+      .catch(function(){btn.disabled=false;f.submit();});});
+
+  // PHONE BUY BAR: shown once the hero is gone, hidden while the buy section is on screen.
+  var bar=document.getElementById('buybar'),hero=document.getElementById('top'),buy=document.getElementById('buy'),heroGone=false,buyOn=false;
+  function sync(){var s=heroGone&&!buyOn;bar.classList.toggle('show',s);bar.setAttribute('aria-hidden',s?'false':'true');bar.querySelector('a').tabIndex=s?0:-1;}
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){heroGone=!e[0].isIntersecting;sync();}).observe(hero);
+    new IntersectionObserver(function(e){buyOn=e[0].isIntersecting;sync();}).observe(buy);}
+
+  try{console.log('%cHornblower Press · 41 Ink Street, Lower Commerce, Faelspire','font:italic 15px Georgia;color:#e5bd5c');}catch(e){}
 })();
 </script>
 </body>
