@@ -89,14 +89,14 @@ h2 em,h1 em{color:var(--gold-soft)}
 .proof cite{display:block;font:600 12px/1.6 var(--sans);font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 
 /* ---------- THE SPLIT: one failed Assessment, two realities ---------- */
-.split{padding-block:clamp(56px,8vw,96px) 40px}
-.split header{text-align:center;max-width:720px;margin:0 auto clamp(40px,6vw,64px)}
+.split{overflow-x:clip;padding-block:clamp(56px,8vw,96px) 40px}
+.split header{position:relative;z-index:2;text-align:center;max-width:720px;margin:0 auto clamp(40px,6vw,64px)}
 .split header .epi{font-style:italic;color:#e9e1cc;font-size:clamp(20px,2.6vw,24px);line-height:1.45;margin:0 0 6px}
 .split header cite{display:block;font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-style:normal;margin:0 0 28px}
 .split header .lede{margin-top:18px}
 .split header h2{font-size:clamp(2rem,5vw,3rem)}
 .covers{position:relative;display:flex;justify-content:center;align-items:flex-start;gap:var(--gap,0px)}
-.covers a{position:relative;display:block;width:var(--cw);aspect-ratio:697/1114;overflow:hidden;flex:none;
+.covers a{position:relative;z-index:1;display:block;width:var(--cw);aspect-ratio:697/1114;overflow:hidden;flex:none;
   filter:drop-shadow(0 26px 60px rgba(0,0,0,.6));transition:filter .4s}
 .covers a img{width:200%;max-width:none;height:100%}
 .covers a.c1{border-radius:6px 0 0 6px}
@@ -104,11 +104,11 @@ h2 em,h1 em{color:var(--gold-soft)}
 .covers a.c2 img{margin-left:-100%}
 .covers a:hover{filter:drop-shadow(0 26px 60px rgba(0,0,0,.6)) brightness(1.1)}
 .covers{--cw:min(300px,42vw)}
-.rift{position:absolute;left:50%;top:calc(var(--cw) * 1.598 * .392);width:var(--rd,0px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;opacity:var(--ro,0)}
+.rift{position:absolute;z-index:0;left:50%;top:calc(var(--cw) * 1.598 * .392);width:var(--rd,0px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;opacity:var(--ro,0)}
 .rift .core{position:absolute;inset:-4%;border-radius:50%;background:#000;box-shadow:0 0 12px 4px #000}
 .rift img{position:absolute;left:50%;top:50%;width:calc(100% / .488);max-width:none;height:auto;transform:translate(-50%,-50%)}
 .rift.noart{display:block}.rift.noart .core,.rift.noart img{display:none}
-.books{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);margin-top:clamp(34px,5vw,54px)}
+.books{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);margin-top:clamp(34px,5vw,54px)}
 .book{min-width:0}
 .book .label{margin-bottom:8px}
 .book.b2 .label{color:var(--copper)}
@@ -156,20 +156,21 @@ h2 em,h1 em{color:var(--gold-soft)}
 .first{padding-block:clamp(56px,8vw,96px) 40px}
 .first header{text-align:center;margin-bottom:34px}
 .first header h2{margin-top:8px}
-.sheets{max-width:660px;margin:0 auto;display:grid;gap:clamp(14px,2.5vw,26px)}
-.sheet{position:relative;color:var(--paper-ink);padding:clamp(44px,9vw,84px) clamp(30px,8.5vw,80px) clamp(44px,8vw,76px);font-size:clamp(18px,2.2vw,20px);line-height:1.62;
-  background:var(--paper) url(assets/parchment-1.webp) center/100% 100% no-repeat;border-radius:2px;filter:drop-shadow(0 22px 50px rgba(0,0,0,.6))}
-.sheet.art{background-color:transparent;border-radius:0}
-.sheet.s1{transform:rotate(-.45deg)}.sheet.s2{transform:rotate(.35deg);background-image:url(assets/parchment-2.webp)}
-.sheet.s3{transform:rotate(-.25deg);background-image:url(assets/parchment-3.webp)}.sheet.s4{transform:rotate(.4deg);background-image:url(assets/parchment-4.webp)}
-.sheet.s5{transform:rotate(-.3deg);background-image:url(assets/parchment-5.webp);-webkit-mask-image:linear-gradient(#000 40%,transparent 96%);mask-image:linear-gradient(#000 40%,transparent 96%)}
+.sheets{max-width:620px;margin:0 auto}
+.sheet{position:relative;aspect-ratio:997/1509;max-width:100%;background:url(assets/parchment-sheet.webp) center/100% 100% no-repeat;filter:drop-shadow(0 26px 60px rgba(0,0,0,.6))}
+.sheet .scroll{position:absolute;inset:9% 11.5% 8.5% 11.5%;overflow-y:auto;color:var(--paper-ink);font-size:clamp(16px,2.1vw,19px);line-height:1.6;
+  padding:4px 6px 46% 0;scrollbar-width:thin;scrollbar-color:rgba(122,90,48,.55) transparent;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 5%,#000 62%,transparent 98%);mask-image:linear-gradient(transparent 0,#000 5%,#000 62%,transparent 98%)}
+.sheet .scroll:focus-visible{outline:2px dashed rgba(122,90,48,.6);outline-offset:6px}
+.sheet .scroll::-webkit-scrollbar{width:6px}.sheet .scroll::-webkit-scrollbar-thumb{background:rgba(122,90,48,.5);border-radius:3px}
+.scrollhint{text-align:center;font:italic 18px/1.4 var(--book);color:var(--muted);margin:16px 0 0}
 .sheet .ch{font:600 12px/1.5 var(--sans);letter-spacing:.3em;text-transform:uppercase;text-align:center;color:#7a6a4b}
 .sheet .chtitle{font:italic 400 clamp(1.7rem,4vw,2.2rem)/1.2 var(--book);text-align:center;margin:6px 0 22px}
 .sheet .epi{font-style:italic;font-size:.94em;margin:0 0 24px;text-align:center;color:#4a3f2c}
 .sheet .epi span{display:block;font-style:normal;font-size:.86em;margin-top:6px;color:#7a6a4b}
 .sheet p{margin:0 0 12px}
 .sheet .thought{font-style:italic}
-.sheet .first::first-letter{float:left;font-size:3.4em;line-height:.82;padding:.06em .08em 0 0;color:#5b2f17}
+.sheet .opener::first-letter{float:left;font-size:3.4em;line-height:.82;padding:.06em .08em 0 0;color:#5b2f17}
 .sheet .brk{text-align:center;letter-spacing:.6em;color:#7a6a4b;margin:22px 0}
 .first .after{text-align:center;margin-top:30px}
 .first .after p{font-style:italic;color:var(--gold-soft);margin:0 0 18px;font-size:22px}
@@ -183,7 +184,7 @@ h2 em,h1 em{color:var(--gold-soft)}
 .lead-review blockquote{margin:0;font:italic 400 clamp(1.5rem,3.4vw,2.15rem)/1.3 var(--book);color:#f7f1e2}
 .who{display:block;font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:14px;font-style:normal}
 .stars{color:var(--gold);letter-spacing:.2em;font-size:16px;margin-bottom:10px}
-.rgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(18px,3vw,28px)}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,28px)}
 .rgrid article{min-width:0;padding:24px 0 0;border-top:1px solid var(--line)}
 .rgrid blockquote{margin:0;font-style:italic;font-size:clamp(19px,2.2vw,21px);line-height:1.5;color:#e9e1cc}
 .src-note{text-align:center;font:italic 18px/1.5 var(--book);color:var(--muted);margin:30px 0 0}
@@ -337,7 +338,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
           <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="split-book1-paperback">Paperback · $15.99</a>
           <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="split-book1-kindle">Kindle · $9.99</a>
         </div>
-        <p class="fine">Start here.</p>
+        <p class="fine">Start here, but you don’t have to.</p>
       </article>
       <article class="book b2">
         <p class="label">Book Two · 393 pages</p>
@@ -379,11 +380,12 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       <h2 id="first-h" data-scratch>The first page. <em>See if you can stop.</em></h2>
     </header>
     <div class="sheets" aria-label="The opening of Book One, Chapter I">
-      <article class="sheet s1">
+      <article class="sheet">
+        <div class="scroll" tabindex="0" aria-label="The opening of Chapter I. Scroll to keep reading.">
         <div class="ch">Part I: Softpaw · Chapter I</div>
         <div class="chtitle">The Tail’s End?</div>
         <p class="epi">Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.<span>— H.R. Nimblequick, <i>Paws and Effect</i></span></p>
-        <p class="first"><i>Purrhaps… this is death?</i> The notion struck Sory’n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
+        <p class="opener"><i>Purrhaps… this is death?</i> The notion struck Sory’n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
         <p class="thought">Oh, mercy of Great Leoran! What if this isn’t Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
         <p>Neither heaven nor hell made sense. Wherever she was, she was. At least the thinking part.</p>
         <p class="thought">One. Two. Three.</p>
@@ -404,8 +406,6 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
         <p>She traced the curve of her ears, the familiar shape of her fur-covered muzzle, the contours of her eyes. She opened and closed them. No difference.</p>
         <p>She palpated her furry torso, reached back, and brushed her tail tip. To focus her vision, she positioned a foreleg ahead of her nose.</p>
         <p>She couldn’t see a hairsbreadth in front of her.</p>
-      </article>
-      <article class="sheet s2">
         <p>For all those countless hours spent cultivating her Null State in service of magical obsession, she’d never contemplated not being.</p>
         <p>A wave of sensation crashed over her—parched throat, burning muscles, an ache in every limb. And pain. Sharp, searing pain flared in her right haunch. She pressed a paw to it and pain exploded.</p>
         <p>“Ow!” she yowled. Again, the void devoured the sound.</p>
@@ -423,8 +423,6 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
         <p>Sory’n stretched her forelegs, sweeping them back and forth. Her paws met empty space.</p>
         <p>“That thing in the Ebonwood? We’re inside it, aren’t we?”</p>
         <p>“I don’t know,” she answered, though that was a lie.</p>
-      </article>
-      <article class="sheet s3">
         <p>“Are we... dead?”</p>
         <p>“I don’t think so.”</p>
         <p>“I’m Ulro the Wheelwright. Or... I was.”</p>
@@ -447,8 +445,6 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
         <p>Dread clawed up her throat. She crushed her forepaw pads together.</p>
         <p class="thought">Please, Leoran of All, I am sorry.</p>
         <p class="thought">I will never again attempt to bend the Mewniverse to my will!</p>
-      </article>
-      <article class="sheet s4">
         <p class="thought">Please bring the world back.</p>
         <p class="thought">Please.</p>
         <p class="thought">I’ll do anything.</p>
@@ -461,8 +457,6 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
         <p>She craned to see herself, touching her torso with her white-tipped paws. Her jaw hung open—not in fear, but in the raw, gutting awe of witnessing her world in pieces.</p>
         <p>The explosion settled into a roiling flame, revealing the floor and two walls of a disembodied restaurant kitchen, tumbling end over end, its surfaces kissed by fire that clung without flicker, a slow, dreamlike burn in the void. A stovetop, perhaps water mixing with boiling grease, appeared to be the cause.</p>
         <p>Sory’n paddled her paws, twisting for a better view. In doing so, she executed a clumsy backflip, which revealed the source of the debris field—a dense mass of flotsam hurtling outward at breakneck speed from a single, distant point, like an astral firehose unleashed at full blast.</p>
-      </article>
-      <article class="sheet s5">
         <p>Through its narrow aperture, it disgorged her home world of Nyandor in fragments.</p>
         <p>No doubt remained. She was on the other side of the Event, inside a Voyd of her own creation.</p>
         <p>As the fire waned, the chaotic panorama darkened. Sory’n’s eyes darted across the black expanse, searching for an anchor. A figure materialized, his diamond-checked silk tunic and ruffled collar marking him as a merchant. His ears were pinned, fur bristling, tail curled between his bicycling hindlegs as he grasped for purchase where none existed.</p>
@@ -479,7 +473,9 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
         <p>Then, a disruption. A coarse, tearing rip, as if reality itself were fabric.</p>
         <p>A pinpoint of light follows. Flame blooms against the utter black, clinging to a matchstick. The glow crawls upward, illuminating a tiny, dexterous paw. Its metacarpal pads fold with unnatural flexibility to grasp the slender wood. This paw, with its strange grip, guides the match to the bowl of a white meerschaum pipe, its surface etched with carvings like ancient claw marks.</p>
         <p>The flame bends, drawn to herbs, and a cherry ember pulses to life with a long inhale.</p>
+        </div>
       </article>
+      <p class="scrollhint">Scroll inside the page to keep reading.</p>
     </div>
     <div class="after">
       <p>She is about to find out how she destroyed the world. It takes 375 pages.</p>
@@ -496,32 +492,27 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   <div class="inner">
     <header>
       <p class="label">Readers on Amazon</p>
-      <h2 id="readers-h" data-scratch>“Cat fantasy? <em>Really?”</em></h2>
+      <h2 id="readers-h" data-scratch>From the first readers</h2>
     </header>
     <div class="lead-review">
       <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-      <blockquote>“No winking at the camera, no apologizing for the premise.”</blockquote>
-      <span class="who">J. Loewen · verified purchase · paperback</span>
+      <blockquote>“I honestly didn’t expect The Furbidden Voyd to pull me in the way it did, but once I started, I couldn’t stop. The world feels huge and mysterious, like there’s history behind every shadow.”</blockquote>
+      <span class="who">Matt · verified purchase · paperback</span>
     </div>
     <div class="rgrid">
       <article>
         <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote>“I honestly didn't expect The Furbidden Voyd to pull me in the way it did, but once I started, I couldn't stop. The world feels huge and mysterious, like there's history behind every shadow.”</blockquote>
-        <span class="who">Matt · verified purchase</span>
-      </article>
-      <article>
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote>“This world of cats does not fall back on animal gimmicks or feline tropes. Liking cats will draw some readers in, but is not necessary to appreciate this book.”</blockquote>
-        <span class="who">M. · verified purchase · Kindle</span>
-      </article>
-      <article>
-        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote>“Pages flew by while flying LHR to SEA… Writing is solid, story holds together, and it's a page turner.”</blockquote>
+        <blockquote>“Part III - Pathless Path, was a page burner, moved super fast, pulling all the levers that had been set earlier. I won't spoil the ending ... I was surprised and quite satisfied.”</blockquote>
         <span class="who">Kevin · Amazon review</span>
       </article>
       <article>
         <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-        <blockquote>“This book was an epic adventure! It didn't take me long to finish either! It really begins to heat up towards the final chapters.”</blockquote>
+        <blockquote>“It’s set in an intriguing, highly developed, and richly detailed world.”</blockquote>
+        <span class="who">M. · verified purchase · Kindle</span>
+      </article>
+      <article>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <blockquote>“The ending leaves you craving to know what is next for this cat setting up everything for Book Two. Can't wait!”</blockquote>
         <span class="who">Gregory Stevens · Amazon review</span>
       </article>
     </div>
@@ -577,7 +568,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
     </div>
     <div class="buygrid">
       <div class="buybox">
-        <p class="label">Book One · start here</p>
+        <p class="label">Book One · Start here, but you don’t have to</p>
         <h3>The Furbidden Voyd</h3>
         <p class="spec">375 pages · the reality where she fails</p>
         <div class="btns">
@@ -617,7 +608,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <section class="band faq" aria-labelledby="faq-h">
   <div class="narrow">
     <h2 id="faq-h">Before you begin</h2>
-    <details open><summary>Do I need to like cats?</summary><p>No. One verified reader: “Liking cats will draw some readers in, but is not necessary to appreciate this book.” Another almost didn't pick it up and ended up comparing it to <i>The Golden Compass</i>.</p></details>
+    <details open><summary>Do I need to like cats?</summary><p>No. It’s epic fantasy first: a royal city, a secret police, a Guild that hoards magic. The cast just happens to be cats.</p></details>
     <details><summary>Is it a kids' book?</summary><p>No. It's epic fantasy with an all-cat cast: political marriages, a secret police, Guild-led purges, forbidden magic. It's written for adults. Older teens who like their fantasy serious will be right at home.</p></details>
     <details><summary>Which book first?</summary><p>Start with <i>The Furbidden Voyd</i>. Both books open on the same failed Assessment and then follow different realities, so each one reads on its own. Together they show both sides of the same Voyd.</p></details>
     <details><summary>Paperback or Kindle?</summary><p>Book One is in paperback and on Kindle. Book Two is in paperback.</p></details>
@@ -627,6 +618,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <!-- OTHER DOORS -->
 <section class="band doors" aria-label="Other ways in">
   <p>Already finished a book? <a href="twolegger/">Step through the Gate.</a></p>
+  <p>Want to be inside the story as it’s written? <a href="https://www.patreon.com/cw/TheGateofNyandor" target="_blank" rel="noopener">Join the Clowder on Patreon.</a></p>
   <p>Rather have your fantasy prescribed? <a href="protocol/">The Nyandor Protocol™</a></p>
 </section>
 
@@ -770,11 +762,12 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   // scrolls, they pull apart and the Voyd between them tears open.
   var covers=document.getElementById('covers'),rift=document.getElementById('rift');
   function split(){var r=covers.getBoundingClientRect(),cw=covers.querySelector('a').getBoundingClientRect().width;
-    var p=still?1:Math.max(0,Math.min(1,(innerHeight*.92-r.top)/(innerHeight*.55)));
-    p=p*p*(3-2*p);
-    var room=covers.clientWidth-cw*2,gap=Math.max(0,Math.min(room,cw*.9))*p;
+    // p runs 0 to 1 over a long stretch of scrolling, so the Voyd keeps growing the whole time the books are on screen.
+    var p=still?1:Math.max(0,Math.min(1,(innerHeight*.95-r.top)/(innerHeight*.9)));
+    var e=p*p*(3-2*p);
+    var room=covers.clientWidth-cw*2,gapMax=Math.max(room,cw*.62),gap=gapMax*e;
     covers.style.setProperty('--gap',gap+'px');
-    rift.style.setProperty('--rd',Math.max(gap*.92,cw*.48)+'px');rift.style.setProperty('--ro',Math.min(1,p*2.2));}
+    rift.style.setProperty('--rd',(cw*.48+(gapMax+cw*.75)*e)+'px');rift.style.setProperty('--ro',Math.min(1,p*4));}
   split();addEventListener('scroll',split,{passive:true});addEventListener('resize',split);
 
   // THE DICE. The four that open Book Two. The button fades, the dice tumble onto the table,
@@ -795,10 +788,6 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   cast.addEventListener('click',function(){cast.classList.add('gone');
     setTimeout(function(){cast.parentNode.style.display='none';table.classList.add('on');var landed=0,dice=[].slice.call(table.querySelectorAll('.die'));
       dice.forEach(function(d,i){setTimeout(function(){throwDie(d,i,function(){if(++landed===dice.length)setTimeout(function(){verdict.classList.add('on');},500);});},still?0:i*180);});},still?0:450);});
-  // PARCHMENT. The sheets are Codex paintings (assets/parchment-N.webp). Until they exist, a plain page shows.
-  [].forEach.call(document.querySelectorAll('.sheet'),function(sh){var m=getComputedStyle(sh).backgroundImage.match(/url\("?([^")]+)"?\)/);
-    if(!m)return;var im=new Image();im.onload=function(){sh.classList.add('art');};im.src=m[1];});
-
   // THE FAELSPIRAN HORNBLOWER (the Kit list, form 10021835). Each sign-up carries where it came from.
   var KIT_FORM_ID='10021835',f=document.getElementById('signal');
   f.action='https://app.kit.com/forms/'+KIT_FORM_ID+'/subscriptions';
