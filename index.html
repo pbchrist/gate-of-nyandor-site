@@ -85,7 +85,7 @@ h2 em,h1 em{color:var(--gold-soft)}
 .hero .more{display:block;margin:16px auto 0;font-style:italic;color:var(--muted);text-decoration:none;font-size:19px}
 .hero .more:hover{color:var(--gold-soft)}
 .hero .dek{max-width:36ch;margin:clamp(26px,4vh,40px) auto 0}
-.proof{max-width:34ch;margin:22px auto 0;font-style:italic;color:var(--gold-soft);font-size:clamp(19px,2.3vw,22px);line-height:1.4}
+.proof{max-width:44ch;margin:22px auto 0;font-style:italic;color:var(--gold-soft);font-size:clamp(19px,2.3vw,22px);line-height:1.4}
 .proof cite{display:block;font:600 12px/1.6 var(--sans);font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:6px}
 
 /* ---------- THE SPLIT: one failed Assessment, two realities ---------- */
@@ -94,6 +94,7 @@ h2 em,h1 em{color:var(--gold-soft)}
 .split header .epi{font-style:italic;color:#e9e1cc;font-size:clamp(20px,2.6vw,24px);line-height:1.45;margin:0 0 6px}
 .split header cite{display:block;font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-style:normal;margin:0 0 28px}
 .split header .lede{margin-top:18px}
+.split header h2{font-size:clamp(2rem,5vw,3rem)}
 .covers{position:relative;display:flex;justify-content:center;align-items:flex-start;gap:var(--gap,0px)}
 .covers a{position:relative;display:block;width:var(--cw);aspect-ratio:697/1114;overflow:hidden;flex:none;
   filter:drop-shadow(0 26px 60px rgba(0,0,0,.6));transition:filter .4s}
@@ -103,9 +104,10 @@ h2 em,h1 em{color:var(--gold-soft)}
 .covers a.c2 img{margin-left:-100%}
 .covers a:hover{filter:drop-shadow(0 26px 60px rgba(0,0,0,.6)) brightness(1.1)}
 .covers{--cw:min(300px,42vw)}
-.rift{position:absolute;left:50%;top:calc(var(--cw) * 1.598 * .392);width:var(--rd,0px);aspect-ratio:1;border-radius:50%;transform:translate(-50%,-50%);
-  background:radial-gradient(circle,#000 0 56%,#05070f 64%,rgba(20,30,70,.0) 71%);
-  box-shadow:0 0 40px 10px rgba(175,195,255,.22),inset 0 0 30px rgba(120,140,220,.25);pointer-events:none;animation:breathe 7s ease-in-out infinite}
+.rift{position:absolute;left:50%;top:calc(var(--cw) * 1.598 * .392);width:var(--rd,0px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;opacity:var(--ro,0)}
+.rift .core{position:absolute;inset:-4%;border-radius:50%;background:#000;box-shadow:0 0 12px 4px #000}
+.rift img{position:absolute;left:50%;top:50%;width:calc(100% / .488);max-width:none;height:auto;transform:translate(-50%,-50%)}
+.rift.noart{display:block}.rift.noart .core,.rift.noart img{display:none}
 .books{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);margin-top:clamp(34px,5vw,54px)}
 .book{min-width:0}
 .book .label{margin-bottom:8px}
@@ -117,13 +119,16 @@ h2 em,h1 em{color:var(--gold-soft)}
 .book .btns{margin-top:20px}
 .book .fine{font:italic 18px/1.4 var(--book);color:var(--muted);margin:12px 0 0}
 
-/* ---------- THE DICE: a real passage, at random ---------- */
+/* ---------- THE DICE: the four that open Book Two ---------- */
 .dice{padding-block:clamp(56px,8vw,96px) 40px;text-align:center}
 .dice h2{margin-bottom:14px}
 .dice .lede{max-width:40ch;margin:0 auto}
-.table{display:flex;gap:clamp(14px,4vw,30px);justify-content:center;margin:34px auto 10px;perspective:900px}
+.dice .castrow{display:flex;justify-content:center;margin-top:24px}
+.table{display:none;gap:clamp(14px,4vw,30px);justify-content:center;margin:30px auto 10px;opacity:0;transition:opacity 1s ease;perspective:900px}
+.table.on{display:flex;opacity:1}
 .die{width:clamp(64px,17vw,92px);text-align:center;position:relative}
-.cube{--s:clamp(64px,17vw,92px);position:relative;width:var(--s);height:var(--s);-webkit-transform-style:preserve-3d;transform-style:preserve-3d;margin:0 auto}
+.cube{--s:clamp(64px,17vw,92px);position:relative;width:var(--s);height:var(--s);-webkit-transform-style:preserve-3d;transform-style:preserve-3d;margin:0 auto;visibility:hidden}
+.die.thrown .cube,.die.landed .cube{visibility:visible}
 .face{position:absolute;inset:0;border-radius:16%;display:flex;align-items:center;justify-content:center;-webkit-backface-visibility:hidden;backface-visibility:hidden;
   background:radial-gradient(circle at 30% 26%,#6c7591 0,#3d4560 46%,#222839 100%);
   box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55)}
@@ -136,32 +141,36 @@ h2 em,h1 em{color:var(--gold-soft)}
 .face::after{content:"";position:absolute;inset:0;border-radius:inherit;background:rgba(0,0,0,var(--dim,0));pointer-events:none}
 .face svg{width:66%;height:66%;filter:drop-shadow(0 0 5px rgba(240,190,80,.5))}
 .face .scr{width:46%;height:46%;opacity:.35;filter:none}
-.shadow{position:absolute;left:12%;right:12%;top:calc(var(--s) - 6px);height:12px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(5px)}
-.die small{display:block;margin-top:14px;font:italic clamp(16px,2.2vw,19px)/1.25 var(--book);color:#c9cde0}
-.die.lit .face.f1{box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55),0 0 30px rgba(240,190,80,.55)}
-.die.lit small{color:var(--gold-soft)}
+.shadow{position:absolute;left:12%;right:12%;top:calc(var(--s) - 6px);height:12px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(5px);opacity:0}
+.die.landed .shadow{opacity:1;transition:opacity .4s}
+.die small{display:block;margin-top:14px;font:italic clamp(16px,2.2vw,19px)/1.25 var(--book);color:#c9cde0;opacity:0;transition:opacity .6s ease .2s}
+.die.landed small{opacity:1}
+.landed .face.f1{box-shadow:inset 0 2px 4px rgba(255,255,255,.22),inset 0 -8px 16px rgba(0,0,0,.55),0 0 26px rgba(240,190,80,.28)}
+#cast{transition:opacity .5s ease}
+#cast.gone{opacity:0;pointer-events:none}
+.verdict{font:italic clamp(1.5rem,3.4vw,2rem)/1.2 var(--book);color:var(--gold-soft);margin:26px 0 0;opacity:0;transition:opacity 1.2s ease}
+.verdict.on{opacity:1}
+.verdict cite{display:block;font:600 12px/1.6 var(--sans);font-style:normal;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:8px}
 @media (max-width:540px){.table{flex-wrap:wrap;max-width:300px;gap:22px 34px}.die{width:42%;max-width:120px}.cube{--s:min(30vw,104px)}}
-.passage{max-width:640px;margin:34px auto 0;text-align:left;transition:opacity .5s ease}
-.passage.fading{opacity:.15}
-.passage blockquote{margin:0;padding:0 0 0 22px;border-left:2px solid var(--line)}
-.passage blockquote p{margin:0 0 14px;font-size:clamp(20px,2.5vw,23px);line-height:1.55;color:#efe8d6}
-.passage .src{font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin:16px 0 0 24px}
-.passage .btns{margin:26px 0 0 24px}
-
 /* ---------- FIRST PAGE: a printed page lit in the dark ---------- */
 .first{padding-block:clamp(56px,8vw,96px) 40px}
 .first header{text-align:center;margin-bottom:34px}
 .first header h2{margin-top:8px}
-.page{max-width:620px;margin:0 auto;background:var(--paper);color:var(--paper-ink);padding:clamp(28px,6vw,58px) clamp(22px,6vw,62px);
-  border-radius:2px;box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04);font-size:clamp(18px,2.2vw,20px);line-height:1.62;
-  position:relative;overflow:hidden}
-.page .ch{font:600 12px/1.5 var(--sans);letter-spacing:.3em;text-transform:uppercase;text-align:center;color:#7a6a4b}
-.page .chtitle{font:italic 400 clamp(1.7rem,4vw,2.2rem)/1.2 var(--book);text-align:center;margin:6px 0 22px}
-.page .epi{font-style:italic;font-size:.94em;margin:0 0 24px;text-align:center;color:#4a3f2c}
-.page .epi span{display:block;font-style:normal;font-size:.86em;margin-top:6px;color:#7a6a4b}
-.page p{margin:0 0 12px}
-.page .thought{font-style:italic}
-.page::after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;background:linear-gradient(rgba(239,231,210,0),var(--paper))}
+.sheets{max-width:660px;margin:0 auto;display:grid;gap:clamp(14px,2.5vw,26px)}
+.sheet{position:relative;color:var(--paper-ink);padding:clamp(44px,9vw,84px) clamp(30px,8.5vw,80px) clamp(44px,8vw,76px);font-size:clamp(18px,2.2vw,20px);line-height:1.62;
+  background:var(--paper) url(assets/parchment-1.webp) center/100% 100% no-repeat;border-radius:2px;filter:drop-shadow(0 22px 50px rgba(0,0,0,.6))}
+.sheet.art{background-color:transparent;border-radius:0}
+.sheet.s1{transform:rotate(-.45deg)}.sheet.s2{transform:rotate(.35deg);background-image:url(assets/parchment-2.webp)}
+.sheet.s3{transform:rotate(-.25deg);background-image:url(assets/parchment-3.webp)}.sheet.s4{transform:rotate(.4deg);background-image:url(assets/parchment-4.webp)}
+.sheet.s5{transform:rotate(-.3deg);background-image:url(assets/parchment-5.webp);-webkit-mask-image:linear-gradient(#000 40%,transparent 96%);mask-image:linear-gradient(#000 40%,transparent 96%)}
+.sheet .ch{font:600 12px/1.5 var(--sans);letter-spacing:.3em;text-transform:uppercase;text-align:center;color:#7a6a4b}
+.sheet .chtitle{font:italic 400 clamp(1.7rem,4vw,2.2rem)/1.2 var(--book);text-align:center;margin:6px 0 22px}
+.sheet .epi{font-style:italic;font-size:.94em;margin:0 0 24px;text-align:center;color:#4a3f2c}
+.sheet .epi span{display:block;font-style:normal;font-size:.86em;margin-top:6px;color:#7a6a4b}
+.sheet p{margin:0 0 12px}
+.sheet .thought{font-style:italic}
+.sheet .first::first-letter{float:left;font-size:3.4em;line-height:.82;padding:.06em .08em 0 0;color:#5b2f17}
+.sheet .brk{text-align:center;letter-spacing:.6em;color:#7a6a4b;margin:22px 0}
 .first .after{text-align:center;margin-top:30px}
 .first .after p{font-style:italic;color:var(--gold-soft);margin:0 0 18px;font-size:22px}
 .first .after .btns{justify-content:center}
@@ -259,7 +268,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   .hero .btns .btn{flex:1 1 150px}
 }
 @media (min-width:761px){.buybar{display:none}}
-@media (prefers-reduced-motion:reduce){.voyd,.rift{animation:none}html{scroll-behavior:auto}.passage,.buybar{transition:none}}
+@media (prefers-reduced-motion:reduce){.voyd,.rift{animation:none}html{scroll-behavior:auto}.buybar,.table,.verdict,#cast{transition:none}}
 </style>
 </head>
 <body>
@@ -296,17 +305,15 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   </div>
   <a class="more" href="#split">Two books, two realities. See both ↓</a>
   <p class="lede dek">A royal city, a secret police, a Magical Guild that hoards power, and a forbidden gate into every choice ever made. Epic fantasy for adults, with an all-cat cast.</p>
-  <blockquote class="proof">“No winking at the camera, no apologizing for the premise.”<cite>J. Loewen · verified Amazon review</cite></blockquote>
+  <blockquote class="proof">“This is not cute cat adventure time. This is legitimate epic fantasy a la Golden Compass that stars anthropomorphic felines, and Christell commits to it completely.”<cite>J. Loewen · verified Amazon review · paperback</cite></blockquote>
 </header>
 
 <!-- THE SPLIT -->
 <section class="band split" id="split" aria-labelledby="split-h">
   <div class="inner">
     <header>
-      <p class="epi">“Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.”</p>
-      <cite>H.R. Nimblequick, <i>Paws and Effect</i> · the epigraph of Book One</cite>
-      <h2 id="split-h" data-scratch>One failed Assessment. <em>Two realities.</em></h2>
-      <p class="lede">Both books open on the same morning. Sory'n of Tol, heir to Nyandor's most legendary magical bloodline, fails the test that decides her whole life in front of everyone who matters. Then the Voyd splits the world in two.</p>
+      <h2 id="split-h" data-scratch>Two books. Two timestreams. <em>One Voyd.</em></h2>
+      <p class="lede">Both books open in the Voyd, after the Mewniverse is already gone. Then the Creator of All Tales tells you how it happened. In one telling, Sory'n fails her Assessment and lives with it. In the other, she rewrites the failure.</p>
     </header>
 
     <div class="covers" id="covers">
@@ -316,7 +323,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       <a class="c2" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-cover-book2" aria-label="The Divergent Path on Amazon">
         <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 84vw, 600px" width="1395" height="1114" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the other half of the portal" loading="lazy" />
       </a>
-      <div class="rift" id="rift" data-voyd aria-hidden="true"></div>
+      <div class="rift" id="rift" data-voyd aria-hidden="true"><div class="core"></div><img src="assets/voyd-rift.webp" alt="" onerror="this.parentNode.classList.add('noart')" /></div>
     </div>
 
     <div class="books">
@@ -350,23 +357,17 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <!-- THE DICE -->
 <section class="band dice" id="dice" aria-labelledby="dice-h">
   <div class="inner">
-    <p class="label">The Creator of All Tales</p>
-    <h2 id="dice-h" data-scratch style="margin-top:8px">Cast his four dice.</h2>
-    <p class="lede">Every telling of this tale begins with four carved dice on a stone table. Cast them and the books fall open somewhere. Every passage is the real text, exactly as printed.</p>
-    <div class="table" id="table" aria-hidden="true">
-      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V3.5l3.6 3.2h4.8L18 3.5V11c0 3 .4 6 .9 9.5l-2.2-1.6-1.9 2.1-2.8-2-2.8 2-1.9-2.1-2.2 1.6C5.6 17 6 14 6 11z"/><path d="M9 11.2c.6-.5 1.4-.5 2 0M13 11.2c.6-.5 1.4-.5 2 0"/><path d="M11.4 13.6l.6.5.6-.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a feline ghost</small></div>
-      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-8.5"/><path d="M12 13.5C12 9 8 7.5 6 3.5M12 13.5c0-4.5 4-6 6-10"/><path d="M3.8 5l2.2-1.5 1.3 2.4M16.7 5.9L18 3.5l2.2 1.5"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a forked path</small></div>
-      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16.8 5.4A7.5 7.5 0 1 0 19.5 12"/><path d="M15.2 3.6c1.8-.6 3.6.3 4.3 2 .5 1.3.2 2.6-.6 3.6l-2.5-1.3"/><circle cx="17.4" cy="5.4" r=".55" fill="#efc767"/><path d="M19.5 12l-1.6-1.3M19.5 12l1.2-1.6"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>an ouroboros</small></div>
-      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"><path d="M7.5 13.5V6a1.3 1.3 0 0 1 2.6 0v5.5"/><path d="M10.1 11.5V4.2a1.3 1.3 0 0 1 2.6 0v7.3"/><path d="M12.7 11.5V5a1.3 1.3 0 0 1 2.6 0v7"/><path d="M15.3 12V7.4a1.3 1.3 0 0 1 2.6 0V14c0 4.3-2.7 7.5-6.6 7.5-2.7 0-4.3-1.4-5.6-3.5l-2.4-4a1.4 1.4 0 0 1 2.3-1.6l1.7 2"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a human hand</small></div>
+    <p class="label">Book Two · Chapter i</p>
+    <h2 id="dice-h" data-scratch style="margin-top:8px">Cast the dice.</h2>
+    <p class="lede">Book Two opens in the dark. The Creator of All Tales shakes a black leather cup and spills four carved dice across a stone table.</p>
+    <div class="castrow"><button class="btn" id="cast" type="button">Cast the dice</button></div>
+    <div class="table" id="table" aria-label="Four carved dice">
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20.5C6.3 19.7 3.6 16 3.9 11.6c.1-1.8.6-3.4 1.5-4.8"/><path d="M13.5 20.5c4.2-.8 6.9-4.5 6.6-8.9-.1-1.8-.6-3.4-1.5-4.8"/><path d="M5.6 17.6c-1.7.3-3-.3-3.6-1.5 1.4-.6 2.8-.4 3.6 1.5zM4.2 13.4c-1.5-.6-2.2-1.8-2-3.2 1.4.1 2.4.9 2 3.2zM4.6 9.2c-1.2-1-1.4-2.4-.9-3.6 1.3.5 1.8 1.7.9 3.6zM8.3 20.2c-1.5.9-2.9.8-3.9-.1 1.1-1 2.5-1.1 3.9.1z" fill="#efc767" fill-opacity=".25"/><path d="M18.4 17.6c1.7.3 3-.3 3.6-1.5-1.4-.6-2.8-.4-3.6 1.5zM19.8 13.4c1.5-.6 2.2-1.8 2-3.2-1.4.1-2.4.9-2 3.2zM19.4 9.2c1.2-1 1.4-2.4.9-3.6-1.3.5-1.8 1.7-.9 3.6zM15.7 20.2c1.5.9 2.9.8 3.9-.1-1.1-1-2.5-1.1-3.9.1z" fill="#efc767" fill-opacity=".25"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a laurel wreath</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3l1.7 2.4V15h-3.4V4.7z"/><path d="M12 5.2v8.6"/><path d="M7.2 15h9.6"/><path d="M12 15v4.6"/><circle cx="12" cy="20.9" r="1"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a double-edged blade</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.45" stroke-linecap="round" stroke-linejoin="round"><path d="M3.8 13.4V6.8l2.6 2.1h3.4l2.6-2.1v6.6c0 2.8-1.9 4.7-4.3 4.7s-4.3-1.9-4.3-4.7z"/><path d="M6.4 12.2c.5-.4 1.1-.4 1.6 0M9.3 12.2c.5-.4 1.1-.4 1.6 0"/><path d="M3.8 13.4V6.8l2.6 2.1h3.4l2.6-2.1v6.6c0 2.8-1.9 4.7-4.3 4.7s-4.3-1.9-4.3-4.7z" transform="matrix(-1 0 -.28 .86 26.6 2.6)" fill="#efc767" fill-opacity=".28" stroke-opacity=".45" stroke-dasharray="1.6 1.4"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a feline head, and its cast shadow</small></div>
+      <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7.6 21V8.6h8.8V21"/><path d="M6.8 8.6V5.2h2v1.6h1.9V5.2h2.6v1.6h1.9V5.2h2v3.4z"/><path d="M10.7 21v-2.9a1.3 1.3 0 0 1 2.6 0V21"/><path d="M12.6 6.8l-1.5 3.1 1.9 2.1-1.7 3.2 1.1 1.6"/><path d="M5.5 21h13"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a cracked tower</small></div>
     </div>
-    <div class="btns" style="justify-content:center;margin-top:22px"><button class="btn" id="cast" type="button">Cast the dice</button></div>
-    <div class="passage" id="passage" aria-live="polite">
-      <blockquote id="ptext">
-        <p>Sory’n’s nose twitched. The hallowed ground smelled of ozone and fear, every Initiate’s nervous sweat mixing with the sharp, mineral tang that clung to the purple giants. This was the scent of three-and-a-half thousand years of Assessments, of every Initiate who’d ever stood here, hoping.</p>
-      </blockquote>
-      <p class="src" id="psrc">The Furbidden Voyd · Chapter iii, The Proving Ground</p>
-      <div class="btns"><a class="btn ghost" id="pbuy" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="dice-book1">Keep reading · Book One</a></div>
-    </div>
+    <p class="verdict" id="verdict" aria-live="polite">“A tangled path.”<cite>The Creator of All Tales · The Divergent Path</cite></p>
   </div>
 </section>
 
@@ -374,25 +375,112 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <section class="band first" aria-labelledby="first-h">
   <div class="inner">
     <header>
-      <p class="label">Book One · page one</p>
+      <p class="label">Book One · Chapter I</p>
       <h2 id="first-h" data-scratch>The first page. <em>See if you can stop.</em></h2>
     </header>
-    <article class="page">
-      <div class="ch">Part I: Softpaw · Chapter I</div>
-      <div class="chtitle">The Tail's End?</div>
-      <p class="epi">Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.<span>— H.R. Nimblequick, <i>Paws and Effect</i></span></p>
-      <p>Purrhaps… this is death? The notion struck Sory'n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
-      <p class="thought">Oh, mercy of Great Leoran! What if this isn't Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
-      <p>Neither heaven nor hell made sense. Wherever she was, she was. At least the thinking part.</p>
-      <p class="thought">One. Two. Three.</p>
-      <p class="thought">I am Sory'n of Tol, and I am a cat.</p>
-      <p class="thought">An insecure, selfish, stupid cat.</p>
-      <p class="thought">But am I dead?</p>
-      <p>She vocalized. “Mrow.”</p>
-      <p>The sound left her mouth, but no echo, no resonance followed. The void swallowed it up.</p>
-      <p>Again, with more force. “Meowwwrrr!”</p>
-      <p>Terror followed, and in its wake, desperation. A yearning for deliverance, even if it meant actual death.</p>
-    </article>
+    <div class="sheets" aria-label="The opening of Book One, Chapter I">
+      <article class="sheet s1">
+        <div class="ch">Part I: Softpaw · Chapter I</div>
+        <div class="chtitle">The Tail’s End?</div>
+        <p class="epi">Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.<span>— H.R. Nimblequick, <i>Paws and Effect</i></span></p>
+        <p class="first"><i>Purrhaps… this is death?</i> The notion struck Sory’n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
+        <p class="thought">Oh, mercy of Great Leoran! What if this isn’t Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
+        <p>Neither heaven nor hell made sense. Wherever she was, she was. At least the thinking part.</p>
+        <p class="thought">One. Two. Three.</p>
+        <p class="thought">I am Sory’n of Tol, and I am a cat.</p>
+        <p class="thought">An insecure, selfish, stupid cat.</p>
+        <p class="thought">But am I dead?</p>
+        <p class="thought">Perhaps. Perhaps not. Maybe I’m alive but reduced to a point of awareness. Like a Null State.</p>
+        <p>She vocalized. “Mrow.”</p>
+        <p>The sound left her mouth, but no echo, no resonance followed. The void swallowed it up.</p>
+        <p>Again, with more force. “Meowwwrrr!”</p>
+        <p>Terror followed, and in its wake, desperation. A yearning for deliverance, even if it meant actual death.</p>
+        <p>Were her eyes open or closed? She couldn’t tell.</p>
+        <p>She inhaled. Her olfactory senses, keener than most Nyandorian felines, detected no scent.</p>
+        <p class="thought">Paws.</p>
+        <p>She pressed her forepaw pads to her head.</p>
+        <p class="thought">I have paws!</p>
+        <p class="thought">Paws and claws.</p>
+        <p>She traced the curve of her ears, the familiar shape of her fur-covered muzzle, the contours of her eyes. She opened and closed them. No difference.</p>
+        <p>She palpated her furry torso, reached back, and brushed her tail tip. To focus her vision, she positioned a foreleg ahead of her nose.</p>
+        <p>She couldn’t see a hairsbreadth in front of her.</p>
+      </article>
+      <article class="sheet s2">
+        <p>For all those countless hours spent cultivating her Null State in service of magical obsession, she’d never contemplated not being.</p>
+        <p>A wave of sensation crashed over her—parched throat, burning muscles, an ache in every limb. And pain. Sharp, searing pain flared in her right haunch. She pressed a paw to it and pain exploded.</p>
+        <p>“Ow!” she yowled. Again, the void devoured the sound.</p>
+        <p>She pressed the spot again, easing her paw against it. Her pad came away wet. She licked it. Heat and iron burst across her tongue.</p>
+        <p class="thought">Blood.</p>
+        <p>Relief surged through. She was alive in a tangible way. Gratitude bloomed in her chest.</p>
+        <p>Yet her whiskers detected nothing. She wriggled her forelegs and hindlegs. No resistance. Was she falling? Floating? She wasn’t dizzy. No wind in her coat, no tilt of motion. Nothing like the brutal rush before she broke through the Event at arrow speed.</p>
+        <p><i>If I’m alive, where is everyone else? My family? My friends? Mother Ertree? Uncle P’taxx? Are they all out here too, suspended in this cruel black nightmare?</i></p>
+        <p>Shallow, fitful breaths cut through the darkness. <i>Is that me?</i> She held her breath and the sound continued.</p>
+        <p class="thought">No. Someone else...</p>
+        <p>“Hello?” she called, her voice uncertain against the void.</p>
+        <p>“Hello!” answered a male cat, his voice tight with terror. He smelled of Ashai wood shavings, sardines, tomato sauce, and fear.</p>
+        <p>“I’m here!” Sory’n yelled.</p>
+        <p>“Where is here!? It’s so dark!”</p>
+        <p>Sory’n stretched her forelegs, sweeping them back and forth. Her paws met empty space.</p>
+        <p>“That thing in the Ebonwood? We’re inside it, aren’t we?”</p>
+        <p>“I don’t know,” she answered, though that was a lie.</p>
+      </article>
+      <article class="sheet s3">
+        <p>“Are we... dead?”</p>
+        <p>“I don’t think so.”</p>
+        <p>“I’m Ulro the Wheelwright. Or... I was.”</p>
+        <p>“I’m Sory’n.”</p>
+        <p>“Sory’n… of Tol? The Archmage’s daughter?” His voice sharpened. “I read about you in the Hornblower! You’re mixed up in this portal business along with your father!”</p>
+        <p>A flare of guilt ignited inside Sory’n. “I’m sorry!”</p>
+        <p>“So-called magicians!” he snarled. “Destroyed the world twice, you did!”</p>
+        <p>“I don’t know what you want me to say!”</p>
+        <p>“It said in the article you lot were messing about with Voyd portals since the First Era!”</p>
+        <p>Sory’n didn’t answer.</p>
+        <p>“My kittens. I don’t know where they are now!”</p>
+        <p>“I lost my family too,” Sory’n whispered.</p>
+        <p>“A’dora! Trysa!” the voice screamed. “Where are you!?” His scream trailed off. He’d floated away.</p>
+        <p>Sory’n screamed into the emptiness. “You’ll find them!”</p>
+        <p>Silence answered.</p>
+        <p>With no reference points, time stretched and compressed like magical energy in the moments before a conjuration.</p>
+        <p class="thought">Conjuration! I’ll summon Ember!</p>
+        <p>Sory’n aligned her forepaws in the sacred pawsitions for standard fire conjuration and drew them together, then apart.</p>
+        <p>She focused beyond the motions, searching her heart for the warmth of gratitude that had first called her fire panther familiar into being. But there was only the cold knot of fear, the emptiness of the Voyd mirroring the hollow within her chest. She tried to force it, picturing Ember’s fiery form, her comforting heat. The image felt empty, disconnected. The feeling wouldn’t come. Without gratitude, there could be no Ember.</p>
+        <p>Dread clawed up her throat. She crushed her forepaw pads together.</p>
+        <p class="thought">Please, Leoran of All, I am sorry.</p>
+        <p class="thought">I will never again attempt to bend the Mewniverse to my will!</p>
+      </article>
+      <article class="sheet s4">
+        <p class="thought">Please bring the world back.</p>
+        <p class="thought">Please.</p>
+        <p class="thought">I’ll do anything.</p>
+        <p class="thought">With everything I am, I beg you.</p>
+        <p>Silence stretched, thick and eternal. Then, light.</p>
+        <p>A silent explosion ignited the void, casting a stark glow over a vast debris field. Shattered remnants of her world drifted, weightless, illuminated in the ruinous brilliance of Leoran’s answer.</p>
+        <p>Coins, half of a framed painting, clusters of bricks, corners of structures, palanquin parts, wagon wheels, snaking rivulets of water, uprooted trees, and cats of all stripes floated in eerie suspension, cast adrift…</p>
+        <p>The terrified cats either probed their bodies as Sory’n did or twisted to take in their surroundings, now realizing they weren’t alone. Most wore the upmarket silken garb of the Faelspiran gentry; flowing dresses or patterned tunics cinched with wide, ornamental belts. Their mouths stretched in panicked yowls, yet no sound reached Sory’n.</p>
+        <p>The diminishing explosion reflected in her wide eyes, highlighting the mocha swirls against her brown face, her white muzzle, and her twitching ears and whiskers.</p>
+        <p>She craned to see herself, touching her torso with her white-tipped paws. Her jaw hung open—not in fear, but in the raw, gutting awe of witnessing her world in pieces.</p>
+        <p>The explosion settled into a roiling flame, revealing the floor and two walls of a disembodied restaurant kitchen, tumbling end over end, its surfaces kissed by fire that clung without flicker, a slow, dreamlike burn in the void. A stovetop, perhaps water mixing with boiling grease, appeared to be the cause.</p>
+        <p>Sory’n paddled her paws, twisting for a better view. In doing so, she executed a clumsy backflip, which revealed the source of the debris field—a dense mass of flotsam hurtling outward at breakneck speed from a single, distant point, like an astral firehose unleashed at full blast.</p>
+      </article>
+      <article class="sheet s5">
+        <p>Through its narrow aperture, it disgorged her home world of Nyandor in fragments.</p>
+        <p>No doubt remained. She was on the other side of the Event, inside a Voyd of her own creation.</p>
+        <p>As the fire waned, the chaotic panorama darkened. Sory’n’s eyes darted across the black expanse, searching for an anchor. A figure materialized, his diamond-checked silk tunic and ruffled collar marking him as a merchant. His ears were pinned, fur bristling, tail curled between his bicycling hindlegs as he grasped for purchase where none existed.</p>
+        <p>At the sight of Sory’n, he reached out.</p>
+        <p>She did the same.</p>
+        <p>Their claw tips brushed for a moment before he tumbled away.</p>
+        <p>Sory’n once again found herself in darkness.</p>
+        <p>“Hello!?” she yowled. “Is anyone there!?”</p>
+        <p>A final yowl tore from her, thinning to a thread as she tumbled away, swallowed by the Voyd.</p>
+        <p>Nothing but darkness remained.</p>
+        <p>Darkness, and deafening silence...</p>
+        <p class="brk" aria-hidden="true">· · ·</p>
+        <p>Time, or what passes for it in this emptiness, stretches and frays. An hour? An age entire?</p>
+        <p>Then, a disruption. A coarse, tearing rip, as if reality itself were fabric.</p>
+        <p>A pinpoint of light follows. Flame blooms against the utter black, clinging to a matchstick. The glow crawls upward, illuminating a tiny, dexterous paw. Its metacarpal pads fold with unnatural flexibility to grasp the slender wood. This paw, with its strange grip, guides the match to the bowl of a white meerschaum pipe, its surface etched with carvings like ancient claw marks.</p>
+        <p>The flame bends, drawn to herbs, and a cherry ember pulses to life with a long inhale.</p>
+      </article>
+    </div>
     <div class="after">
       <p>She is about to find out how she destroyed the world. It takes 375 pages.</p>
       <div class="btns">
@@ -412,7 +500,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
     </header>
     <div class="lead-review">
       <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-      <blockquote>“This is not cute cat adventure time. This is legitimate epic fantasy a la Golden Compass that stars anthropomorphic felines, and Christell commits to it completely.”</blockquote>
+      <blockquote>“No winking at the camera, no apologizing for the premise.”</blockquote>
       <span class="who">J. Loewen · verified purchase · paperback</span>
     </div>
     <div class="rgrid">
@@ -686,33 +774,14 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
     p=p*p*(3-2*p);
     var room=covers.clientWidth-cw*2,gap=Math.max(0,Math.min(room,cw*.9))*p;
     covers.style.setProperty('--gap',gap+'px');
-    rift.style.setProperty('--rd',Math.max(gap*.92,cw*.48*(1-p))+'px');}
+    rift.style.setProperty('--rd',Math.max(gap*.92,cw*.48)+'px');rift.style.setProperty('--ro',Math.min(1,p*2.2));}
   split();addEventListener('scroll',split,{passive:true});addEventListener('resize',split);
 
-  // THE DICE. Four carved dice; one lights, and the books fall open on a real passage.
-  var P=[
-    {b:1,src:'The Furbidden Voyd · Chapter iii, The Proving Ground',t:['Sory’n’s nose twitched. The hallowed ground smelled of ozone and fear, every Initiate’s nervous sweat mixing with the sharp, mineral tang that clung to the purple giants. This was the scent of three-and-a-half thousand years of Assessments, of every Initiate who’d ever stood here, hoping.']},
-    {b:1,src:'The Furbidden Voyd · Chapter iii, The Proving Ground',t:['With a sweep of her paw, the Nyand rose. Roots, dirt, and rock broke free from the ground, rising in a swirling vortex, shaped between her paws. An orb of jagged rock and swirling dust began to form, alive and shifting with her intent.','I’m doing it! The thought ricocheted through the silence. A jolt of excitement threatened to break her focus. She fought it back, her breath the only anchor.']},
-    {b:1,src:'The Furbidden Voyd · Chapter iii, The Proving Ground',t:['Within the Construct, Sory’n tumbled, flung one way and then the other as the volatile wind energy spun her out of control. She yowled. A sharp pop echoed through the Construct, the cushion of air beneath her gave way, and she plunged down, down, down… breaking the cloud cover with a muffled foomp.']},
-    {b:1,src:'The Furbidden Voyd · The Unified Vulgate, Instructions for Assessment',t:['The Assessment does not test how an Initiate will perform. It tests where an Initiate will break. The pressure is the point.']},
-    {b:1,src:'The Furbidden Voyd · the Creator of All Tales',t:['“An epic tale is a portal powerful enough to carve the path of hisstory itself. Tales like these can raise empires or bring them to ruin.”']},
-    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['This is the blackness before the first star, the vast, unbreathing quiet that existed before light was even a word to be forgotten. It held the potential to birth a Mewniverse but had no impulse to create. Once, perhaps, it dreamed of light—a fleeting, internal glimmer that was a template for something greater.']},
-    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['He pulls his paw back. The dice rattle against the stone, unbidden. “But the dice are trembling. Do you see?”','His voice drops, losing its storyteller’s lilt, becoming something old and afraid.']},
-    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['Below her, Faelspire sprawled, a sleeping beast. Its districts fell away in tiers through the haze, spreading toward the endless swell of the Forest Primeval.','The city was dirty. Chaotic. So vast that somewhere among its roofs and alleys, a cat could disappear. Her uncle had.']},
-    {b:2,src:'The Divergent Path · Chapter i, O City of Discarded Things',t:['P’taxx was a fluffy grey longhair with a kind face and thoughtful eyes, the only Tol who ever smiled without a reason. She used to nuzzle up between his massive forepaws while he spun wild, impossible tales. He claimed the stars were really holes in the sky where Leoran’s light leaked through.']}
-  ];
-  var BUY={1:{href:'https://www.amazon.com/dp/B0G5Z7HNQK',label:'Keep reading · Book One',cta:'dice-book1'},2:{href:'https://www.amazon.com/dp/B0GDM8QB5H',label:'Keep reading · Book Two',cta:'dice-book2'}};
-  var bag=[],cur=0,dice=[].slice.call(document.querySelectorAll('.die')),cast=document.getElementById('cast'),
-      passage=document.getElementById('passage'),ptext=document.getElementById('ptext'),psrc=document.getElementById('psrc'),pbuy=document.getElementById('pbuy');
-  function draw(){if(!bag.length){bag=P.map(function(_,i){return i;}).filter(function(i){return i!==cur;});
-      for(var i=bag.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=bag[i];bag[i]=bag[j];bag[j]=t;}}
-    return bag.pop();}
-  function show(i){var p=P[i];cur=i;
-    ptext.innerHTML=p.t.map(function(s){return '<p>'+s+'</p>';}).join('');
-    psrc.textContent=p.src;pbuy.href=BUY[p.b].href;pbuy.textContent=BUY[p.b].label;pbuy.setAttribute('data-cta',BUY[p.b].cta);
-    passage.classList.remove('fading');}
-  function throwDie(d,i,done){var cube=d.querySelector('.cube');
-    if(still||!cube.animate){done&&done();return;}
+  // THE DICE. The four that open Book Two. The button fades, the dice tumble onto the table,
+  // and C.A.T. reads them: "A tangled path."
+  var table=document.getElementById('table'),cast=document.getElementById('cast'),verdict=document.getElementById('verdict');
+  function throwDie(d,i,done){var cube=d.querySelector('.cube');d.classList.add('thrown');
+    if(still||!cube.animate){d.classList.add('landed');done&&done();return;}
     var rx=(2+Math.floor(Math.random()*2))*360,ry=(1+Math.floor(Math.random()*2))*360*(Math.random()<.5?-1:1),rz=(Math.random()-.5)*60;
     var fx=(Math.random()-.5)*160;
     cube.animate([
@@ -722,12 +791,13 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       {transform:'translate3d(0,0,0) rotateX(-8deg) rotateY(6deg)',offset:.88},
       {transform:'translate3d(0,-6px,0) rotateX(3deg) rotateY(-2deg)',offset:.94},
       {transform:'none',offset:1}],
-      {duration:1500+i*120,easing:'cubic-bezier(.25,.7,.35,1)',fill:'both'}).onfinish=function(){done&&done();};}
-  cast.addEventListener('click',function(){cast.disabled=true;passage.classList.add('fading');
-    dice.forEach(function(d){d.classList.remove('lit');});
-    var next=draw(),landed=0;
-    dice.forEach(function(d,i){setTimeout(function(){throwDie(d,i,function(){if(++landed===dice.length){
-      dice[Math.floor(Math.random()*dice.length)].classList.add('lit');show(next);cast.disabled=false;cast.textContent='Cast again';}});},still?0:i*180);});});
+      {duration:1500+i*120,easing:'cubic-bezier(.25,.7,.35,1)',fill:'both'}).onfinish=function(){d.classList.add('landed');done&&done();};}
+  cast.addEventListener('click',function(){cast.classList.add('gone');
+    setTimeout(function(){cast.parentNode.style.display='none';table.classList.add('on');var landed=0,dice=[].slice.call(table.querySelectorAll('.die'));
+      dice.forEach(function(d,i){setTimeout(function(){throwDie(d,i,function(){if(++landed===dice.length)setTimeout(function(){verdict.classList.add('on');},500);});},still?0:i*180);});},still?0:450);});
+  // PARCHMENT. The sheets are Codex paintings (assets/parchment-N.webp). Until they exist, a plain page shows.
+  [].forEach.call(document.querySelectorAll('.sheet'),function(sh){var m=getComputedStyle(sh).backgroundImage.match(/url\("?([^")]+)"?\)/);
+    if(!m)return;var im=new Image();im.onload=function(){sh.classList.add('art');};im.src=m[1];});
 
   // THE FAELSPIRAN HORNBLOWER (the Kit list, form 10021835). Each sign-up carries where it came from.
   var KIT_FORM_ID='10021835',f=document.getElementById('signal');
