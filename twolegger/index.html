@@ -20,12 +20,14 @@
 <meta name="description" content="A message from the Creator of All Tales. Two timestreams. One Voyd." />
 <meta name="robots" content="noindex" />
 <meta name="theme-color" content="#050918" />
+<link rel="preload" href="../assets/first-era.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
 <link rel="preload" href="../assets/voyd-pair-1395.webp" as="image" />
 <style>
 @font-face{font-family:"Anton";src:url(../assets/fonts/anton.woff2) format("woff2");font-display:swap}
 @font-face{font-family:"EB Garamond";src:url(../assets/fonts/ebgaramond.woff2) format("woff2");font-weight:400 800;font-display:swap}
 @font-face{font-family:"EB Garamond";src:url(../assets/fonts/ebgaramond-italic.woff2) format("woff2");font-weight:400 800;font-style:italic;font-display:swap}
+@font-face{font-family:"Nyandor First Era";src:url(../assets/first-era.woff2) format("woff2");font-display:block}
 :root{
   --night:#050918;--night2:#0b1536;--deep:#142a63;
   --text:#ece6d6;--muted:#a3abc6;--gold:#e5bd5c;--gold-soft:#f3dca0;--copper:#d98a5f;
@@ -92,6 +94,8 @@ h1{font:400 clamp(1.9rem,5.6vw,3.1rem)/1.1 var(--book);margin:0 auto 6px;color:#
 h1 em{color:var(--gold-soft)}
 .ask{font-style:italic;color:var(--muted);font-size:clamp(19px,2.6vw,23px);margin:0 0 clamp(22px,4vw,36px)}
 [data-scratch] .s{color:var(--gold);opacity:.75}
+.gh{visibility:hidden}
+.s.fe{font-family:"Nyandor First Era",var(--book);font-style:normal}
 
 /* The two covers meeting at the Voyd. Each half is one timestream. */
 .portal{position:relative;width:min(100%,760px);margin:0 auto;aspect-ratio:1395/1114;
@@ -430,16 +434,32 @@ footer a{color:#8f97b3}
   // CLAW-SCRATCH WRITING. Words arrive as scratch marks, then settle into letters,
   // the way cats first learned to write: by scratching messages into trees and stones.
   var marks='/\\|‖ı⁄/\\|';
+  // The First Era script: letters, numerals and a little punctuation have claws; anything else scratches as a plain mark.
+  var FE=/[A-Za-z0-9.,\/!?:\-]/;
+  // How unsettled letters look while they scratch in:
+  //   'flicker' = a different random First Era claw every frame (the Matrix feel; the original dashes, in claws)
+  //   'line'    = each letter's own claw, so the whole line reads in First Era first (2026-10-19 version)
+  //   'type'    = typed out left to right, a little faster than a typewriter (TYPE_MS per letter); each letter lands
+  //               as its own First Era claw for CLAW_MS, then becomes English. Nothing shows ahead of the cursor. (Patrick's pick)
+  var FLICKER_FRAMES=2;   // claws change every 2nd frame: half the flicker speed (Patrick, 2026-10-19). 1 = the faster version.
+  var SCRATCH='type', TYPE_MS=55, CLAW_MS=160, CLAWS='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   function esc(z){return z==='&'?'&amp;':z==='<'?'&lt;':z;}
   function scratch(el){if(el.dataset.done)return;el.dataset.done=1;var text=el.textContent;el.setAttribute('aria-label',text);
     if(still)return;
     var chars=text.split(''),start=performance.now(),per=Math.max(14,Math.min(34,1400/chars.length));
     var at=chars.map(function(ch,i){return i*per+Math.random()*260;});
     var inner=document.createElement('span');inner.setAttribute('aria-hidden','true');el.textContent='';el.appendChild(inner);
-    (function tick(now){var t=now-start,out='',left=0;
+    var held=[],frame=0;function claw(i){if(held[i]==null||frame%FLICKER_FRAMES===0)held[i]=CLAWS[(Math.random()*CLAWS.length)|0];return held[i];}
+    (function tick(now){var t=now-start,out='',left=0;frame++;
       for(var i=0;i<chars.length;i++){var ch=chars[i];
+        if(SCRATCH==='type'){var land=i*TYPE_MS;   // typed left to right; each letter lands as its First Era claw, then becomes English
+          if(ch===' ')out+=' ';
+          else if(t>=land+CLAW_MS)out+=esc(ch);
+          else if(t>=land){left++;out+=FE.test(ch)?'<span class="s fe">'+esc(ch)+'</span>':esc(ch);}
+          else{left++;out+='<span class="gh">'+esc(ch)+'</span>';}   // not typed yet: holds its space, invisible
+          continue;}
         if(ch===' '||t>=at[i])out+=esc(ch);
-        else{left++;out+='<span class="s">'+esc(marks[(Math.random()*marks.length)|0])+'</span>';}}
+        else{left++;out+=SCRATCH==='line'?(FE.test(ch)?'<span class="s fe">'+esc(ch)+'</span>':'<span class="s">'+esc(marks[(Math.random()*marks.length)|0])+'</span>'):'<span class="s fe">'+esc(claw(i))+'</span>';}}
       inner.innerHTML=out;if(left)requestAnimationFrame(tick);else{el.textContent=text;}})(start);}
   var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){scratch(e.target);io.unobserve(e.target);}});},{rootMargin:'0px 0px -8% 0px'}):null;
   document.querySelectorAll('[data-scratch]').forEach(function(el){if(!el.closest('.stream')&&!el.closest('.gate')){io?io.observe(el):scratch(el);}});
@@ -483,7 +503,7 @@ footer a{color:#8f97b3}
     var el=lines[idx];if(!el)return;
     if(el.hasAttribute('data-after-dice')&&!table.dataset.cast){cast.classList.add('on');return;}
     showLine(el);idx++;
-    if(idx<lines.length)timer=setTimeout(next,still?300:Math.max(1900,el.textContent.length*48));
+    if(idx<lines.length)timer=setTimeout(next,still?300:Math.max(1900,SCRATCH==='type'?el.textContent.length*TYPE_MS+CLAW_MS+800:el.textContent.length*48));
     else{descend.classList.add('on');}}
   function throwDie(d,i){var cube=d.querySelector('.cube');d.classList.add('thrown');
     if(still||!cube.animate){d.classList.add('landed');return;}
