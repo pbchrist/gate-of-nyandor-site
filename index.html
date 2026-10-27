@@ -22,7 +22,6 @@
 <meta name="twitter:image" content="https://www.thegateofnyandor.com/assets/og-gate.jpg" />
 <link rel="preload" href="assets/first-era.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-<link rel="preload" href="assets/voyd-pair-1395.webp" as="image" />
 <link rel="preload" href="assets/fonts/ebgaramond.woff2" as="font" type="font/woff2" crossorigin />
 <style>
 @font-face{font-family:"EB Garamond";src:url(assets/fonts/ebgaramond.woff2) format("woff2");font-weight:400 800;font-display:swap}
@@ -58,6 +57,11 @@ h2 em,h1 em{color:var(--gold-soft)}
 [data-scratch] .s{color:var(--gold);opacity:.75}
 .gh{visibility:hidden}
 .s.fe{font-family:"Nyandor First Era",var(--book);font-style:normal}
+/* 'type' mode: every letter is already in its final face (italic gold em, small caps line) and holds its width;
+   a letter being clawed shows its First Era claw over its own box, so nothing reflows when it turns English. */
+.tc{position:relative}
+.tc.cl{color:transparent}
+.tc.cl::after{content:attr(data-c);position:absolute;left:50%;top:0;transform:translateX(-50%);font-family:"Nyandor First Era",var(--book);font-style:normal;font-weight:400;letter-spacing:0;color:var(--gold);opacity:.75}
 
 /* Buttons, same as the reader page */
 .btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
@@ -94,24 +98,6 @@ h2 em,h1 em{color:var(--gold-soft)}
 
 /* ---------- THE SPLIT: one failed Assessment, two realities ---------- */
 .split{overflow-x:clip;padding-block:clamp(56px,8vw,96px) 40px}
-.split header{position:relative;z-index:2;text-align:center;max-width:720px;margin:0 auto clamp(40px,6vw,64px)}
-.split header .epi{font-style:italic;color:#e9e1cc;font-size:clamp(20px,2.6vw,24px);line-height:1.45;margin:0 0 6px}
-.split header cite{display:block;font:600 12px/1.6 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--muted);font-style:normal;margin:0 0 28px}
-.split header .lede{margin-top:18px}
-.split header h2{font-size:clamp(2rem,5vw,3rem)}
-.covers{position:relative;display:flex;justify-content:center;align-items:flex-start;gap:var(--gap,0px)}
-.covers a{position:relative;z-index:1;display:block;width:var(--cw);aspect-ratio:697/1114;overflow:hidden;flex:none;
-  filter:drop-shadow(0 26px 60px rgba(0,0,0,.6));transition:filter .4s}
-.covers a img{width:200%;max-width:none;height:100%}
-.covers a.c1{border-radius:6px 0 0 6px}
-.covers a.c2{border-radius:0 6px 6px 0}
-.covers a.c2 img{margin-left:-100%}
-.covers a:hover{filter:drop-shadow(0 26px 60px rgba(0,0,0,.6)) brightness(1.1)}
-.covers{--cw:min(300px,42vw)}
-.rift{position:absolute;z-index:0;left:50%;top:calc(var(--cw) * 1.598 * .392);width:var(--rd,0px);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;opacity:var(--ro,0)}
-.rift .core{position:absolute;inset:-4%;border-radius:50%;background:#000;box-shadow:0 0 12px 4px #000}
-.rift img{position:absolute;left:50%;top:50%;width:calc(100% / .488);max-width:none;height:auto;transform:translate(-50%,-50%)}
-.rift.noart{display:block}.rift.noart .core,.rift.noart img{display:none}
 .books{position:relative;z-index:2;display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);margin-top:clamp(34px,5vw,54px)}
 .book{min-width:0}
 .book .label{margin-bottom:8px}
@@ -359,11 +345,128 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 .atlas-phonehint{display:none}
 .lens.is-focus{display:block!important}
 
+
+/* ---------- PORTAL DRAFT: the Voyd opens (portal/ only) ----------
+   One full-bleed Voyd owns the first screen. On arrival a starburst blooms out of the core, then the light
+   turns into a vortex draining back in while the headline types. Scrolling grows the Voyd until it swallows the screen. */
+.vp{padding:0!important;text-align:center}
+.vp-nav{position:fixed;z-index:20;top:max(14px,env(safe-area-inset-top,0px));left:50%;transform:translate(-50%,-14px);opacity:0;
+  display:flex;align-items:center;gap:2px;padding:6px;border-radius:999px;white-space:nowrap;
+  background:rgba(8,10,22,.55);border:1px solid rgba(229,189,92,.22);backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);
+  box-shadow:0 10px 40px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.05);transition:opacity .9s ease 1.5s,transform .9s cubic-bezier(.2,.8,.2,1) 1.5s,background .4s}
+.vp.on .vp-nav{opacity:1;transform:translate(-50%,0)}
+.vp-nav a{font:600 11.5px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;text-decoration:none;color:#d9d3c3;padding:11px 14px;border-radius:999px;transition:background .25s,color .25s}
+.vp-nav a:hover{background:rgba(229,189,92,.12);color:var(--gold-soft)}
+.vp-nav .vp-brand{font:italic 400 17px/1 var(--book);letter-spacing:0;text-transform:none;color:var(--gold-soft);padding:9px 14px 10px}
+.vp-nav .vp-cta{background:var(--gold);color:var(--night);margin-left:4px}
+.vp-nav .vp-cta:hover{background:var(--gold-soft);color:var(--night)}
+.vp-run{position:relative;height:330svh}
+.vp-stage{position:sticky;top:0;z-index:2;height:100svh;min-height:560px;overflow:hidden;overflow:clip visible}
+/* The Voyd layer sits behind every band (z 0, under .band's z 1), so after the hero it is the page's background. */
+.vp-void{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;will-change:opacity;
+  background:radial-gradient(ellipse 70% 55% at 50% 44%,rgba(20,42,99,.0) 0,rgba(5,9,24,.55) 60%,rgba(3,4,10,.92) 100%)}
+.vp-void.bg .vp-portal img{animation-play-state:paused}
+.vp-portal{--s:1;--rot:0deg;position:absolute;left:50%;top:41%;width:min(112vmin,980px);aspect-ratio:1;
+  transform:translate(-50%,-50%) scale(var(--s)) rotate(var(--rot));will-change:transform;pointer-events:none}
+.vp-portal img{position:absolute;inset:0;width:100%;height:100%;max-width:none;user-select:none}
+.vp-ring{animation:vpspin 140s linear infinite;filter:brightness(1.12) contrast(1.08)}
+.vp-back{transform:scale(1.16) scaleX(-1);opacity:.42;filter:blur(1.5px) brightness(.9) sepia(.35) hue-rotate(185deg) saturate(2.2);animation:vpspinr 95s linear infinite;mix-blend-mode:screen}
+.vp-glow{transform:scale(1.04);opacity:.55;filter:blur(26px) sepia(1) saturate(5) hue-rotate(-12deg) brightness(1.15);mix-blend-mode:screen;animation:vpbreathe 6s ease-in-out infinite}
+.vp-core{position:absolute;left:50%;top:49.6%;width:45.5%;aspect-ratio:1;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,#000 0,#000 62%,rgba(0,0,0,.85) 72%,rgba(0,0,0,0) 76%);box-shadow:inset 0 0 60px 10px rgba(170,190,255,.12)}
+.vp-portal .voyd{top:49.6%;width:44%;animation:none;box-shadow:none}
+.vp-gl{position:absolute;left:-18%;top:-18%;width:136%;height:136%;opacity:0;transition:opacity 1.2s ease}
+.vp-portal.gl .vp-gl{opacity:1}
+.vp-portal.gl .vp-ring,.vp-portal.gl .vp-back,.vp-portal.gl .vp-core,.vp-portal.gl .voyd{opacity:0;transition:opacity 1.2s ease}
+.vp-portal.gl-only img,.vp-portal.gl-only .vp-core,.vp-portal.gl-only .voyd{display:none}
+/* The books: two separate links that come out of the Voyd, loop round each other, join, and part. */
+.vp-books{position:absolute;inset:0;z-index:3;pointer-events:none}
+.vp-book{position:absolute;left:0;top:0;display:block;overflow:hidden;border-radius:5px;visibility:hidden;opacity:0;transform-origin:50% 50%;will-change:transform,opacity;
+  box-shadow:0 22px 60px rgba(0,0,0,.6),0 0 0 1px rgba(229,189,92,.16)}
+.vp-book img{width:100%;height:100%;object-fit:cover;display:block}
+.vp-book:focus-visible{outline:2px solid var(--gold);outline-offset:4px}
+.vp-books .glow{position:absolute;left:0;top:0;border-radius:50%;opacity:0;will-change:transform,opacity;
+  background:radial-gradient(closest-side,rgba(255,226,160,.42),rgba(150,120,255,.14) 55%,rgba(0,0,0,0) 100%)}
+@keyframes vpspin{to{transform:rotate(360deg)}}
+@keyframes vpspinr{from{transform:scale(1.16) scaleX(-1) rotate(0)}to{transform:scale(1.16) scaleX(-1) rotate(-360deg)}}
+@keyframes vpbreathe{0%,100%{opacity:.35}50%{opacity:.7}}
+.vp-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:52%;pointer-events:none;z-index:1;
+  background:linear-gradient(to bottom,rgba(3,4,12,0) 0,rgba(3,4,12,.55) 45%,rgba(3,4,12,.82) 100%);opacity:var(--scrim,1)}
+.vp-copy,.vp-down{z-index:2}
+.vp-vortex{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;will-change:opacity}
+.vp-copy{position:absolute;left:0;right:0;bottom:clamp(36px,9svh,96px);padding:0 max(18px,env(safe-area-inset-left,0px));will-change:transform,opacity}
+.vp-kicker{opacity:0;letter-spacing:.6em;transition:opacity 1.2s ease .5s,letter-spacing 1.8s cubic-bezier(.2,.8,.2,1) .4s;text-shadow:0 2px 14px #000}
+.vp.on .vp-kicker{opacity:.92;letter-spacing:.32em}
+@media (max-width:760px){   /* phone: the ember ring crosses the kicker, so it gets a soft dark bed */
+  .vp-kicker{position:relative;isolation:isolate;text-shadow:0 0 6px #000,0 0 14px #000,0 2px 14px #000}
+  .vp-kicker::before{content:"";position:absolute;inset:-12px -6%;z-index:-1;border-radius:40px;
+    background:radial-gradient(closest-side,rgba(3,4,12,.9),rgba(3,4,12,.7) 55%,rgba(3,4,12,0));pointer-events:none}}
+.vp h1{font:400 clamp(2.4rem,6.6vw,5.4rem)/1.02 var(--book);letter-spacing:-.01em;color:#fbf6ea;max-width:17ch;margin:14px auto 0;
+  text-shadow:0 4px 30px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9)}
+.vp h1 em{color:var(--gold-soft);text-shadow:0 0 34px rgba(229,189,92,.35),0 4px 30px rgba(0,0,0,.9)}
+.vp-btns{justify-content:center;margin:clamp(20px,3.4svh,34px) auto 0;opacity:0;transform:translateY(14px);transition:opacity 1s ease 2.6s,transform 1s cubic-bezier(.2,.8,.2,1) 2.6s}
+.vp.on .vp-btns{opacity:1;transform:none}
+.vp-down{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);color:var(--muted);text-decoration:none;font:400 20px/1 var(--sans);opacity:0;transition:opacity 1s ease 3.4s;animation:vpbob 2.4s ease-in-out infinite}
+.vp.on .vp-down{opacity:.7}
+@keyframes vpbob{50%{translate:0 6px}}
+.vp-body{max-width:40ch;margin:clamp(12px,2svh,20px) auto 0;font:400 clamp(19px,1.9vw,23px)/1.45 var(--book);color:#e9e3d4;text-wrap:pretty;
+  text-shadow:0 2px 18px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.9);opacity:0;transform:translateY(10px);transition:opacity 1s ease 2.1s,transform 1s cubic-bezier(.2,.8,.2,1) 2.1s}
+.vp.on .vp-body{opacity:1;transform:none}
+/* v7: the hero sits above the next band so the books can fly down out of it and land on their cards. */
+.hero.vp{z-index:2}
+.readers header{max-width:none}
+.readers header h2{max-width:24ch;margin-left:auto;margin-right:auto;text-wrap:balance}
+.readers .rlabel{text-align:center;margin:0 0 14px}
+.readers .proof{margin:0 auto clamp(34px,5vw,52px)}
+/* The cards the books land on: a dark panel so the Voyd's smoke never runs under the copy. */
+.split .book{position:relative;background:linear-gradient(180deg,rgba(5,7,18,.86),rgba(5,7,18,.78));border:1px solid rgba(229,189,92,.14);border-radius:12px;
+  padding:clamp(20px,2.6vw,32px);box-shadow:0 20px 60px rgba(0,0,0,.45)}
+.book .slot{display:block;width:min(240px,52%);aspect-ratio:697/1114;margin:0 auto 24px;overflow:hidden;border-radius:5px;
+  box-shadow:0 22px 60px rgba(0,0,0,.6),0 0 0 1px rgba(229,189,92,.16)}
+.book .slot img{width:100%;height:100%;object-fit:cover;display:block}
+.vp-fly .book .slot{visibility:hidden}
+.vp-fly .book .slot.on{visibility:visible}
+/* Cat eyes in the dark of the Voyd (painted art, three frames crossfaded into a slow blink). */
+.vp-eyes{position:absolute;left:50%;top:49.6%;width:39%;aspect-ratio:1000/349;transform:translate(-50%,-50%);pointer-events:none;opacity:0;will-change:opacity}
+.vp-eyes img{position:absolute;inset:0;width:100%;height:100%;opacity:0}
+.vp-eyes img.e-closed{opacity:1}
+.vp-portal.gl-only .vp-eyes img{display:block}
+@media (max-width:760px){
+  .vp-nav .vp-wide{display:none}
+}
+@media (max-width:460px){.vp-nav .vp-mid{display:none}}
+@media (max-width:760px){
+  .vp-nav a{padding:10px 10px;letter-spacing:.14em;font-size:10.5px}
+  .vp-nav .vp-brand{font-size:15px;padding:8px 10px 9px}
+  .vp-portal{width:128vw;top:35%}
+  .vp h1{font-size:clamp(2.3rem,10.4vw,3.2rem);max-width:13ch}
+  .vp-body{font-size:18px;max-width:30ch}
+  .vp-copy{bottom:clamp(30px,6svh,60px)}
+  .vp .vp-btns .btn{flex:1 1 140px}
+}
+@media (prefers-reduced-motion:reduce){
+  .vp-nav,.vp-kicker,.vp-btns,.vp-body,.vp-down{transition:none!important}
+  .vp-ring,.vp-back,.vp-glow,.vp-down{animation:none!important}
+  .vp-run{height:200svh}
+}
 </style>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
 <canvas id="smoke" aria-hidden="true"></canvas>
+<!-- The Voyd: the hero's portal, fixed so it stays behind the whole page once you scroll in. -->
+<div class="vp-void" id="vp-void" aria-hidden="true">
+  <div class="vp-portal" id="vp-portal" data-voyd>
+    <img class="vp-glow" src="assets/voyd-rift.webp" alt="" />
+    <img class="vp-back" src="assets/voyd-rift.webp" alt="" />
+    <img class="vp-ring" src="assets/voyd-rift.webp" alt="" fetchpriority="high" />
+    <div class="vp-core"></div>
+    <div class="voyd" aria-hidden="true"></div>
+    <canvas class="vp-gl" id="vp-gl" aria-hidden="true"></canvas>
+    <div class="vp-eyes" id="vp-eyes" aria-hidden="true"><img class="e-closed" src="assets/cat-eyes-closed.webp" alt="" decoding="async" /><img class="e-half" src="assets/cat-eyes-half.webp" alt="" decoding="async" /><img class="e-open" src="assets/cat-eyes-open.webp" alt="" decoding="async" /></div>
+  </div>
+  <canvas class="vp-vortex" id="vp-vortex" aria-hidden="true"></canvas>
+</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
     <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3dca0"/><stop offset="1" stop-color="#b8892f"/></linearGradient>
@@ -375,49 +478,43 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   </defs>
 </svg>
 
-<!-- HERO -->
-<header class="band hero" id="top">
-  <p class="label">The Gate of Nyandor · a transdimensional feline saga</p>
-  <h1 data-scratch>Someone finally gave cats <em>the full Tolkien treatment.</em></h1>
-  <div class="portal" data-voyd>
-    <a class="one" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-cover-book1" aria-label="The Furbidden Voyd on Amazon">
-      <img src="assets/voyd-pair-1395.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 200vw, 1200px" width="1395" height="1114" alt="" />
-    </a>
-    <a class="two" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="hero-cover-book2" aria-label="The Divergent Path on Amazon">
-      <img src="assets/voyd-pair-1395.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 200vw, 1200px" width="1395" height="1114" alt="" />
-    </a>
-    <div class="voyd" aria-hidden="true"></div>
-    <canvas class="drain" aria-hidden="true"></canvas>
+<!-- HERO: the Voyd opens. Draft for review (portal/). Only this header differs from /index.html. -->
+<header class="band hero vp" id="top">
+  <nav class="vp-nav" aria-label="Sections">
+    <a class="vp-brand" href="#top">The Gate of Nyandor</a>
+    <a href="#split">Two books</a>
+    <a class="vp-wide" href="#first-h">The first page</a>
+    <a class="vp-wide" href="#dice">Cast the dice</a>
+    <a class="vp-mid" href="#atlas">Faelspire</a>
+    <a class="vp-cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="nav-book1">Book One</a>
+  </nav>
+  <div class="vp-run" id="vp-run">
+    <div class="vp-stage" id="vp-stage">
+      <div class="vp-copy" id="vp-copy">
+        <p class="label vp-kicker">The Gate of Nyandor · a transdimensional feline saga</p>
+        <h1 data-scratch>Two books. Two timestreams. <em>One Voyd.</em></h1>
+        <p class="vp-body">Every choice you made. Every one you didn't. The Voyd keeps them all. What if you could reach in and change fate?</p>
+        <div class="btns vp-btns">
+          <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-book1-paperback">Start with Book One<small>Paperback · $15.99</small></a>
+          <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="hero-book1-kindle">Kindle<small>$9.99</small></a>
+        </div>
+      </div>
+      <a class="vp-down" href="#split" aria-label="Scroll">↓</a>
+      <div class="vp-books" id="vp-books">
+        <div class="glow" aria-hidden="true"></div>
+        <a class="vp-book b1" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-cover-book1" aria-label="The Furbidden Voyd on Amazon"><img src="assets/furbidden-voyd-720.webp" srcset="assets/furbidden-voyd-360.webp 360w, assets/furbidden-voyd-720.webp 720w" sizes="(max-width:760px) 42vw, 320px" width="720" height="1152" alt="" decoding="async" /></a>
+        <a class="vp-book b2" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="hero-cover-book2" aria-label="The Divergent Path on Amazon"><img src="assets/divergent-path-720.webp" srcset="assets/divergent-path-360.webp 360w, assets/divergent-path-720.webp 720w" sizes="(max-width:760px) 42vw, 320px" width="720" height="1152" alt="" decoding="async" /></a>
+      </div>
+    </div>
   </div>
-  <div class="btns">
-    <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-book1-paperback">Start with Book One<small>Paperback · $15.99</small></a>
-    <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="hero-book1-kindle">Kindle<small>$9.99</small></a>
-  </div>
-  <a class="more" href="#split">Two books, two realities. See both ↓</a>
-  <p class="lede dek">A royal city, a secret police, a Magical Guild that hoards power, and a forbidden gate into every choice ever made. Epic fantasy for teens and up, with an all-cat cast.</p>
-  <blockquote class="proof">“This is not cute cat adventure time. This is legitimate epic fantasy a la Golden Compass that stars anthropomorphic felines, and Christell commits to it completely.”<cite>J. Loewen · verified Amazon review · paperback</cite></blockquote>
 </header>
 
 <!-- THE SPLIT -->
-<section class="band split" id="split" aria-labelledby="split-h">
+<section class="band split" id="split" aria-label="The two books">
   <div class="inner">
-    <header>
-      <h2 id="split-h" data-scratch>Two books. Two timestreams. <em>One Voyd.</em></h2>
-      <p class="lede">Both books open in the Voyd, after the Mewniverse is already gone. Then the Creator of All Tales tells you how it happened. In one telling, Sory'n fails her Assessment and lives with it. In the other, she rewrites the failure.</p>
-    </header>
-
-    <div class="covers" id="covers">
-      <a class="c1" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="split-cover-book1" aria-label="The Furbidden Voyd on Amazon">
-        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 84vw, 600px" width="1395" height="1114" alt="Cover of The Furbidden Voyd: a black cat with golden eyes beside half of a black portal" loading="lazy" />
-      </a>
-      <a class="c2" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-cover-book2" aria-label="The Divergent Path on Amazon">
-        <img src="assets/voyd-pair-700.webp" srcset="assets/voyd-pair-700.webp 700w, assets/voyd-pair-1395.webp 1395w" sizes="(max-width:640px) 84vw, 600px" width="1395" height="1114" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the other half of the portal" loading="lazy" />
-      </a>
-      <div class="rift" id="rift" data-voyd aria-hidden="true"><div class="core"></div><img src="assets/voyd-rift.webp" alt="" onerror="this.parentNode.classList.add('noart')" /></div>
-    </div>
-
     <div class="books">
       <article class="book b1">
+        <a class="slot" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="split-cover-book1" aria-label="The Furbidden Voyd on Amazon"><img src="assets/furbidden-voyd-720.webp" srcset="assets/furbidden-voyd-360.webp 360w, assets/furbidden-voyd-720.webp 720w" sizes="240px" width="720" height="1152" alt="Cover of The Furbidden Voyd: a black cat with golden eyes beside a black void" decoding="async" /></a>
         <p class="label">Book One · 375 pages</p>
         <h3>The Furbidden Voyd</h3>
         <p class="reality">The reality where she fails.</p>
@@ -430,6 +527,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
         <p class="fine">Start here, but you don’t have to.</p>
       </article>
       <article class="book b2">
+        <a class="slot" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-cover-book2" aria-label="The Divergent Path on Amazon"><img src="assets/divergent-path-720.webp" srcset="assets/divergent-path-360.webp 360w, assets/divergent-path-720.webp 720w" sizes="240px" width="720" height="1152" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the void" decoding="async" /></a>
         <p class="label">Book Two · 393 pages</p>
         <h3>The Divergent Path</h3>
         <p class="reality">The reality where she succeeds.</p>
@@ -563,9 +661,9 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <!-- THE DICE -->
 <section class="band dice" id="dice" aria-labelledby="dice-h">
   <div class="inner">
-    <p class="label">The Creator of All Tales · Telling 694,474</p>
+    <p class="label">The Creator of All Tales · Telling 694,473</p>
     <h2 id="dice-h" data-scratch style="margin-top:8px">Cast the dice.</h2>
-    <p class="lede">Each of C.A.T.'s four dice is carved with a symbol from both tellings. Cast them and see which timestream you walk.</p>
+    <p class="lede">Each of C.A.T.'s four dice carries one symbol from each book. Cast them and see which timestream you walk.</p>
     <div class="castrow"><button class="btn" id="cast" type="button">Cast the dice</button></div>
     <div class="table" id="table" aria-label="Four carved dice">
       <div class="die"><div class="cube"><div class="face f1"><svg viewBox="0 0 24 24" fill="none" stroke="#efc767" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20.5C6.3 19.7 3.6 16 3.9 11.6c.1-1.8.6-3.4 1.5-4.8"/><path d="M13.5 20.5c4.2-.8 6.9-4.5 6.6-8.9-.1-1.8-.6-3.4-1.5-4.8"/><path d="M5.6 17.6c-1.7.3-3-.3-3.6-1.5 1.4-.6 2.8-.4 3.6 1.5zM4.2 13.4c-1.5-.6-2.2-1.8-2-3.2 1.4.1 2.4.9 2 3.2zM4.6 9.2c-1.2-1-1.4-2.4-.9-3.6 1.3.5 1.8 1.7.9 3.6zM8.3 20.2c-1.5.9-2.9.8-3.9-.1 1.1-1 2.5-1.1 3.9.1z" fill="#efc767" fill-opacity=".25"/><path d="M18.4 17.6c1.7.3 3-.3 3.6-1.5-1.4-.6-2.8-.4-3.6 1.5zM19.8 13.4c1.5-.6 2.2-1.8 2-3.2-1.4.1-2.4.9-2 3.2zM19.4 9.2c1.2-1 1.4-2.4.9-3.6-1.3.5-1.8 1.7-.9 3.6zM15.7 20.2c1.5.9 2.9.8 3.9-.1-1.1-1-2.5-1.1-3.9.1z" fill="#efc767" fill-opacity=".25"/></svg></div><div class="face f2"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f3"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f4"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f5"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div><div class="face f6"><svg class="scr" viewBox="0 0 34 40"><use href="#clawmark"/></svg></div></div><div class="shadow"></div><small>a laurel wreath</small></div>
@@ -581,9 +679,10 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <section class="band readers" aria-labelledby="readers-h">
   <div class="inner">
     <header>
-      <p class="label">Readers on Amazon</p>
-      <h2 id="readers-h" data-scratch>From the first readers</h2>
+      <h2 id="readers-h" data-scratch>Someone finally gave cats <em>the full Tolkien treatment.</em></h2>
     </header>
+    <p class="label rlabel">Readers on Amazon</p>
+    <blockquote class="proof">“This is not cute cat adventure time. This is legitimate epic fantasy a la Golden Compass that stars anthropomorphic felines, and Christell commits to it completely.”<cite>J. Loewen · verified Amazon review · paperback</cite></blockquote>
     <div class="lead-review">
       <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
       <blockquote>“I honestly didn’t expect The Furbidden Voyd to pull me in the way it did, but once I started, I couldn’t stop. The world feels huge and mysterious, like there’s history behind every shadow.”</blockquote>
@@ -640,7 +739,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 
     <div class="cast">
       <p class="label" style="text-align:center">Dramatis Fursonae</p>
-      <h3>Who you'll spend 768 pages with</h3>
+      <h3 data-scratch>Who you'll spend 768 pages with</h3>
       <div class="castgrid">
         <div><h4>Sory'n of Tol</h4><p>“A young feline of keen mind and restless spirit. Her need to prove herself is the spark that most often sets her troubles alight.”</p></div>
         <div><h4>Archmage Orachys</h4><p>Her father and head of the Magical Guild, chasing the mastery of spacetime “with an obsession that outshadows his obsidian coat.”</p></div>
@@ -694,7 +793,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <section class="band signal-band" aria-label="Email sign-up">
   <svg class="claw" aria-hidden="true"><use href="#clawmark"/></svg>
   <form class="signal" id="signal" data-timestream="homepage" method="post" target="_blank">
-    <p class="masthead">The Faelspiran Hornblower<small>News and new releases from Nyandor</small></p>
+    <p class="masthead" data-scratch>The Faelspiran Hornblower<small>News and new releases from Nyandor</small></p>
     <label for="email">Two more timestreams are being written. C.A.T. writes to those who signal. Leave your address.</label>
     <div class="row">
       <input id="email" type="email" name="email_address" placeholder="your@email" required autocomplete="email" />
@@ -708,9 +807,9 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <!-- QUESTIONS -->
 <section class="band faq" aria-labelledby="faq-h">
   <div class="narrow">
-    <h2 id="faq-h">Before you begin</h2>
+    <h2 id="faq-h" data-scratch>Before you begin</h2>
     <details open><summary>Do I need to like cats?</summary><p>No. It’s epic fantasy first: a royal city, a secret police, a Guild that hoards magic. The cast just happens to be cats.</p></details>
-    <details><summary>Who is it for?</summary><p>Teens and up. One reader calls it a young adult novel, and that’s right. It doesn’t shy away from serious themes: failure, family, power and loss. Adults read it too.</p></details>
+    <details><summary>Who is it for?</summary><p>Teens and up. It doesn’t shy away from serious themes: failure, family, power and loss. Adults read it too.</p></details>
     <details><summary>Which book first?</summary><p>Either one. Both books open on the same failed Assessment and then follow different realities, so each reads on its own. But you get different things out of them depending on which one you read first.</p></details>
     <details><summary>Paperback or Kindle?</summary><p>Book One is in paperback and on Kindle. Book Two is in paperback.</p></details>
   </div>
@@ -742,9 +841,12 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   // screen (the hero covers, the rift between the split covers, the covers at the end),
   // gliding from one to the next as the reader scrolls.
   var voyds=[].slice.call(document.querySelectorAll('[data-voyd]')).map(function(el){return el.classList.contains('rift')?el:el.querySelector('.voyd');});
-  var vcx=null,vcy=null,vcr=null;
+  var vcx=null,vcy=null,vcr=null,vrects=[];
+  // Measured on scroll/resize (before anything writes styles that frame), not once per animation frame.
+  function readVoyds(){vrects=voyds.map(function(v){return v.getBoundingClientRect();});}
+  readVoyds();addEventListener('scroll',readVoyds,{passive:true});addEventListener('resize',readVoyds);addEventListener('load',readVoyds);setInterval(readVoyds,700);
   function targetVoyd(){var best=null,bd=1e9,mid=innerHeight*.45;
-    voyds.forEach(function(v){var r=v.getBoundingClientRect();if(!r.width)return;var cy=r.top+r.height/2,d=Math.abs(cy-mid);if(d<bd){bd=d;best=r;}});
+    vrects.forEach(function(r){if(!r.width)return;var cy=r.top+r.height/2,d=Math.abs(cy-mid);if(d<bd){bd=d;best=r;}});
     if(!best)return {x:innerWidth/2,y:innerHeight*.42,r:Math.min(innerWidth,innerHeight)*.08};
     var y=best.top+best.height/2,lim=innerHeight*.35,off=y<-lim?-lim-y:y>innerHeight+lim?y-innerHeight-lim:0;
     y=Math.max(-lim,Math.min(innerHeight+lim,y));
@@ -755,32 +857,14 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
     return {x:vcx,y:vcy,r:vcr};}
 
   // THE SKY. Stars spiral inward and drain into the Voyd behind the covers. Nearer the
-  // hole they turn faster and fade, as if swallowed. Gold cat eyes open in the dark,
-  // blink slowly, and close: the displaced souls of Nyandor, watching.
-  var c=document.getElementById('sky'),x=c.getContext('2d'),stars=[],eyes=[],w,h,last=0,nextEye=1800;
+  // hole they turn faster and fade, as if swallowed. (Density as in portal v2, Patrick 2026-10-27.)
+  var c=document.getElementById('sky'),x=c.getContext('2d'),stars=[],w,h,last=0;
   function star(R,fresh){var z=Math.random();
     return {a:Math.random()*6.283,d:fresh?R*(.75+Math.random()*.35):Math.sqrt(Math.random())*R,z:z,
       r:(.35+z*1.45),o:.35+z*.6,p:Math.random()*6.283,tw:.0006+Math.random()*.0014};}
   function size(){dpr=Math.min(window.devicePixelRatio||1,2);w=c.width=innerWidth*dpr;h=c.height=innerHeight*dpr;
-    var R=Math.hypot(innerWidth,innerHeight),n=Math.round(innerWidth*innerHeight/480);stars=[];
+    var R=Math.hypot(innerWidth,innerHeight),n=Math.min(3600,Math.round(innerWidth*innerHeight/480));stars=[];
     for(var i=0;i<n;i++)stars.push(star(R,false));}
-  function drawEye(e){var k=e.t/e.life,open;
-    if(k<.12)open=k/.12;else if(k>.88)open=(1-k)/.12;else open=1;
-    var b=e.blink-e.t; if(b<0&&b>-260)open*=Math.abs(b+130)/130;
-    open=Math.max(0,Math.min(1,open));if(open<.03)return;
-    var s=e.s*dpr,gap=s*2.7;
-    for(var j=-1;j<=1;j+=2){var cx=e.x*dpr+j*gap/2,cy=e.y*dpr;
-      x.save();x.translate(cx,cy);x.scale(1,open);
-      x.globalAlpha=e.o;x.shadowColor='rgba(240,190,80,.9)';x.shadowBlur=s*1.6;
-      var g=x.createRadialGradient(0,0,s*.1,0,0,s);g.addColorStop(0,'#ffe08a');g.addColorStop(1,'#c98b22');
-      x.fillStyle=g;x.beginPath();x.moveTo(-s,0);x.quadraticCurveTo(0,-s*.95,s,0);x.quadraticCurveTo(0,s*.95,-s,0);x.fill();
-      x.shadowBlur=0;x.fillStyle='#0b0704';x.beginPath();x.ellipse(0,0,s*.13,s*.62,0,0,6.283);x.fill();
-      x.restore();}}
-  function spawnEye(){var vc=voydCenter(),tries=0,ex,ey;
-    do{ex=30+Math.random()*(innerWidth-60);ey=30+Math.random()*(innerHeight-60);tries++;}
-    while(Math.hypot(ex-vc.x,ey-vc.y)<vc.r*3.2&&tries<12);
-    var life=3200+Math.random()*2600;
-    eyes.push({x:ex,y:ey,s:5+Math.random()*5,o:.55+Math.random()*.35,t:0,life:life,blink:life*(.35+Math.random()*.3)});}
   function sky(t){var dt=last?Math.min(t-last,60):16;last=t;x.clearRect(0,0,w,h);
     var vc=voydCenter(),cx=vc.x,cy=vc.y,hole=Math.max(vc.r,8),R=Math.hypot(innerWidth,innerHeight);
     for(var i=0;i<stars.length;i++){var s=stars[i];
@@ -794,12 +878,9 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       x.globalAlpha=(still?s.o:s.o*(.6+.4*Math.sin(t*s.tw+s.p)))*fade;
       x.fillStyle=s.z>.8?'#f6e7c2':'#dde5ff';var rr=s.r*dpr;
       x.fillRect(px*dpr-rr,py*dpr-rr,rr*2,rr*2);}
-    if(!still){nextEye-=dt;if(nextEye<=0&&eyes.length<3){spawnEye();nextEye=2600+Math.random()*4200;}}
-    for(var j=eyes.length-1;j>=0;j--){var e=eyes[j];if(!still)e.t+=dt;if(e.t>=e.life){eyes.splice(j,1);continue;}drawEye(e);}
     x.globalAlpha=1;if(!still)requestAnimationFrame(sky);}
   size();addEventListener('resize',function(){size();if(still)sky(0);});
-  if(still){eyes.push({x:innerWidth*.15,y:innerHeight*.2,s:7,o:.7,t:900,life:1e9,blink:-1e9});
-    addEventListener('scroll',function(){sky(0);},{passive:true});}
+  if(still)addEventListener('scroll',function(){sky(0);},{passive:true});
   requestAnimationFrame(sky);
 
   // THE DRAIN. Over the art, faint streams of light spiral into the black circle.
@@ -823,8 +904,9 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
     dsize();addEventListener('resize',dsize);requestAnimationFrame(drain);});
 
   // PIPE SMOKE. It drifts up through the sky and curls after the reader's hand.
+  // Soft puffs: drawn at 1x, the blur hides it and it's a big full-screen layer.
   var sc=document.getElementById('smoke'),sx=sc.getContext('2d'),puffs=[],sw,sh;
-  function ssize(){sw=sc.width=innerWidth*dpr;sh=sc.height=innerHeight*dpr;}
+  function ssize(){sw=sc.width=innerWidth;sh=sc.height=innerHeight;}
   function puff(x0,y0,small){return {x:x0!=null?x0:Math.random()*innerWidth,y:y0!=null?y0:innerHeight+60*Math.random(),
     r:small?18+Math.random()*24:70+Math.random()*120,a:0,max:small?.10:.045+Math.random()*.04,
     vx:(Math.random()-.5)*.25,vy:-(.12+Math.random()*.28),life:0,span:small?2600:16000+Math.random()*12000,g:Math.random()};}
@@ -834,9 +916,9 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       if(!still){f.life+=16;f.x+=f.vx+Math.sin((f.life+f.g*9000)/2600)*.18;f.y+=f.vy;f.r+=.03;}
       var k=f.life/f.span;if(k>=1){puffs.splice(i,1);if(puffs.length<18)puffs.push(puff());continue;}
       var al=f.max*Math.sin(Math.PI*k);
-      var g=sx.createRadialGradient(f.x*dpr,f.y*dpr,0,f.x*dpr,f.y*dpr,f.r*dpr);
+      var g=sx.createRadialGradient(f.x,f.y,0,f.x,f.y,f.r);
       g.addColorStop(0,'rgba(178,190,222,'+al+')');g.addColorStop(1,'rgba(178,190,222,0)');
-      sx.fillStyle=g;sx.fillRect((f.x-f.r)*dpr,(f.y-f.r)*dpr,f.r*2*dpr,f.r*2*dpr);}
+      sx.fillStyle=g;sx.fillRect(f.x-f.r,f.y-f.r,f.r*2,f.r*2);}
     if(!still)requestAnimationFrame(smoke);}
   ssize();addEventListener('resize',ssize);requestAnimationFrame(smoke);
   var lastPuff=0;function trail(e){var n=performance.now();if(still||n-lastPuff<70||puffs.length>60)return;lastPuff=n;
@@ -855,15 +937,34 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   var FLICKER_FRAMES=2;   // claws change every 2nd frame: half the flicker speed (Patrick, 2026-10-19). 1 = the faster version.
   var SCRATCH='type', TYPE_MS=55, CLAW_MS=160, CLAWS='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   function esc(z){return z==='&'?'&amp;':z==='<'?'&lt;':z;}
-  function scratch(el){if(el.dataset.done||still)return;el.dataset.done=1;
+  function typeIn(el){   // 'type' mode, keeping the heading's own markup: letters are typed inside their <em>/<small>
     var html=el.innerHTML,text=el.textContent;el.setAttribute('aria-label',text);
-    var chars=text.split(''),start=performance.now(),per=Math.max(14,Math.min(34,1400/chars.length));
+    var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[],n,cs=[];while((n=tw.nextNode()))nodes.push(n);
+    nodes.forEach(function(tn){var f=document.createDocumentFragment(),run='';
+      tn.nodeValue.split('').forEach(function(ch){
+        if(/\s/.test(ch)){run+=ch;return;}
+        if(run){f.appendChild(document.createTextNode(run));run='';}
+        var sp=document.createElement('span');sp.className='tc gh';sp.setAttribute('aria-hidden','true');sp.setAttribute('data-c',ch);sp.textContent=ch;f.appendChild(sp);cs.push(sp);});
+      if(run)f.appendChild(document.createTextNode(run));tn.parentNode.replaceChild(f,tn);});
+    var TM=Math.min(TYPE_MS,1650/Math.max(1,cs.length)),st=cs.map(function(){return 0;}),start=performance.now(),fin=false;
+    function finish(){if(fin)return;fin=true;clearInterval(iv);clearTimeout(to);el.innerHTML=html;el.removeAttribute('aria-label');}
+    (function tick(now){if(fin)return;var t=now-start,left=0;
+      for(var i=0;i<cs.length;i++){var land=i*TM,v=t>=land+CLAW_MS?2:t>=land?1:0;if(v<2)left++;
+        if(v!==st[i]){st[i]=v;cs[i].className=v===2?'tc':v===1&&FE.test(cs[i].getAttribute('data-c'))?'tc cl':'tc';}}
+      if(left)requestAnimationFrame(tick);else finish();})(start);
+    // A heading never stays half-typed: if frames stall (background tab, a slow phone), timers finish it.
+    var iv=setInterval(function(){if(performance.now()-start>cs.length*TM+CLAW_MS+120)finish();},120);
+    var to=setTimeout(finish,cs.length*TM+CLAW_MS+900);}
+  function scratch(el){if(el.dataset.done||still)return;el.dataset.done=1;
+    if(SCRATCH==='type')return typeIn(el);
+    var html=el.innerHTML,text=el.textContent;el.setAttribute('aria-label',text);
+    var chars=text.split(''),start=performance.now(),per=Math.max(14,Math.min(34,1400/chars.length)),TM=Math.min(TYPE_MS,1650/Math.max(1,chars.length));
     var at=chars.map(function(ch,i){return i*per+Math.random()*260;});
     var inner=document.createElement('span');inner.setAttribute('aria-hidden','true');el.innerHTML='';el.appendChild(inner);
     var held=[],frame=0;function claw(i){if(held[i]==null||frame%FLICKER_FRAMES===0)held[i]=CLAWS[(Math.random()*CLAWS.length)|0];return held[i];}
     (function tick(now){var t=now-start,out='',left=0;frame++;
       for(var i=0;i<chars.length;i++){var ch=chars[i];
-        if(SCRATCH==='type'){var land=i*TYPE_MS;   // typed left to right; each letter lands as its First Era claw, then becomes English
+        if(SCRATCH==='type'){var land=i*TM;   // typed left to right; each letter lands as its First Era claw, then becomes English
           if(ch===' ')out+=' ';
           else if(t>=land+CLAW_MS)out+=esc(ch);
           else if(t>=land){left++;out+=FE.test(ch)?'<span class="s fe">'+esc(ch)+'</span>':esc(ch);}
@@ -871,21 +972,16 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
           continue;}
         if(ch===' '||t>=at[i])out+=esc(ch);
         else{left++;out+=SCRATCH==='line'?(FE.test(ch)?'<span class="s fe">'+esc(ch)+'</span>':'<span class="s">'+esc(marks[(Math.random()*marks.length)|0])+'</span>'):'<span class="s fe">'+esc(claw(i))+'</span>';}}
-      inner.innerHTML=out;if(left)requestAnimationFrame(tick);else{el.innerHTML=html;el.removeAttribute('aria-label');}})(start);}
-  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){scratch(e.target);io.unobserve(e.target);}});},{rootMargin:'0px 0px -12% 0px'}):null;
+      if(fin)return;inner.innerHTML=out;if(left)requestAnimationFrame(tick);else finish();})(start);
+    // A heading never stays half-typed: if frames stall (background tab, a slow phone), timers finish it.
+    var fin=false;function finish(){if(fin)return;fin=true;clearInterval(iv);clearTimeout(to);el.innerHTML=html;el.removeAttribute('aria-label');}
+    var iv=setInterval(function(){if(performance.now()-start>chars.length*TM+CLAW_MS+120)finish();},120);
+    var to=setTimeout(finish,chars.length*TM+CLAW_MS+900);}
+  var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){scratch(e.target);io.unobserve(e.target);}
+      else if(e.boundingClientRect.bottom<0){e.target.dataset.done=1;io.unobserve(e.target);}   // jumped past: leave it whole
+    });},{rootMargin:'0px 0px -12% 0px'}):null;
   if(io)document.querySelectorAll('[data-scratch]').forEach(function(el){io.observe(el);});
-
-  // THE SPLIT. The covers start fused, exactly as on the reader page. As the reader
-  // scrolls, they pull apart and the Voyd between them tears open.
-  var covers=document.getElementById('covers'),rift=document.getElementById('rift');
-  function split(){var r=covers.getBoundingClientRect(),cw=covers.querySelector('a').getBoundingClientRect().width;
-    // p runs 0 to 1 over a long stretch of scrolling, so the Voyd keeps growing the whole time the books are on screen.
-    var p=still?1:Math.max(0,Math.min(1,(innerHeight*.95-r.top)/(innerHeight*.9)));
-    var e=p*p*(3-2*p);
-    var room=covers.clientWidth-cw*2,gapMax=Math.max(room,cw*.62),gap=gapMax*e;
-    covers.style.setProperty('--gap',gap+'px');
-    rift.style.setProperty('--rd',(cw*.48+(gapMax+cw*.75)*e)+'px');rift.style.setProperty('--ro',Math.min(1,p*4));}
-  split();addEventListener('scroll',split,{passive:true});addEventListener('resize',split);
 
   // THE DICE. The four that open Book Two. The button fades, the dice tumble onto the table,
   // and C.A.T. reads them: "A tangled path."
@@ -1515,6 +1611,318 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   stage.addEventListener("pointerleave",function(){card.classList.remove("is-on");});
   atlas.addEventListener("focusin",function(){var l=lens.getBoundingClientRect();lx=l.left+l.width/2;ly=l.top+l.height/2;setTimeout(function(){var l=lens.getBoundingClientRect();sync(l.left+l.width/2,l.top+l.height/2)},30);});
   atlas.addEventListener("focusout",function(){setTimeout(function(){if(!atlas.contains(document.activeElement))card.classList.remove("is-on")},0);});
+})();
+</script>
+<script>
+/* PORTAL: the Voyd opens. A starburst blooms out of the core and the light swirls back in. Scrolling
+   widens the Voyd until you are inside it, and the two books come out of it separately: they loop
+   and braid around each other, join for a moment as the pair, then part. They are real links the
+   whole time they are visible. After the hero the Voyd stays behind the page as a dim, slow background.
+   One rAF loop; geometry is measured on resize only; transform/opacity writes only, and only when a
+   value changes. Add ?fps to the URL for a frame-time counter. */
+(function(){
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(id){return document.getElementById(id);};
+  var hero=document.querySelector('.vp'),run=$('vp-run'),stage=$('vp-stage'),vl=$('vp-void'),portal=$('vp-portal'),copy=$('vp-copy'),
+      cv=$('vp-vortex'),books=$('vp-books');
+  if(!hero||!cv||!books||!vl||!portal)return;
+  var A=books.querySelector('.b1'),B=books.querySelector('.b2'),glow=books.querySelector('.glow');
+  var S1=document.querySelector('.split .book.b1 .slot'),S2=document.querySelector('.split .book.b2 .slot');
+  var K1=S1&&S1.closest('.book'),K2=S2&&S2.closest('.book');
+  if(S1&&S2)document.documentElement.classList.add('vp-fly');
+  var g=cv.getContext('2d'),dpr=1,W=0,H=0,parts=[],t0=0,last=0,phone=false;
+  var Q=window.__vpQ={lvl:0}; // adaptive quality level: 0 full, 1 lighter, 2 lightest
+  var M={vcy:0,vs:1}; // measured geometry
+  function ease(x){x=Math.max(0,Math.min(1,x));return 1-Math.pow(1-x,4);}
+  function sstep(a,b,x){x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x);}
+  function count(){return Math.round((phone?620:1150)*[1,.6,.35][Q.lvl]);}
+  function burst(p){var sp=300+Math.pow(Math.random(),.6)*1500*(phone?.75:1);
+    p.r=4+Math.random()*30;p.a=Math.random()*6.283;p.vr=sp;p.w=(Math.random()-.5)*.6;p.z=Math.random();p.age=1;p.c=Math.random()<.22?0:(p.z>.7?1:2);p.px=null;}
+  function ambient(p){var R=Math.hypot(W,H)*.62,c=M.core*M.vs;
+    p.r=Math.max(c*1.6,R*(.55+Math.random()*.6));p.a=Math.random()*6.283;p.vr=-(20+Math.random()*50);p.w=.2;p.z=Math.random();p.age=0;p.c=Math.random()<.16?0:(p.z>.7?1:2);p.px=null;}
+  function fill(fresh){var n=count();while(parts.length>n)parts.pop();while(parts.length<n){var p={};if(fresh)burst(p);else ambient(p);parts.push(p);}}
+
+  function measure(){
+    phone=innerWidth<761;
+    dpr=Math.min(window.devicePixelRatio||1,phone?1:1.25)*[1,.8,.65][Q.lvl];
+    W=vl.clientWidth;H=vl.clientHeight;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);
+    var cs=getComputedStyle(portal),pw=portal.offsetWidth,sh=stage.clientHeight;
+    M.cx=W/2;M.cy0=parseFloat(cs.top)+pw*(.496-.5);M.cy1=sh*.5;M.core=pw*.455/2;
+    // Inside the Voyd: the hole opens to about 40% (desktop) / 50% (phone) of the screen width.
+    M.bgS=Math.max(1.25,(phone?.5:.4)*W/(.222*pw));
+    var sy=window.scrollY||pageYOffset,rr=run.getBoundingClientRect();
+    M.runTop=rr.top+sy;M.span=Math.max(1,rr.height-innerHeight);M.runEnd=M.runTop+M.span;
+    // Book size: each is one half of the real cover pair art (697x1114).
+    var bw,bh;
+    if(phone){bw=Math.min(W*.41,sh*.42*.626);bh=bw/.626;}
+    else{bh=Math.min(sh*.56,470,W*.3/.626);bw=bh*.626;}
+    M.bw=bw;M.bh=bh;A.style.width=B.style.width=bw+'px';A.style.height=B.style.height=bh+'px';
+    // Where each book lands: its card's cover slot, in page coordinates (scroll-independent).
+    M.sh=sh;M.runBot=rr.top+sy+rr.height;
+    M.slots=[S1,S2].map(function(el){if(!el)return null;var r=el.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+sy+r.height/2,w:r.width};});
+    glow.style.width=(bw*3.2)+'px';glow.style.height=(bh*1.9)+'px';
+    M.gap=Math.max(12,Math.min(W-28-2*bw,bw*.36));
+    M.Rx=phone?Math.max(20,W/2-26-bw*.45):Math.min(W*.27,W/2-40-bw*.5);
+    M.Ry=phone?Math.max(20,Math.min(sh*.2,sh/2-bh*.45-74)):Math.max(20,Math.min(sh*.15,sh/2-bh*.45-40));
+    fill(false);}
+
+  var memo=new Map();function set(el,prop,v){var k=memo.get(el)||{};if(k[prop]!==v){k[prop]=v;memo.set(el,k);
+    if(prop.charAt(0)==='-')el.style.setProperty(prop,v);else el.style[prop]=v;}}
+  function place(el,x,y,s,r,w,h,free){
+    // keep the whole (rotated, scaled) book on screen, so nothing is ever cut off at the sides
+    var c=Math.abs(Math.cos(r*.01745)),sn=Math.abs(Math.sin(r*.01745)),hw=(w*c+h*sn)*s/2;
+    if(!free)x=Math.max(10+hw,Math.min(W-10-hw,x));
+    set(el,'transform','translate3d('+(x-w/2).toFixed(1)+'px,'+(y-h/2).toFixed(1)+'px,0) rotate('+r.toFixed(2)+'deg) scale('+s.toFixed(4)+')');}
+
+  // ?fps: a small frame-time counter for checking on a real phone.
+  var fpsEl=null,fpsN=0,fpsT=0,fpsWorst=0;
+  if(/[?&]fps\b/.test(location.search)){fpsEl=document.createElement('div');
+    fpsEl.style.cssText='position:fixed;right:8px;bottom:8px;z-index:99;font:600 12px/1.3 ui-monospace,monospace;color:#9f9;background:rgba(0,0,0,.7);padding:6px 8px;border-radius:6px;pointer-events:none;white-space:pre';
+    document.body.appendChild(fpsEl);}
+  // Adaptive quality: if the first ~60 frames run slow, drop resolution and particles (twice at most).
+  var aN=0,aSum=0;
+
+  function frame(now){
+    if(!t0)t0=now;
+    var T=(now-t0)/1000,dms=last?now-last:16,dt=Math.min(dms/1000,.05);last=now;
+    if(fpsEl){fpsN++;fpsT+=dms;fpsWorst=Math.max(fpsWorst,dms);if(fpsT>=1000){fpsEl.textContent=Math.round(fpsN*1000/fpsT)+' fps\nworst '+Math.round(fpsWorst)+' ms\nq'+Q.lvl+(window.__vpGL?' gl'+window.__vpGL.lvl:'')+(window.__vpBg?' bg':'');fpsN=0;fpsT=0;fpsWorst=0;}}
+    if(!still&&T>1.5&&Q.lvl<2&&!document.hidden){aN++;aSum+=dms;if(aN>=60){if(aSum/aN>20){Q.lvl++;measure();if(window.__vpGL)window.__vpGL.down();}aN=0;aSum=0;}}
+    var sy=window.scrollY||pageYOffset,p=Math.max(0,Math.min(1,(sy-M.runTop)/M.span)),q=Math.max(0,(sy-M.runEnd)/innerHeight);
+    // The Voyd: grows out of a point on arrival, then scrolling opens it around you and centres it.
+    var grow=still?1:.05+.95*ease((T-.12)/2.3),rot=still?0:(-70*(1-ease((T-.12)/2.6)));
+    var e0=still?0:sstep(0,.34,p),sc=grow*(1+(M.bgS-1)*e0),cy=M.cy0+(M.cy1-M.cy0)*e0;M.vcy=cy;M.vs=sc;
+    set(portal,'transform','translate(-50%,-50%) translate3d(0,'+(cy-M.cy0).toFixed(1)+'px,0) scale('+sc.toFixed(4)+') rotate('+rot.toFixed(2)+'deg)');
+    // The headline and buttons clear out fast, before the books are big enough to cross them.
+    var co=still?1-sstep(.15,.4,p):1-sstep(0,.08,p);
+    set(copy,'transform','translate3d(0,'+(-Math.min(1,p*8)*70).toFixed(1)+'px,0)');set(copy,'opacity',co.toFixed(3));
+    set(copy,'visibility',co>0?'visible':'hidden');
+    set(stage,'--scrim',(1-sstep(0,.14,p)).toFixed(3));
+    // After the hero, the Voyd stays as the page's background: dimmer, slower, lower resolution.
+    var dim=1-(1-(phone?.42:.55))*sstep(0,.8,q);set(vl,'opacity',dim.toFixed(3));
+    var bg=q>.9;if(window.__vpBg!==bg){window.__vpBg=bg;vl.classList.toggle('bg',bg);}
+    var vo=1-sstep(0,.6,q);set(cv,'opacity',vo.toFixed(3));
+
+    // THE BOOKS. Two separate books out of the core; they loop and braid round each other, join
+    // side by side for a beat (the pair), then part. All a function of scroll, so it reverses.
+    var vis=still?sstep(.25,.55,p):sstep(.06,.12,p),bw=M.bw,bh=M.bh,C=M.cx,Y=still?M.cy1:cy;
+    var x1,y1,x2,y2,s1,s2,r1,r2,front=1,gl=0;
+    if(still||p>=.74){var sp=still?1:sstep(.74,.95,p),off=bw/2+M.gap/2*sp;
+      x1=C-off;x2=C+off;y1=y2=Y;s1=s2=1;r1=-2.5*sp;r2=2.5*sp;gl=still?0:.9*(1-sstep(.74,.88,p));}
+    else{
+      var em=sstep(.06,.22,p),k=Math.max(0,Math.min(1,(p-.06)/.56)),kk=k*k*(3-2*k);
+      var th=Math.PI-.875*6.2832*(1-kk),amp=Math.sin(Math.PI*k);
+      var rx=M.Rx*amp+bw/2*sstep(.6,1,k)*(1-amp),ry=M.Ry*amp;
+      var dx=M.Rx*.16*Math.sin(4*Math.PI*k)*amp; // the pair zigzags as it braids
+      var d=Math.sin(th),s=(.06+.56*em)*(1+.6129*sstep(.55,1,k)); // .62 while looping, 1 when they join
+      x1=C+dx+rx*Math.cos(th);y1=Y+ry*d;x2=C+dx-rx*Math.cos(th);y2=Y-ry*d;
+      s1=s*(1+.16*d*amp);s2=s*(1-.16*d*amp);
+      r1=9*Math.cos(th)*amp-(1-em)*40;r2=-9*Math.cos(th)*amp+(1-em)*40;front=d>0?1:2;
+      gl=.35*em*(1-k)+.9*sstep(.75,1,k);}
+    // LANDING. Past the hero each book glides from where it parted onto its own card's cover,
+    // then hands over to the real cover in the card (same size, same spot), so it is a link that stays put.
+    var land=[0,0];
+    if(M.slots&&M.slots[0]&&M.slots[1]&&(still||p>=.95)){
+      var stTop=Math.min(0,M.runBot-M.sh-sy),Hh=innerHeight;
+      var qL=Math.max(.3,(Math.min(M.slots[0].y,M.slots[1].y)-M.runBot+M.sh-.52*Hh)/Hh);
+      [[0],[1]].forEach(function(o){var i=o[0],sl=M.slots[i];
+        var qq=Math.max(0,(sy-(M.runBot-M.sh))/Hh),t=sstep(0,qL,qq);land[i]=t;if(!t)return;
+        var tx=sl.x,ty=sl.y-sy-stTop,ts=sl.w/bw,sy0=(i?y2:y1);
+        if(i){x2+=(tx-x2)*t;y2=sy0+(ty-sy0)*t;s2+=(ts-s2)*t;r2*=1-t;}
+        else{x1+=(tx-x1)*t;y1=sy0+(ty-sy0)*t;s1+=(ts-s1)*t;r1*=1-t;}});
+      gl*=1-Math.max(land[0],land[1]);}
+    place(A,x1,y1,s1,r1,bw,bh,land[0]>0);place(B,x2,y2,s2,r2,bw,bh,land[1]>0);
+    if(S1){S1.classList.toggle('on',land[0]>=.999||!M.slots);S2.classList.toggle('on',land[1]>=.999||!M.slots);
+      set(K1,'opacity',(M.slots?sstep(.15,.85,land[0]):1).toFixed(3));set(K2,'opacity',(M.slots?sstep(.15,.85,land[1]):1).toFixed(3));}
+    window.__vpBooksVis=vis*(1-Math.min(land[0],land[1]));
+    set(A,'zIndex',front===1?'2':'1');set(B,'zIndex',front===2?'2':'1');
+    var vs=vis.toFixed(3),pe=vis>.4?'auto':'none';
+    set(A,'opacity',vs);set(B,'opacity',vs);
+    set(A,'visibility',vis>0&&land[0]<.999?'visible':'hidden');set(B,'visibility',vis>0&&land[1]<.999?'visible':'hidden');
+    set(A,'pointerEvents',pe);set(B,'pointerEvents',pe);
+    set(glow,'transform','translate3d('+(C-bw*1.6).toFixed(1)+'px,'+(Y-bh*.95).toFixed(1)+'px,0)');
+    set(glow,'opacity',(gl*vis).toFixed(3));
+
+    if(vo>.01)vortex(T,dt,p);
+    if(!still)requestAnimationFrame(frame);}
+
+  // The vortex particles: batched into three paths (one per colour) instead of one stroke each.
+  var COL=['255,214,128','236,240,255','150,170,255'];
+  function vortex(T,dt,sp){
+    var G={x:M.cx,y:M.vcy,core:M.core*M.vs};
+    g.setTransform(dpr,0,0,dpr,0,0);
+    g.globalCompositeOperation='destination-out';g.fillStyle='rgba(0,0,0,'+(still?1:.28)+')';g.fillRect(0,0,W,H);
+    g.globalCompositeOperation='lighter';
+    if(!still&&T<1.4){var k=Math.max(0,T-.1)/1.3,R=Math.hypot(W,H)*.75*ease(k),al=Math.pow(1-k,2.2);
+      var fl=g.createRadialGradient(G.x,G.y,0,G.x,G.y,Math.max(1,R));
+      fl.addColorStop(0,'rgba(255,246,220,'+(.95*al)+')');fl.addColorStop(.18,'rgba(243,220,160,'+(.55*al)+')');
+      fl.addColorStop(.5,'rgba(120,140,255,'+(.18*al)+')');fl.addColorStop(1,'rgba(0,0,0,0)');
+      g.fillStyle=fl;g.fillRect(0,0,W,H);
+      g.strokeStyle='rgba(255,236,190,'+(.8*al)+')';g.lineWidth=2+10*al;g.beginPath();g.ellipse(G.x,G.y,R*.62,R*.56,0,0,6.283);g.stroke();}
+    var pull=still?1:Math.max(0,Math.min(1,(T-.55)/1.2)),fast=1+sp*1.6,diag=Math.hypot(W,H);
+    for(var c=0;c<3;c++){
+      // three alpha buckets per colour keep depth without per-particle strokes; nearer = brighter and thicker
+      for(var b=0;b<3;b++){g.lineWidth=[.7,1.2,1.8][b]*(phone?.9:1);g.strokeStyle='rgba('+COL[c]+','+[.3,.6,.95][b]*(c===2?.8:1)+')';g.beginPath();
+        for(var i=0;i<parts.length;i++){var p=parts[i];if(p.c!==c)continue;
+          if(b===0&&!still){ // update once per particle (on its first bucket pass)
+            p.vr=p.vr*Math.exp(-2.1*dt)-pull*(70+16000/Math.max(p.r,40))*dt*fast;
+            var wt=pull*(.18+150/Math.max(p.r,50))*(.6+p.z*.7)*fast;
+            p.w+=(wt-p.w)*Math.min(1,2.6*dt);p.r+=p.vr*dt;p.a+=p.w*dt;p.age+=dt;
+            if((T>.6&&p.r<G.core*.9)||p.r>diag*1.3){ambient(p);}
+            p.ox=p.px;p.oy=p.py;p.px=G.x+Math.cos(p.a)*p.r;p.py=G.y+Math.sin(p.a)*p.r*.9;
+            var fade=Math.max(0,Math.min(1,(p.r-G.core*.9)/(G.core*.7)))*Math.min(1,p.age*1.6);
+            var a=fade*(.25+p.z*.75);p.b=a<.06?-1:a<.4?0:a<.75?1:2;}
+          if(still&&b===0){p.px=G.x+Math.cos(p.a)*p.r;p.py=G.y+Math.sin(p.a)*p.r*.9;p.ox=null;p.b=p.z<.3?0:p.z<.7?1:2;}
+          if(p.b!==b)continue;
+          if(p.ox!=null){g.moveTo(p.ox,p.oy);g.lineTo(p.px,p.py);}else{g.moveTo(p.px,p.py);g.lineTo(p.px+.6,p.py+.6);}}
+        g.stroke();}}
+    g.globalCompositeOperation='source-over';}
+
+  measure();for(var i=0;i<parts.length;i++)burst(parts[i]);
+  var rT=0;addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(function(){measure();if(still)frame(performance.now());},120);});
+  addEventListener('load',function(){measure();if(still)frame(performance.now());});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){measure();});
+  if('ResizeObserver' in window){var rmT=0;new ResizeObserver(function(){clearTimeout(rmT);rmT=setTimeout(measure,150);}).observe(document.body);}
+  if(still)addEventListener('scroll',function(){frame(performance.now());},{passive:true});
+  requestAnimationFrame(function(n){t0=n;hero.classList.add('on');frame(n);});
+})();
+</script>
+<script>
+/* CAT EYES in the Voyd. Now and then a pair of painted eyes (three frames of the same painting:
+   closed, half, open) opens slowly in the dark of the hole, blinks once, and closes again.
+   Openness crossfades the frames; nothing is drawn in code. Off for reduced motion. */
+(function(){
+  var box=document.getElementById('vp-eyes');if(!box)return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){box.remove();return;}
+  var C=box.querySelector('.e-closed'),Hf=box.querySelector('.e-half'),O=box.querySelector('.e-open'),n=0,bad=false;
+  [C,Hf,O].forEach(function(im){function ok(){if(++n===3&&!bad){ready=true;setTimeout(cycle,2600);}}
+    if(im.complete&&im.naturalWidth)ok();else{im.addEventListener('load',ok);im.addEventListener('error',function(){bad=true;box.remove();});}});
+  // [seconds, presence, openness]
+  var K=[[0,0,0],[.9,1,0],[2.2,1,.5],[3.1,1,1],[4.7,1,1],[4.85,1,0],[5.1,1,1],[6.6,1,1],[7.2,1,.5],[7.8,1,0],[8.6,0,0]];
+  function at(t,j){for(var i=1;i<K.length;i++)if(t<=K[i][0]){var a=K[i-1],b=K[i],k=(t-a[0])/(b[0]-a[0]),e=k*k*(3-2*k);return a[j]+(b[j]-a[j])*e;}return K[K.length-1][j];}
+  var copy=document.getElementById('vp-copy'),h1=document.querySelector('.hero.vp h1'),t0=0,z=0,busy=false,ready=false,lastEnd=-1e9;
+  // WHERE they look out. On a phone the hole sits above the words, so they stay dead centre. Where the
+  // headline sits inside the hole (desktop), they move up into the hole's dark band above the kicker, sized to it.
+  var portal=document.getElementById('vp-portal'),kick=document.querySelector('.hero.vp .vp-kicker'),spot='';
+  function place(){if(!portal)return;
+    var s=parseFloat(getComputedStyle(portal).getPropertyValue('--s'))||1,W=portal.offsetWidth*s;if(!W)return;
+    var pr=portal.getBoundingClientRect(),cy=pr.top+pr.height/2,R=.222*W,top=49.6,wid=39;
+    var kt=(kick||h1)?(kick||h1).getBoundingClientRect().top:1e9;
+    if(cy+.39*W*349/1000/2+6>kt){   // the default spot would sit on the words
+      var g0=cy-R*.9,g1=kt-10,gh=g1-g0,mid=(g0+g1)/2,dy=cy-mid,ch=2*Math.sqrt(Math.max(0,R*R-dy*dy));
+      var w=Math.min(gh*.92*1000/349,ch*1.15,.5*W);
+      if(w>W*.15){wid=w/W*100;top=50+(mid-cy)/W*100;}}
+    var k=top.toFixed(2)+'/'+wid.toFixed(2);if(k!==spot){spot=k;box.style.top=top.toFixed(2)+'%';box.style.width=wid.toFixed(2)+'%';}}
+  place();addEventListener('resize',place);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(place);
+  function clear(){   // a place they may appear: in view, not behind the headline, the hero still on stage
+    if(window.__vpBg||document.hidden)return false;
+    if((window.__vpBooksVis||0)>.01)return false;   // the books are out: the eyes step back, never behind a cover
+    var b=box.getBoundingClientRect();if(b.bottom<0||b.top>innerHeight||!b.width)return false;
+    if(copy&&+getComputedStyle(copy).opacity<.3)return true;
+    var r=h1&&h1.getBoundingClientRect();return !r||r.top>b.bottom-b.height*.15||r.bottom<b.top+b.height*.15;}
+  function tick(now){if(!t0)t0=now;place();var t=(now-t0)/1000,o=at(t,2),cl=clear();z+=((cl?1:0)-z)*(cl?.12:.35);
+    box.style.opacity=(at(t,1)*z*.88).toFixed(3);Hf.style.opacity=Math.min(1,o*2).toFixed(3);O.style.opacity=Math.max(0,o*2-1).toFixed(3);
+    if(t<K[K.length-1][0])requestAnimationFrame(tick);else{box.style.opacity='0';busy=false;lastEnd=performance.now();setTimeout(cycle,9000+Math.random()*9000);}}
+  function cycle(){if(busy)return;if(!clear()){setTimeout(cycle,1500);return;}busy=true;z=1;t0=0;requestAnimationFrame(tick);}
+  // scrolling into a clear spot soon after the last look brings them back sooner
+  addEventListener('scroll',function(){if(ready&&!busy&&performance.now()-lastEnd>4000&&clear()){busy=true;setTimeout(function(){busy=false;cycle();},500);}},{passive:true});
+})();
+</script>
+<script>
+/* PORTAL smoke: a WebGL layer re-renders the real rift art (voyd-rift.webp) through flowing noise:
+   the smoke swirls and breathes like a living wall, and the Voyd's edge is a soft, shifting mask
+   instead of a hard circle. Drawn small (about half the on-screen pixels) and scaled up by CSS,
+   since the smoke is soft anyway. If WebGL is missing, the plain images stay. */
+(function(){
+  var portal=document.getElementById('vp-portal'),cv=document.getElementById('vp-gl');
+  if(!portal||!cv)return;
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var gl=null;try{gl=cv.getContext('webgl',{premultipliedAlpha:true,alpha:true,antialias:false,depth:false,stencil:false,powerPreference:'high-performance'})||cv.getContext('experimental-webgl');}catch(e){}
+  if(!gl)return;
+  var VS='attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+  var FS=[
+  'precision mediump float;',
+  'uniform sampler2D T;uniform float t;uniform float K;uniform float Q;varying vec2 v;',
+  'float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}',
+  'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
+  ' return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}',
+  'const mat2 M=mat2(.8,.6,-.6,.8);',
+  'float fb(vec2 p){float s=0.,a=.5;for(int i=0;i<3;i++){if(float(i)>=Q)break;s+=a*n(p);p=M*p*2.03+11.7;a*=.5;}return s*(Q>2.5?1.143:1.333);}',
+  'mat2 R(float a){float c=cos(a),s=sin(a);return mat2(c,-s,s,c);}',
+  'vec4 tx(vec2 q){vec2 u=q+.5;u.y=1.-u.y;return (u.x<0.||u.y<0.||u.x>1.||u.y>1.)?vec4(0):texture2D(T,u);}',
+  'void main(){',
+  ' vec2 p=(v-.5)*K;p.y+=.004;',
+  ' float r=length(p),a=atan(p.y,p.x);',
+  // breathing: the wall swells and relaxes, with slow waves running round it
+  ' float br=1.+.035*sin(t*.9)+.025*sin(a*3.+t*.7)+.018*sin(a*5.-t*1.1);',
+  ' vec2 pb=p/br;',
+  // log-spiral flow: phase lines drift inward, so tendrils wind down into the Voyd
+  ' vec2 s1=R(2.6*log(max(r,.02))+t*.22)*pb;',
+  ' vec2 q=vec2(fb(s1*3.2+vec2(0.,t*.07)),fb(s1*3.6+vec2(5.2,1.3)-t*.06));',
+  ' vec2 d=(q-.5)*.11*smoothstep(.12,.32,r);',
+  // two passes of the real art turning against each other, both pushed by the flow
+  ' vec4 A=tx(R(t*.045+.35*sin(t*.21+r*7.))*pb+d);',
+  ' vec4 B=tx(R(-t*.032+1.9)*(pb*.9)+d*1.6+vec2(0.,.004));',
+  ' float dens=max(A.a,B.a*.85);',
+  ' float lum=mix(dot(B.rgb,vec3(.33)),dot(A.rgb,vec3(.33)),step(B.a*.85,A.a));',
+  ' float rg=1.-abs(fb(s1*6.+q*3.)*2.-1.);rg=rg*rg;rg=rg*rg*rg;',
+  ' float vein=rg*smoothstep(.17,.28,r)*(1.-smoothstep(.36,.5,r));',
+  ' float fold=n(s1*5.-q*3.+t*.15)*.6+q.y*.4;',
+  // the Voyd edge: a feathered, noise-eaten boundary that keeps moving
+  // v7: the hole stays a circle (the books never describe it warping); the edge is soft, the shape stable
+  ' float en=fb(vec2(cos(a),sin(a))*2.2+vec2(t*.13,-t*.09))-.5;',
+  ' float eh=n(pb*14.+q*4.+t*.35)-.5;',
+  ' float edge=.222+.006*en+.003*sin(t*.9);',
+  ' float rw=r+eh*.012+(q.x-.5)*.01;',
+  ' float hole=1.-smoothstep(edge-.07,edge+.04,rw);',
+  ' float rim=exp(-abs(rw-edge-.012)/.016)*(.55+.9*fold*fold);',
+  ' vec3 sh=vec3(.05,.06,.17),mi=vec3(.36,.38,.62),li=vec3(.86,.86,.96),fl=vec3(.66,.13,.20),gd=vec3(1.,.74,.36);',
+  ' float L=clamp(pow(dens,1.3)*(.3+.85*fold)*(.75+.35*lum),0.,1.);',
+  ' vec3 c=mix(mix(sh,mi,smoothstep(0.,.55,L)),li,smoothstep(.55,1.,L));',
+  ' float ember=smoothstep(.5,.8,fold)*smoothstep(.40,.23,r)*.7;',
+  ' c=mix(c,fl*(.5+.9*L),ember*dens);',
+  ' c+=vein*mix(gd,fl,smoothstep(.24,.38,r))*.75;',
+  ' float sa=clamp(dens*1.05+vein*.3,0.,1.);',
+  ' vec3 col=c*sa;',
+  ' col=col*(1.-hole)+rim*mix(gd,fl,.35+.35*sin(a*3.+t))*(1.-hole*.6)*1.1;',
+  ' gl_FragColor=vec4(col,clamp(max(sa,hole)+rim*.5,0.,1.));',
+  '}'].join('\n');
+  function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn('portal shader',gl.getShaderInfoLog(s));return null;}return s;}
+  var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs)return;
+  var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS))return;
+  gl.useProgram(pr);
+  var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var uT=gl.getUniformLocation(pr,'t'),uQ=gl.getUniformLocation(pr,'Q');
+  gl.uniform1i(gl.getUniformLocation(pr,'T'),0);
+  var K=1.36; // the canvas is 136% of the portal box, so smoke can spill past the art's own edge
+  gl.uniform1f(gl.getUniformLocation(pr,'K'),K);
+  var S=window.__vpGL={lvl:0,down:function(){if(S.lvl<2){S.lvl++;size();}}};
+  var t0=0,tt=0,lt=0,ready=false;S.bg=false;
+  function size(){var phone=innerWidth<761,f=(phone?[.45,.36,.3]:[.5,.4,.32])[S.lvl],cap=phone?420:720;
+    var px=Math.round(Math.min(portal.offsetWidth*K*f,cap)*(S.bg?.6:1));
+    if(cv.width!==px){cv.width=cv.height=px;gl.viewport(0,0,px,px);}
+    gl.uniform1f(uQ,S.lvl>=1||phone?2.:3.);}
+  var img=new Image();img.decoding='async';
+  img.onload=function(){var tx=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tx);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.generateMipmap(gl.TEXTURE_2D);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    ready=true;size();draw(performance.now());portal.classList.add('gl');
+    // once the smoke has faded in, take the stand-in images out of the render entirely
+    setTimeout(function(){portal.classList.add('gl-only');},1300);
+    if(!still)requestAnimationFrame(loop);};
+  img.src='assets/voyd-rift.webp';
+  // Behind the page (window.__vpBg) the smoke turns slower and renders at 60% of its hero resolution.
+  function draw(now){if(!t0){t0=now;lt=now;}tt+=Math.min(.05,(now-lt)/1000)*(S.bg?.4:1);lt=now;gl.uniform1f(uT,still?6.:8.+tt);
+    gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);}
+  function loop(now){var bg=!!window.__vpBg;if(bg!==S.bg){S.bg=bg;if(ready)size();}
+    if(ready&&!document.hidden)draw(now);else lt=now;requestAnimationFrame(loop);}
+  var rT=0;addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(function(){if(ready){size();if(still)draw(performance.now());}},120);});
+  if(still)addEventListener('scroll',function(){var bg=!!window.__vpBg;if(ready&&bg!==S.bg){S.bg=bg;size();draw(performance.now());}},{passive:true});
+  cv.addEventListener('webglcontextlost',function(e){e.preventDefault();portal.classList.remove('gl','gl-only');ready=false;});
 })();
 </script>
 </body>
