@@ -147,7 +147,8 @@ h2 em,h1 em{color:var(--gold-soft)}
 .first header{text-align:center;margin-bottom:34px}
 .first header h2{margin-top:8px}
 .sheets{max-width:620px;margin:0 auto}
-.sheet{position:relative;aspect-ratio:997/1509;max-width:100%;background:url(assets/parchment-sheet.webp) center/100% 100% no-repeat;filter:drop-shadow(0 26px 60px rgba(0,0,0,.6))}
+.sheet{position:relative;aspect-ratio:997/1509;max-width:100%;background:url(assets/parchment-sheet-phone.webp) center/100% 100% no-repeat;filter:drop-shadow(0 26px 60px rgba(0,0,0,.6))}
+@media (min-width:761px){.sheet{background-image:url(assets/parchment-sheet.webp)}}
 .sheet .scroll{position:absolute;inset:9% 11.5% 8.5% 11.5%;overflow-y:auto;color:var(--paper-ink);font-size:clamp(16px,2.1vw,19px);line-height:1.6;
   padding:4px 6px 46% 0;scrollbar-width:thin;scrollbar-color:rgba(122,90,48,.55) transparent;
   -webkit-mask-image:linear-gradient(transparent 0,#000 5%,#000 62%,transparent 98%);mask-image:linear-gradient(transparent 0,#000 5%,#000 62%,transparent 98%)}
@@ -258,7 +259,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   .castgrid{grid-template-columns:1fr 1fr}
   .hero .btns .btn{flex:1 1 150px}
 }
-@media (min-width:761px){.buybar{display:none}}
+@media (min-width:761px){.buybar{display:none;background:rgba(5,9,24,.975);backdrop-filter:none}}
 @media (prefers-reduced-motion:reduce){.voyd,.rift{animation:none}html{scroll-behavior:auto}.buybar,.table,.verdict,#cast{transition:none}}
 
 /* timestream dice */
@@ -271,6 +272,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 /* Archivist's Lens. The map art is unchanged. Hit shapes stay in the SVG and never paint. */
 .atlas{display:block}
 .atlas-stage{position:relative;cursor:crosshair;touch-action:pan-y}
+@media (min-width:761px){.atlas-stage{touch-action:pan-y pinch-zoom}}
 .atlas-stage img{width:100%;height:auto}
 .atlas-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
 .atlas-svg .ink,.atlas-svg .ink *{fill:none;stroke:none;opacity:0;filter:none;pointer-events:none}
@@ -397,6 +399,15 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 .vp-copy{position:absolute;left:0;right:0;bottom:clamp(36px,9svh,96px);padding:0 max(18px,env(safe-area-inset-left,0px));will-change:transform,opacity}
 .vp-kicker{opacity:0;letter-spacing:.6em;transition:opacity 1.2s ease .5s,letter-spacing 1.8s cubic-bezier(.2,.8,.2,1) .4s;text-shadow:0 2px 14px #000}
 .vp.on .vp-kicker{opacity:.92;letter-spacing:.32em}
+@media (min-width:761px){
+  .vp-kicker{letter-spacing:.32em;transition:opacity 1.2s ease .5s}
+  .vp.on .vp-kicker{letter-spacing:.32em}
+  /* Letters close in from wide tracking with per-letter transforms, so the line never reflows. */
+  .vp-kicker .kw{white-space:nowrap}
+  .vp-kicker .kl{display:inline-block;transform:translate3d(var(--o,0),0,0);transition:transform 1.8s cubic-bezier(.2,.8,.2,1) .4s}
+  .vp.on .vp-kicker .kl{transform:none}
+  .vp-hold .vp:not(.on) h1{visibility:hidden}
+}
 @media (max-width:760px){   /* phone: the ember ring crosses the kicker, so it gets a soft dark bed */
   .vp-kicker{position:relative;isolation:isolate;text-shadow:0 0 6px #000,0 0 14px #000,0 2px 14px #000}
   .vp-kicker::before{content:"";position:absolute;inset:-12px -6%;z-index:-1;border-radius:40px;
@@ -454,11 +465,17 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   .vp .vp-btns .btn{flex:1 1 140px}
 }
 @media (prefers-reduced-motion:reduce){
-  .vp-nav,.vp-kicker,.vp-btns,.vp-body,.vp-down{transition:none!important}
+  .vp-nav,.vp-kicker,.vp-kicker .kl,.vp-btns,.vp-body,.vp-down{transition:none!important}
   .vp-ring,.vp-back,.vp-glow,.vp-down,.vp-cue{animation:none!important}
   .vp-run{height:200svh}
 }
 </style>
+<script>/* Hold the hero headline until the Voyd opens, so it types in with the burst. Desktop only (over 760px). Released by the portal; never later than 3.5s. */
+(function(){if(!(window.matchMedia&&matchMedia('(min-width:761px)').matches))return;var d=document.documentElement,q=[];if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('vp-hold');
+window.__vpHeld=function(f){if(d.classList.contains('vp-hold'))q.push(f);else f();};
+window.__vpGo=function(){if(!d.classList.contains('vp-hold'))return;q.splice(0).forEach(function(f){f();});d.classList.remove('vp-hold');};
+document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){window.__vpGo();},3000);});})();
+</script>
 </head>
 <body>
 <canvas id="sky" aria-hidden="true"></canvas>
@@ -840,6 +857,11 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 <script>
 (function(){
   var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // v7.4 motion engines (shared clock, sprites, cached measures) run only above 760px.
+  // At phone width the website-branch engines run unchanged.
+  if(!(window.matchMedia&&matchMedia('(min-width:761px)').matches)){
+  (function(){
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
   var dpr=Math.min(window.devicePixelRatio||1,2);
 
   // WHERE THE VOYD IS. The stars drain toward whichever Voyd is nearest the middle of the
@@ -929,6 +951,120 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   var lastPuff=0;function trail(e){var n=performance.now();if(still||n-lastPuff<70||puffs.length>60)return;lastPuff=n;
     var p=e.touches?e.touches[0]:e;var f=puff(p.clientX,p.clientY,true);f.vy=-.35;puffs.push(f);}
   addEventListener('pointermove',trail,{passive:true});addEventListener('touchmove',trail,{passive:true});
+  })();
+  }else{
+  (function(){
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var dpr=Math.min(window.devicePixelRatio||1,2);
+
+  // ONE CLOCK. Every looping animation on the page (cat eyes, portal, portal smoke, sky, drain, pipe smoke)
+  // runs off this one requestAnimationFrame loop, in a fixed order, sharing one frame time (ms).
+  // It stops while the tab is hidden and resumes without a jump: the first frame back counts as a normal one.
+  var tick=window.__vpTick=(function(){var fns=[],on=false,lt=0;
+    function loop(t){if(document.hidden){on=false;return;}var dt=lt?Math.min(t-lt,100):16.67;lt=t;
+      for(var i=0;i<fns.length;i++)fns[i].f(t,dt);requestAnimationFrame(loop);}
+    function go(){if(!on&&!document.hidden&&fns.length){on=true;lt=0;requestAnimationFrame(loop);}}
+    document.addEventListener('visibilitychange',go);
+    return function(f,o){fns.push({f:f,o:o});fns.sort(function(a,b){return a.o-b.o;});go();};})();
+
+  // WHERE THE VOYD IS. In the hero the stars drain into the opening Voyd (the portal script publishes
+  // its hole each frame as window.__vpHole). Past the hero they drain toward whichever Voyd on the page
+  // is nearest the middle of the screen, gliding from one to the next as the reader scrolls.
+  var voyds=[].slice.call(document.querySelectorAll('[data-voyd]')).filter(function(el){return el.id!=='vp-portal';})
+    .map(function(el){return el.classList.contains('rift')?el:el.querySelector('.voyd');}).filter(Boolean);
+  var vcx=null,vcy=null,vcr=null,vpage=[];
+  // Page positions, measured when layout changes (never per frame); per frame only scrollY is read.
+  function readVoyds(){var sy=window.scrollY||pageYOffset;vpage=voyds.map(function(v){var r=v.getBoundingClientRect();return {l:r.left,t:r.top+sy,w:r.width,h:r.height};});}
+  readVoyds();addEventListener('resize',readVoyds);addEventListener('load',readVoyds);
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(readVoyds);
+  if('ResizeObserver' in window){var rvT=0;new ResizeObserver(function(){clearTimeout(rvT);rvT=setTimeout(readVoyds,150);}).observe(document.body);}
+  function targetVoyd(){var H=window.__vpHole;if(H&&!window.__vpBg)return H;
+    var best=null,bd=1e9,mid=innerHeight*.45,sy=window.scrollY||pageYOffset;
+    for(var i=0;i<vpage.length;i++){var r=vpage[i];if(!r.w)continue;var cy=r.t-sy+r.h/2,d=Math.abs(cy-mid);if(d<bd){bd=d;best=r;}}
+    if(!best)return {x:innerWidth/2,y:innerHeight*.42,r:Math.min(innerWidth,innerHeight)*.08};
+    var y=best.t-sy+best.h/2,lim=innerHeight*.35,off=y<-lim?-lim-y:y>innerHeight+lim?y-innerHeight-lim:0;
+    y=Math.max(-lim,Math.min(innerHeight+lim,y));
+    return {x:best.l+best.w/2,y:y,r:off?Math.max(8,best.w/2*Math.max(.15,1-off/innerHeight)):best.w/2};}
+  function voydCenter(dt){var t=targetVoyd();
+    if(vcx===null||still){vcx=t.x;vcy=t.y;vcr=t.r;}
+    else{var k=1-Math.pow(.88,dt/16.67);vcx+=(t.x-vcx)*k;vcy+=(t.y-vcy)*k;vcr+=(t.r-vcr)*k;}   // same glide as before at 60fps, at any frame rate
+    return {x:vcx,y:vcy,r:vcr};}
+
+  // THE SKY. Stars spiral inward and drain into the Voyd behind the covers. Nearer the
+  // hole they turn faster and fade, as if swallowed. (Density as in portal v2, Patrick 2026-10-27.)
+  var c=document.getElementById('sky'),x=c.getContext('2d'),stars=[],w=0,h=0,sw0=0;
+  function star(R,fresh){var z=Math.random();
+    return {a:Math.random()*6.283,d:fresh?R*(.75+Math.random()*.35):Math.sqrt(Math.random())*R,z:z,
+      r:(.35+z*1.45),o:.35+z*.6,p:Math.random()*6.283,tw:.0006+Math.random()*.0014};}
+  // Sized inside the frame (no blank frame on resize). A height-only change (the phone address bar
+  // showing or hiding) keeps the same stars; only a new width re-seeds them.
+  function fit(){var d=Math.min(window.devicePixelRatio||1,2),W2=Math.round(innerWidth*d),H2=Math.round(innerHeight*d);
+    if(W2===w&&H2===h)return;dpr=d;w=c.width=W2;h=c.height=H2;
+    if(innerWidth!==sw0||!stars.length){sw0=innerWidth;var R=Math.hypot(innerWidth,innerHeight),n=Math.min(3600,Math.round(innerWidth*innerHeight/480));stars=[];
+      for(var i=0;i<n;i++)stars.push(star(R,false));}}
+  function sky(t,dt){fit();x.clearRect(0,0,w,h);
+    var vc=voydCenter(dt),cx=vc.x,cy=vc.y,hole=Math.max(vc.r,8),R=Math.hypot(innerWidth,innerHeight),col='';
+    for(var i=0;i<stars.length;i++){var s=stars[i];
+      if(!still){var pull=.012+18/Math.max(s.d,20);
+        s.d-=s.d*pull*dt/1000*(.6+s.z);
+        s.a+=(.05+40/Math.max(s.d,30))*(.4+s.z*.6)*dt/1000;
+        if(s.d<hole*.9){stars[i]=star(R,true);continue;}}
+      var px=cx+Math.cos(s.a)*s.d,py=cy+Math.sin(s.a)*s.d*.86;
+      if(px<-4||py<-4||px>innerWidth+4||py>innerHeight+4)continue;
+      var fade=Math.min(1,(s.d-hole*.9)/(hole*2.2)),al=(still?s.o:s.o*(.6+.4*Math.sin(t*s.tw+s.p)))*fade,rr=s.r*dpr,sz=rr*2;
+      // under one device pixel a star flickers as it crosses pixel edges: draw it one pixel wide, same total light
+      if(sz<1){al*=sz*sz;sz=1;rr=.5;}
+      x.globalAlpha=al;var cl=s.z>.8?'#f6e7c2':'#dde5ff';if(cl!==col){x.fillStyle=col=cl;}
+      x.fillRect(px*dpr-rr,py*dpr-rr,sz,sz);}
+    x.globalAlpha=1;}
+  if(still){sky(0,16.67);addEventListener('resize',function(){sky(0,16.67);});addEventListener('scroll',function(){sky(0,16.67);},{passive:true});}
+  else tick(sky,3);
+
+  // THE DRAIN. Over the art, faint streams of light spiral into the black circle. Skipped while off screen.
+  [].forEach.call(document.querySelectorAll('canvas.drain'),function(dc){
+    var dx=dc.getContext('2d'),motes=[],dw=0,dh=0,visible=true;
+    function dsize(){var r=dc.getBoundingClientRect(),W2=Math.round(r.width*dpr),H2=Math.round(r.height*dpr);if(W2!==dw||H2!==dh){dw=dc.width=W2;dh=dc.height=H2;}}
+    function mote(){return {a:Math.random()*6.283,k:1.9+Math.random()*1.4,v:.25+Math.random()*.35,z:Math.random()};}
+    for(var m=0;m<70;m++){var mm=mote();mm.k=1+Math.random()*2.3;motes.push(mm);}
+    function drain(t,dt){if(!visible&&!still)return;var f=dt/16.67;
+      dx.clearRect(0,0,dw,dh);var cx=dw*.5,cy=dh*.392,hr=dw*.12;
+      for(var i=0;i<motes.length;i++){var p=motes[i];
+        if(!still){p.k-=p.v*.0045*(1+1/p.k)*f;p.a+=(.004+.02/p.k)*(1+p.z)*f;if(p.k<1){motes[i]=mote();continue;}}
+        var rr=hr*p.k,px=cx+Math.cos(p.a)*rr,py=cy+Math.sin(p.a)*rr;
+        var al=Math.min(1,(p.k-1)*2.2)*Math.min(1,(3.3-p.k)*1.5)*(.35+p.z*.5);
+        if(al<=0)continue;dx.globalAlpha=al;dx.fillStyle='#e8eeff';
+        var s=(.5+p.z*1.1)*dpr;dx.fillRect(px-s,py-s,s*2,s*2);
+        if(!still){dx.globalAlpha=al*.35;
+          dx.fillRect(cx+Math.cos(p.a-.06)*rr*1.01-s*.6,cy+Math.sin(p.a-.06)*rr*1.01-s*.6,s*1.2,s*1.2);}}
+      dx.globalAlpha=1;}
+    if('IntersectionObserver' in window)new IntersectionObserver(function(es){visible=es[0].isIntersecting;}).observe(dc);
+    dsize();addEventListener('resize',function(){dsize();if(still)drain(0,16.67);});if(still)drain(0,16.67);else tick(drain,5);});
+
+  // PIPE SMOKE. It drifts up through the sky and curls after the reader's hand.
+  // Soft puffs: drawn at 1x, the blur hides it and it's a big full-screen layer. Each puff is one
+  // pre-rendered soft sprite (the same radial falloff the old per-frame gradient drew), faded by alpha.
+  var sc=document.getElementById('smoke'),sx=sc.getContext('2d'),puffs=[],sw=0,sh=0;
+  var spr=document.createElement('canvas');spr.width=spr.height=384;
+  (function(){var g2=spr.getContext('2d'),gr=g2.createRadialGradient(192,192,0,192,192,192);
+    gr.addColorStop(0,'rgba(178,190,222,1)');gr.addColorStop(1,'rgba(178,190,222,0)');g2.fillStyle=gr;g2.fillRect(0,0,384,384);})();
+  function ssize(){if(sw!==innerWidth||sh!==innerHeight){sw=sc.width=innerWidth;sh=sc.height=innerHeight;}}
+  function puff(x0,y0,small){return {x:x0!=null?x0:Math.random()*innerWidth,y:y0!=null?y0:innerHeight+60*Math.random(),
+    r:small?18+Math.random()*24:70+Math.random()*120,a:0,max:small?.10:.045+Math.random()*.04,
+    vx:(Math.random()-.5)*.25,vy:-(.12+Math.random()*.28),life:0,span:small?2600:16000+Math.random()*12000,g:Math.random()};}
+  for(var q=0;q<18;q++){var pf=puff(null,Math.random()*innerHeight);pf.life=Math.random()*pf.span;puffs.push(pf);}
+  function smoke(t,dt){ssize();sx.clearRect(0,0,sw,sh);var f=dt/16.67;
+    for(var i=puffs.length-1;i>=0;i--){var p=puffs[i];
+      if(!still){p.life+=dt;p.x+=(p.vx+Math.sin((p.life+p.g*9000)/2600)*.18)*f;p.y+=p.vy*f;p.r+=.03*f;}
+      var k=p.life/p.span;if(k>=1){puffs.splice(i,1);if(puffs.length<18)puffs.push(puff());continue;}
+      var al=p.max*Math.sin(Math.PI*k);if(al<=0)continue;
+      sx.globalAlpha=al;sx.drawImage(spr,p.x-p.r,p.y-p.r,p.r*2,p.r*2);}
+    sx.globalAlpha=1;}
+  if(still){smoke(0,0);addEventListener('resize',function(){smoke(0,0);});}else tick(smoke,4);
+  var lastPuff=0;function trail(e){var n=performance.now();if(still||n-lastPuff<70||puffs.length>60)return;lastPuff=n;
+    var p=e.touches?e.touches[0]:e;var f=puff(p.clientX,p.clientY,true);f.vy=-.35;puffs.push(f);}
+  addEventListener('pointermove',trail,{passive:true});addEventListener('touchmove',trail,{passive:true});
+  })();
+  }
 
   // CLAW-SCRATCH WRITING. Headings arrive as scratch marks, then settle into letters.
   var marks='/\\|‖ı⁄/\\|';
@@ -942,7 +1078,10 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   var FLICKER_FRAMES=2;   // claws change every 2nd frame: half the flicker speed (Patrick, 2026-10-19). 1 = the faster version.
   var SCRATCH='type', TYPE_MS=55, CLAW_MS=160, CLAWS='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   function esc(z){return z==='&'?'&amp;':z==='<'?'&lt;':z;}
-  function typeIn(el){   // 'type' mode, keeping the heading's own markup: letters are typed inside their <em>/<small>
+  function typeIn(el){   // v7.4 pins final line breaks on desktop only. Phones keep the website-branch typer.
+    if(window.matchMedia&&matchMedia('(min-width:761px)').matches)return typeInDesk(el);
+    return typeInPhone(el);}
+  function typeInPhone(el){   // 'type' mode, keeping the heading's own markup: letters are typed inside their <em>/<small>
     var html=el.innerHTML,text=el.textContent;el.setAttribute('aria-label',text);
     var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[],n,cs=[];while((n=tw.nextNode()))nodes.push(n);
     nodes.forEach(function(tn){var f=document.createDocumentFragment(),run='';
@@ -953,6 +1092,32 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       if(run)f.appendChild(document.createTextNode(run));tn.parentNode.replaceChild(f,tn);});
     var TM=Math.min(TYPE_MS,1650/Math.max(1,cs.length)),st=cs.map(function(){return 0;}),start=performance.now(),fin=false;
     function finish(){if(fin)return;fin=true;clearInterval(iv);clearTimeout(to);el.innerHTML=html;el.removeAttribute('aria-label');}
+    (function tick(now){if(fin)return;var t=now-start,left=0;
+      for(var i=0;i<cs.length;i++){var land=i*TM,v=t>=land+CLAW_MS?2:t>=land?1:0;if(v<2)left++;
+        if(v!==st[i]){st[i]=v;cs[i].className=v===2?'tc':v===1&&FE.test(cs[i].getAttribute('data-c'))?'tc cl':'tc';}}
+      if(left)requestAnimationFrame(tick);else finish();})(start);
+    // A heading never stays half-typed: if frames stall (background tab, a slow phone), timers finish it.
+    var iv=setInterval(function(){if(performance.now()-start>cs.length*TM+CLAW_MS+120)finish();},120);
+    var to=setTimeout(finish,cs.length*TM+CLAW_MS+900);}
+  function typeInDesk(el){   // 'type' mode, keeping the heading's own markup: letters are typed inside their <em>/<small>
+    var html=el.innerHTML,text=el.textContent;el.setAttribute('aria-label',text);
+    var tw=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),nodes=[],n,cs=[];while((n=tw.nextNode()))nodes.push(n);
+    var ws=[],pend=null;
+    nodes.forEach(function(tn){var f=document.createDocumentFragment(),run='';
+      tn.nodeValue.split('').forEach(function(ch){
+        if(/\s/.test(ch)){run+=ch;return;}
+        if(run){pend=f.appendChild(document.createTextNode(run));run='';}
+        if(pend){ws[cs.length]=pend;pend=null;}
+        var sp=document.createElement('span');sp.className='tc gh';sp.setAttribute('aria-hidden','true');sp.setAttribute('data-c',ch);sp.textContent=ch;f.appendChild(sp);cs.push(sp);});
+      if(run)pend=f.appendChild(document.createTextNode(run));tn.parentNode.replaceChild(f,tn);});
+    // A claw's overlay switches off the heading's balanced wrap in Chrome, so the lines would re-break while it types
+    // (on a phone the hero headline jumped a line). Pin the final lines: read where each line starts, then break there.
+    var tops=cs.map(function(c){return c.getBoundingClientRect().top;}),brk=[];
+    for(var bi=1;bi<cs.length;bi++)if(tops[bi]>tops[bi-1]+2)brk.push(bi);
+    brk.forEach(function(bi){var br=document.createElement('br');cs[bi].parentNode.insertBefore(br,cs[bi]);if(ws[bi])ws[bi].nodeValue='';});
+    if(cs.length)el.style.whiteSpace='nowrap';
+    var TM=Math.min(TYPE_MS,1650/Math.max(1,cs.length)),st=cs.map(function(){return 0;}),start=performance.now(),fin=false;
+    function finish(){if(fin)return;fin=true;clearInterval(iv);clearTimeout(to);el.innerHTML=html;el.style.whiteSpace='';el.removeAttribute('aria-label');}
     (function tick(now){if(fin)return;var t=now-start,left=0;
       for(var i=0;i<cs.length;i++){var land=i*TM,v=t>=land+CLAW_MS?2:t>=land?1:0;if(v<2)left++;
         if(v!==st[i]){st[i]=v;cs[i].className=v===2?'tc':v===1&&FE.test(cs[i].getAttribute('data-c'))?'tc cl':'tc';}}
@@ -983,15 +1148,22 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
     var iv=setInterval(function(){if(performance.now()-start>chars.length*TM+CLAW_MS+120)finish();},120);
     var to=setTimeout(finish,chars.length*TM+CLAW_MS+900);}
   var io='IntersectionObserver' in window?new IntersectionObserver(function(es){es.forEach(function(e){
-      if(e.isIntersecting){scratch(e.target);io.unobserve(e.target);}
+      if(e.isIntersecting){var tg=e.target;if(window.__vpHeld&&tg.closest('.vp')){io.unobserve(tg);window.__vpHeld(function(){scratch(tg);});}else{scratch(tg);io.unobserve(tg);}}
       else if(e.boundingClientRect.bottom<0){e.target.dataset.done=1;io.unobserve(e.target);}   // jumped past: leave it whole
     });},{rootMargin:'0px 0px -12% 0px'}):null;
   if(io)document.querySelectorAll('[data-scratch]').forEach(function(el){io.observe(el);});
+
   // THE SCROLL CUE. Once the line under the headline has faded in, "Scroll down…" types itself out, then breathes.
   (function(){var c=document.getElementById('vp-cue');if(!c)return;
     if(still){c.classList.add('go');return;}
-    setTimeout(function(){c.classList.add('go');scratch(c);
-      setTimeout(function(){c.classList.add('breathe');},c.textContent.length*TYPE_MS+CLAW_MS+400);},2900);})();
+    function arm(){setTimeout(function(){c.classList.add('go');scratch(c);
+      setTimeout(function(){c.classList.add('breathe');},c.textContent.length*TYPE_MS+CLAW_MS+400);},2900);}
+    // Phones arm immediately, as on the website branch. Desktop waits for .on, because the Big Bang holds the fade.
+    if(!(window.matchMedia&&matchMedia('(min-width:761px)').matches)){arm();return;}
+    var heroEl=document.querySelector('.hero.vp');
+    if(!heroEl||heroEl.classList.contains('on')){arm();return;}
+    var mo=new MutationObserver(function(){if(heroEl.classList.contains('on')){mo.disconnect();arm();}});
+    mo.observe(heroEl,{attributes:true,attributeFilter:['class']});})();
 
   // THE DICE. The four that open Book Two. The button fades, the dice tumble onto the table,
   // and C.A.T. reads them: "A tangled path."
@@ -1466,7 +1638,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   function openSheet(){
     if(!phone()||!shown)return;
     /* Phones: the record shows in a card below the map instead of a sheet over it. */
-    setTimeout(function(){var r=read.getBoundingClientRect();if(r.bottom>innerHeight||r.top<0)read.scrollIntoView({behavior:"smooth",block:"nearest"});},30);
+    setTimeout(function(){var r=read.getBoundingClientRect();if(r.bottom>innerHeight||r.top<0)read.scrollIntoView({behavior:(window.matchMedia&&matchMedia('(min-width:761px)').matches)?"instant":"smooth",block:"nearest"});},30);
     return;
     sheet.hidden=false;back.hidden=false;
     sheet.setAttribute("aria-hidden","false");
@@ -1624,6 +1796,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 })();
 </script>
 <script>
+if(!(window.matchMedia&&matchMedia('(min-width:761px)').matches)){
 /* PORTAL: the Voyd opens. A starburst blooms out of the core and the light swirls back in. Scrolling
    widens the Voyd until you are inside it, and the two books come out of it separately: they loop
    and braid around each other, join for a moment as the pair, then part. They are real links the
@@ -1799,8 +1972,237 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   if(still)addEventListener('scroll',function(){frame(performance.now());},{passive:true});
   requestAnimationFrame(function(n){t0=n;hero.classList.add('on');frame(n);});
 })();
+}
 </script>
 <script>
+if(window.matchMedia&&matchMedia('(min-width:761px)').matches){
+/* PORTAL: the Voyd opens. A starburst blooms out of the core and the light swirls back in. Scrolling
+   widens the Voyd until you are inside it, and the two books come out of it separately: they loop
+   and braid around each other, join for a moment as the pair, then part. They are real links the
+   whole time they are visible. After the hero the Voyd stays behind the page as a dim, slow background.
+   One rAF loop; geometry is measured on resize only; transform/opacity writes only, and only when a
+   value changes. Add ?fps to the URL for a frame-time counter. */
+(function(){
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $=function(id){return document.getElementById(id);};
+  var hero=document.querySelector('.vp'),run=$('vp-run'),stage=$('vp-stage'),vl=$('vp-void'),portal=$('vp-portal'),copy=$('vp-copy'),
+      cv=$('vp-vortex'),books=$('vp-books');
+  if(!hero||!cv||!books||!vl||!portal)return;
+  var A=books.querySelector('.b1'),B=books.querySelector('.b2'),glow=books.querySelector('.glow');
+  var S1=document.querySelector('.split .book.b1 .slot'),S2=document.querySelector('.split .book.b2 .slot');
+  var K1=S1&&S1.closest('.book'),K2=S2&&S2.closest('.book');
+  if(S1&&S2)document.documentElement.classList.add('vp-fly');
+  var g=cv.getContext('2d'),dpr=0,W=0,H=0,cvW=0,cvH=0,parts=[],phone=false;
+  var Q=window.__vpQ={lvl:0,l0:0}; // adaptive quality level: 0 full, 1 lighter, 2 lightest (l0: chosen before the burst)
+  var M={vcy:0,vs:1,pw:0}; // measured geometry
+  var hole=window.__vpHole={x:0,y:0,r:0}; // the Voyd's opening on screen, for the sky's stars
+  function ease(x){x=Math.max(0,Math.min(1,x));return 1-Math.pow(1-x,4);}
+  function sstep(a,b,x){x=Math.max(0,Math.min(1,(x-a)/(b-a)));return x*x*(3-2*x);}
+  function count(){return Math.round((phone?620:1150)*[1,.6,.35][Q.lvl]);}
+  function burst(p){var sp=300+Math.pow(Math.random(),.6)*1500*(phone?.75:1);
+    p.r=4+Math.random()*30;p.a=Math.random()*6.283;p.vr=sp;p.w=(Math.random()-.5)*.6;p.z=Math.random();p.age=1;p.c=Math.random()<.22?0:(p.z>.7?1:2);p.px=null;}
+  function ambient(p){var R=Math.hypot(W,H)*.62,c=M.core*M.vs;
+    p.r=Math.max(c*1.6,R*(.55+Math.random()*.6));p.a=Math.random()*6.283;p.vr=-(20+Math.random()*50);p.w=.2;p.z=Math.random();p.age=0;p.c=Math.random()<.16?0:(p.z>.7?1:2);p.px=null;}
+  function fill(fresh){var n=count();while(parts.length>n)parts.pop();while(parts.length<n){var p={};if(fresh)burst(p);else ambient(p);parts.push(p);}}
+
+  function measure(){
+    phone=innerWidth<761;
+    // Phones get a sharper vortex (up to 1.5x); the resolution is fixed once the burst starts.
+    var nd=Math.min(window.devicePixelRatio||1,phone?1.5:1.25)*[1,.8,.65][Q.l0];
+    W=vl.clientWidth;H=vl.clientHeight;
+    // Reallocating the canvas wipes its trails, so it only happens for a new width or a taller screen
+    // (not when the phone address bar hides and shows); its CSS height is pinned so it never stretches.
+    if(nd!==dpr||W!==cvW||H>cvH){dpr=nd;cvW=W;cvH=H;cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cv.style.height=H+'px';}
+    var cs=getComputedStyle(portal),pw=portal.offsetWidth,sh=stage.clientHeight;M.pw=pw;lastSy=-1;
+    M.cx=W/2;M.cy0=parseFloat(cs.top)+pw*(.496-.5);M.cy1=sh*.5;M.core=pw*.455/2;
+    // Inside the Voyd: the hole opens to about 40% (desktop) / 50% (phone) of the screen width.
+    M.bgS=Math.max(1.25,(phone?.5:.4)*W/(.222*pw));
+    var sy=window.scrollY||pageYOffset,rr=run.getBoundingClientRect();
+    M.runTop=rr.top+sy;M.span=Math.max(1,rr.height-innerHeight);M.runEnd=M.runTop+M.span;
+    // Book size: each is one half of the real cover pair art (697x1114).
+    var bw,bh;
+    if(phone){bw=Math.min(W*.41,sh*.42*.626);bh=bw/.626;}
+    else{bh=Math.min(sh*.56,470,W*.3/.626);bw=bh*.626;}
+    M.bw=bw;M.bh=bh;A.style.width=B.style.width=bw+'px';A.style.height=B.style.height=bh+'px';
+    // Where each book lands: its card's cover slot, in page coordinates (scroll-independent).
+    M.sh=sh;M.runBot=rr.top+sy+rr.height;
+    M.slots=[S1,S2].map(function(el){if(!el)return null;var r=el.getBoundingClientRect();return {x:r.left+r.width/2,y:r.top+sy+r.height/2,w:r.width};});
+    glow.style.width=(bw*3.2)+'px';glow.style.height=(bh*1.9)+'px';
+    M.gap=Math.max(12,Math.min(W-28-2*bw,bw*.36));
+    M.Rx=phone?Math.max(20,W/2-26-bw*.45):Math.min(W*.27,W/2-40-bw*.5);
+    M.Ry=phone?Math.max(20,Math.min(sh*.2,sh/2-bh*.45-74)):Math.max(20,Math.min(sh*.15,sh/2-bh*.45-40));
+    fill(false);}
+
+  var memo=new Map();function set(el,prop,v){var k=memo.get(el)||{};if(k[prop]!==v){k[prop]=v;memo.set(el,k);
+    if(prop.charAt(0)==='-')el.style.setProperty(prop,v);else el.style[prop]=v;}}
+  function place(el,x,y,s,r,w,h,free){
+    // keep the whole (rotated, scaled) book on screen, so nothing is ever cut off at the sides
+    var c=Math.abs(Math.cos(r*.01745)),sn=Math.abs(Math.sin(r*.01745)),hw=(w*c+h*sn)*s/2;
+    if(!free)x=Math.max(10+hw,Math.min(W-10-hw,x));
+    set(el,'transform','translate3d('+(x-w/2).toFixed(1)+'px,'+(y-h/2).toFixed(1)+'px,0) rotate('+r.toFixed(2)+'deg) scale('+s.toFixed(4)+')');}
+
+  // ?fps: a small frame-time counter for checking on a real phone.
+  var fpsEl=null,fpsN=0,fpsT=0,fpsWorst=0;
+  if(/[?&]fps\b/.test(location.search)){fpsEl=document.createElement('div');
+    fpsEl.style.cssText='position:fixed;right:8px;bottom:8px;z-index:99;font:600 12px/1.3 ui-monospace,monospace;color:#9f9;background:rgba(0,0,0,.7);padding:6px 8px;border-radius:6px;pointer-events:none;white-space:pre';
+    document.body.appendChild(fpsEl);}
+  // Adaptive quality. The level is picked BEFORE the burst from how fast frames run while the page
+  // finishes loading, so nothing changes mid-animation. If it still runs slow once the burst has
+  // settled, particles thin out as they recycle and the smoke drops resolution (twice at most).
+  var aN=0,aSum=0,held=!still,acc=0,waits=[],lastSy=-1;
+
+  function frame(now,dms){
+    if(dms==null)dms=16.67;
+    if(held){if(waits.length<240)waits.push(dms);}else acc+=Math.min(dms,100);
+    var T=acc/1000,dt=Math.min(dms/1000,.05);
+    if(fpsEl){fpsN++;fpsT+=dms;fpsWorst=Math.max(fpsWorst,dms);if(fpsT>=1000){fpsEl.textContent=Math.round(fpsN*1000/fpsT)+' fps\nworst '+Math.round(fpsWorst)+' ms\nq'+Q.lvl+(window.__vpGL?' gl'+window.__vpGL.lvl:'')+(window.__vpBg?' bg':'');fpsN=0;fpsT=0;fpsWorst=0;}}
+    if(!still&&!held&&T>3&&Q.lvl<2){aN++;aSum+=dms;if(aN>=60){if(aSum/aN>20){Q.lvl++;Q.pend=1;if(window.__vpGL)window.__vpGL.down();}aN=0;aSum=0;}}
+    var sy=window.scrollY||pageYOffset;
+    // Behind the page with nothing moving: every value below is a function of scroll, so skip the frame.
+    if(!still&&!held&&T>4&&window.__vpBg&&sy===lastSy)return;lastSy=sy;
+    var p=Math.max(0,Math.min(1,(sy-M.runTop)/M.span)),q=Math.max(0,(sy-M.runEnd)/innerHeight);
+    // The Voyd: grows out of a point on arrival, then scrolling opens it around you and centres it.
+    var grow=still?1:.05+.95*ease((T-.12)/2.3),rot=still?0:(-70*(1-ease((T-.12)/2.6)));
+    var e0=still?0:sstep(0,.34,p),sc=grow*(1+(M.bgS-1)*e0),cy=M.cy0+(M.cy1-M.cy0)*e0;M.vcy=cy;M.vs=sc;
+    hole.x=M.cx;hole.y=cy;hole.r=M.pw*.22*sc;
+    set(portal,'transform','translate(-50%,-50%) translate3d(0,'+(cy-M.cy0).toFixed(1)+'px,0) scale('+sc.toFixed(4)+') rotate('+rot.toFixed(2)+'deg)');
+    // The headline and buttons clear out fast, before the books are big enough to cross them.
+    var co=still?1-sstep(.15,.4,p):1-sstep(0,.08,p);
+    set(copy,'transform','translate3d(0,'+(-Math.min(1,p*8)*70).toFixed(1)+'px,0)');set(copy,'opacity',co.toFixed(3));
+    set(copy,'visibility',co>0?'visible':'hidden');
+    set(stage,'--scrim',(1-sstep(0,.14,p)).toFixed(3));
+    // After the hero, the Voyd stays as the page's background: dimmer, slower, lower resolution.
+    var dim=1-(1-(phone?.42:.55))*sstep(0,.8,q);set(vl,'opacity',dim.toFixed(3));
+    var bg=q>.9;if(window.__vpBg!==bg){window.__vpBg=bg;vl.classList.toggle('bg',bg);}
+    var vo=1-sstep(0,.6,q);set(cv,'opacity',vo.toFixed(3));
+    // a quality step-down's lower resolution waits until the vortex has faded out, so it never visibly pops
+    if(Q.pend&&vo<=.01){Q.pend=0;Q.l0=Q.lvl;measure();}
+
+    // THE BOOKS. Two separate books out of the core; they loop and braid round each other, join
+    // side by side for a beat (the pair), then part. All a function of scroll, so it reverses.
+    // TEASER. Until the reader scrolls, every 6.5s the books stir out of the Voyd a little and sink back.
+    var tz=0;if(!still&&sy<4&&T>4){var ph=((T-4)%6.5)/2.4;if(ph<1)tz=.13*Math.sin(Math.PI*ph);}
+    var pb=Math.max(p,tz);
+    var vis=still?sstep(.25,.55,p):sstep(.06,.12,pb),bw=M.bw,bh=M.bh,C=M.cx,Y=still?M.cy1:cy;
+    var x1,y1,x2,y2,s1,s2,r1,r2,front=1,gl=0;
+    if(still||p>=.74){var sp=still?1:sstep(.74,.95,p),off=bw/2+M.gap/2*sp;
+      x1=C-off;x2=C+off;y1=y2=Y;s1=s2=1;r1=-2.5*sp;r2=2.5*sp;gl=still?0:.9*(1-sstep(.74,.88,p));}
+    else{
+      var em=sstep(.06,.22,pb),k=tz>p?Math.max(0,(tz-.06)/.56)*.4:Math.max(0,Math.min(1,(p-.06)/.56)),kk=k*k*(3-2*k);   // the teaser stays inside the hole
+      var th=Math.PI-.875*6.2832*(1-kk),amp=Math.sin(Math.PI*k);
+      var rx=M.Rx*amp+bw/2*sstep(.6,1,k)*(1-amp),ry=M.Ry*amp;
+      var dx=M.Rx*.16*Math.sin(4*Math.PI*k)*amp; // the pair zigzags as it braids
+      var d=Math.sin(th),s=(.06+.56*em)*(1+.6129*sstep(.55,1,k)); // .62 while looping, 1 when they join
+      x1=C+dx+rx*Math.cos(th);y1=Y+ry*d;x2=C+dx-rx*Math.cos(th);y2=Y-ry*d;
+      s1=s*(1+.16*d*amp);s2=s*(1-.16*d*amp);
+      r1=9*Math.cos(th)*amp-(1-em)*40;r2=-9*Math.cos(th)*amp+(1-em)*40;front=d>0?1:2;
+      gl=.35*em*(1-k)+.9*sstep(.75,1,k);
+      if(tz>p&&!phone){var up=M.core*sc*.42;y1-=up;y2-=up;}}   // desktop: the headline crosses the hole, so the teaser stays above it
+    // LANDING. Past the hero each book glides from where it parted onto its own card's cover,
+    // then hands over to the real cover in the card (same size, same spot), so it is a link that stays put.
+    var land=[0,0];
+    if(M.slots&&M.slots[0]&&M.slots[1]&&(still||p>=.95)){
+      var stTop=Math.min(0,M.runBot-M.sh-sy),Hh=innerHeight;
+      var qL=Math.max(.3,(Math.min(M.slots[0].y,M.slots[1].y)-M.runBot+M.sh-.52*Hh)/Hh);
+      [[0],[1]].forEach(function(o){var i=o[0],sl=M.slots[i];
+        var qq=Math.max(0,(sy-(M.runBot-M.sh))/Hh),t=sstep(0,qL,qq);land[i]=t;if(!t)return;
+        var tx=sl.x,ty=sl.y-sy-stTop,ts=sl.w/bw,sy0=(i?y2:y1);
+        if(i){x2+=(tx-x2)*t;y2=sy0+(ty-sy0)*t;s2+=(ts-s2)*t;r2*=1-t;}
+        else{x1+=(tx-x1)*t;y1=sy0+(ty-sy0)*t;s1+=(ts-s1)*t;r1*=1-t;}});
+      gl*=1-Math.max(land[0],land[1]);}
+    place(A,x1,y1,s1,r1,bw,bh,land[0]>0);place(B,x2,y2,s2,r2,bw,bh,land[1]>0);
+    if(S1){S1.classList.toggle('on',land[0]>=.999||!M.slots);S2.classList.toggle('on',land[1]>=.999||!M.slots);
+      set(K1,'opacity',(M.slots?sstep(.15,.85,land[0]):1).toFixed(3));set(K2,'opacity',(M.slots?sstep(.15,.85,land[1]):1).toFixed(3));}
+    window.__vpBooksVis=vis*(1-Math.min(land[0],land[1]));
+    set(A,'zIndex',front===1?'2':'1');set(B,'zIndex',front===2?'2':'1');
+    var vs=vis.toFixed(3),pe=vis>.4?'auto':'none';
+    set(A,'opacity',vs);set(B,'opacity',vs);
+    set(A,'visibility',vis>0&&land[0]<.999?'visible':'hidden');set(B,'visibility',vis>0&&land[1]<.999?'visible':'hidden');
+    set(A,'pointerEvents',pe);set(B,'pointerEvents',pe);
+    set(glow,'transform','translate3d('+(C-bw*1.6).toFixed(1)+'px,'+(Y-bh*.95).toFixed(1)+'px,0)');
+    set(glow,'opacity',(gl*vis).toFixed(3));
+
+    if(vo>.01&&!held)vortex(T,dt,p);}
+
+  var FL=null;function flash(){if(FL)return FL;FL=document.createElement('canvas');FL.width=FL.height=512;
+    var c2=FL.getContext('2d'),fg=c2.createRadialGradient(256,256,0,256,256,256);
+    fg.addColorStop(0,'rgba(255,246,220,.95)');fg.addColorStop(.18,'rgba(243,220,160,.55)');
+    fg.addColorStop(.5,'rgba(120,140,255,.18)');fg.addColorStop(1,'rgba(0,0,0,0)');c2.fillStyle=fg;c2.fillRect(0,0,512,512);return FL;}
+  // The vortex particles: batched into three paths (one per colour) instead of one stroke each.
+  var COL=['255,214,128','236,240,255','150,170,255'];
+  function vortex(T,dt,sp){
+    var G={x:M.cx,y:M.vcy,core:M.core*M.vs};
+    g.setTransform(dpr,0,0,dpr,0,0);
+    g.globalCompositeOperation='destination-out';g.fillStyle='rgba(0,0,0,'+(still?1:.28)+')';g.fillRect(0,0,W,cvH);
+    g.globalCompositeOperation='lighter';
+    if(!still&&T<1.4){var k=Math.max(0,T-.1)/1.3,R=Math.hypot(W,H)*.75*ease(k),al=Math.pow(1-k,2.2);
+      // the flash: one pre-rendered sprite (same colour stops), scaled and faded, instead of a new gradient each frame
+      if(R>=1){g.globalAlpha=al;g.drawImage(flash(),G.x-R,G.y-R,R*2,R*2);g.globalAlpha=1;}
+      g.strokeStyle='rgba(255,236,190,'+(.8*al)+')';g.lineWidth=2+10*al;g.beginPath();g.ellipse(G.x,G.y,R*.62,R*.56,0,0,6.283);g.stroke();}
+    var pull=still?1:Math.max(0,Math.min(1,(T-.55)/1.2)),fast=1+sp*1.6,diag=Math.hypot(W,H),drop=0;
+    for(var c=0;c<3;c++){
+      // three alpha buckets per colour keep depth without per-particle strokes; nearer = brighter and thicker
+      for(var b=0;b<3;b++){g.lineWidth=[.7,1.2,1.8][b]*(phone?.9:1);g.strokeStyle='rgba('+COL[c]+','+[.3,.6,.95][b]*(c===2?.8:1)+')';g.beginPath();
+        for(var i=0;i<parts.length;i++){var p=parts[i];if(p.c!==c)continue;
+          if(b===0&&!still){ // update once per particle (on its first bucket pass)
+            p.vr=p.vr*Math.exp(-2.1*dt)-pull*(70+16000/Math.max(p.r,40))*dt*fast;
+            var wt=pull*(.18+150/Math.max(p.r,50))*(.6+p.z*.7)*fast;
+            p.w+=(wt-p.w)*Math.min(1,2.6*dt);p.r+=p.vr*dt;p.a+=p.w*dt;p.age+=dt;
+            if((T>.6&&p.r<G.core*.9)||p.r>diag*1.3){if(parts.length-drop>count()){p.dead=1;drop++;p.b=-1;continue;}ambient(p);}
+            p.ox=p.px;p.oy=p.py;p.px=G.x+Math.cos(p.a)*p.r;p.py=G.y+Math.sin(p.a)*p.r*.9;
+            var fade=Math.max(0,Math.min(1,(p.r-G.core*.9)/(G.core*.7)))*Math.min(1,p.age*1.6);
+            var a=fade*(.25+p.z*.75);p.b=a<.06?-1:a<.4?0:a<.75?1:2;}
+          if(still&&b===0){p.px=G.x+Math.cos(p.a)*p.r;p.py=G.y+Math.sin(p.a)*p.r*.9;p.ox=null;p.b=p.z<.3?0:p.z<.7?1:2;}
+          if(p.b!==b||p.dead)continue;
+          if(p.ox!=null){g.moveTo(p.ox,p.oy);g.lineTo(p.px,p.py);}else{g.moveTo(p.px,p.py);g.lineTo(p.px+.6,p.py+.6);}}
+        g.stroke();}}
+    if(drop)parts=parts.filter(function(p){return !p.dead;});
+    g.globalCompositeOperation='source-over';}
+
+  measure();for(var i=0;i<parts.length;i++)burst(parts[i]);
+  var rT=0;addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(function(){measure();if(still)frame(performance.now());},120);});
+  addEventListener('load',function(){measure();if(still)frame(performance.now());});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){measure();});
+  if('ResizeObserver' in window){var rmT=0;new ResizeObserver(function(){clearTimeout(rmT);rmT=setTimeout(measure,150);}).observe(document.body);}
+  if(still)addEventListener('scroll',function(){frame(performance.now());},{passive:true});
+
+  // THE START. The burst waits for the page to finish loading, the fonts and the WebGL smoke (at most
+  // 1.8s), so it never stutters or changes quality mid-way. Meanwhile the T=0 pose (a point of light)
+  // is shown, the frame times are sampled to pick the quality, and the headline is held back.
+  var kick=hero.querySelector('.vp-kicker');
+  function kickerSplit(){   // letters start .28em further apart per letter from the line's centre and close in
+    if(!kick||still)return;var txt=kick.textContent,ls=[],gi=0;kick.setAttribute('aria-label',txt);kick.textContent='';
+    txt.split(/(\s+)/).forEach(function(wd){if(!wd)return;if(/^\s+$/.test(wd)){kick.appendChild(document.createTextNode(wd));gi+=wd.length;return;}
+      var ww=document.createElement('span');ww.className='kw';ww.setAttribute('aria-hidden','true');
+      wd.split('').forEach(function(ch){var sp=document.createElement('span');sp.className='kl';sp.textContent=ch;sp._i=gi++;ww.appendChild(sp);ls.push(sp);});
+      kick.appendChild(ww);});
+    var lines={};ls.forEach(function(sp){var k=sp.offsetTop;(lines[k]=lines[k]||[]).push(sp);});
+    Object.keys(lines).forEach(function(k){var L=lines[k],c=(L[0]._i+L[L.length-1]._i)/2;
+      L.forEach(function(sp){sp.style.setProperty('--o',((sp._i-c)*.28).toFixed(2)+'em');});});
+    void kick.offsetWidth;}
+  var need=2,capT=0;
+  function go(){if(!held)return;held=false;clearTimeout(capT);
+    var s=waits.slice(3).sort(function(a,b){return a-b;});
+    if(s.length>=8){var md=s[s.length>>1];Q.l0=Q.lvl=md>33?2:md>20?1:0;}
+    if(window.__vpGL)for(var i=window.__vpGL.lvl;i<Q.lvl;i++)window.__vpGL.down();
+    measure();fill(true);for(var j=0;j<parts.length;j++)burst(parts[j]);acc=0;
+    kickerSplit();if(window.__vpGo)window.__vpGo();
+    window.__vpStarted=true;hero.classList.add('on');}
+  function one(){if(--need<=0)go();}
+  if(still){held=false;hero.classList.add('on');frame(performance.now());}
+  else{
+    if(document.getElementById('vp-gl')){need++;window.__vpGLDone=function(){window.__vpGLDone=null;one();};}
+    if(document.readyState==='complete')one();else addEventListener('load',one,{once:true});
+    if(document.fonts&&document.fonts.ready)Promise.all([document.fonts.ready,document.fonts.load('1em "Nyandor First Era"')]).then(one,one);else one();
+    capT=setTimeout(go,1800);
+    addEventListener('scroll',function(){if(held&&(window.scrollY||pageYOffset)>2)go();},{passive:true});
+    frame(performance.now(),16.67);
+    (window.__vpTick||function(f){(function r(n){f(n,16.67);requestAnimationFrame(r);})(performance.now());})(frame,1);}
+})();
+}
+</script>
+<script>
+if(!(window.matchMedia&&matchMedia('(min-width:761px)').matches)){
 /* CAT EYES in the Voyd. Now and then a pair of painted eyes (three frames of the same painting:
    closed, half, open) opens slowly in the dark of the hole, blinks once, and closes again.
    Openness crossfades the frames; nothing is drawn in code. Off for reduced motion. */
@@ -1840,8 +2242,59 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   // scrolling into a clear spot soon after the last look brings them back sooner
   addEventListener('scroll',function(){if(ready&&!busy&&performance.now()-lastEnd>4000&&clear()){busy=true;setTimeout(function(){busy=false;cycle();},500);}},{passive:true});
 })();
+}
 </script>
 <script>
+if(window.matchMedia&&matchMedia('(min-width:761px)').matches){
+/* CAT EYES in the Voyd. Now and then a pair of painted eyes (three frames of the same painting:
+   closed, half, open) opens slowly in the dark of the hole, blinks once, and closes again.
+   Openness crossfades the frames; nothing is drawn in code. Off for reduced motion. */
+(function(){
+  var box=document.getElementById('vp-eyes');if(!box)return;
+  if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches){box.remove();return;}
+  var C=box.querySelector('.e-closed'),Hf=box.querySelector('.e-half'),O=box.querySelector('.e-open'),n=0,bad=false;
+  [C,Hf,O].forEach(function(im){function ok(){if(++n===3&&!bad){ready=true;setTimeout(cycle,2600);}}
+    if(im.complete&&im.naturalWidth)ok();else{im.addEventListener('load',ok);im.addEventListener('error',function(){bad=true;box.remove();});}});
+  // [seconds, presence, openness]
+  var K=[[0,0,0],[.9,1,0],[2.2,1,.5],[3.1,1,1],[4.7,1,1],[4.85,1,0],[5.1,1,1],[6.6,1,1],[7.2,1,.5],[7.8,1,0],[8.6,0,0]];
+  function at(t,j){for(var i=1;i<K.length;i++)if(t<=K[i][0]){var a=K[i-1],b=K[i],k=(t-a[0])/(b[0]-a[0]),e=k*k*(3-2*k);return a[j]+(b[j]-a[j])*e;}return K[K.length-1][j];}
+  var copy=document.getElementById('vp-copy'),h1=document.querySelector('.hero.vp h1'),t0=0,z=0,busy=false,ready=false,lastEnd=-1e9;
+  // WHERE they look out. On a phone the hole sits above the words, so they stay dead centre. Where the
+  // headline sits inside the hole (desktop), they move up into the hole's dark band above the kicker, sized to it.
+  var portal=document.getElementById('vp-portal'),kick=document.querySelector('.hero.vp .vp-kicker'),spot='',pW=0;
+  function readW(){if(portal)pW=portal.offsetWidth*(parseFloat(getComputedStyle(portal).getPropertyValue('--s'))||1);}
+  function rd(){return {pr:portal.getBoundingClientRect(),kt:(kick||h1)?(kick||h1).getBoundingClientRect().top:1e9};}
+  function place(m){if(!portal)return;if(!m){readW();m=rd();}
+    var W=pW;if(!W)return;
+    var pr=m.pr,cy=pr.top+pr.height/2,R=.222*W,top=49.6,wid=39;
+    var kt=m.kt;
+    if(cy+.39*W*349/1000/2+6>kt){   // the default spot would sit on the words
+      var g0=cy-R*.9,g1=kt-10,gh=g1-g0,mid=(g0+g1)/2,dy=cy-mid,ch=2*Math.sqrt(Math.max(0,R*R-dy*dy));
+      var w=Math.min(gh*.92*1000/349,ch*1.15,.5*W);
+      if(w>W*.15){wid=w/W*100;top=50+(mid-cy)/W*100;}}
+    var k=top.toFixed(2)+'/'+wid.toFixed(2);if(k!==spot){spot=k;box.style.top=top.toFixed(2)+'%';box.style.width=wid.toFixed(2)+'%';}}
+  place();addEventListener('resize',function(){place();});if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){place();});
+  function clear(){   // a place they may appear: in view, not behind the headline, the hero still on stage
+    if(window.__vpBg||document.hidden)return false;
+    if((window.__vpBooksVis||0)>.01)return false;   // the books are out: the eyes step back, never behind a cover
+    var b=box.getBoundingClientRect();if(b.bottom<0||b.top>innerHeight||!b.width)return false;
+    if(copy&&+(copy.style.opacity||1)<.3)return true;   // the portal script writes this inline
+    var r=h1&&h1.getBoundingClientRect();return !r||r.top>b.bottom-b.height*.15||r.bottom<b.top+b.height*.15;}
+  var on=false;
+  // Runs first on the shared clock, before anything writes styles, so all its reads are free; then it writes.
+  function tick(now){if(!on)return;if(!t0)t0=now;
+    var m=rd(),cl=clear();place(m);var t=(now-t0)/1000,o=at(t,2);z+=((cl?1:0)-z)*(cl?.12:.35);
+    box.style.opacity=(at(t,1)*z*.88).toFixed(3);Hf.style.opacity=Math.min(1,o*2).toFixed(3);O.style.opacity=Math.max(0,o*2-1).toFixed(3);
+    if(t>=K[K.length-1][0]){on=false;box.style.opacity='0';busy=false;lastEnd=performance.now();setTimeout(cycle,9000+Math.random()*9000);}}
+  if(window.__vpTick)window.__vpTick(tick,0);
+  function cycle(){if(busy)return;if(!clear()){setTimeout(cycle,1500);return;}busy=true;z=1;t0=0;on=true;}
+  // scrolling into a clear spot soon after the last look brings them back sooner
+  addEventListener('scroll',function(){if(ready&&!busy&&performance.now()-lastEnd>4000&&clear()){busy=true;setTimeout(function(){busy=false;cycle();},500);}},{passive:true});
+})();
+}
+</script>
+<script>
+if(!(window.matchMedia&&matchMedia('(min-width:761px)').matches)){
 /* PORTAL smoke: a WebGL layer re-renders the real rift art (voyd-rift.webp) through flowing noise:
    the smoke swirls and breathes like a living wall, and the Voyd's edge is a soft, shifting mask
    instead of a hard circle. Drawn small (about half the on-screen pixels) and scaled up by CSS,
@@ -1938,6 +2391,112 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   if(still)addEventListener('scroll',function(){var bg=!!window.__vpBg;if(ready&&bg!==S.bg){S.bg=bg;size();draw(performance.now());}},{passive:true});
   cv.addEventListener('webglcontextlost',function(e){e.preventDefault();portal.classList.remove('gl','gl-only');ready=false;});
 })();
+}
+</script>
+<script>
+if(window.matchMedia&&matchMedia('(min-width:761px)').matches){
+/* PORTAL smoke: a WebGL layer re-renders the real rift art (voyd-rift.webp) through flowing noise:
+   the smoke swirls and breathes like a living wall, and the Voyd's edge is a soft, shifting mask
+   instead of a hard circle. Drawn small (about half the on-screen pixels) and scaled up by CSS,
+   since the smoke is soft anyway. If WebGL is missing, the plain images stay. */
+(function(){
+  var portal=document.getElementById('vp-portal'),cv=document.getElementById('vp-gl');
+  function done(){if(window.__vpGLDone)window.__vpGLDone();}   // tells the portal the smoke is ready (or won't be)
+  if(!portal||!cv){done();return;}
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var gl=null;try{gl=cv.getContext('webgl',{premultipliedAlpha:true,alpha:true,antialias:false,depth:false,stencil:false,powerPreference:'high-performance'})||cv.getContext('experimental-webgl');}catch(e){}
+  if(!gl){done();return;}
+  var VS='attribute vec2 p;varying vec2 v;void main(){v=p*.5+.5;gl_Position=vec4(p,0.,1.);}';
+  var FS=[
+  'precision mediump float;',
+  'uniform sampler2D T;uniform float t;uniform float K;uniform float Q;varying vec2 v;',
+  'float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}',
+  'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
+  ' return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}',
+  'const mat2 M=mat2(.8,.6,-.6,.8);',
+  'float fb(vec2 p){float s=0.,a=.5;for(int i=0;i<3;i++){if(float(i)>=Q)break;s+=a*n(p);p=M*p*2.03+11.7;a*=.5;}return s*(Q>2.5?1.143:1.333);}',
+  'mat2 R(float a){float c=cos(a),s=sin(a);return mat2(c,-s,s,c);}',
+  'vec4 tx(vec2 q){vec2 u=q+.5;u.y=1.-u.y;return (u.x<0.||u.y<0.||u.x>1.||u.y>1.)?vec4(0):texture2D(T,u);}',
+  'void main(){',
+  ' vec2 p=(v-.5)*K;p.y+=.004;',
+  ' float r=length(p),a=atan(p.y,p.x);',
+  // breathing: the wall swells and relaxes, with slow waves running round it
+  ' float br=1.+.035*sin(t*.9)+.025*sin(a*3.+t*.7)+.018*sin(a*5.-t*1.1);',
+  ' vec2 pb=p/br;',
+  // log-spiral flow: phase lines drift inward, so tendrils wind down into the Voyd
+  ' vec2 s1=R(2.6*log(max(r,.02))+t*.22)*pb;',
+  ' vec2 q=vec2(fb(s1*3.2+vec2(0.,t*.07)),fb(s1*3.6+vec2(5.2,1.3)-t*.06));',
+  ' vec2 d=(q-.5)*.11*smoothstep(.12,.32,r);',
+  // two passes of the real art turning against each other, both pushed by the flow
+  ' vec4 A=tx(R(t*.045+.35*sin(t*.21+r*7.))*pb+d);',
+  ' vec4 B=tx(R(-t*.032+1.9)*(pb*.9)+d*1.6+vec2(0.,.004));',
+  ' float dens=max(A.a,B.a*.85);',
+  ' float lum=mix(dot(B.rgb,vec3(.33)),dot(A.rgb,vec3(.33)),step(B.a*.85,A.a));',
+  ' float rg=1.-abs(fb(s1*6.+q*3.)*2.-1.);rg=rg*rg;rg=rg*rg*rg;',
+  ' float vein=rg*smoothstep(.17,.28,r)*(1.-smoothstep(.36,.5,r));',
+  ' float fold=n(s1*5.-q*3.+t*.15)*.6+q.y*.4;',
+  // the Voyd edge: a feathered, noise-eaten boundary that keeps moving
+  // v7: the hole stays a circle (the books never describe it warping); the edge is soft, the shape stable
+  ' float en=fb(vec2(cos(a),sin(a))*2.2+vec2(t*.13,-t*.09))-.5;',
+  ' float eh=n(pb*14.+q*4.+t*.35)-.5;',
+  ' float edge=.222+.006*en+.003*sin(t*.9);',
+  ' float rw=r+eh*.012+(q.x-.5)*.01;',
+  ' float hole=1.-smoothstep(edge-.07,edge+.04,rw);',
+  ' float rim=exp(-abs(rw-edge-.012)/.016)*(.55+.9*fold*fold);',
+  ' vec3 sh=vec3(.05,.06,.17),mi=vec3(.36,.38,.62),li=vec3(.86,.86,.96),fl=vec3(.66,.13,.20),gd=vec3(1.,.74,.36);',
+  ' float L=clamp(pow(dens,1.3)*(.3+.85*fold)*(.75+.35*lum),0.,1.);',
+  ' vec3 c=mix(mix(sh,mi,smoothstep(0.,.55,L)),li,smoothstep(.55,1.,L));',
+  ' float ember=smoothstep(.5,.8,fold)*smoothstep(.40,.23,r)*.7;',
+  ' c=mix(c,fl*(.5+.9*L),ember*dens);',
+  ' c+=vein*mix(gd,fl,smoothstep(.24,.38,r))*.75;',
+  ' float sa=clamp(dens*1.05+vein*.3,0.,1.);',
+  ' vec3 col=c*sa;',
+  ' col=col*(1.-hole)+rim*mix(gd,fl,.35+.35*sin(a*3.+t))*(1.-hole*.6)*1.1;',
+  ' gl_FragColor=vec4(col,clamp(max(sa,hole)+rim*.5,0.,1.));',
+  '}'].join('\n');
+  function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);
+    if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){console.warn('portal shader',gl.getShaderInfoLog(s));return null;}return s;}
+  var vs=sh(gl.VERTEX_SHADER,VS),fs=sh(gl.FRAGMENT_SHADER,FS);if(!vs||!fs){done();return;}
+  var pr=gl.createProgram();gl.attachShader(pr,vs);gl.attachShader(pr,fs);gl.linkProgram(pr);
+  if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){done();return;}
+  gl.useProgram(pr);
+  var b=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,b);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  var loc=gl.getAttribLocation(pr,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+  var uT=gl.getUniformLocation(pr,'t'),uQ=gl.getUniformLocation(pr,'Q');
+  gl.uniform1i(gl.getUniformLocation(pr,'T'),0);
+  var GLOW_EARLY=true;
+  var K=1.36; // the canvas is 136% of the portal box, so smoke can spill past the art's own edge
+  gl.uniform1f(gl.getUniformLocation(pr,'K'),K);
+  var S=window.__vpGL={lvl:0,down:function(){if(S.lvl<2){S.lvl++;size();}}};
+  var t0=0,tt=0,lt=0,ready=false;S.bg=false;
+  function size(){var phone=innerWidth<761,f=(phone?[.45,.36,.3]:[.5,.4,.32])[S.lvl],cap=phone?420:720;
+    var px=Math.round(Math.min(portal.offsetWidth*K*f,cap)*(S.bg?.6:1));
+    if(cv.width!==px){cv.width=cv.height=px;gl.viewport(0,0,px,px);}
+    gl.uniform1f(uQ,S.lvl>=1||phone?2.:3.);}
+  var img=new Image();img.decoding='async';
+  img.onload=function(){var tx=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,tx);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);gl.generateMipmap(gl.TEXTURE_2D);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    ready=true;size();draw(performance.now());portal.classList.add('gl');
+    // once the smoke has faded in, take the stand-in images out of the render entirely
+    // (if the Voyd hasn't opened yet it is still a point of light, so no fade is needed)
+    if(GLOW_EARLY&&!window.__vpStarted)portal.classList.add('gl-only');else setTimeout(function(){portal.classList.add('gl-only');},1300);
+    if(!still)(window.__vpTick||function(f){(function r(n){f(n);requestAnimationFrame(r);})(performance.now());})(loop,2);
+    done();};
+  img.onerror=done;
+  img.src='assets/voyd-rift.webp';
+  // Behind the page (window.__vpBg) the smoke turns slower and renders at 60% of its hero resolution.
+  function draw(now){if(!t0){t0=now;lt=now;}tt+=Math.min(.05,(now-lt)/1000)*(S.bg?.4:1);lt=now;gl.uniform1f(uT,still?6.:8.+tt);
+    gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.drawArrays(gl.TRIANGLE_STRIP,0,4);}
+  function loop(now){var bg=!!window.__vpBg;if(bg!==S.bg){S.bg=bg;if(ready)size();}
+    if(ready&&!document.hidden)draw(now);else lt=now;}
+  var rT=0;addEventListener('resize',function(){clearTimeout(rT);rT=setTimeout(function(){if(ready){size();if(still)draw(performance.now());}},120);});
+  if(still)addEventListener('scroll',function(){var bg=!!window.__vpBg;if(ready&&bg!==S.bg){S.bg=bg;size();draw(performance.now());}},{passive:true});
+  cv.addEventListener('webglcontextlost',function(e){e.preventDefault();portal.classList.remove('gl','gl-only');ready=false;});
+})();
+}
 </script>
 </body>
 </html>
