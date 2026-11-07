@@ -409,6 +409,12 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 .vp-down{position:absolute;left:50%;bottom:12px;transform:translateX(-50%);color:var(--muted);text-decoration:none;font:400 20px/1 var(--sans);opacity:0;transition:opacity 1s ease 3.4s;animation:vpbob 2.4s ease-in-out infinite}
 .vp.on .vp-down{opacity:.7}
 @keyframes vpbob{50%{translate:0 6px}}
+/* The scroll cue: typed out (each letter lands as its First Era claw), then breathes until you scroll. */
+.vp-cue{margin:clamp(22px,3.6svh,36px) auto 0;font:italic 400 clamp(22px,2.2vw,28px)/1.2 var(--book);letter-spacing:.04em;color:var(--gold-soft);
+  text-shadow:0 0 22px rgba(229,189,92,.35),0 2px 14px #000;visibility:hidden}
+.vp-cue.go{visibility:visible}
+.vp-cue.breathe{animation:vpcue 2.6s ease-in-out infinite}
+@keyframes vpcue{50%{opacity:.6;translate:0 4px}}
 .vp-body{max-width:40ch;margin:clamp(12px,2svh,20px) auto 0;font:400 clamp(19px,1.9vw,23px)/1.45 var(--book);color:#e9e3d4;text-wrap:pretty;
   text-shadow:0 2px 18px rgba(0,0,0,.95),0 0 2px rgba(0,0,0,.9);opacity:0;transform:translateY(10px);transition:opacity 1s ease 2.1s,transform 1s cubic-bezier(.2,.8,.2,1) 2.1s}
 .vp.on .vp-body{opacity:1;transform:none}
@@ -449,7 +455,7 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 }
 @media (prefers-reduced-motion:reduce){
   .vp-nav,.vp-kicker,.vp-btns,.vp-body,.vp-down{transition:none!important}
-  .vp-ring,.vp-back,.vp-glow,.vp-down{animation:none!important}
+  .vp-ring,.vp-back,.vp-glow,.vp-down,.vp-cue{animation:none!important}
   .vp-run{height:200svh}
 }
 </style>
@@ -497,12 +503,8 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
         <p class="label vp-kicker">The Gate of Nyandor · a transdimensional feline saga</p>
         <h1 data-scratch>Two books. Two timestreams. <em>One Voyd.</em></h1>
         <p class="vp-body">Every choice you made. Every one you didn't. The Voyd keeps them all. What if you could reach in and change fate?</p>
-        <div class="btns vp-btns">
-          <a class="btn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-book1-paperback">Start with Book One<small>Paperback · $15.99</small></a>
-          <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="hero-book1-kindle">Kindle<small>$9.99</small></a>
-        </div>
+        <p class="vp-cue" id="vp-cue">Scroll down…</p>
       </div>
-      <a class="vp-down" href="#split" aria-label="Scroll">↓</a>
       <div class="vp-books" id="vp-books">
         <div class="glow" aria-hidden="true"></div>
         <a class="vp-book b1" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-cover-book1" aria-label="The Furbidden Voyd on Amazon"><img src="assets/furbidden-voyd-720.webp" srcset="assets/furbidden-voyd-360.webp 360w, assets/furbidden-voyd-720.webp 720w" sizes="(max-width:760px) 42vw, 320px" width="720" height="1152" alt="" decoding="async" /></a>
@@ -985,6 +987,11 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       else if(e.boundingClientRect.bottom<0){e.target.dataset.done=1;io.unobserve(e.target);}   // jumped past: leave it whole
     });},{rootMargin:'0px 0px -12% 0px'}):null;
   if(io)document.querySelectorAll('[data-scratch]').forEach(function(el){io.observe(el);});
+  // THE SCROLL CUE. Once the line under the headline has faded in, "Scroll down…" types itself out, then breathes.
+  (function(){var c=document.getElementById('vp-cue');if(!c)return;
+    if(still){c.classList.add('go');return;}
+    setTimeout(function(){c.classList.add('go');scratch(c);
+      setTimeout(function(){c.classList.add('breathe');},c.textContent.length*TYPE_MS+CLAW_MS+400);},2900);})();
 
   // THE DICE. The four that open Book Two. The button fades, the dice tumble onto the table,
   // and C.A.T. reads them: "A tangled path."
@@ -1707,12 +1714,15 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 
     // THE BOOKS. Two separate books out of the core; they loop and braid round each other, join
     // side by side for a beat (the pair), then part. All a function of scroll, so it reverses.
-    var vis=still?sstep(.25,.55,p):sstep(.06,.12,p),bw=M.bw,bh=M.bh,C=M.cx,Y=still?M.cy1:cy;
+    // TEASER. Until the reader scrolls, every 6.5s the books stir out of the Voyd a little and sink back.
+    var tz=0;if(!still&&sy<4&&T>4){var ph=((T-4)%6.5)/2.4;if(ph<1)tz=.13*Math.sin(Math.PI*ph);}
+    var pb=Math.max(p,tz);
+    var vis=still?sstep(.25,.55,p):sstep(.06,.12,pb),bw=M.bw,bh=M.bh,C=M.cx,Y=still?M.cy1:cy;
     var x1,y1,x2,y2,s1,s2,r1,r2,front=1,gl=0;
     if(still||p>=.74){var sp=still?1:sstep(.74,.95,p),off=bw/2+M.gap/2*sp;
       x1=C-off;x2=C+off;y1=y2=Y;s1=s2=1;r1=-2.5*sp;r2=2.5*sp;gl=still?0:.9*(1-sstep(.74,.88,p));}
     else{
-      var em=sstep(.06,.22,p),k=Math.max(0,Math.min(1,(p-.06)/.56)),kk=k*k*(3-2*k);
+      var em=sstep(.06,.22,pb),k=tz>p?Math.max(0,(tz-.06)/.56)*.4:Math.max(0,Math.min(1,(p-.06)/.56)),kk=k*k*(3-2*k);   // the teaser stays inside the hole
       var th=Math.PI-.875*6.2832*(1-kk),amp=Math.sin(Math.PI*k);
       var rx=M.Rx*amp+bw/2*sstep(.6,1,k)*(1-amp),ry=M.Ry*amp;
       var dx=M.Rx*.16*Math.sin(4*Math.PI*k)*amp; // the pair zigzags as it braids
@@ -1720,7 +1730,8 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
       x1=C+dx+rx*Math.cos(th);y1=Y+ry*d;x2=C+dx-rx*Math.cos(th);y2=Y-ry*d;
       s1=s*(1+.16*d*amp);s2=s*(1-.16*d*amp);
       r1=9*Math.cos(th)*amp-(1-em)*40;r2=-9*Math.cos(th)*amp+(1-em)*40;front=d>0?1:2;
-      gl=.35*em*(1-k)+.9*sstep(.75,1,k);}
+      gl=.35*em*(1-k)+.9*sstep(.75,1,k);
+      if(tz>p&&!phone){var up=M.core*sc*.42;y1-=up;y2-=up;}}   // desktop: the headline crosses the hole, so the teaser stays above it
     // LANDING. Past the hero each book glides from where it parted onto its own card's cover,
     // then hands over to the real cover in the card (same size, same spot), so it is a link that stays put.
     var land=[0,0];
