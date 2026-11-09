@@ -4,6 +4,14 @@
 <meta charset="utf-8" />
 <script>/* The QR code printed in both books opens /#twolegger. Send it to the reader page before anything else shows. Must keep working forever. */if(location.hash.toLowerCase()==="#twolegger")location.replace("twolegger/");</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- GA4: page analytics; visitor-entered AI demo content is never sent as an event. -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-JBHFFS61Y3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-JBHFFS61Y3');
+</script>
 <title>The Gate of Nyandor · Epic fantasy with an all-cat cast</title>
 <meta name="claude:viewport-fit-sides" content="cover" />
 <meta name="description" content="The Gate of Nyandor by Patrick Christell: epic fantasy with an all-cat cast. A royal city, a secret police, a Guild that hoards magic, and a forbidden gate into every choice ever made. Two novels, two realities, one Voyd. On Amazon in paperback and Kindle." />
@@ -846,7 +854,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){wi
 
 <footer>
   <p class="press">Hornblower Press · 41 Ink Street, Lower Commerce, Faelspire</p>
-  <p style="margin:0">© 2026 Patrick Christell · The Gate of Nyandor™</p>
+  <p style="margin:0">© 2026 Patrick Christell · The Gate of Nyandor™ · <a href="/privacy/" style="color:inherit;font-size:.72em;opacity:.75">Privacy</a></p>
 </footer>
 
 <div class="buybar" id="buybar" aria-hidden="true">
