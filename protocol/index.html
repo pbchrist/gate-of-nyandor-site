@@ -75,16 +75,16 @@ a{color:inherit}
 .hero h1{font:400 clamp(3.1rem,8.4vw,7.4rem)/.9 var(--display);text-transform:uppercase;letter-spacing:-.01em;margin:26px auto 22px;max-width:1000px}
 .this-word{position:relative;display:inline-block;z-index:1;padding:0 .1em;margin-left:.04em}
 .this-word:before{content:"";position:absolute;left:0;right:-.06em;top:.01em;bottom:-.04em;background:var(--hot);z-index:-1;transform:skew(-4deg) rotate(-1deg);border:3px solid var(--acid)}
-.this-clip{display:inline-block;overflow:hidden;vertical-align:bottom;padding:.04em 0 .02em;margin:-.04em 0 -.02em}
-.this-vibrate{display:inline-block;color:#000;will-change:transform;animation:swipeup 1s cubic-bezier(.7,0,.3,1) infinite}
-/* TikTok-style swipe: hold, flick up and out, next one rises from below — once per second */
-@keyframes swipeup{
-  0%,62%{transform:translateY(0);opacity:1}
-  80%{transform:translateY(-115%);opacity:0}
-  80.01%{transform:translateY(115%);opacity:0}
-  100%{transform:translateY(0);opacity:1}
+.this-vibrate{display:inline-block;color:#000;will-change:transform;animation:buzz 3.2s linear infinite}
+/* phone-buzz pattern: two short bursts, then stillness */
+@keyframes buzz{
+  0%,15%,100%{transform:none}
+  1%{transform:translate(-3px,-1px) rotate(-.6deg)} 2%{transform:translate(3px,2px) rotate(.5deg)}
+  3%{transform:translate(-2px,3px) rotate(-.4deg)} 4%{transform:translate(3px,-2px) rotate(.5deg)}
+  5%{transform:translate(-3px,1px) rotate(-.5deg)} 6%{transform:none}
+  9%{transform:none} 10%{transform:translate(3px,-1px) rotate(.6deg)} 11%{transform:translate(-3px,2px) rotate(-.5deg)}
+  12%{transform:translate(2px,3px) rotate(.4deg)} 13%{transform:translate(-3px,-2px) rotate(-.5deg)} 14%{transform:translate(2px,1px) rotate(.3deg)}
 }
-@media (prefers-reduced-motion:reduce){.this-vibrate{animation:none}}
 .dek{font-size:clamp(18px,2.1vw,23px);line-height:1.45;max-width:720px;margin:0 auto 30px;color:#e2dbcb}
 .dek strong{color:#fff}
 .proofchip{display:inline-flex;align-items:center;gap:14px;margin-top:30px;padding:10px 16px 10px 10px;border:1px solid #3a3426;background:rgba(0,0,0,.45);text-align:left;text-decoration:none}
@@ -344,7 +344,7 @@ a{color:inherit}
 <header class="hero" id="top">
   <div class="wrap">
     <span class="tag">Analog attention technology · 768 pages · 0 notifications</span>
-    <h1>Your brain wasn't designed for <span class="this-word"><span class="this-clip"><span class="this-vibrate">THIS.</span></span></span></h1>
+    <h1>Your brain wasn't designed for <span class="this-word"><span class="this-vibrate">THIS.</span></span></h1>
     <p class="dek">Your phone feeds your brain appetizers all day. Never a meal. <strong>The Nyandor Protocol is the meal:</strong> a two-volume epic fantasy with an all-cat cast, built to make you forget where you left your phone.</p>
     <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="hero-dose1-paperback">Start the Protocol: Dose One →<small>The Furbidden Voyd · on Amazon</small></a>
     <br />
