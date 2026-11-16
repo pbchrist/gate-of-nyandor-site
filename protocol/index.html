@@ -35,6 +35,7 @@
 @font-face{font-family:"EB Garamond";src:url(../assets/fonts/ebgaramond-italic.woff2) format("woff2");font-weight:400 800;font-style:italic;font-display:swap}
 
 :root{
+  --paper-ink:#2a2318;--gold-soft:#f3dca0;
   --ink:#0a0a09;--ink2:#131210;--line:#2c2922;
   --acid:#ffef00;--hot:#ff3b00;--cream:#f4efe3;--paper:#f3eedf;--muted:#b3aa96;
   --gold:#e5bd5c;--gold-dim:#9c7f3f;--voyd:#10204a;--nyink:#0b0a0d;
@@ -207,17 +208,23 @@ a{color:inherit}
 .mapcap{font:italic 17px/1.45 var(--book);color:#a99d82;margin-top:14px;text-align:center}
 
 .sample{padding:100px 0;border-top:1px solid #2d2819}
-.page{background:#f6efdc;color:#221c12;max-width:680px;margin:36px auto 0;padding:clamp(28px,6vw,64px);box-shadow:0 40px 120px #000;font:400 20px/1.62 var(--book)}
-.page .ch{text-align:center;font:600 13px/1.4 var(--sans);letter-spacing:.3em;text-transform:uppercase;color:#7d6a45}
-.page .chtitle{text-align:center;font:500 30px/1.2 var(--book);margin:8px 0 22px}
-.page .epi{font-style:italic;font-size:17px;color:#5d513b;text-align:center;margin:0 auto 30px;max-width:460px}
-.page .epi span{display:block;font-style:normal;font-size:14px;margin-top:6px}
-.page p{margin:0 0 14px;text-indent:1.4em;font-size:20px}
-.page p.first{text-indent:0}
-.page p.first:first-letter{float:left;font:600 4.1em/.8 var(--book);padding:.05em .08em 0 0;color:#7a2a18}
-.page .thought{font-style:italic}
-.page .fade{position:relative}
-.page .fade:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3.2em;background:linear-gradient(transparent,#f6efdc)}
+/* ===== First page on the weathered parchment sheet, ported from the main site ===== */
+.sample .sheets{margin-top:36px}
+.sample .sheets{max-width:620px;margin:0 auto}
+.sample .sheet{position:relative;aspect-ratio:997/1509;max-width:100%;background:url(../assets/parchment-sheet-phone.webp) center/100% 100% no-repeat;filter:drop-shadow(0 26px 60px rgba(0,0,0,.6))}
+@media (min-width:761px){.sample .sheet{background-image:url(../assets/parchment-sheet.webp)}}
+.sample .sheet .scroll{position:absolute;inset:9% 11.5% 8.5% 11.5%;overflow-y:auto;color:var(--paper-ink);font-size:clamp(16px,2.1vw,19px);line-height:1.6;
+  padding:4px 6px 46% 0;scrollbar-width:thin;scrollbar-color:rgba(122,90,48,.55) transparent;
+  -webkit-mask-image:linear-gradient(transparent 0,#000 5%,#000 62%,transparent 98%);mask-image:linear-gradient(transparent 0,#000 5%,#000 62%,transparent 98%)}
+.sample .sheet .scroll:focus-visible{outline:2px dashed rgba(122,90,48,.6);outline-offset:6px}
+.sample .sheet .scroll::-webkit-scrollbar{width:6px}.sample .sheet .scroll::-webkit-scrollbar-thumb{background:rgba(122,90,48,.5);border-radius:3px}
+.sample .scrollhint{text-align:center;font:italic 18px/1.4 var(--book);color:var(--muted);margin:16px 0 0}
+.sample .sheet .ch{font:600 12px/1.5 var(--sans);letter-spacing:.3em;text-transform:uppercase;text-align:center;color:#7a6a4b}
+.sample .sheet .chtitle{font:italic 400 clamp(1.7rem,4vw,2.2rem)/1.2 var(--book);text-align:center;margin:6px 0 22px}
+.sample .sheet .epi{font-style:italic;font-size:.94em;margin:0 0 24px;text-align:center;color:#4a3f2c}
+.sample .sheet .epi span{display:block;font-style:normal;font-size:.86em;margin-top:6px;color:#7a6a4b}
+.sample .sheet p{margin:0 0 12px}
+.sample .sheet .thought{font-style:italic}
 .sample .after{text-align:center;margin-top:36px}
 .goldbtn{display:inline-block;background:var(--gold);color:#140f05;text-decoration:none;font:800 15px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;padding:17px 26px;border:1px solid #f3d792;box-shadow:0 12px 40px rgba(229,189,92,.22)}
 .goldbtn:hover{background:#f0cc74}
@@ -322,11 +329,119 @@ a{color:inherit}
   .castgrid{grid-template-columns:1fr}
   .mapkey{grid-template-columns:1fr;gap:10px}
   .fmt{flex-direction:column;align-items:flex-start}
-  .page p{font-size:18.5px}
+
 }
 @media(prefers-reduced-motion:reduce){
   *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* ===== Atlas lens, ported from the main site ===== */
+.atlas-read,.atlas-sheet{--paper:#efe7d2}
+.atlas{display:block}
+.atlas-stage{position:relative;cursor:crosshair;touch-action:pan-y}
+@media (min-width:761px){.atlas-stage{touch-action:pan-y pinch-zoom}}
+.atlas-stage img{width:100%;height:auto}
+.atlas-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.atlas-svg .ink,.atlas-svg .ink *{fill:none;stroke:none;opacity:0;filter:none;pointer-events:none}
+.atlas-svg .ink:focus,.atlas-svg .ink:focus-visible{outline:none}
+.lens{position:absolute;z-index:4;width:148px;height:148px;border-radius:50%;pointer-events:none;
+  border:0;background-repeat:no-repeat;
+  box-shadow:inset 0 0 18px rgba(40,22,6,.35)}
+.lens[hidden]{display:none!important}
+.lens:before{content:"";position:absolute;inset:0;border-radius:50%;
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.28),rgba(255,255,255,0) 38%)}
+.lens:after{content:"";position:absolute;left:-14.1px;top:-14.4px;width:312.5px;height:321.8px;
+  background:url(../assets/magnifier.webp) no-repeat 0 0/100% 100%;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
+.atlas-read{display:none}
+.atlas-read h3{font-family:var(--book);font-weight:560;font-variant:small-caps;letter-spacing:.045em;
+  font-size:clamp(1.7rem,2.4vw,2.15rem);line-height:1.12;color:#2c2116;margin:8px 0 12px}
+.atlas-read .rec-class,.atlas-sheet .rec-class{font:600 11px/1.5 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:#7a5a32;margin:0}
+.atlas-read .rec-body,.atlas-sheet .rec-body{font:400 18.5px/1.6 var(--book);color:#2a2318;margin:0;white-space:pre-line}
+.atlas-read .rec-wait{font:italic 18px/1.5 var(--book);color:#6d5840;margin:0}
+.lenshint{margin-top:14px}
+.rec-sub{font:500 15px/1.3 var(--book);font-variant:small-caps;letter-spacing:.08em;color:#6d5840;margin:-6px 0 12px}
+.rec-sub[hidden]{display:none}
+.rec[hidden]{display:none!important}
+.rec.is-redacted .rec-class,.atlas-sheet.is-redacted .rec-class,
+.rec.is-redacted h3,.atlas-sheet.is-redacted h3,
+.rec.is-redacted .rec-body,.atlas-sheet.is-redacted .rec-body{
+  background:#16120c;color:transparent;border-radius:1px;user-select:none}
+.rec.is-redacted .rec-class,.atlas-sheet.is-redacted .rec-class{display:block;height:10px;width:42%;margin:0 0 12px}
+.rec.is-redacted h3,.atlas-sheet.is-redacted h3{height:22px;width:74%;margin:8px 0 14px}
+.rec.is-redacted .rec-body,.atlas-sheet.is-redacted .rec-body{height:78px;width:100%;margin:0}
+.atlas-back{position:fixed;inset:0;z-index:30;background:rgba(5,9,24,.5)}
+.atlas-back[hidden],.atlas-sheet[hidden]{display:none!important}
+.atlas-sheet{position:fixed;left:0;right:0;bottom:0;z-index:31;display:flex;flex-direction:column;
+  height:min(48vh,460px);max-height:100dvh;background:var(--paper);color:var(--paper-ink);
+  border-radius:18px 18px 0 0;box-shadow:0 -18px 50px rgba(0,0,0,.45);
+  padding-bottom:env(safe-area-inset-bottom,0px)}
+.atlas-sheet.is-full{height:100dvh;border-radius:0}
+.atlas-sheet .sheet-bar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px 0}
+.atlas-sheet .grip{flex:1;font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  background:transparent;border:0;color:#6d5840;padding:8px;cursor:pointer}
+.atlas-sheet .grip:before{content:"";display:block;width:42px;height:4px;border-radius:4px;background:#c4b397;margin:0 auto 8px}
+.atlas-sheet .sheet-x{font:600 12px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;
+  background:transparent;border:1px solid rgba(90,60,20,.4);color:#3a2a16;padding:10px 12px;cursor:pointer;border-radius:2px}
+.atlas-sheet .sheet-body{overflow:auto;padding:6px 22px 28px;-webkit-overflow-scrolling:touch}
+.atlas-sheet h3{font-family:var(--book);font-weight:560;font-variant:small-caps;letter-spacing:.045em;
+  font-size:1.85rem;line-height:1.12;color:#2c2116;margin:8px 0 12px}
+@media (min-width:761px){
+  .atlas{position:relative}
+  .atlas-read{display:block;position:absolute;z-index:6;width:320px;left:0;top:0;pointer-events:none;
+    background:var(--paper);color:var(--paper-ink);padding:20px 22px 24px;
+    border:1px solid rgba(90,60,20,.28);box-shadow:0 16px 40px rgba(0,0,0,.4);
+    opacity:0;visibility:hidden;transition:opacity .12s}
+  .atlas-read.is-on{opacity:1;visibility:visible}
+  .atlas-read .rec-wait{display:none}
+}
+@media (max-width:760px){
+  /* protocol page: lens stays on narrow screens */
+}
+@media (hover:none) and (pointer:coarse){
+  /* protocol page: lens stays on touch screens */
+}
+@media (max-width:760px),(hover:none) and (pointer:coarse){
+  .atlas-read{display:none;position:static;width:auto;opacity:1;visibility:visible;pointer-events:auto;
+    background:var(--paper);color:var(--paper-ink);padding:18px 20px 22px;margin-top:14px;
+    border:1px solid rgba(90,60,20,.28);box-shadow:0 10px 28px rgba(0,0,0,.3)}
+  .atlas-read:has(.rec:not([hidden])){display:block}
+  .atlas-read .rec-wait{display:none}
+  .atlas-read h3{font-size:1.7rem}
+  .atlas-sheet,.atlas-back{display:none!important}
+  .lenshint{display:none}
+  .atlas-phonehint{display:block!important;margin:-6px 0 16px}
+}
+.atlas-phonehint{display:none}
+
+/* ===== The Gate seal: the threshold's way out of the feed ===== */
+.threshold .seal{display:inline-flex;flex-direction:column;align-items:center;gap:14px;margin:56px auto 0;text-decoration:none;color:var(--gold)}
+.seal-ring{position:relative;display:grid;place-items:center;width:112px;height:112px;border-radius:50%;
+  background:radial-gradient(circle at 50% 50%,#1b2b63 0,#0b1230 52%,#05070f 100%);
+  border:1px solid rgba(229,189,92,.65);
+  box-shadow:0 0 0 7px rgba(229,189,92,.07),0 0 0 8px rgba(229,189,92,.28),0 0 46px rgba(229,189,92,.28),inset 0 0 26px rgba(0,0,0,.8);
+  transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.seal-ring:before{content:"";position:absolute;inset:-18px;border-radius:50%;border:1px dashed rgba(229,189,92,.32);animation:burstspin 40s linear infinite reverse}
+.seal-burst{font-size:46px;line-height:1;color:#f3dca0;text-shadow:0 0 14px rgba(243,220,160,.95),0 0 34px rgba(229,189,92,.7);animation:burstspin 9s linear infinite,sealbreathe 3.2s ease-in-out infinite}
+@keyframes sealbreathe{0%,100%{opacity:.82}50%{opacity:1}}
+.seal-cap{font:600 13px/1 var(--sans);letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
+.seal-sub{font:italic 18px/1.2 var(--book);color:#a99d82;margin-top:-4px}
+.seal:hover .seal-ring,.seal:focus-visible .seal-ring{transform:scale(1.08);box-shadow:0 0 0 7px rgba(229,189,92,.12),0 0 0 8px rgba(229,189,92,.5),0 0 80px rgba(229,189,92,.5),inset 0 0 26px rgba(0,0,0,.8)}
+.seal:hover .seal-burst{animation-duration:1.4s,3.2s}
+.seal:hover .seal-cap{color:#ffe7a6}
+@media (prefers-reduced-motion:reduce){.seal-burst,.seal-ring:before{animation:none}}
+.nyandor{overflow-x:clip} /* the lens handle never widens the page */
+/* map frame, matching the main site */
+.map .mapframe{padding:clamp(6px,1.2vw,12px);background:rgba(5,9,24,.55)}
+/* ===== Gate links: every one lands on the starburst at the top of thegateofnyandor.com ===== */
+.gate{display:inline-flex;align-items:center;gap:.55em;color:var(--gold);text-decoration:none;font:italic 500 clamp(19px,2vw,22px)/1.3 var(--book);border-bottom:1px solid rgba(229,189,92,.35);padding-bottom:3px;transition:color .25s,border-color .25s,text-shadow .25s}
+.gate:hover,.gate:focus-visible{color:#ffe7a6;border-color:#ffe7a6;text-shadow:0 0 18px rgba(229,189,92,.55)}
+.gate .burst{display:inline-block;font-style:normal;animation:burstspin 9s linear infinite;text-shadow:0 0 12px rgba(229,189,92,.8)}
+.gate:hover .burst{animation-duration:1.6s}
+@keyframes burstspin{to{transform:rotate(360deg)}}
+.gate-row{text-align:center;margin:34px 0 0}
+.threshold p.gate-row{margin-top:34px}
+.footer .gate{font-size:15px;margin-top:10px}
+@media (prefers-reduced-motion:reduce){.gate .burst,
 </style>
 </head>
 <body>
@@ -528,6 +643,11 @@ a{color:inherit}
       <div class="rune">— You are now leaving the feed —</div>
       <h2 id="enter-h">Someone finally gave cats <em>the full Tolkien treatment.</em></h2>
       <p>No winking. No cute cat adventure. A royal city, a secret police, a Magical Guild that rations power, and a gate into every choice ever made.</p>
+      <a class="seal" href="https://www.thegateofnyandor.com/?from=protocol-threshold" data-cta="gate-threshold">
+        <span class="seal-ring" aria-hidden="true"><span class="seal-burst">✷</span></span>
+        <span class="seal-cap">Step through the Gate</span>
+        <span class="seal-sub">The world beyond the book</span>
+      </a>
     </div>
   </section>
 
@@ -570,15 +690,32 @@ a{color:inherit}
   <section class="map wrap" aria-labelledby="map-h">
     <div class="ny-eyebrow">Exhibit C · from the endpapers of Book One</div>
     <h3 class="ny-h" id="map-h">The Royal City of Faelspire</h3>
+    <p class="mapcap atlas-phonehint">Tap a place. The ink gives up its record.</p>
+        <div class="atlas" id="atlas">
     <div class="mapframe">
-      <img src="../assets/faelspire-map-900.webp" srcset="../assets/faelspire-map-900.webp 900w, ../assets/faelspire-map-1600.webp 1600w" sizes="(max-width:1120px) 100vw, 1072px" width="1600" height="1200" alt="Illustrated map of the Royal City of Faelspire: Aard Templu Voreath and Mount Sylvest to the north, the Royal Palace and districts like Eastclaw and Felixiata at the centre, and the Forest Primeval wrapping the southern walls" loading="lazy" />
+      <div class="atlas-stage" id="atlas-stage">
+      <img id="atlas-img" src="../assets/faelspire-map-900.webp" srcset="../assets/faelspire-map-900.webp 900w, ../assets/faelspire-map-1600.webp 1600w" sizes="(max-width:1120px) 100vw, 1072px" width="1600" height="1200" alt="Illustrated map of the Royal City of Faelspire: Aard Templu Voreath and Mount Sylvest to the north, the Royal Palace and districts like Eastclaw and Felixiata at the centre, and the Forest Primeval wrapping the southern walls" loading="lazy" />
+      <svg id="atlas-svg" class="atlas-svg" viewBox="0 0 1600 1200" preserveAspectRatio="none" role="group" aria-label="Map of Faelspire. Tab from place to place, or move the lens."></svg>
+      <div class="lens" id="atlas-lens" hidden></div>
+      </div>
     </div>
+    <aside class="atlas-read" id="atlas-read" aria-live="polite">
+      <p class="rec-wait">Rest the lens upon the city.</p>
+      <div class="rec" hidden>
+        <p class="rec-class"></p>
+        <h3></h3>
+        <p class="rec-body"></p>
+      </div>
+    </aside>
+    </div>
+    <p class="mapcap lenshint">Move across the city, or tap a place. The ink gives up its record.</p>
     <ul class="mapkey">
       <li><b>Aard Templu Voreath</b>, top: seat of the Magical Guild, where magic is rationed.</li>
       <li><b>The Royal Palace</b>, centre: King Catophilus, Queen M'areta, and a great deal of Antidivinian wine.</li>
       <li><b>The Forest Primeval</b>, bottom right: where the Strays hide, and where Sory'n ends up.</li>
     </ul>
     <p class="mapcap">Map by Chartru'el Duskyfur, cartographer, silver-gray tom, and “inclined to pretension.”</p>
+    <p class="gate-row"><a class="gate" href="https://www.thegateofnyandor.com/?from=protocol-atlas" data-cta="gate-atlas"><span class="burst" aria-hidden="true">✷</span>The map ends here. Nyandor doesn’t.</a></p>
   </section>
 
   <section class="sample" aria-labelledby="sample-h">
@@ -587,25 +724,107 @@ a{color:inherit}
         <div class="ny-eyebrow">Clinical sample A · administered free</div>
         <h3 class="ny-h" id="sample-h">The first page. See if you can stop.</h3>
       </div>
-      <article class="page">
+      <div class="sheets" aria-label="The opening of Book One, Chapter I">
+      <article class="sheet">
+        <div class="scroll" tabindex="0" aria-label="The opening of Chapter I. Scroll to keep reading.">
         <div class="ch">Part I: Softpaw · Chapter I</div>
-        <div class="chtitle">The Tail's End?</div>
+        <div class="chtitle">The Tail’s End?</div>
         <p class="epi">Every cat stands at a fork in the road. It is the curse of our kind to remember the path not taken and to wonder, forever, if it led to a better place.<span>— H.R. Nimblequick, <i>Paws and Effect</i></span></p>
-        <p class="first">Purrhaps… this is death? The notion struck Sory'n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
-        <p class="thought">Oh, mercy of Great Leoran! What if this isn't Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
+        <p class="opener"><i>Purrhaps… this is death?</i> The notion struck Sory’n like a splash of freezing water. If this endless black expanse was indeed Aurathel, the After Place, it was nothing like what the wise cats promised. No guiding light, no soothing calm, no spirit guardians. And no sign of Leoran, the Creator of All.</p>
+        <p class="thought">Oh, mercy of Great Leoran! What if this isn’t Aurathel… What if I wound up in Cathenna! A logical end for the feline who destroyed the world.</p>
         <p>Neither heaven nor hell made sense. Wherever she was, she was. At least the thinking part.</p>
         <p class="thought">One. Two. Three.</p>
-        <p class="thought">I am Sory'n of Tol, and I am a cat.</p>
+        <p class="thought">I am Sory’n of Tol, and I am a cat.</p>
         <p class="thought">An insecure, selfish, stupid cat.</p>
         <p class="thought">But am I dead?</p>
+        <p class="thought">Perhaps. Perhaps not. Maybe I’m alive but reduced to a point of awareness. Like a Null State.</p>
         <p>She vocalized. “Mrow.”</p>
         <p>The sound left her mouth, but no echo, no resonance followed. The void swallowed it up.</p>
         <p>Again, with more force. “Meowwwrrr!”</p>
-        <p class="fade">Terror followed, and in its wake, desperation. A yearning for deliverance, even if it meant actual death.</p>
+        <p>Terror followed, and in its wake, desperation. A yearning for deliverance, even if it meant actual death.</p>
+        <p>Were her eyes open or closed? She couldn’t tell.</p>
+        <p>She inhaled. Her olfactory senses, keener than most Nyandorian felines, detected no scent.</p>
+        <p class="thought">Paws.</p>
+        <p>She pressed her forepaw pads to her head.</p>
+        <p class="thought">I have paws!</p>
+        <p class="thought">Paws and claws.</p>
+        <p>She traced the curve of her ears, the familiar shape of her fur-covered muzzle, the contours of her eyes. She opened and closed them. No difference.</p>
+        <p>She palpated her furry torso, reached back, and brushed her tail tip. To focus her vision, she positioned a foreleg ahead of her nose.</p>
+        <p>She couldn’t see a hairsbreadth in front of her.</p>
+        <p>For all those countless hours spent cultivating her Null State in service of magical obsession, she’d never contemplated not being.</p>
+        <p>A wave of sensation crashed over her—parched throat, burning muscles, an ache in every limb. And pain. Sharp, searing pain flared in her right haunch. She pressed a paw to it and pain exploded.</p>
+        <p>“Ow!” she yowled. Again, the void devoured the sound.</p>
+        <p>She pressed the spot again, easing her paw against it. Her pad came away wet. She licked it. Heat and iron burst across her tongue.</p>
+        <p class="thought">Blood.</p>
+        <p>Relief surged through. She was alive in a tangible way. Gratitude bloomed in her chest.</p>
+        <p>Yet her whiskers detected nothing. She wriggled her forelegs and hindlegs. No resistance. Was she falling? Floating? She wasn’t dizzy. No wind in her coat, no tilt of motion. Nothing like the brutal rush before she broke through the Event at arrow speed.</p>
+        <p><i>If I’m alive, where is everyone else? My family? My friends? Mother Ertree? Uncle P’taxx? Are they all out here too, suspended in this cruel black nightmare?</i></p>
+        <p>Shallow, fitful breaths cut through the darkness. <i>Is that me?</i> She held her breath and the sound continued.</p>
+        <p class="thought">No. Someone else...</p>
+        <p>“Hello?” she called, her voice uncertain against the void.</p>
+        <p>“Hello!” answered a male cat, his voice tight with terror. He smelled of Ashai wood shavings, sardines, tomato sauce, and fear.</p>
+        <p>“I’m here!” Sory’n yelled.</p>
+        <p>“Where is here!? It’s so dark!”</p>
+        <p>Sory’n stretched her forelegs, sweeping them back and forth. Her paws met empty space.</p>
+        <p>“That thing in the Ebonwood? We’re inside it, aren’t we?”</p>
+        <p>“I don’t know,” she answered, though that was a lie.</p>
+        <p>“Are we... dead?”</p>
+        <p>“I don’t think so.”</p>
+        <p>“I’m Ulro the Wheelwright. Or... I was.”</p>
+        <p>“I’m Sory’n.”</p>
+        <p>“Sory’n… of Tol? The Archmage’s daughter?” His voice sharpened. “I read about you in the Hornblower! You’re mixed up in this portal business along with your father!”</p>
+        <p>A flare of guilt ignited inside Sory’n. “I’m sorry!”</p>
+        <p>“So-called magicians!” he snarled. “Destroyed the world twice, you did!”</p>
+        <p>“I don’t know what you want me to say!”</p>
+        <p>“It said in the article you lot were messing about with Voyd portals since the First Era!”</p>
+        <p>Sory’n didn’t answer.</p>
+        <p>“My kittens. I don’t know where they are now!”</p>
+        <p>“I lost my family too,” Sory’n whispered.</p>
+        <p>“A’dora! Trysa!” the voice screamed. “Where are you!?” His scream trailed off. He’d floated away.</p>
+        <p>Sory’n screamed into the emptiness. “You’ll find them!”</p>
+        <p>Silence answered.</p>
+        <p>With no reference points, time stretched and compressed like magical energy in the moments before a conjuration.</p>
+        <p class="thought">Conjuration! I’ll summon Ember!</p>
+        <p>Sory’n aligned her forepaws in the sacred pawsitions for standard fire conjuration and drew them together, then apart.</p>
+        <p>She focused beyond the motions, searching her heart for the warmth of gratitude that had first called her fire panther familiar into being. But there was only the cold knot of fear, the emptiness of the Voyd mirroring the hollow within her chest. She tried to force it, picturing Ember’s fiery form, her comforting heat. The image felt empty, disconnected. The feeling wouldn’t come. Without gratitude, there could be no Ember.</p>
+        <p>Dread clawed up her throat. She crushed her forepaw pads together.</p>
+        <p class="thought">Please, Leoran of All, I am sorry.</p>
+        <p class="thought">I will never again attempt to bend the Mewniverse to my will!</p>
+        <p class="thought">Please bring the world back.</p>
+        <p class="thought">Please.</p>
+        <p class="thought">I’ll do anything.</p>
+        <p class="thought">With everything I am, I beg you.</p>
+        <p>Silence stretched, thick and eternal. Then, light.</p>
+        <p>A silent explosion ignited the void, casting a stark glow over a vast debris field. Shattered remnants of her world drifted, weightless, illuminated in the ruinous brilliance of Leoran’s answer.</p>
+        <p>Coins, half of a framed painting, clusters of bricks, corners of structures, palanquin parts, wagon wheels, snaking rivulets of water, uprooted trees, and cats of all stripes floated in eerie suspension, cast adrift…</p>
+        <p>The terrified cats either probed their bodies as Sory’n did or twisted to take in their surroundings, now realizing they weren’t alone. Most wore the upmarket silken garb of the Faelspiran gentry; flowing dresses or patterned tunics cinched with wide, ornamental belts. Their mouths stretched in panicked yowls, yet no sound reached Sory’n.</p>
+        <p>The diminishing explosion reflected in her wide eyes, highlighting the mocha swirls against her brown face, her white muzzle, and her twitching ears and whiskers.</p>
+        <p>She craned to see herself, touching her torso with her white-tipped paws. Her jaw hung open—not in fear, but in the raw, gutting awe of witnessing her world in pieces.</p>
+        <p>The explosion settled into a roiling flame, revealing the floor and two walls of a disembodied restaurant kitchen, tumbling end over end, its surfaces kissed by fire that clung without flicker, a slow, dreamlike burn in the void. A stovetop, perhaps water mixing with boiling grease, appeared to be the cause.</p>
+        <p>Sory’n paddled her paws, twisting for a better view. In doing so, she executed a clumsy backflip, which revealed the source of the debris field—a dense mass of flotsam hurtling outward at breakneck speed from a single, distant point, like an astral firehose unleashed at full blast.</p>
+        <p>Through its narrow aperture, it disgorged her home world of Nyandor in fragments.</p>
+        <p>No doubt remained. She was on the other side of the Event, inside a Voyd of her own creation.</p>
+        <p>As the fire waned, the chaotic panorama darkened. Sory’n’s eyes darted across the black expanse, searching for an anchor. A figure materialized, his diamond-checked silk tunic and ruffled collar marking him as a merchant. His ears were pinned, fur bristling, tail curled between his bicycling hindlegs as he grasped for purchase where none existed.</p>
+        <p>At the sight of Sory’n, he reached out.</p>
+        <p>She did the same.</p>
+        <p>Their claw tips brushed for a moment before he tumbled away.</p>
+        <p>Sory’n once again found herself in darkness.</p>
+        <p>“Hello!?” she yowled. “Is anyone there!?”</p>
+        <p>A final yowl tore from her, thinning to a thread as she tumbled away, swallowed by the Voyd.</p>
+        <p>Nothing but darkness remained.</p>
+        <p>Darkness, and deafening silence...</p>
+        <p class="brk" aria-hidden="true">· · ·</p>
+        <p>Time, or what passes for it in this emptiness, stretches and frays. An hour? An age entire?</p>
+        <p>Then, a disruption. A coarse, tearing rip, as if reality itself were fabric.</p>
+        <p>A pinpoint of light follows. Flame blooms against the utter black, clinging to a matchstick. The glow crawls upward, illuminating a tiny, dexterous paw. Its metacarpal pads fold with unnatural flexibility to grasp the slender wood. This paw, with its strange grip, guides the match to the bowl of a white meerschaum pipe, its surface etched with carvings like ancient claw marks.</p>
+        <p>The flame bends, drawn to herbs, and a cherry ember pulses to life with a long inhale.</p>
+        </div>
       </article>
+      <p class="scrollhint">Scroll inside the page to keep reading.</p>
       <div class="after">
         <p style="font-size:19px;color:#cfc4ac;margin:0 0 20px">She is about to find out how she destroyed the world. It takes 375 pages.</p>
         <a class="goldbtn" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="sample-dose1-paperback">Continue Dose One on Amazon →</a>
+        <p class="gate-row" style="margin-top:22px"><a class="gate" href="https://www.thegateofnyandor.com/?from=protocol-voyd" data-cta="gate-voyd"><span class="burst" aria-hidden="true">✷</span>Or fall into the Voyd with her</a></p>
       </div>
     </div>
   </section>
@@ -713,6 +932,7 @@ a{color:inherit}
     <p class="dek">Take back several consecutive hours of your own imagination.</p>
     <a class="cta" href="https://www.amazon.com/dp/B0G5Z7HNQK" target="_blank" rel="noopener" data-cta="final-dose1-paperback">Begin The Nyandor Protocol™<small>Dose One · The Furbidden Voyd · on Amazon</small></a>
     <span class="alt">Already finished Dose One? <a href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="final-dose2-paperback">Take Dose Two: The Divergent Path →</a></span>
+    <p class="gate-row"><a class="gate" href="https://www.thegateofnyandor.com/?from=protocol-final" data-cta="gate-final"><span class="burst" aria-hidden="true">✷</span>Ready to swallow it whole? Step through the Gate</a></p>
 
     <div class="share">
       <p>Know someone who hasn't finished anything since 2019?</p>
@@ -728,6 +948,7 @@ a{color:inherit}
 
 <footer class="footer">
   <div class="wrap">© 2026 Patrick Christell · The Gate of Nyandor™ · The Nyandor Protocol™<br />No neurotransmitters were reset in the making of this website. The Nyandor Protocol is a marketing name for two novels, not a medical or psychological treatment. · <a href="/privacy/" style="color:inherit">Privacy</a></div>
+  <br /><a class="gate" href="https://www.thegateofnyandor.com/?from=protocol-footer" data-cta="gate-footer"><span class="burst" aria-hidden="true">✷</span>This page is a side effect. The source is the Gate of Nyandor</a>
 </footer>
 
 <div class="buybar" id="buybar" aria-hidden="true">
@@ -769,6 +990,581 @@ a{color:inherit}
       navigator.clipboard.writeText(text + ' ' + url).then(function(){ status.textContent = 'Link copied. Administer responsibly.'; }, function(){ status.textContent = url; });
     } else { status.textContent = url; }
   });
+})();
+</script>
+<div class="atlas-back" id="atlas-back" hidden></div>
+<div class="atlas-sheet" id="atlas-sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title" aria-hidden="true" hidden>
+  <div class="sheet-bar">
+    <button type="button" class="grip" id="sheet-expand" aria-pressed="false">Full height</button>
+    <button type="button" class="sheet-x" id="sheet-close">Close</button>
+  </div>
+  <div class="sheet-body">
+    <p class="rec-class"></p>
+    <h3 id="sheet-title"></h3>
+    <p class="rec-body"></p>
+  </div>
+</div>
+<script type="application/json" id="atlas-entries">
+[
+  {
+    "name": "The Royal City of Faelspire",
+    "body": "The Eternal Catpital of Nyandor. Beneath three suns, amethyst spires rise above crowded markets, ancient neighborhoods, and the seat of the Greytail monarchy. Wealth, pedigree, and magical privilege determine much of a cat's standing here. Faelspire is a magnificent city, provided one knows one's place.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Aard Templu Voreath",
+    "body": "The monumental amethyst ziggurat at the foot of Mount Sylvest, seat of the Guild of Voreath. Within its translucent walls, licensed Magicians study and practice the four elemental disciplines. Access to its libraries and inner chambers is strictly regulated.\n\nRecords pertaining to ████████████ remain under Guild seal.",
+    "classification": "GUILD RECORD — RESTRICTED"
+  },
+  {
+    "name": "The Acatdemy",
+    "body": "Faelspire's foremost institution of magical education, where promising young felines study the disciplines of Voreath. Instruction includes elemental theory, sacred pawsitions, and the art of Stillness. Admission is a privilege; graduation confers the right to practice sanctioned magic.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Amethyst Atrium",
+    "body": "The Acatdemy's magnificent central hall, where violet-tinted windows refract the light of three suns into a dazzling display. Its architectural splendor serves as a daily reminder of the prestige enjoyed by the Guild and those fortunate enough to enter its ranks.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Proving Ground",
+    "body": "A windswept shelf of stone on Mount Sylvest's southern slope. Here, Initiates undergo the four-part Assessment that determines their eligibility for full membership in the Guild of Voreath. The trials demand mastery of the elemental disciplines under the scrutiny of the Guild's senior practitioners.\n\nAssessment proceedings are confidential. Requests for ████████████ will not be entertained.",
+    "classification": "ASSESSMENT SITE"
+  },
+  {
+    "name": "Mount Sylvest",
+    "body": "The towering mountain north of Faelspire, crowned by the icy K'otan summit. Its southern slopes hold the Guild's Proving Ground, while the great amethyst Templu stands beneath its heights. At sunset, Nartai's light passes through the ziggurat, casting a violet ribbon across the rooftops of the capital.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Royal Palace",
+    "body": "Residence of King Catophilus Greytail and Queen M'areta. Its marble balconies, monumental columns, and ancestral friezes proclaim the longevity of the Greytail dynasty. The palace hosts the celebrated ThreeSun Ball, a glittering assembly of nobility, foreign dignitaries, and newly initiated Magicians.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Corpus",
+    "body": "An imposing complex in central Faelspire, distinguished by its great domes and extensive subterranean infrastructure. Its lower chambers, cisterns, and restricted passages have inspired considerable speculation among the citizenry.\n\nPublic access to the underlevels is prohibited by order of ████████████.",
+    "classification": "ROYAL ADMINISTRATION — RESTRICTED"
+  },
+  {
+    "name": "Gistli Square",
+    "body": "The public square adjoining the Royal Palace, where the ceremonial grandeur of the Crown meets the daily bustle of the capital. Its position beneath the royal balconies makes it a natural gathering place for proclamations, processions, and civic occasions.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Tol Manor",
+    "body": "The distinguished residence of the Tol family in Ebon Heights. Its position among the capital's finest estates reflects generations of influence within the Guild and royal society. The household is headed by Esteemed Archmage Orachys of Tol and his wife, P'halyn.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Ebon Heights",
+    "body": "Faelspire's fashionable hilltop enclave, home to wealthy families, senior Guild members, and the city's social elite. Grand residences, palanquins, fine tailoring, and exclusive establishments distinguish the neighborhood. Its inhabitants enjoy a commanding view of the capital, though not necessarily an understanding of life below.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Northclaw",
+    "body": "A densely inhabited residential quarter east of the city's central institutions. Its modest catpartments accommodate working families, students, and aspiring professionals. Respectability is prized here, even when the comforts of Ebon Heights remain beyond reach.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Eastclaw",
+    "body": "An established eastern neighborhood of shopkeepers, tradescats, and working families. Its textile shops and upper-floor catpartments exemplify the close relationship between commerce and domestic life. Hammerstrike Street is among its known thoroughfares.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Commerce District",
+    "body": "The mercantile heart of Faelspire, where traders, artisans, property owners, and hawkers conduct business beneath the three suns. Its finer establishments celebrate the famous Diamond Bloom with diamond-inspired wares, pastries, and decorative motifs. Every imaginable necessity and luxury can be found here, assuming one possesses sufficient coin.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Upper Commerce",
+    "body": "The polished northern half of the Commerce District, stretching from High Street down to Tradewinds. Its glossy boutiques trade in fine pawmade furnishings, scratching posts, and luxurious textiles. Across Tradewinds, the velvet ends and Lower Commerce begins.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Lower Commerce",
+    "body": "A bustling working-class quarter where shopkeepers commonly live above their establishments. Its narrow streets offer washing powder, cooking oil, medicinal herbs, tea, produce, and countless other necessities. Cobblestones are worn, tenements lean, and the business of everyday survival leaves little room for pretension.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Felixiata",
+    "body": "The notorious southern neighborhood, renowned for its taverns, crowded markets, dubious entertainments, and spirited disregard for polite convention. Upper-class felines speak of Felixiata with equal measures of fascination and horror. Its residents generally have more pressing concerns than the opinions of Ebon Heights.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Hatchery Row",
+    "body": "Faelspire's fish-hatchery neighborhood, where pools, channels, and breeding facilities supply the city's considerable appetite for fish. Among its establishments is the royal salmon hatchery belonging to King Catophilus Greytail. The industry provides both sustenance and employment, and its produce finds its way into kitchens throughout the capital.",
+    "classification": "ROYAL FISHERIES — CROWN HOLDING"
+  },
+  {
+    "name": "North-of-High-Street",
+    "body": "An informal designation for Faelspire's privileged northern society. More a social boundary than a geographical one, the phrase distinguishes respectable households from the supposedly disreputable neighborhoods farther south. The distinction is particularly cherished by cats who seldom cross it.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Barter Crossing",
+    "body": "The principal north-to-south artery of Lower Commerce. Its shops sell practical necessities beneath rented catpartments, while washing lines hang between aging tenements. At its intersection with Low Street, the signpost has long since disappeared, leaving residents to navigate by familiar cobblestones and landmarks.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Low Street",
+    "body": "A busy thoroughfare marking the transition into Faelspire's poorer southern quarters. Its surroundings are characterized by fishmongers, crowded stalls, aging buildings, and the unmistakable mingling of market odors. To many northern residents, Low Street represents the boundary of respectable exploration.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Felixia Street",
+    "body": "The principal artery of Felixiata, alive with hawkers, taverns, carts, rickshaws, and tuk-tuks. Commerce here is conducted with enthusiasm, considerable noise, and a flexible interpretation of the finer points of regulation.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Centerline Street",
+    "body": "A major avenue through the heart of Faelspire. During the Diamond Bloom, the alignment of the three suns casts remarkable geometric shadows across its paving stones, transforming an ordinary thoroughfare into a spectacle of celestial light.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "High Street",
+    "body": "One of the principal thoroughfares of the prosperous northern city, lined with establishments serving Faelspire's comfortable households. Its shops and promenades reflect the tastes and purchasing power of the capital's privileged classes.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Commerce Street",
+    "body": "An important commercial thoroughfare connecting the city's busy trading quarters. Its northern approaches serve established merchants, while streets farther south become narrower, noisier, and considerably less formal.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Tradewinds",
+    "body": "One of the paired Tradewinds thoroughfares crossing the city's commercial quarters. A familiar route for merchants, tradescats, and residents navigating the capital's central districts.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "West End Avenue",
+    "body": "A thoroughfare along the western side of the Commerce District, near the city's outer defenses. It serves the shops and residences of the western quarter.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Sable Street",
+    "body": "The northern approach to Ebon Heights, leading toward the grand residences of the city's wealthy families. Its position on the hill makes it a familiar route for Guild officials and members of Faelspire's privileged households.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Hammerstrike Street",
+    "body": "An Eastclaw thoroughfare known for its tradescats and family businesses. Textile shops and upper-floor residences typify the district's practical character, where commercial and domestic life often share the same building.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Tail Tip Lane",
+    "body": "A fashionable commercial lane associated with the Four Corner Tea House, a favored establishment among Faelspire's well-to-do. Its refined surroundings cater to cats for whom taking tea is an occasion rather than a necessity.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Southwest Gate",
+    "body": "A fortified passage through Faelspire's southwestern defenses, opening onto wooded routes toward the Forest Primeval. Travelers departing by this gate leave behind the regulated streets of the capital for older paths and less predictable company. Its pike-guards discourage anyone heading out without a destination, because the forest is deemed dangerous. As one of them warns, “Forest has a way of swallowing wanderers.”",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "City Wall",
+    "body": "Part of the fortified perimeter protecting Faelspire from threats beyond the city. Its masonry works in concert with the capital's magical defenses, maintained under the authority of the Crown and the Guild. Leaving the city is discouraged: the forest beyond the walls is deemed dangerous, and pike-guards watch every gate.\n\nTechnical specifications of the protective enchantments remain ████████████.",
+    "classification": "ROYAL DEFENSES — RESTRICTED"
+  },
+  {
+    "name": "The City Gates",
+    "body": "Fortified entrances regulating passage between Faelspire and the surrounding countryside. Merchants, travelers, and patrols pass beneath their towers, subject to the Crown's laws and the scrutiny of its guards.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "Ebonwood",
+    "body": "Woodland bordering the western approaches to Faelspire, traversed by established paths connecting the Forest Primeval with the Southwest Gate. The terrain is familiar to those who travel between the capital and the settlements beyond its walls. It takes its name from the towering Ebontrees, their trunks wider than market stalls, whose canopy knits so tightly that almost no light reaches the ground.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Forest Primeval",
+    "body": "An ancient expanse of woodland stretching beyond Faelspire's southern and western defenses. Its depths shelter an abundance of wildlife and communities beyond the immediate reach of the Crown. Among its inhabitants are the Strays, a clowder whose customs ████████████.",
+    "classification": "PUBLIC RECORD"
+  },
+  {
+    "name": "The Warped Ashai",
+    "body": "A singularly deformed Ashai tree standing atop a rocky outcropping deep in the Forest Primeval. Its unusual spiral growth has attracted the attention of scholars of ancient Nyandorian history. The surrounding area is believed to contain a wellspring, a natural concentration of magical energy within the Nyand.\n\nHistorical references to this site have been ████████████.",
+    "classification": "ARCHIVAL RECORD — RESTRICTED"
+  },
+  {
+    "name": "The Ebontrees",
+    "body": "Great trees associated with the magical protection of Faelspire. Their relationship to the city's defensive enchantments makes them objects of particular importance to the Guild. The precise mechanisms by which their energies are harnessed are not disclosed to the general public.",
+    "classification": "GUILD DEFENSES — RESTRICTED"
+  },
+  {
+    "name": "The Eastern Forest",
+    "body": "The woodland beyond Faelspire's eastern approaches, forming part of the broader landscape surrounding the capital. Its paths connect the city to the countryside and settlements farther east.",
+    "classification": "PUBLIC RECORD"
+  }
+]
+</script>
+<script>
+/* Faelspire atlas. Hit-testing uses the lens center in the map's own pixel grid (viewBox 0 0 1600 1200). */
+(function(){
+  var NS="http://www.w3.org/2000/svg";
+  var stage=document.getElementById("atlas-stage");
+  var img=document.getElementById("atlas-img");
+  var svg=document.getElementById("atlas-svg");
+  var lens=document.getElementById("atlas-lens");
+  var read=document.getElementById("atlas-read");
+  var sheet=document.getElementById("atlas-sheet");
+  var back=document.getElementById("atlas-back");
+  if(!stage||!svg)return;
+  var entries=JSON.parse(document.getElementById("atlas-entries").textContent);
+  var byName={};
+  entries.forEach(function(e){byName[e.name]=e;});
+  /* landmark beats a street, then a district, then the wall, then the woods. Same rank: smaller shape. */
+  var RANK={landmark:5,street:4,district:3,wall:2,forest:1};
+  var HIT=28;
+  var WALL_HIT=18;
+  var HOLD=120;
+  /* Geometry is traced on faelspire-map-1600.webp. Streets follow the lettered route.
+     Areas follow the ink around that label and stop before the next labeled place. */
+  /* Inner edge of the drawn city wall, traced on faelspire-map-1600.webp. City places only answer inside it. */
+  var CITY=[[140,330],[1240,330],[1240,262],[1458,240],[1460,600],[1438,700],[1402,810],[1308,898],[1100,996],[900,1056],[800,1074],[188,1074],[134,890]];
+  var GEOM=[
+    {name:"The Royal City of Faelspire",rank:"landmark",kind:"title",pts:[[0,30],[110,40],[220,30],[300,60],[330,0],[810,0],[800,70],[640,95],[430,108],[400,150],[410,240],[370,292],[262,300],[222,380],[120,412],[0,420]]},
+    {name:"Aard Templu Voreath",rank:"landmark",kind:"landmark",pts:[[432,112],[800,100],[804,196],[700,236],[668,306],[560,306],[560,200],[432,190]]},
+    {name:"Mount Sylvest",rank:"district",kind:"district",pts:[[948,18],[1100,0],[1260,10],[1400,38],[1472,86],[1410,148],[1260,158],[1088,146],[980,108],[934,58]]},
+    {name:"Ebon Heights",rank:"district",kind:"district",pts:[[800,150],[950,140],[1150,130],[1330,160],[1352,230],[1290,300],[1100,345],[900,350],[800,342],[790,250]]},
+    {name:"The Royal Palace",rank:"landmark",kind:"landmark",city:1,pts:[[690,398],[900,404],[922,522],[660,526],[668,440]]},
+    {name:"The Corpus",rank:"landmark",kind:"landmark",city:1,pts:[[688,692],[720,648],[768,632],[812,656],[858,634],[908,668],[922,730],[910,812],[848,842],[736,844],[678,806],[652,736]]},
+    {name:"Northclaw",rank:"district",kind:"district",city:1,pts:[[960,404],[1236,270],[1456,268],[1456,522],[1310,558],[1172,528],[1000,522],[958,470]]},
+    {name:"Eastclaw",rank:"district",kind:"district",city:1,pts:[[1072,578],[1330,552],[1456,590],[1448,700],[1390,760],[1170,778],[1054,700],[1064,624]]},
+    {name:"Felixiata",rank:"district",kind:"district",city:1,pts:[[196,892],[906,888],[906,1052],[196,1064]]},
+    {name:"Hatchery Row",rank:"district",kind:"district",city:1,pts:[[948,832],[1190,812],[1310,868],[1276,984],[1068,1004],[924,942],[916,878]]},
+    {name:"Upper Commerce",rank:"district",kind:"district",city:1,pts:[[186,384],[506,384],[506,606],[186,606]]},
+    {name:"Lower Commerce",rank:"district",kind:"district",city:1,pts:[[186,606],[506,606],[506,870],[186,870]]},
+    {name:"High Street",rank:"street",kind:"street",city:1,pts:[[280,367],[419,367],[716,367],[830,376],[944,387],[1027,387],[1140,370],[1211,364],[1340,364]]},
+    {name:"Tradewinds",rank:"street",kind:"street",city:1,pts:[[200,609],[435,609],[520,608],[610,606],[679,605],[876,605],[1040,600]]},
+    {name:"Low Street",rank:"street",kind:"street",city:1,pts:[[200,875],[455,875],[710,875],[900,875]]},
+    {name:"Commerce Street",rank:"street",kind:"street",city:1,pts:[[514,430],[514,489],[514,726],[514,860]]},
+    {name:"West End Avenue",rank:"street",kind:"street",city:1,pts:[[180,480],[180,563],[180,807],[180,880]]},
+    {name:"Barter Crossing",rank:"street",kind:"street",city:1,pts:[[341,630],[341,700],[341,868]]},
+    {name:"Centerline Street",rank:"street",kind:"street",city:1,pts:[[938,430],[938,450],[938,922],[938,1000]]},
+    {name:"Felixia Street",rank:"street",kind:"street",city:1,pts:[[305,880],[305,905],[305,1044],[305,1070]]},
+    {name:"Tol Manor",rank:"landmark",kind:"landmark",pts:[[1094,124],[1226,118],[1234,196],[1090,202]]},
+    {name:"The Proving Ground",rank:"landmark",kind:"landmark",pts:[[836,36],[946,32],[952,108],[828,112]]},
+    {name:"Gistli Square",rank:"landmark",kind:"landmark",city:1,pts:[[730,528],[860,526],[868,590],[724,596]]},
+    {name:"The Acatdemy",rank:"landmark",kind:"landmark",pts:[[600,292],[748,288],[756,334],[596,338]]},
+    {name:"The Southwest Gate",rank:"landmark",kind:"landmark",pts:[[162,1046],[236,1040],[242,1112],[156,1118]]},
+    {name:"City Wall",rank:"wall",kind:"wall",pts:[[150,385],[138,600],[132,885],[190,1075],[530,1082],[800,1080],[900,1062],[1100,1000],[1310,900],[1405,810],[1440,700],[1462,600],[1460,250]]},
+    {name:"Ebonwood",rank:"forest",kind:"forest",pts:[[0,420],[146,412],[130,886],[186,1080],[120,1199],[0,1199]]},
+    {name:"The Forest Primeval",rank:"forest",kind:"forest",pts:[[1470,232],[1599,232],[1599,1199],[110,1199],[190,1088],[800,1088],[900,1070],[1100,1008],[1312,908],[1408,818],[1446,702],[1468,600]]},
+    {name:"Redacted",rank:"landmark",kind:"landmark",pts:[[0,1132],[84,1126],[92,1199],[0,1199]]}
+  ];
+  var shapes=[];
+  var seen={};
+  GEOM.forEach(function(g){
+    var el=document.createElementNS(NS,"g");
+    el.setAttribute("class","ink ink-"+g.kind+(g.kind==="street"?"":" ink-area"));
+    el.setAttribute("data-place",g.name);
+    var label=(byName[g.name]&&byName[g.name].sub)?byName[g.name].name+", "+byName[g.name].sub:g.name;
+    el.setAttribute("data-rank",g.rank);
+    var pts=g.pts.map(function(p){return p[0]+","+p[1];}).join(" ");
+    var mark=document.createElementNS(NS,g.kind==="street"?"polyline":"polygon");
+    mark.setAttribute("points",pts);
+    mark.setAttribute("fill","none");
+    mark.setAttribute("stroke","none");
+    el.appendChild(mark);
+    var primary=!seen[g.name];
+    seen[g.name]=1;
+    if(primary && g.tab!==0){
+      el.setAttribute("tabindex","0");
+      el.setAttribute("role","button");
+      el.setAttribute("aria-label",label);
+    }
+    el._geom=g;
+    svg.appendChild(el);
+    shapes.push(el);
+  });
+  function area(pts){
+    var a=0;
+    for(var i=0;i<pts.length;i++){
+      var p=pts[i],q=pts[(i+1)%pts.length];
+      a+=p[0]*q[1]-q[0]*p[1];
+    }
+    return Math.abs(a)/2;
+  }
+  function inside(x,y,pts){
+    var inn=false;
+    for(var i=0,j=pts.length-1;i<pts.length;j=i++){
+      var xi=pts[i][0],yi=pts[i][1],xj=pts[j][0],yj=pts[j][1];
+      if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))inn=!inn;
+    }
+    return inn;
+  }
+  function segDist(x,y,a,b){
+    var dx=b[0]-a[0],dy=b[1]-a[1],l2=dx*dx+dy*dy,t=0;
+    if(l2)t=Math.max(0,Math.min(1,((x-a[0])*dx+(y-a[1])*dy)/l2));
+    var qx=a[0]+t*dx,qy=a[1]+t*dy;
+    return Math.hypot(x-qx,y-qy);
+  }
+  function lineDist(x,y,pts){
+    var best=1e9;
+    for(var i=1;i<pts.length;i++)best=Math.min(best,segDist(x,y,pts[i-1],pts[i]));
+    return best;
+  }
+  function hitAt(vx,vy){
+    var best=null;
+    shapes.forEach(function(s){
+      var g=s._geom,score;
+      if(g.city&&!inside(vx,vy,CITY))return;
+      if(g.kind==="forest"&&inside(vx,vy,CITY))return;
+      if(g.kind==="street"||g.kind==="wall"){
+        var d=lineDist(vx,vy,g.pts);
+        if(d>(g.kind==="wall"?WALL_HIT:HIT))return;
+        score=[RANK[g.rank],-d,0];
+      }else if(inside(vx,vy,g.pts)){
+        score=[RANK[g.rank],0,-area(g.pts)];
+      }else return;
+      if(!best||score[0]>best.score[0]||(score[0]===best.score[0]&&(score[1]>best.score[1]||(score[1]===best.score[1]&&score[2]>best.score[2]))))
+        best={name:g.name,score:score};
+    });
+    return best?best.name:null;
+  }
+  var hoverName=null,focusName=null,pending=null,hoverTimer=0,shown=null;
+  function active(){return hoverName||focusName;}
+  function anchor(pts,kind){
+    var i,p,q,cross,a=0,cx=0,cy=0;
+    if(kind==="street"||kind==="wall"){
+      var len=0,segs=[];
+      for(i=1;i<pts.length;i++){
+        var seg=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);
+        segs.push(seg);len+=seg;
+      }
+      var half=len/2,acc=0;
+      for(i=1;i<pts.length;i++){
+        if(acc+segs[i-1]>=half){
+          var t=segs[i-1]?(half-acc)/segs[i-1]:0;
+          return [pts[i-1][0]+(pts[i][0]-pts[i-1][0])*t,pts[i-1][1]+(pts[i][1]-pts[i-1][1])*t];
+        }
+        acc+=segs[i-1];
+      }
+      return pts[Math.floor(pts.length/2)];
+    }
+    for(i=0;i<pts.length;i++){
+      p=pts[i];q=pts[(i+1)%pts.length];
+      cross=p[0]*q[1]-q[0]*p[1];
+      a+=cross;cx+=(p[0]+q[0])*cross;cy+=(p[1]+q[1])*cross;
+    }
+    a*=0.5;
+    if(!a){
+      var sx=0,sy=0;
+      pts.forEach(function(pt){sx+=pt[0];sy+=pt[1];});
+      return [sx/pts.length,sy/pts.length];
+    }
+    return [cx/(6*a),cy/(6*a)];
+  }
+  function paint(){
+    var name=active();
+    shapes.forEach(function(s){
+      if(s.hasAttribute("tabindex"))s.setAttribute("aria-pressed",s.getAttribute("data-place")===name?"true":"false");
+    });
+  }
+  function showFocusLens(el){
+    var g=el&&el._geom;
+    if(!g)return;
+    var p=anchor(g.pts,g.kind);
+    var rect=stage.getBoundingClientRect();
+    placeLens(p[0]/1600*rect.width,p[1]/1200*rect.height,rect);
+    lens.classList.add("is-focus");
+  }
+  function fill(root,name){
+    var e=byName[name];
+    if(!e)return;
+    root.querySelector(".rec-class").textContent=e.classification;
+    root.querySelector("h3").textContent=e.name;
+    var sub=root.querySelector(".rec-sub");
+    if(!sub){sub=document.createElement("p");sub.className="rec-sub";root.querySelector("h3").after(sub);}
+    sub.textContent=e.sub?"("+e.sub+")":"";sub.hidden=!e.sub;
+    root.querySelector(".rec-body").textContent=e.body;
+  }
+  function showText(name){
+    if(!name||name===shown)return;
+    shown=name;
+    var wait=read.querySelector(".rec-wait"),rec=read.querySelector(".rec");
+    wait.hidden=true;rec.hidden=false;
+    if(name==="Redacted"){
+      rec.classList.add("is-redacted");
+      sheet.classList.add("is-redacted");
+      [rec,sheet].forEach(function(root){
+        root.querySelector(".rec-class").textContent="";
+        root.querySelector("h3").textContent="";
+        root.querySelector(".rec-body").textContent="";
+      });
+      rec.querySelector("h3").setAttribute("aria-label","Redacted");
+      sheet.querySelector("h3").setAttribute("aria-label","Redacted");
+      return;
+    }
+    rec.classList.remove("is-redacted");
+    sheet.classList.remove("is-redacted");
+    rec.querySelector("h3").removeAttribute("aria-label");
+    sheet.querySelector("h3").removeAttribute("aria-label");
+    fill(read,name);
+    fill(sheet,name);
+  }
+  var phoneQuery=window.matchMedia("(max-width:760px), (hover: none) and (pointer: coarse)");
+  function phone(){return phoneQuery.matches;}
+  function openSheet(){
+    if(!phone()||!shown)return;
+    /* Phones: the record shows in a card below the map instead of a sheet over it. */
+    setTimeout(function(){var r=read.getBoundingClientRect();if(r.bottom>innerHeight||r.top<0)read.scrollIntoView({behavior:(window.matchMedia&&matchMedia('(min-width:761px)').matches)?"instant":"smooth",block:"nearest"});},30);
+    return;
+    sheet.hidden=false;back.hidden=false;
+    sheet.setAttribute("aria-hidden","false");
+    if(!sheet.hasAttribute("tabindex"))sheet.setAttribute("tabindex","-1");
+    setTimeout(function(){if(!sheet.hidden)sheet.focus();},0);
+  }
+  function closeSheet(){
+    sheet.hidden=true;back.hidden=true;
+    sheet.setAttribute("aria-hidden","true");
+    sheet.classList.remove("is-full");
+    var grip=document.getElementById("sheet-expand");
+    if(grip){grip.textContent="Full height";grip.setAttribute("aria-pressed","false");}
+  }
+  function commitHover(name){
+    hoverName=name;
+    pending=null;
+    stage.setAttribute("data-hover",name||"");
+    paint();
+    if(name)showText(name);
+  }
+  function armHover(name){
+    if(name===hoverName){
+      pending=null;
+      clearTimeout(hoverTimer);
+      hoverTimer=0;
+      return;
+    }
+    /* A named place shows at once; empty ground waits a beat so gaps between places don't flicker. */
+    if(name){clearTimeout(hoverTimer);hoverTimer=0;commitHover(name);return;}
+    if(hoverTimer&&name===pending)return;
+    pending=name;
+    clearTimeout(hoverTimer);
+    hoverTimer=setTimeout(function(){
+      hoverTimer=0;
+      if(pending===name)commitHover(name);
+    },HOLD);
+  }
+  function placeLens(x,y,rect){
+    var size=148,zoom=2.2;
+    lens.hidden=false;
+    lens.style.left=(x-size/2)+"px";
+    lens.style.top=(y-size/2)+"px";
+    var src=img.currentSrc||img.src;
+    lens.style.backgroundImage='url("'+src+'")';
+    lens.style.backgroundSize=(rect.width*zoom)+"px "+(rect.height*zoom)+"px";
+    lens.style.backgroundPosition=(size/2-x*zoom)+"px "+(size/2-y*zoom)+"px";
+  }
+  stage.addEventListener("pointermove",function(e){
+    if(e.pointerType==="touch")return; /* protocol page: a mouse gets the lens at any window width */
+    var rect=stage.getBoundingClientRect();
+    var x=e.clientX-rect.left,y=e.clientY-rect.top;
+    if(x<0||y<0||x>rect.width||y>rect.height)return;
+    lens.classList.remove("is-focus");
+    placeLens(x,y,rect);
+    armHover(hitAt(x/rect.width*1600,y/rect.height*1200));
+  });
+  stage.addEventListener("pointerleave",function(){
+    pending=null;
+    clearTimeout(hoverTimer);
+    hoverTimer=0;
+    hoverName=null;
+    stage.setAttribute("data-hover","");
+    if(focusName){
+      shapes.forEach(function(s){if(s.getAttribute("data-place")===focusName&&s.hasAttribute("tabindex"))showFocusLens(s);});
+    }else{
+      lens.classList.remove("is-focus");
+      lens.hidden=true;
+    }
+  });
+  stage.addEventListener("click",function(e){
+    if(!phone())return;
+    var rect=stage.getBoundingClientRect();
+    var x=e.clientX-rect.left,y=e.clientY-rect.top;
+    lens.classList.remove("is-focus");
+    placeLens(x,y,rect); /* protocol page: the lens lands where the finger tapped */
+    var name=hitAt(x/rect.width*1600,y/rect.height*1200);
+    if(!name)return;
+    commitHover(name);
+    openSheet();
+  });
+  svg.addEventListener("focusin",function(e){
+    var name=e.target.getAttribute&&e.target.getAttribute("data-place");
+    if(!name)return;
+    focusName=name;
+    paint();
+    showText(name);
+    showFocusLens(e.target);
+    if(phone())openSheet();
+  });
+  svg.addEventListener("focusout",function(e){
+    if(svg.contains(e.relatedTarget))return;
+    focusName=null;
+    paint();
+    if(!stage.matches(":hover")){
+      lens.classList.remove("is-focus");
+      lens.hidden=true;
+    }
+  });
+  svg.addEventListener("keydown",function(e){
+    if(e.key!=="Enter"&&e.key!==" ")return;
+    var name=e.target.getAttribute&&e.target.getAttribute("data-place");
+    if(!name)return;
+    e.preventDefault();
+    focusName=name;paint();showText(name);
+    if(phone())openSheet();
+  });
+  document.getElementById("sheet-close").addEventListener("click",closeSheet);
+  back.addEventListener("click",closeSheet);
+  document.getElementById("sheet-expand").addEventListener("click",function(){
+    var full=sheet.classList.toggle("is-full");
+    this.textContent=full?"Half height":"Full height";
+    this.setAttribute("aria-pressed",full?"true":"false");
+  });
+  document.addEventListener("keydown",function(e){
+    if(e.key==="Escape"&&!sheet.hidden)closeSheet();
+  });
+  sheet.addEventListener("keydown",function(e){
+    if(e.key!=="Tab"||sheet.hidden)return;
+    var list=sheet.querySelectorAll("button");
+    if(!list.length)return;
+    var first=list[0],last=list[list.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  });
+})();
+
+</script>
+<script>
+(function(){
+  var atlas=document.getElementById("atlas"),stage=document.getElementById("atlas-stage"),
+      card=document.getElementById("atlas-read"),lens=document.getElementById("atlas-lens");
+  if(!atlas||!stage||!card)return;
+  function rec(){return card.querySelector(".rec");}
+  function place(px,py){
+    var ar=atlas.getBoundingClientRect(),w=card.offsetWidth,h=card.offsetHeight,gap=130;
+    var x=px-ar.left,y=py-ar.top;
+    var left=x-100-w;
+    if(left<0)left=x+250;
+    if(left+w>ar.width)left=Math.max(0,ar.width-w);
+    var top=y-h/2;top=Math.max(8,Math.min(ar.height-h-8,top));
+    card.style.left=left+"px";card.style.top=top+"px";
+  }
+  function sync(px,py){
+    var r=rec(),focused=lens.classList.contains("is-focus");
+    var on=r&&!r.hidden&&!lens.hidden&&(focused||stage.getAttribute("data-hover"));
+    card.classList.toggle("is-on",!!on);
+    if(on)place(px,py);
+  }
+  var lx=0,ly=0;
+  stage.addEventListener("pointermove",function(e){lx=e.clientX;ly=e.clientY;requestAnimationFrame(function(){sync(lx,ly)});});
+  new MutationObserver(function(){requestAnimationFrame(function(){sync(lx,ly)});}).observe(card,{subtree:true,childList:true,attributes:true,characterData:true});
+  new MutationObserver(function(){requestAnimationFrame(function(){sync(lx,ly)});}).observe(stage,{attributes:true,attributeFilter:["data-hover"]});
+  stage.addEventListener("pointerleave",function(){card.classList.remove("is-on");});
+  atlas.addEventListener("focusin",function(){var l=lens.getBoundingClientRect();lx=l.left+l.width/2;ly=l.top+l.height/2;setTimeout(function(){var l=lens.getBoundingClientRect();sync(l.left+l.width/2,l.top+l.height/2)},30);});
+  atlas.addEventListener("focusout",function(){setTimeout(function(){if(!atlas.contains(document.activeElement))card.classList.remove("is-on")},0);});
 })();
 </script>
 </body>
