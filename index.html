@@ -14,7 +14,7 @@
 </script>
 <title>The Gate of Nyandor · Epic fantasy with an all-cat cast</title>
 <meta name="claude:viewport-fit-sides" content="cover" />
-<meta name="description" content="The Gate of Nyandor by Patrick Christell: epic fantasy with an all-cat cast. A royal city, a secret police, a Guild that hoards magic, and a forbidden gate into every choice ever made. Two novels, two realities, one Voyd. On Amazon in paperback and Kindle." />
+<meta name="description" content="The Gate of Nyandor by Patrick Christell: epic fantasy with an all-cat cast. A royal city, a secret police, a Guild that hoards magic, and a forbidden gate into every choice ever made. Two published novels, two forthcoming sequels, and two timestreams that keep unfolding. On Amazon in paperback and Kindle." />
 <meta name="theme-color" content="#050918" />
 <link rel="canonical" href="https://www.thegateofnyandor.com/" />
 <meta property="og:type" content="website" />
@@ -477,6 +477,59 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
   .vp-ring,.vp-back,.vp-glow,.vp-down,.vp-cue{animation:none!important}
   .vp-run{height:200svh}
 }
+
+/* TWO CONTINUING TIMESTREAMS — additive only; the portal and published-book flight stay intact. */
+.split .branch-follow{display:inline-block;margin-top:22px;padding-top:12px;border-top:1px solid rgba(145,167,232,.48);font:italic 18px/1.35 var(--book);color:#afc3fa;text-decoration:none}
+.split .book.b2 .branch-follow{color:#edb4ce;border-top-color:rgba(220,158,186,.48)}
+.split .branch-follow:hover{text-decoration:underline;text-underline-offset:4px}
+.branch-card h3{scroll-margin-top:110px}
+
+.vp-series-note{font:italic 400 clamp(14px,1.7vw,17px)/1.3 var(--book);color:var(--gold-soft);max-width:39ch;margin:14px auto 0;letter-spacing:.015em}
+.branch-future{overflow:hidden;padding-top:clamp(30px,5vw,58px);padding-bottom:clamp(68px,9vw,112px)}
+.branch-future .branch-lead{position:relative;z-index:1;max-width:690px;margin:0 auto;text-align:center}
+.branch-future .branch-lead h2{margin:10px auto 12px;max-width:18ch}
+.branch-future .branch-lead p:last-child{font-style:italic;color:#d9d4cf;font-size:clamp(19px,2.5vw,23px);line-height:1.4;margin:0 auto;max-width:39ch}
+.branch-runway{height:clamp(100px,14vw,150px);position:relative;max-width:1040px;margin:4px auto 0}
+.branch-runway svg{width:100%;height:100%;overflow:visible;display:block;filter:drop-shadow(0 0 9px rgba(225,181,105,.27))}
+.branch-runway .track-left{stroke:#829cde}.branch-runway .track-right{stroke:#da91b9}
+.branch-runway .track-junction{fill:#070817;stroke:#dcb972;stroke-width:2}
+.branch-runway .track-core{fill:#04050d}
+.branch-runway .track-node{fill:#f2dcad}
+.branch-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,64px);align-items:stretch;position:relative}
+.branch-card{--stream-color:#91a7e8;position:relative;min-width:0;padding:clamp(22px,3vw,32px);background:linear-gradient(150deg,rgba(10,17,43,.92),rgba(5,7,18,.88) 65%);border:1px solid rgba(145,167,232,.38);border-radius:12px;box-shadow:0 22px 70px rgba(0,0,0,.45)}
+.branch-card.pass{--stream-color:#dc9eba;border-color:rgba(220,158,186,.38);background:linear-gradient(155deg,rgba(29,15,36,.85),rgba(5,7,18,.88) 65%)}
+.branch-card::before{content:"";position:absolute;top:-1px;left:12%;width:76%;height:1px;background:linear-gradient(90deg,transparent,var(--stream-color),transparent)}
+.branch-card::after{content:"";position:absolute;top:-8px;left:calc(50% - 7px);width:14px;height:14px;border-radius:50%;background:var(--stream-color);box-shadow:0 0 20px var(--stream-color)}
+.branch-card .branch-state{margin:0 0 20px;font:600 12px/1.5 var(--sans);letter-spacing:.27em;text-transform:uppercase;text-align:center;color:var(--stream-color)}
+.branch-card .branch-state em{display:block;font:italic 400 19px/1.3 var(--book);letter-spacing:0;text-transform:none;color:#d9d4cf;margin-top:5px}
+.branch-card .branch-cover{display:block;width:min(226px,68%);aspect-ratio:600/968;margin:0 auto 22px;object-fit:cover;border-radius:5px;box-shadow:0 20px 55px rgba(0,0,0,.68),0 0 0 1px rgba(229,189,92,.15)}
+.branch-card .branch-status{color:var(--gold);font:600 12px/1.5 var(--sans);letter-spacing:.24em;text-transform:uppercase;margin:4px 0 8px}
+.branch-card h3{font:400 clamp(1.9rem,3.3vw,2.4rem)/1.09 var(--book);color:#f7f1e2;margin:0 0 6px}
+.branch-card .branch-subtitle{font:italic 22px/1.3 var(--book);color:var(--gold-soft);margin:0 0 17px}
+.branch-card p{color:#ddd7c8;margin:0 0 15px;font-size:20px;line-height:1.45}
+.branch-card p:last-child{margin-bottom:0}
+.branch-card .branch-ending{font-style:italic;color:var(--gold-soft)}
+.branch-card .branch-date{color:var(--gold-soft);font:600 13px/1.6 var(--sans);letter-spacing:.2em;text-transform:uppercase;margin:0 0 16px}
+.branch-after{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,64px);height:105px;max-width:1040px}
+.branch-after span{display:block;width:1px;height:100%;margin:auto;background:repeating-linear-gradient(to bottom,rgba(145,167,232,.6) 0 6px,transparent 6px 17px);-webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
+.branch-after span:last-child{background:repeating-linear-gradient(to bottom,rgba(220,158,186,.6) 0 6px,transparent 6px 17px)}
+.branch-outro{font:italic 400 clamp(1.5rem,3.1vw,2.15rem)/1.2 var(--book);color:var(--gold-soft);text-align:center;margin:0}
+.branch-outro + p{text-align:center;color:var(--muted);font-size:18px;max-width:40ch;margin:10px auto 0}
+.branch-card.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease}
+.branch-card.reveal.is-visible{opacity:1;transform:none}
+@media(max-width:760px){
+ .branch-future{padding-top:20px}
+ .branch-runway{display:none}
+ .branch-grid{grid-template-columns:1fr;gap:36px;margin-top:28px}
+ .branch-card{max-width:540px;margin:0 auto;width:100%}
+ .branch-card::after{display:none}
+ .branch-card .branch-cover{width:min(200px,58%)}
+ .branch-card p{font-size:19px}
+ .branch-after{height:68px;gap:36px}
+ .branch-after span{margin:0 auto}
+}
+@media(prefers-reduced-motion:reduce){.branch-card.reveal{opacity:1;transform:none;transition:none}}
+
 </style>
 <script>/* Hold the hero headline until the Voyd opens, so it types in with the burst. Desktop only (over 760px). Released by the portal; never later than 3.5s. */
 (function(){if(!(window.matchMedia&&matchMedia('(min-width:761px)').matches))return;var d=document.documentElement,q=[];if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('vp-hold');
@@ -516,7 +569,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){wi
 <header class="band hero vp" id="top">
   <nav class="vp-nav" aria-label="Sections">
     <a class="vp-brand" href="#top">The Gate of Nyandor</a>
-    <a href="#split">Two books</a>
+    <a href="#split">Timestreams</a>
     <a class="vp-wide" href="#first-h">The first page</a>
     <a class="vp-wide" href="#dice">Cast the dice</a>
     <a class="vp-mid" href="#atlas">Faelspire</a>
@@ -528,6 +581,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){wi
         <p class="label vp-kicker">The Gate of Nyandor · a transdimensional feline saga</p>
         <h1 data-scratch>Two books. Two timestreams. <em>One Voyd.</em></h1>
         <p class="vp-body">Every choice you made. Every one you didn't. The Voyd keeps them all. What if you could reach in and change fate?</p>
+        <p class="vp-series-note">Two novels available. Two more coming in 2027. The timestreams continue.</p>
         <p class="vp-cue" id="vp-cue">Scroll down…</p>
       </div>
       <div class="vp-books" id="vp-books">
@@ -555,6 +609,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){wi
           <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="split-book1-kindle">Kindle · $9.99</a>
         </div>
         <p class="fine">Start here, but you don’t have to.</p>
+        <a class="branch-follow" href="#wellspring-title">Follow this timestream: Wellspring Incatporated <span aria-hidden="true">↓</span></a>
       </article>
       <article class="book b2">
         <a class="slot" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-cover-book2" aria-label="The Divergent Path on Amazon"><img src="assets/divergent-path-720.webp" srcset="assets/divergent-path-360.webp 360w, assets/divergent-path-720.webp 720w" sizes="240px" width="720" height="1152" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the void" decoding="async" /></a>
@@ -567,11 +622,61 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){wi
           <a class="btn" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-book2-paperback">Paperback · $15.99</a>
         </div>
         <p class="fine">Reads on its own. Hits harder after Book One.</p>
+        <a class="branch-follow" href="#oculory-title">Follow this timestream: The Jeweled Oculory <span aria-hidden="true">↓</span></a>
       </article>
     </div>
   </div>
 </section>
 
+
+
+<!-- THE TIMESTREAMS CONTINUE. The published books above remain the two entry points. -->
+<section class="band branch-future" id="timestreams" aria-labelledby="branches-title">
+  <div class="inner">
+    <header class="branch-lead">
+      <p class="label">The timestreams continue</p>
+      <h2 id="branches-title">Every choice opens <em>another world.</em></h2>
+      <p>Sory’n’s two realities have only begun to diverge.</p>
+    </header>
+    <div class="branch-runway" aria-hidden="true">
+      <svg viewBox="0 0 1000 150" preserveAspectRatio="none">
+        <path class="track-left" d="M500 12 C500 68 250 62 250 150" fill="none" stroke-width="2.2"/>
+        <path class="track-right" d="M500 12 C500 68 750 62 750 150" fill="none" stroke-width="2.2"/>
+        <circle class="track-junction" cx="500" cy="13" r="13"/>
+        <circle class="track-core" cx="500" cy="13" r="8"/>
+        <circle class="track-node" cx="250" cy="147" r="3"/>
+        <circle class="track-node" cx="750" cy="147" r="3"/>
+      </svg>
+    </div>
+    <div class="branch-grid">
+      <article class="branch-card fail" aria-labelledby="wellspring-title">
+        <p class="branch-state">Sory’n fails the Assessment <em>After The Furbidden Voyd</em></p>
+        <img class="branch-cover" src="assets/wellspring-incatporated-front.jpg" alt="Wellspring Incatporated front cover: a golden magicell with a cat emblem against blue and gold" width="600" height="968" loading="lazy" decoding="async"/>
+        <p class="branch-status">Book Four · Forthcoming</p>
+        <h3 id="wellspring-title">Wellspring Incatporated</h3>
+        <p class="branch-date">Coming May 2027</p>
+        <p>In this timestream, magic is a commodity. Wellspring Incatporated powers the Mewniverse with magicells, and the revered Mother Ertree presides over an age of unprecedented prosperity. Her teachings shape society, her followers worship her, and nearly every cat depends upon the power she provides. Few question where that power comes from.</p>
+        <p>But Sory’n remembers another world. Her friends lead lives they never chose, her father is haunted by memories of a greatness he never achieved, and the Voyd has followed her into this strange new reality. Beneath Wellspring’s glittering promises lies a secret that threatens everything Ertree has built.</p>
+        <p class="branch-ending">Sory’n once changed the world to escape her fate. Now, with every attempt to set things right, the Voyd grows larger, and reality becomes less certain. How many times can she rewrite existence before there is nothing left to save?</p>
+      </article>
+      <article class="branch-card pass" aria-labelledby="oculory-title">
+        <p class="branch-state">Sory’n passes the Assessment <em>After The Divergent Path</em></p>
+        <img class="branch-cover" src="assets/jeweled-oculory-front.jpg" alt="The Jeweled Oculory front cover: an enormous green feline eye holding a faceted jewel" width="600" height="968" loading="lazy" decoding="async"/>
+        <p class="branch-status">Book Three · Forthcoming</p>
+        <h3 id="oculory-title">The Jeweled Oculory</h3>
+        <p class="branch-date">Coming February 2027</p>
+        <p>Sory’n went through the portal certain she could fix anything. Now she’s stranded in a world ruled by the Whim, a fickle will that hates magic, makes things vanish, and watches everything through the Oculory, a jeweled sun.</p>
+        <p>Every time its stones turn, reality rearranges itself. Streets knit shut, fortunes reverse, and the tide of an endless war turns without warning.</p>
+        <p>Her magic is gone, and her brooch has been stolen. Her only guide is Whiskerthorn, a silver-tongued fox in a waistcoat who swears he’s on her side.</p>
+        <p>To find her way home, Sory’n must cross four jeweled lands: the Ochre Dunes of a mad dog empire, a library drifting across the sand, a Grotto where cats are worshipped and everyone else serves them, and realms stranger still. The prophecy names her as the one who can end the Whim’s rule.</p>
+        <p class="branch-ending">Yet what troubles Sory’n most is how often she understands the Whim’s choices.</p>
+      </article>
+    </div>
+    <div class="branch-after" aria-hidden="true"><span></span><span></span></div>
+    <h2 class="branch-outro">Further fractures ahead.</h2>
+    <p>Neither timestream ends here.</p>
+  </div>
+</section>
 
 <!-- FIRST PAGE -->
 <section class="band first" aria-labelledby="first-h">
@@ -2505,6 +2610,19 @@ if(window.matchMedia&&matchMedia('(min-width:761px)').matches){
   cv.addEventListener('webglcontextlost',function(e){e.preventDefault();portal.classList.remove('gl','gl-only');ready=false;});
 })();
 }
+</script>
+
+<script>
+/* Small progressive reveal; reduced-motion and unsupported browsers see cards immediately. */
+(function(){
+  var cards=document.querySelectorAll('.branch-card');
+  if(!cards.length || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  cards.forEach(function(card){card.classList.add('reveal')});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){if(entry.isIntersecting){entry.target.classList.add('is-visible');io.unobserve(entry.target)}});
+  },{threshold:0.08});
+  cards.forEach(function(card){io.observe(card)});
+})();
 </script>
 </body>
 </html>
