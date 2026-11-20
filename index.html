@@ -479,6 +479,11 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 }
 
 /* TWO CONTINUING TIMESTREAMS — additive only; the portal and published-book flight stay intact. */
+.split .branch-follow{display:inline-block;margin-top:22px;padding-top:12px;border-top:1px solid rgba(145,167,232,.48);font:italic 18px/1.35 var(--book);color:#afc3fa;text-decoration:none}
+.split .book.b2 .branch-follow{color:#edb4ce;border-top-color:rgba(220,158,186,.48)}
+.split .branch-follow:hover{text-decoration:underline;text-underline-offset:4px}
+.branch-card h3{scroll-margin-top:110px}
+
 .vp-series-note{font:italic 400 clamp(14px,1.7vw,17px)/1.3 var(--book);color:var(--gold-soft);max-width:39ch;margin:14px auto 0;letter-spacing:.015em}
 .branch-future{overflow:hidden;padding-top:clamp(30px,5vw,58px);padding-bottom:clamp(68px,9vw,112px)}
 .branch-future .branch-lead{position:relative;z-index:1;max-width:690px;margin:0 auto;text-align:center}
@@ -514,9 +519,8 @@ footer .press{font:italic 17px/1.5 var(--book);margin:0 0 6px}
 .branch-card.reveal.is-visible{opacity:1;transform:none}
 @media(max-width:760px){
  .branch-future{padding-top:20px}
- .branch-runway{height:80px}
- .branch-runway svg .track-left,.branch-runway svg .track-right{stroke-width:2.5}
- .branch-grid{grid-template-columns:1fr;gap:36px}
+ .branch-runway{display:none}
+ .branch-grid{grid-template-columns:1fr;gap:36px;margin-top:28px}
  .branch-card{max-width:540px;margin:0 auto;width:100%}
  .branch-card::after{display:none}
  .branch-card .branch-cover{width:min(200px,58%)}
@@ -605,6 +609,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){wi
           <a class="btn ghost" href="https://www.amazon.com/dp/B0G8DDNS3Q" target="_blank" rel="noopener" data-cta="split-book1-kindle">Kindle · $9.99</a>
         </div>
         <p class="fine">Start here, but you don’t have to.</p>
+        <a class="branch-follow" href="#wellspring-title">Follow this timestream: Wellspring Incatporated <span aria-hidden="true">↓</span></a>
       </article>
       <article class="book b2">
         <a class="slot" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-cover-book2" aria-label="The Divergent Path on Amazon"><img src="assets/divergent-path-720.webp" srcset="assets/divergent-path-360.webp 360w, assets/divergent-path-720.webp 720w" sizes="240px" width="720" height="1152" alt="Cover of The Divergent Path: the same black cat, mirrored, beside the void" decoding="async" /></a>
@@ -617,6 +622,7 @@ document.addEventListener('DOMContentLoaded',function(){setTimeout(function(){wi
           <a class="btn" href="https://www.amazon.com/dp/B0GDM8QB5H" target="_blank" rel="noopener" data-cta="split-book2-paperback">Paperback · $15.99</a>
         </div>
         <p class="fine">Reads on its own. Hits harder after Book One.</p>
+        <a class="branch-follow" href="#oculory-title">Follow this timestream: The Jeweled Oculory <span aria-hidden="true">↓</span></a>
       </article>
     </div>
   </div>
